@@ -11,6 +11,7 @@ import {
   CommentsSummaryData,
   DefendantsAndDetractorsData,
   EngagementTimesData,
+  PostsAndCommentsData,
   SocialMediaBaseData,
   WordCloudData,
   WordsListData,
@@ -26,7 +27,7 @@ export default function Home() {
 
       <div className="col-span-12 grid h-[120vh] grid-cols-12 grid-rows-10 gap-8">
         <div className="col-span-8 row-span-10">
-          <PostsAndComments />
+          <PostsAndComments PostsAndCommentsData={PostsAndCommentsData} />
         </div>
         <div className="col-span-4 row-span-3">
           <CommentsSummary CommentsSummaryData={CommentsSummaryData} />

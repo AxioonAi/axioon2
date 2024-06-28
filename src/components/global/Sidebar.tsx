@@ -1,14 +1,11 @@
 "use client";
 
-import { usePathname, useRouter } from "next/navigation";
 import { twMerge } from "tailwind-merge";
 import Image from "next/image";
 import { useSidebarContext } from "@/context/sidebarStatus";
 
 export function Sidebar() {
-  const { isOpen, setIsOpen } = useSidebarContext();
-  const pathname = usePathname();
-  const router = useRouter();
+  const { isOpen } = useSidebarContext();
 
   return (
     <div
