@@ -365,3 +365,720 @@ export const WordCloudData = {
     fontSizes: [20, 80] as [number, number],
   },
 };
+
+export const PostsAndCommentsData = [
+  {
+    socialMedia: "tiktok",
+    text: "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+    sentiment: "Negativo",
+    likesCount: 31000,
+    commentsCount: 31000,
+    viewsCount: 31000,
+    date: "23/10/2023 - 16:34",
+    comments: [
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+    ],
+  },
+  {
+    socialMedia: "youtube",
+    text: "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+    sentiment: "Negativo",
+    likesCount: 31000,
+    commentsCount: 31000,
+    viewsCount: 31000,
+    date: "23/10/2023 - 16:34",
+    comments: [
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+    ],
+  },
+  {
+    socialMedia: "facebook",
+    text: "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+    sentiment: "Negativo",
+    likesCount: 31000,
+    commentsCount: 31000,
+    viewsCount: 31000,
+    date: "23/10/2023 - 16:34",
+    comments: [
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+    ],
+  },
+  {
+    socialMedia: "facebook",
+    text: "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+    sentiment: "Negativo",
+    likesCount: 31000,
+    commentsCount: 31000,
+    viewsCount: 31000,
+    date: "23/10/2023 - 16:34",
+    comments: [
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+    ],
+  },
+  {
+    socialMedia: "instagram",
+    text: "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+    sentiment: "Negativo",
+    likesCount: 31000,
+    commentsCount: 31000,
+    viewsCount: 31000,
+    date: "23/10/2023 - 16:34",
+    comments: [
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+    ],
+  },
+  {
+    socialMedia: "instagram",
+    text: "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+    sentiment: "Negativo",
+    likesCount: 31000,
+    commentsCount: 31000,
+    viewsCount: 31000,
+    date: "23/10/2023 - 16:34",
+    comments: [
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+    ],
+  },
+  {
+    socialMedia: "tiktok",
+    text: "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+    sentiment: "Negativo",
+    likesCount: 31000,
+    commentsCount: 31000,
+    viewsCount: 31000,
+    date: "23/10/2023 - 16:34",
+    comments: [
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+    ],
+  },
+  {
+    socialMedia: "tiktok",
+    text: "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+    sentiment: "Negativo",
+    likesCount: 31000,
+    commentsCount: 31000,
+    viewsCount: 31000,
+    date: "23/10/2023 - 16:34",
+    comments: [
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+    ],
+  },
+  {
+    socialMedia: "youtube",
+    text: "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+    sentiment: "Negativo",
+    likesCount: 31000,
+    commentsCount: 31000,
+    viewsCount: 31000,
+    date: "23/10/2023 - 16:34",
+    comments: [
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+    ],
+  },
+  {
+    socialMedia: "facebook",
+    text: "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+    sentiment: "Negativo",
+    likesCount: 31000,
+    commentsCount: 31000,
+    viewsCount: 31000,
+    date: "23/10/2023 - 16:34",
+    comments: [
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+    ],
+  },
+  {
+    socialMedia: "facebook",
+    text: "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+    sentiment: "Negativo",
+    likesCount: 31000,
+    commentsCount: 31000,
+    viewsCount: 31000,
+    date: "23/10/2023 - 16:34",
+    comments: [
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+    ],
+  },
+  {
+    socialMedia: "instagram",
+    text: "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+    sentiment: "Negativo",
+    likesCount: 31000,
+    commentsCount: 31000,
+    viewsCount: 31000,
+    date: "23/10/2023 - 16:34",
+    comments: [
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+    ],
+  },
+  {
+    socialMedia: "instagram",
+    text: "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+    sentiment: "Negativo",
+    likesCount: 31000,
+    commentsCount: 31000,
+    viewsCount: 31000,
+    date: "23/10/2023 - 16:34",
+    comments: [
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+    ],
+  },
+  {
+    socialMedia: "tiktok",
+    text: "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+    sentiment: "Negativo",
+    likesCount: 31000,
+    commentsCount: 31000,
+    viewsCount: 31000,
+    date: "23/10/2023 - 16:34",
+    comments: [
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+    ],
+  },
+];

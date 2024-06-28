@@ -2,6 +2,7 @@ import { CommentsDonutGraph } from "@/components/app/home/CommentsDonutGraph";
 import { CommentsSummary } from "@/components/app/home/CommentsSummary";
 import { DefendantsAndDetractorsList } from "@/components/app/home/DefendantsAndDetractorsList";
 import { EngagementTimes } from "@/components/app/home/EngagementTimes";
+import { PostsAndComments } from "@/components/app/home/PostsAndComments";
 import { SocialMediaBaseCard } from "@/components/app/home/SocialMediaBaseCard";
 import { WordCloud } from "@/components/app/home/WordCloud";
 import { WordsList } from "@/components/app/home/WordsList";
@@ -14,8 +15,6 @@ import {
   WordCloudData,
   WordsListData,
 } from "@/components/data/HomeData";
-import { BaseCard } from "@/components/global/BaseCard/BaseCard";
-
 export default function Home() {
   return (
     <div className="grid grid-cols-12 gap-8">
@@ -27,7 +26,7 @@ export default function Home() {
 
       <div className="col-span-12 grid h-[120vh] grid-cols-12 grid-rows-10 gap-8">
         <div className="col-span-8 row-span-10">
-          <BaseCard>1</BaseCard>
+          <PostsAndComments />
         </div>
         <div className="col-span-4 row-span-3">
           <CommentsSummary CommentsSummaryData={CommentsSummaryData} />
