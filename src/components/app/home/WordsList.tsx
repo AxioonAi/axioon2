@@ -2,6 +2,7 @@ import { ChevronDown } from "lucide-react";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { ListItemWithSentiment } from "@/components/global/List/ListItemWithSentiment";
+import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
 
 interface WordsListProps {
   WordsListData: {
@@ -28,6 +29,7 @@ export function WordsList({ WordsListData }: WordsListProps) {
           <ListItemWithSentiment key={index} ListItemWithSentimentData={word} />
         ))}
       </div>
+      <BaseCardFooter />
     </BaseCard>
   );
 }

@@ -4,6 +4,7 @@ import { ApexOptions } from "apexcharts";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { DonutChartWithFooterData } from "@/components/global/DonutChartWithFooterData";
+import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
 
 interface CommentsDonutGraphProps {
   CommentsDonutGraphData: {
@@ -48,6 +49,7 @@ export function CommentsDonutGraph({
           );
         })}
       />
+      <BaseCardFooter />
     </BaseCard>
   );
 }

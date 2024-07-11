@@ -1,13 +1,14 @@
 "use client";
 import { ChevronDown } from "lucide-react";
-// import ReactApexChart from "react-apexcharts";
+import ReactApexChart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
 import dynamic from "next/dynamic";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
-const ReactApexChart = dynamic(() => import("react-apexcharts"), {
-  ssr: false,
-});
+import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
+// const ReactApexChart = dynamic(() => import("react-apexcharts"), {
+//   ssr: false,
+// });
 
 interface EngagementTimesProps {
   EngagementTimesData: {
@@ -35,9 +36,10 @@ export function EngagementTimes({ EngagementTimesData }: EngagementTimesProps) {
           options={EngagementTimesData.options}
           series={EngagementTimesData.series}
           type="bar"
-          height={350}
+          height={275}
         />
       </div>
+      <BaseCardFooter />
     </BaseCard>
   );
 }

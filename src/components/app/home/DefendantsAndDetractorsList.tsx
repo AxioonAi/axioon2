@@ -2,6 +2,7 @@ import { ChevronDown } from "lucide-react";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { ListItemWithDate } from "@/components/global/List/ListItemWithDate";
+import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
 
 interface DefendantsAndDetractorsListProps {
   DefendantsAndDetractorsData: {
@@ -30,6 +31,7 @@ export function DefendantsAndDetractorsList({
           <ListItemWithDate key={index} ListItemWithDateData={user} />
         ))}
       </div>
+      <BaseCardFooter />
     </BaseCard>
   );
 }

@@ -9,7 +9,7 @@ export function BaseCard({ children, className }: BaseCardProps) {
   return (
     <div
       className={twMerge(
-        "flex h-full w-full flex-col rounded-lg bg-white p-4 shadow-md",
+        "relative flex h-full w-full flex-col rounded-lg bg-white p-4 shadow-md",
         className,
       )}
     >

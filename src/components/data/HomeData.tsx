@@ -17,8 +17,8 @@ export const SocialMediaBaseData = [
         name: "Seguindo",
       },
     ],
-    description:
-      "🗳 Deputado Federal com 59.929 votos 💚 Anapolino 🏢 Empreendedor...",
+    exists: true,
+    platformName: "Instagram",
   },
   {
     icon: "/Logos/facebook.svg",
@@ -38,8 +38,8 @@ export const SocialMediaBaseData = [
         name: "Seguindo",
       },
     ],
-    description:
-      "35 pessoas falando sobre. Conta criada em 10 de agosto de 2014",
+    exists: true,
+    platformName: "Facebook",
   },
   {
     icon: "/Logos/tiktok.svg",
@@ -59,8 +59,8 @@ export const SocialMediaBaseData = [
         name: "Seguindo",
       },
     ],
-    description:
-      "🔰 Prefeito de Cocalzinho de Goiás Vereador por 3 Legislaturas ⬆️",
+    exists: true,
+    platformName: "TikTok",
   },
   {
     icon: "/Logos/youtube.svg",
@@ -80,7 +80,8 @@ export const SocialMediaBaseData = [
         name: "Seguindo",
       },
     ],
-    description: "Descrição do canal aqui Conta criada em 10 de agosto de 2014",
+    exists: false,
+    platformName: "YouTube",
   },
 ];
 
@@ -283,7 +284,7 @@ export const EngagementTimesData = {
   options: {
     chart: {
       type: "bar" as const,
-      height: 350,
+      height: 275,
       toolbar: {
         show: false,
       },
@@ -362,13 +363,394 @@ export const WordCloudData = {
     colors: ["#556AFB", "#33429A", "#0A27E6"],
     fontWeight: "700",
     fontFamily: "Impact",
-    fontSizes: [20, 80] as [number, number],
+    fontSizes: [10, 60] as [number, number],
   },
 };
 
 export const PostsAndCommentsData = [
   {
     socialMedia: "tiktok",
+    url: "tiktok.com",
+    userName: "@username",
+    followers: 3500,
+    text: "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+    sentiment: "Positivo",
+    likesCount: 31000,
+    commentsCount: 31000,
+    viewsCount: 31000,
+    date: "23/10/2023 - 16:34",
+    comments: [
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+    ],
+  },
+  {
+    socialMedia: "youtube",
+    url: "tiktok.com",
+    userName: "@username",
+    followers: 3500,
+    text: "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+    sentiment: "Negativo",
+    likesCount: 31000,
+    commentsCount: 31000,
+    viewsCount: 31000,
+    date: "23/10/2023 - 16:34",
+    comments: [
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+    ],
+  },
+  {
+    socialMedia: "facebook",
+    url: "tiktok.com",
+    userName: "@username",
+    followers: 3500,
+    text: "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+    sentiment: "Negativo",
+    likesCount: 31000,
+    commentsCount: 31000,
+    viewsCount: 31000,
+    date: "23/10/2023 - 16:34",
+    comments: [
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+    ],
+  },
+  {
+    socialMedia: "facebook",
+    url: "tiktok.com",
+    userName: "@username",
+    followers: 3500,
+    text: "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+    sentiment: "Negativo",
+    likesCount: 31000,
+    commentsCount: 31000,
+    viewsCount: 31000,
+    date: "23/10/2023 - 16:34",
+    comments: [
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+    ],
+  },
+  {
+    socialMedia: "instagram",
+    url: "tiktok.com",
+    userName: "@username",
+    followers: 3500,
+    text: "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+    sentiment: "Negativo",
+    likesCount: 31000,
+    commentsCount: 31000,
+    viewsCount: 31000,
+    date: "23/10/2023 - 16:34",
+    comments: [
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+    ],
+  },
+  {
+    socialMedia: "instagram",
+    url: "tiktok.com",
+    userName: "@username",
+    followers: 3500,
+    text: "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+    sentiment: "Negativo",
+    likesCount: 31000,
+    commentsCount: 31000,
+    viewsCount: 31000,
+    date: "23/10/2023 - 16:34",
+    comments: [
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+    ],
+  },
+  {
+    socialMedia: "tiktok",
+    url: "tiktok.com",
+    userName: "@username",
+    followers: 3500,
+    text: "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+    sentiment: "Negativo",
+    likesCount: 31000,
+    commentsCount: 31000,
+    viewsCount: 31000,
+    date: "23/10/2023 - 16:34",
+    comments: [
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+      {
+        photo: "/photo.svg",
+        name: "Nome",
+        comment:
+          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
+        likesCount: 31000,
+        commentsCount: 31000,
+        sentiment: 700,
+        date: "23/10/2023 - 16:34",
+      },
+    ],
+  },
+  {
+    socialMedia: "tiktok",
+    url: "tiktok.com",
+    userName: "@username",
+    followers: 3500,
     text: "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
     sentiment: "Negativo",
     likesCount: 31000,
@@ -420,6 +802,9 @@ export const PostsAndCommentsData = [
   },
   {
     socialMedia: "youtube",
+    url: "tiktok.com",
+    userName: "@username",
+    followers: 3500,
     text: "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
     sentiment: "Negativo",
     likesCount: 31000,
@@ -471,6 +856,9 @@ export const PostsAndCommentsData = [
   },
   {
     socialMedia: "facebook",
+    url: "tiktok.com",
+    userName: "@username",
+    followers: 3500,
     text: "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
     sentiment: "Negativo",
     likesCount: 31000,
@@ -522,6 +910,9 @@ export const PostsAndCommentsData = [
   },
   {
     socialMedia: "facebook",
+    url: "tiktok.com",
+    userName: "@username",
+    followers: 3500,
     text: "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
     sentiment: "Negativo",
     likesCount: 31000,
@@ -573,6 +964,9 @@ export const PostsAndCommentsData = [
   },
   {
     socialMedia: "instagram",
+    url: "tiktok.com",
+    userName: "@username",
+    followers: 3500,
     text: "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
     sentiment: "Negativo",
     likesCount: 31000,
@@ -624,6 +1018,9 @@ export const PostsAndCommentsData = [
   },
   {
     socialMedia: "instagram",
+    url: "tiktok.com",
+    userName: "@username",
+    followers: 3500,
     text: "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
     sentiment: "Negativo",
     likesCount: 31000,
@@ -675,363 +1072,9 @@ export const PostsAndCommentsData = [
   },
   {
     socialMedia: "tiktok",
-    text: "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
-    sentiment: "Negativo",
-    likesCount: 31000,
-    commentsCount: 31000,
-    viewsCount: 31000,
-    date: "23/10/2023 - 16:34",
-    comments: [
-      {
-        photo: "/photo.svg",
-        name: "Nome",
-        comment:
-          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
-        likesCount: 31000,
-        commentsCount: 31000,
-        sentiment: 700,
-        date: "23/10/2023 - 16:34",
-      },
-      {
-        photo: "/photo.svg",
-        name: "Nome",
-        comment:
-          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
-        likesCount: 31000,
-        commentsCount: 31000,
-        sentiment: 700,
-        date: "23/10/2023 - 16:34",
-      },
-      {
-        photo: "/photo.svg",
-        name: "Nome",
-        comment:
-          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
-        likesCount: 31000,
-        commentsCount: 31000,
-        sentiment: 700,
-        date: "23/10/2023 - 16:34",
-      },
-      {
-        photo: "/photo.svg",
-        name: "Nome",
-        comment:
-          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
-        likesCount: 31000,
-        commentsCount: 31000,
-        sentiment: 700,
-        date: "23/10/2023 - 16:34",
-      },
-    ],
-  },
-  {
-    socialMedia: "tiktok",
-    text: "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
-    sentiment: "Negativo",
-    likesCount: 31000,
-    commentsCount: 31000,
-    viewsCount: 31000,
-    date: "23/10/2023 - 16:34",
-    comments: [
-      {
-        photo: "/photo.svg",
-        name: "Nome",
-        comment:
-          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
-        likesCount: 31000,
-        commentsCount: 31000,
-        sentiment: 700,
-        date: "23/10/2023 - 16:34",
-      },
-      {
-        photo: "/photo.svg",
-        name: "Nome",
-        comment:
-          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
-        likesCount: 31000,
-        commentsCount: 31000,
-        sentiment: 700,
-        date: "23/10/2023 - 16:34",
-      },
-      {
-        photo: "/photo.svg",
-        name: "Nome",
-        comment:
-          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
-        likesCount: 31000,
-        commentsCount: 31000,
-        sentiment: 700,
-        date: "23/10/2023 - 16:34",
-      },
-      {
-        photo: "/photo.svg",
-        name: "Nome",
-        comment:
-          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
-        likesCount: 31000,
-        commentsCount: 31000,
-        sentiment: 700,
-        date: "23/10/2023 - 16:34",
-      },
-    ],
-  },
-  {
-    socialMedia: "youtube",
-    text: "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
-    sentiment: "Negativo",
-    likesCount: 31000,
-    commentsCount: 31000,
-    viewsCount: 31000,
-    date: "23/10/2023 - 16:34",
-    comments: [
-      {
-        photo: "/photo.svg",
-        name: "Nome",
-        comment:
-          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
-        likesCount: 31000,
-        commentsCount: 31000,
-        sentiment: 700,
-        date: "23/10/2023 - 16:34",
-      },
-      {
-        photo: "/photo.svg",
-        name: "Nome",
-        comment:
-          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
-        likesCount: 31000,
-        commentsCount: 31000,
-        sentiment: 700,
-        date: "23/10/2023 - 16:34",
-      },
-      {
-        photo: "/photo.svg",
-        name: "Nome",
-        comment:
-          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
-        likesCount: 31000,
-        commentsCount: 31000,
-        sentiment: 700,
-        date: "23/10/2023 - 16:34",
-      },
-      {
-        photo: "/photo.svg",
-        name: "Nome",
-        comment:
-          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
-        likesCount: 31000,
-        commentsCount: 31000,
-        sentiment: 700,
-        date: "23/10/2023 - 16:34",
-      },
-    ],
-  },
-  {
-    socialMedia: "facebook",
-    text: "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
-    sentiment: "Negativo",
-    likesCount: 31000,
-    commentsCount: 31000,
-    viewsCount: 31000,
-    date: "23/10/2023 - 16:34",
-    comments: [
-      {
-        photo: "/photo.svg",
-        name: "Nome",
-        comment:
-          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
-        likesCount: 31000,
-        commentsCount: 31000,
-        sentiment: 700,
-        date: "23/10/2023 - 16:34",
-      },
-      {
-        photo: "/photo.svg",
-        name: "Nome",
-        comment:
-          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
-        likesCount: 31000,
-        commentsCount: 31000,
-        sentiment: 700,
-        date: "23/10/2023 - 16:34",
-      },
-      {
-        photo: "/photo.svg",
-        name: "Nome",
-        comment:
-          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
-        likesCount: 31000,
-        commentsCount: 31000,
-        sentiment: 700,
-        date: "23/10/2023 - 16:34",
-      },
-      {
-        photo: "/photo.svg",
-        name: "Nome",
-        comment:
-          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
-        likesCount: 31000,
-        commentsCount: 31000,
-        sentiment: 700,
-        date: "23/10/2023 - 16:34",
-      },
-    ],
-  },
-  {
-    socialMedia: "facebook",
-    text: "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
-    sentiment: "Negativo",
-    likesCount: 31000,
-    commentsCount: 31000,
-    viewsCount: 31000,
-    date: "23/10/2023 - 16:34",
-    comments: [
-      {
-        photo: "/photo.svg",
-        name: "Nome",
-        comment:
-          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
-        likesCount: 31000,
-        commentsCount: 31000,
-        sentiment: 700,
-        date: "23/10/2023 - 16:34",
-      },
-      {
-        photo: "/photo.svg",
-        name: "Nome",
-        comment:
-          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
-        likesCount: 31000,
-        commentsCount: 31000,
-        sentiment: 700,
-        date: "23/10/2023 - 16:34",
-      },
-      {
-        photo: "/photo.svg",
-        name: "Nome",
-        comment:
-          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
-        likesCount: 31000,
-        commentsCount: 31000,
-        sentiment: 700,
-        date: "23/10/2023 - 16:34",
-      },
-      {
-        photo: "/photo.svg",
-        name: "Nome",
-        comment:
-          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
-        likesCount: 31000,
-        commentsCount: 31000,
-        sentiment: 700,
-        date: "23/10/2023 - 16:34",
-      },
-    ],
-  },
-  {
-    socialMedia: "instagram",
-    text: "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
-    sentiment: "Negativo",
-    likesCount: 31000,
-    commentsCount: 31000,
-    viewsCount: 31000,
-    date: "23/10/2023 - 16:34",
-    comments: [
-      {
-        photo: "/photo.svg",
-        name: "Nome",
-        comment:
-          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
-        likesCount: 31000,
-        commentsCount: 31000,
-        sentiment: 700,
-        date: "23/10/2023 - 16:34",
-      },
-      {
-        photo: "/photo.svg",
-        name: "Nome",
-        comment:
-          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
-        likesCount: 31000,
-        commentsCount: 31000,
-        sentiment: 700,
-        date: "23/10/2023 - 16:34",
-      },
-      {
-        photo: "/photo.svg",
-        name: "Nome",
-        comment:
-          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
-        likesCount: 31000,
-        commentsCount: 31000,
-        sentiment: 700,
-        date: "23/10/2023 - 16:34",
-      },
-      {
-        photo: "/photo.svg",
-        name: "Nome",
-        comment:
-          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
-        likesCount: 31000,
-        commentsCount: 31000,
-        sentiment: 700,
-        date: "23/10/2023 - 16:34",
-      },
-    ],
-  },
-  {
-    socialMedia: "instagram",
-    text: "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
-    sentiment: "Negativo",
-    likesCount: 31000,
-    commentsCount: 31000,
-    viewsCount: 31000,
-    date: "23/10/2023 - 16:34",
-    comments: [
-      {
-        photo: "/photo.svg",
-        name: "Nome",
-        comment:
-          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
-        likesCount: 31000,
-        commentsCount: 31000,
-        sentiment: 700,
-        date: "23/10/2023 - 16:34",
-      },
-      {
-        photo: "/photo.svg",
-        name: "Nome",
-        comment:
-          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
-        likesCount: 31000,
-        commentsCount: 31000,
-        sentiment: 700,
-        date: "23/10/2023 - 16:34",
-      },
-      {
-        photo: "/photo.svg",
-        name: "Nome",
-        comment:
-          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
-        likesCount: 31000,
-        commentsCount: 31000,
-        sentiment: 700,
-        date: "23/10/2023 - 16:34",
-      },
-      {
-        photo: "/photo.svg",
-        name: "Nome",
-        comment:
-          "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
-        likesCount: 31000,
-        commentsCount: 31000,
-        sentiment: 700,
-        date: "23/10/2023 - 16:34",
-      },
-    ],
-  },
-  {
-    socialMedia: "tiktok",
+    url: "tiktok.com",
+    userName: "@username",
+    followers: 3500,
     text: "my text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an...",
     sentiment: "Negativo",
     likesCount: 31000,
@@ -1082,3 +1125,536 @@ export const PostsAndCommentsData = [
     ],
   },
 ];
+
+export const PositiveNegativeCommentsData = {
+  ChartOptions: {
+    series: [
+      {
+        name: "Comentários Positivos",
+        data: [35, 35, 62, 63, 12, 12, 60, 60, 51, 51, 81, 81],
+      },
+      {
+        name: "Comentários Negativos",
+        data: [75, 78, 38, 39, 38, 72, 72, 52, 52, 17, 17, 52],
+      },
+    ],
+    options: {
+      chart: {
+        type: "line" as const,
+        dropShadow: {
+          enabled: true,
+          color: "#000",
+          top: 18,
+          left: 7,
+          blur: 10,
+          opacity: 0.2,
+        },
+        style: {
+          color: "white" as const,
+        },
+        zoom: {
+          enabled: false,
+        },
+        toolbar: {
+          show: false,
+        },
+        background: "transparent" as const,
+      },
+      colors: ["#16A34A", "#DC2626"],
+      stroke: {
+        curve: "smooth" as const,
+        width: 3,
+      },
+      grid: {
+        borderColor: "#a1a1a1",
+        row: {
+          colors: ["transparent", "transparent"], // takes an array which will be repeated on columns
+          opacity: 0.5,
+        },
+      },
+      xaxis: {
+        categories: [
+          "01 Jan",
+          "02 Jan",
+          "03 Jan",
+          "04 Jan",
+          "05 Jan",
+          "06 Jan",
+          "07 Jan",
+          "08 Jan",
+          "09 Jan",
+          "10 Jan",
+          "11 Jan",
+          "12 Jan",
+        ],
+      },
+      yaxis: {
+        min: 10,
+        max: 90,
+      },
+      legend: {
+        show: false,
+      },
+      theme: {
+        mode: "light" as const,
+      },
+      // responsive: [
+      //   {
+      //     breakpoint: 1024,
+      //     options: {
+      //       chart: {
+      //         height: 200,
+      //       },
+      //     },
+      //   },
+      //   {
+      //     breakpoint: 1440,
+      //     options: {
+      //       chart: {
+      //         height: 175,
+      //       },
+      //     },
+      //   },
+      //   {
+      //     breakpoint: 1920,
+      //     options: {
+      //       chart: {
+      //         height: 250,
+      //       },
+      //     },
+      //   },
+      //   {
+      //     breakpoint: 2561,
+      //     options: {
+      //       chart: {
+      //         height: 250,
+      //       },
+      //     },
+      //   },
+      // ],
+    },
+  },
+  headerData: [
+    {
+      value: 1117,
+      title: "Total Subscriptions",
+      dot: false,
+      color: "",
+    },
+    {
+      value: 742,
+      title: "Comentários positivos",
+      dot: true,
+      color: "bg-green-600",
+    },
+    {
+      value: 259,
+      title: "Comentários Negativos",
+      dot: true,
+      color: "bg-red-600",
+    },
+  ],
+};
+
+export const IndicatorsBaseCardData = [
+  {
+    IndicatorsData: {
+      name: "Seguidores",
+      value: 16437,
+      trendingUp: true,
+      trendingValue: "40%",
+    },
+    ChartOptions: {
+      series: [
+        {
+          name: "Desktops",
+          data: [10, 41, 35, 51, 49, 62, 69, 91, 148],
+        },
+      ],
+      options: {
+        chart: {
+          height: 100,
+          type: "line" as const,
+          zoom: {
+            enabled: false,
+          },
+          toolbar: {
+            show: false,
+          },
+        },
+        colors: ["#845ADF"],
+        dataLabels: {
+          enabled: false,
+        },
+        stroke: {
+          curve: "smooth" as const,
+          width: 2,
+        },
+        title: {
+          text: "",
+        },
+        grid: {
+          show: false,
+        },
+        xaxis: {
+          labels: {
+            show: false,
+          },
+          axisTicks: {
+            show: false,
+          },
+          axisBorder: {
+            show: false,
+          },
+        },
+        yaxis: {
+          labels: {
+            show: false,
+          },
+        },
+        legend: {
+          show: false,
+        },
+        theme: {
+          mode: "light" as const,
+        },
+      },
+    },
+  },
+  {
+    IndicatorsData: {
+      name: "Engajamento",
+      value: 16437,
+      trendingUp: true,
+      trendingValue: "40%",
+    },
+    ChartOptions: {
+      series: [
+        {
+          name: "Desktops",
+          data: [10, 41, 35, 51, 49, 62, 69, 91, 148],
+        },
+      ],
+      options: {
+        chart: {
+          height: 100,
+          type: "line" as const,
+          zoom: {
+            enabled: false,
+          },
+          toolbar: {
+            show: false,
+          },
+        },
+        colors: ["#845ADF"],
+        dataLabels: {
+          enabled: false,
+        },
+        stroke: {
+          curve: "smooth" as const,
+          width: 2,
+        },
+        title: {
+          text: "",
+        },
+        grid: {
+          show: false,
+        },
+        xaxis: {
+          labels: {
+            show: false,
+          },
+          axisTicks: {
+            show: false,
+          },
+          axisBorder: {
+            show: false,
+          },
+        },
+        yaxis: {
+          labels: {
+            show: false,
+          },
+        },
+        legend: {
+          show: false,
+        },
+        theme: {
+          mode: "light" as const,
+        },
+      },
+    },
+  },
+  {
+    IndicatorsData: {
+      name: "Publicações",
+      value: 16437,
+      trendingUp: true,
+      trendingValue: "40%",
+    },
+    ChartOptions: {
+      series: [
+        {
+          name: "Desktops",
+          data: [10, 41, 35, 51, 49, 62, 69, 91, 148],
+        },
+      ],
+      options: {
+        chart: {
+          height: 100,
+          type: "line" as const,
+          zoom: {
+            enabled: false,
+          },
+          toolbar: {
+            show: false,
+          },
+        },
+        colors: ["#845ADF"],
+        dataLabels: {
+          enabled: false,
+        },
+        stroke: {
+          curve: "smooth" as const,
+          width: 2,
+        },
+        title: {
+          text: "",
+        },
+        grid: {
+          show: false,
+        },
+        xaxis: {
+          labels: {
+            show: false,
+          },
+          axisTicks: {
+            show: false,
+          },
+          axisBorder: {
+            show: false,
+          },
+        },
+        yaxis: {
+          labels: {
+            show: false,
+          },
+        },
+        legend: {
+          show: false,
+        },
+        theme: {
+          mode: "light" as const,
+        },
+      },
+    },
+  },
+];
+
+export const ScoreGaugeChartData = {
+  name: "Instagram",
+  sentimentData: [
+    {
+      name: "Sentimento Médio",
+      value: 600,
+    },
+  ],
+};
+
+export const LineGradientChartData = {
+  ChartOptions: {
+    series: [
+      {
+        data: [170, 572, 751, 82, 1063, 653, 553, 23, 735],
+      },
+    ],
+    options: {
+      chart: {
+        height: 100,
+        width: "100%",
+        type: "line" as const,
+        zoom: {
+          enabled: false,
+        },
+        toolbar: {
+          show: false,
+        },
+        offsetY: 20,
+        dropShadow: {
+          enabled: true,
+          top: 1,
+          left: 1,
+          blur: 1,
+          opacity: 0.1,
+        },
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      stroke: {
+        curve: "smooth" as const,
+        width: 1,
+        colors: ["#845ADF"],
+      },
+      grid: {
+        show: false,
+      },
+      xaxis: {
+        axisBorder: {
+          show: false,
+        },
+        axisTicks: {
+          show: false,
+        },
+        labels: {
+          show: false,
+        },
+      },
+      yaxis: {
+        show: false,
+      },
+      tooltip: {
+        enabled: false,
+      },
+      fill: {
+        type: "gradient",
+        colors: ["#845ADF"],
+        gradient: {
+          shadeIntensity: 1,
+          opacityFrom: 0.5,
+          opacityTo: 0,
+          stops: [0, 100],
+        },
+      },
+    },
+  },
+};
+
+export const FollowerProgressionChartData = {
+  ChartOptions: {
+    series: [
+      {
+        name: "Projects",
+        type: "column",
+        data: [1.8, 2.5, 2.5, 1.5, 2.5, 2.8, 3.8],
+      },
+      {
+        name: "Tasks",
+        type: "column",
+        data: [1.1, 2.2, 3.1, 4, 4.1, 4.9, 6.5],
+      },
+      {
+        name: "Revenue",
+        type: "line",
+        data: [50, 59, 67, 65, 74, 73, 80],
+      },
+    ],
+    options: {
+      chart: {
+        background: "transparent",
+        toolbar: {
+          show: false,
+        },
+        height: 275,
+        type: "line" as const,
+        stacked: false,
+        fontFamily: "Poppins, Arial, sans-serif",
+        zoom: {
+          enabled: false,
+        },
+      },
+      theme: {
+        mode: "light" as const,
+      },
+      grid: {
+        borderColor: "#f5f4f4",
+        strokeDashArray: 3,
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      xaxis: {
+        categories: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+        labels: {
+          style: {
+            colors: "black",
+          },
+        },
+      },
+      yaxis: [
+        {
+          seriesName: "Projects",
+          axisTicks: {
+            show: true,
+          },
+          axisBorder: {
+            show: true,
+            color: "#3d4142",
+          },
+          labels: {
+            show: true,
+            style: {
+              colors: "black",
+            },
+          },
+          title: {
+            text: "" as const,
+          },
+        },
+        {
+          seriesName: "Tasks",
+          opposite: true,
+          axisTicks: {
+            show: true,
+          },
+          axisBorder: {
+            show: false,
+            color: "#00E396",
+          },
+          labels: {
+            show: true,
+          },
+          title: {
+            show: false,
+          },
+        },
+        {
+          seriesName: "Revenue",
+          opposite: true,
+          axisTicks: {
+            show: false,
+          },
+          axisBorder: {
+            show: false,
+            color: "#23b7e5",
+          },
+          labels: {
+            show: false,
+          },
+          title: {
+            show: false,
+          },
+        },
+      ],
+      tooltip: {
+        theme: "light",
+        enabled: true,
+      },
+      legend: {
+        show: false,
+      },
+      stroke: {
+        width: [0, 0, 1.5],
+        curve: "straight" as const,
+        dashArray: [0, 0, 0],
+      },
+      plotOptions: {
+        bar: {
+          columnWidth: "35%",
+          borderRadius: 3,
+        },
+      },
+      colors: ["#0369A1", "#ededed", "#23b7e5"],
+    },
+  },
+};

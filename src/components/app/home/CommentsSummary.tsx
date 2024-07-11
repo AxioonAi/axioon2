@@ -2,6 +2,7 @@ import { twMerge } from "tailwind-merge";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
+import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
 
 interface CommentsSummaryProps {
   CommentsSummaryData: {
@@ -102,6 +103,7 @@ export function CommentsSummary({ CommentsSummaryData }: CommentsSummaryProps) {
           </div>
         </div>
       </div>
+      <BaseCardFooter />
     </BaseCard>
   );
 }

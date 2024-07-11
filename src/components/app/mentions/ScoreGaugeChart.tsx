@@ -1,14 +1,16 @@
 "use client";
 import { useEffect, useState } from "react";
-// import ReactApexChart from "react-apexcharts";
+import ReactApexChart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
 import Image from "next/image";
 import dynamic from "next/dynamic";
+import { twMerge } from "tailwind-merge";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
-const ReactApexChart = dynamic(() => import("react-apexcharts"), {
-  ssr: false,
-});
+import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
+// const ReactApexChart = dynamic(() => import("react-apexcharts"), {
+//   ssr: false,
+// });
 
 interface ScoreGaugeChartProps {
   ScoreGaugeChartData: {
@@ -18,9 +20,13 @@ interface ScoreGaugeChartProps {
       value: number;
     }[];
   };
+  onlyGauge?: boolean;
 }
 
-export function ScoreGaugeChart({ ScoreGaugeChartData }: ScoreGaugeChartProps) {
+export function ScoreGaugeChart({
+  ScoreGaugeChartData,
+  onlyGauge = true,
+}: ScoreGaugeChartProps) {
   const [value, setValue] = useState(100);
 
   const [series, setSeries] = useState([value / 10]);
@@ -76,37 +82,45 @@ export function ScoreGaugeChart({ ScoreGaugeChartData }: ScoreGaugeChartProps) {
   return (
     <BaseCard className="p-0">
       <BaseCardHeader title={"Score " + ScoreGaugeChartData.name} />
-      <div className="flex h-full w-full gap-8">
+      <div
+        className={twMerge(
+          "flex h-full w-full gap-8",
+          onlyGauge && "items-center justify-center",
+        )}
+      >
         <ReactApexChart
           options={options}
           series={series}
           type="radialBar"
           height={200}
         />
-        <div className="flex items-center gap-2">
-          <Image
-            src={
-              ScoreGaugeChartData.sentimentData[0].value >= 650
-                ? "/Icons/positiveScore.svg"
+        {!onlyGauge && (
+          <div className="flex items-center gap-2">
+            <Image
+              src={
+                ScoreGaugeChartData.sentimentData[0].value >= 650
+                  ? "/Icons/positiveScore.svg"
+                  : ScoreGaugeChartData.sentimentData[0].value < 650 &&
+                      ScoreGaugeChartData.sentimentData[0].value >= 450
+                    ? "/Icons/neutralScore.svg"
+                    : "/Icons/negativeScore.svg"
+              }
+              width={50}
+              height={50}
+              alt=""
+            />
+            <span>
+              {ScoreGaugeChartData.sentimentData[0].value >= 650
+                ? "Positivo"
                 : ScoreGaugeChartData.sentimentData[0].value < 650 &&
                     ScoreGaugeChartData.sentimentData[0].value >= 450
-                  ? "/Icons/neutralScore.svg"
-                  : "/Icons/negativeScore.svg"
-            }
-            width={50}
-            height={50}
-            alt=""
-          />
-          <span>
-            {ScoreGaugeChartData.sentimentData[0].value >= 650
-              ? "Positivo"
-              : ScoreGaugeChartData.sentimentData[0].value < 650 &&
-                  ScoreGaugeChartData.sentimentData[0].value >= 450
-                ? "Neutro"
-                : "Negativo"}
-          </span>
-        </div>
+                  ? "Neutro"
+                  : "Negativo"}
+            </span>
+          </div>
+        )}
       </div>
+      <BaseCardFooter />
     </BaseCard>
   );
 }
