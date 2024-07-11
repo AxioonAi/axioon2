@@ -2,7 +2,6 @@
 import { ChevronDown, EllipsisVertical } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { twMerge } from "tailwind-merge";
 import autoAnimate from "@formkit/auto-animate";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
@@ -108,21 +107,10 @@ export function PostsAndComments({
                     <span className="max-w-[90%] text-sm">{item.text}</span>
                   </div>
                   <div className="flex w-full items-center justify-between">
-                    <div
-                      className={twMerge(
-                        "flex items-center gap-2 text-xs",
-                        item.socialMedia === "facebook"
-                          ? "text-blue-800"
-                          : item.socialMedia === "instagram"
-                            ? "text-rose-600"
-                            : item.socialMedia === "tiktok"
-                              ? "text-black"
-                              : "text-[#ff0000]",
-                      )}
-                    >
+                    <div className="flex items-center gap-2 text-xs text-black">
                       <div className="flex items-center gap-1">
                         <Image
-                          src={"/Logos/" + item.socialMedia + "Like.svg"}
+                          src={"/Logos/tiktokLike.svg"}
                           alt={""}
                           width={40}
                           height={40}
@@ -132,7 +120,7 @@ export function PostsAndComments({
                       </div>
                       <div className="flex items-center gap-1">
                         <Image
-                          src={"/Logos/" + item.socialMedia + "Comment.svg"}
+                          src={"/Logos/tiktokComment.svg"}
                           alt={""}
                           width={40}
                           height={40}
@@ -142,7 +130,7 @@ export function PostsAndComments({
                       </div>
                       <div className="flex items-center gap-1">
                         <Image
-                          src={"/Logos/" + item.socialMedia + "View.svg"}
+                          src={"/Logos/tiktokView.svg"}
                           alt={""}
                           width={40}
                           height={40}
@@ -214,28 +202,6 @@ export function PostsAndComments({
                         </div>
                       </div>
                       <div className="flex h-full items-center gap-8 text-xs">
-                        {/* <div className="flex h-full flex-col items-center justify-between gap-2">
-                          <div className="flex items-center gap-1">
-                            <Image
-                              src={"/Logos/" + item.socialMedia + "Like.svg"}
-                              alt={""}
-                              width={40}
-                              height={40}
-                              className="h-4 w-4"
-                            />
-                            <span>{comment.likesCount}</span>
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <Image
-                              src={"/Logos/" + item.socialMedia + "Comment.svg"}
-                              alt={""}
-                              width={40}
-                              height={40}
-                              className="h-4 w-4"
-                            />
-                            <span>{comment.commentsCount}</span>
-                          </div>
-                        </div> */}
                         <div className="flex h-full flex-col items-end justify-between gap-2">
                           <span>{comment.date}</span>
                           <div className="flex items-center gap-2">
