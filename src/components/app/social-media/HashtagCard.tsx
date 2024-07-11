@@ -5,7 +5,7 @@ interface hashtagCardProps {
 }
 export function HashtagCard({ hashtag }: hashtagCardProps) {
   return (
-    <button className="flex w-full flex-row items-center gap-x-4 rounded-md bg-white p-4 shadow-lg transition-transform hover:scale-[1.01]">
+    <button className="flex w-full flex-row items-center gap-x-4 rounded-md bg-white p-4 shadow-lg shadow-md transition-transform hover:scale-[1.01]">
       <Image
         className="h-8 w-8 rounded-md"
         src={"/icons/hashtagWithSquare.png"}

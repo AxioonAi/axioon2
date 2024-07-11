@@ -20,7 +20,7 @@ interface PerfilCardProps {
 
 export function PerfilCard({ politician }: PerfilCardProps) {
   return (
-    <div className="flex flex-col rounded-md bg-white p-4">
+    <div className="flex w-max max-w-80 flex-col rounded-md bg-white p-4 shadow-md">
       <div className="flex flex-col">
         <div className="flex flex-row items-center justify-between">
           <h2 className="max-w-[60%] overflow-hidden truncate whitespace-nowrap text-lg font-semibold">

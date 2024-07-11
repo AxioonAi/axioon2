@@ -137,6 +137,7 @@ export default function SocialMediaPage() {
       url: "https://www.google.com",
     },
   ];
+
   const hashtag = [
     {
       id: 1,
@@ -163,6 +164,7 @@ export default function SocialMediaPage() {
       hashtag: "#hashtag6",
     },
   ];
+
   return (
     <div className="flex-grow">
       <div className="grid h-full w-full grid-cols-12 gap-4">
@@ -174,7 +176,7 @@ export default function SocialMediaPage() {
             secondButtonText="Novo Perfil"
           />
         </div>
-        <div className="col-span-12 flex flex-col space-x-4 overflow-hidden py-1">
+        <div className="col-span-12 flex flex-col py-1">
           <SwiperPoliticians politicians={politicians} />
         </div>
 

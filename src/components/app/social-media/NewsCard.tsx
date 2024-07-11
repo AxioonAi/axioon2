@@ -15,7 +15,7 @@ interface NewsCardProps {
 
 export function NewsCard({ news }: NewsCardProps) {
   return (
-    <button className="flex w-full items-center justify-between rounded-md bg-white p-4 shadow-lg transition-transform hover:scale-[1.01]">
+    <button className="flex w-full items-center justify-between rounded-md bg-white p-4 shadow-lg shadow-md transition-transform hover:scale-[1.01]">
       <div className="flex flex-col items-start self-start">
         <h2 className="text-lg font-semibold">{news.title}</h2>
         <a href={news.url} className="text-sm text-gray-500">
