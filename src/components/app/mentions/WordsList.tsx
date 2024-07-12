@@ -2,6 +2,7 @@ import { ChevronDown } from "lucide-react";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { ListItemWithSentiment } from "@/components/global/List/ListItemWithSentiment";
+import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
 
 interface WordsListProps {
   WordsListData: {
@@ -23,11 +24,12 @@ export function WordsList({ WordsListData }: WordsListProps) {
           </div>
         }
       />
-      <div className="flex h-full max-h-[35vh] w-full flex-col gap-8 overflow-y-scroll p-4">
+      <div className="flex h-3/4 w-full flex-col gap-8 overflow-y-scroll p-4">
         {WordsListData.map((word, index) => (
           <ListItemWithSentiment key={index} ListItemWithSentimentData={word} />
         ))}
       </div>
+      <BaseCardFooter />
     </BaseCard>
   );
 }

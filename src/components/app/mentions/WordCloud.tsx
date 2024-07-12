@@ -3,6 +3,7 @@ import ReactWordcloud from "react-wordcloud";
 import { EllipsisVertical } from "lucide-react";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
+import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
 
 interface WordCloudProps {
   WordCloudData: {
@@ -37,6 +38,7 @@ export function WordCloud({ WordCloudData }: WordCloudProps) {
           options={WordCloudData.options}
         />
       </div>
+      <BaseCardFooter />
     </BaseCard>
   );
 }

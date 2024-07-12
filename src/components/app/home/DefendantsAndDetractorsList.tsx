@@ -26,7 +26,7 @@ export function DefendantsAndDetractorsList({
           </div>
         }
       />
-      <div className="flex h-full w-full flex-col gap-8 overflow-y-scroll p-4">
+      <div className="flex h-4/5 w-full flex-col gap-8 overflow-y-scroll p-4">
         {DefendantsAndDetractorsData.map((user, index) => (
           <ListItemWithDate key={index} ListItemWithDateData={user} />
         ))}
