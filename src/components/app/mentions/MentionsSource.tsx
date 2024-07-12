@@ -2,6 +2,7 @@ import { EllipsisVertical, TrendingDown, TrendingUp } from "lucide-react";
 import Image from "next/image";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
+import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
 
 interface MentionsSourceProps {
   MentionsSourceData: {
@@ -31,7 +32,7 @@ export function MentionsSource({ MentionsSourceData }: MentionsSourceProps) {
           <strong className="text-xl">{MentionsSourceData.value}</strong>
           <span className="text-sm text-zinc-500">Menções Totais</span>
         </div>
-        <div className="flex max-h-48 w-full flex-col gap-2 overflow-y-scroll p-4">
+        <div className="flex h-[62%] w-full flex-col gap-2 overflow-y-scroll p-4">
           {MentionsSourceData.sources.map((source, index) => (
             <div className="flex items-center" key={index}>
               <div className="flex w-1/2 items-center gap-2">
@@ -56,6 +57,7 @@ export function MentionsSource({ MentionsSourceData }: MentionsSourceProps) {
           ))}
         </div>
       </div>
+      <BaseCardFooter />
     </BaseCard>
   );
 }
