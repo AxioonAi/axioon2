@@ -45,8 +45,6 @@ export function Sidebar() {
     // }
   }, [elementName]);
 
-  console.log("elementName: ", elementName);
-
   useEffect(() => {
     setOpenAccordion(pathname);
   }, [pathname]);
@@ -260,10 +258,7 @@ export function Sidebar() {
               )}
             </>
             <>
-              <button
-                className="flex items-center justify-between rounded bg-zinc-400/15 p-2 text-white"
-                onClick={() => reveal("comparative")}
-              >
+              <button className="flex items-center justify-between rounded p-2 text-white">
                 <div className="flex items-center gap-4">
                   <Image
                     src="/Icons/at.svg"
@@ -294,10 +289,7 @@ export function Sidebar() {
               )}
             </>
             <>
-              <button
-                className="flex items-center justify-between rounded bg-zinc-400/15 p-2 text-white"
-                onClick={() => reveal("cerberus")}
-              >
+              <button className="flex items-center justify-between rounded p-2 text-white">
                 <div className="flex items-center gap-4">
                   <Image
                     src="/Icons/at.svg"
@@ -327,7 +319,7 @@ export function Sidebar() {
                 </div>
               )}
             </>
-            <button className="flex items-center gap-4 rounded bg-zinc-400/15 p-2 text-white">
+            <button className="flex items-center gap-4 rounded p-2 text-white">
               <Image
                 src="/Icons/ai.svg"
                 alt=""
@@ -337,7 +329,13 @@ export function Sidebar() {
               />
               Axioon AI
             </button>
-            <button className="flex items-center gap-4 rounded bg-zinc-400/15 p-2 text-white">
+            <button
+              onClick={() => router.push("/parameters")}
+              className={twMerge(
+                "flex items-center gap-4 rounded p-2 text-white",
+                pathname === "/parameters" && "bg-zinc-400/15",
+              )}
+            >
               <Image
                 src="/Icons/options.svg"
                 alt=""

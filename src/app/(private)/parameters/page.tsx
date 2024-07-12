@@ -1,12 +1,9 @@
-"use client";
-import { register } from "swiper/element/bundle";
 import { CardWithTitleAndButton } from "@/components/app/social-media/CardWithTitleAndButton";
-import "swiper/swiper-bundle.css";
 import { SwiperNews } from "@/components/app/home/SwiperNews";
 import { SwiperPoliticians } from "@/components/app/home/SwiperPoliticians";
 import { SwiperHashtag } from "@/components/app/home/SwiperHashtags";
-register();
-export default function SocialMediaPage() {
+
+export default function Parameters() {
   const politicians = [
     {
       id: 1,

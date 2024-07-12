@@ -23,13 +23,13 @@ export function MentionsMainInfluencers({
   return (
     <BaseCard className="p-0">
       <BaseCardHeader title="Principais Influenciadores" />
-      <div className="flex h-[calc(100%-6rem)] w-full flex-col overflow-y-scroll">
+      <div className="mb-12 flex h-80 w-full flex-col overflow-x-scroll overflow-y-scroll p-4 lg:mb-0 lg:h-[73%] lg:overflow-x-auto 3xl:h-4/5">
         {MentionsMainInfluencersData.map((item, index) => (
           <div
-            className="grid w-full grid-cols-12 border-b border-b-zinc-300 p-4 text-xs"
+            className="flex w-max gap-4 border-b border-b-zinc-300 p-4 text-xs lg:grid lg:grid-cols-12 lg:text-sm xl:w-full 2xl:text-base 3xl:text-lg"
             key={index}
           >
-            <div className="col-span-1 justify-center">
+            <div className="col-span-1 flex justify-center">
               <Image
                 src={"/Logos/" + item.socialMedia + ".svg"}
                 alt=""

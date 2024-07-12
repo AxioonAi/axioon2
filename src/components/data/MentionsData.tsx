@@ -196,7 +196,7 @@ export const WordCloudData = {
     colors: ["#556AFB", "#33429A", "#0A27E6"],
     fontWeight: "700",
     fontFamily: "Impact",
-    fontSizes: [20, 80] as [number, number],
+    fontSizes: [20, 60] as [number, number],
   },
 };
 
@@ -544,13 +544,12 @@ export const MentionsSentimentChartData = {
       chart: {
         type: "bar" as const,
         background: "transparent",
-        offsetY: -10,
         toolbar: {
           show: false,
         },
       },
       theme: {
-        mode: "dark" as const,
+        mode: "light" as const,
       },
       grid: {
         borderColor: "rgba(155, 163, 175, 0.3)",
@@ -627,10 +626,18 @@ export const MentionsSentimentChartData = {
       },
       responsive: [
         {
+          breakpoint: 768,
+          options: {
+            chart: {
+              height: 200,
+            },
+          },
+        },
+        {
           breakpoint: 1024,
           options: {
             chart: {
-              height: 225,
+              height: 325,
             },
           },
         },
@@ -639,7 +646,15 @@ export const MentionsSentimentChartData = {
           breakpoint: 1920,
           options: {
             chart: {
-              height: 150,
+              height: 250,
+            },
+          },
+        },
+        {
+          breakpoint: 2560,
+          options: {
+            chart: {
+              height: 275,
             },
           },
         },
@@ -647,7 +662,7 @@ export const MentionsSentimentChartData = {
           breakpoint: 2561,
           options: {
             chart: {
-              height: 170,
+              height: 400,
             },
           },
         },

@@ -24,7 +24,7 @@ export function WordsList({ WordsListData }: WordsListProps) {
           </div>
         }
       />
-      <div className="flex h-3/4 w-full flex-col gap-8 overflow-y-scroll p-4">
+      <div className="mb-12 flex h-60 w-full flex-col gap-8 overflow-y-scroll p-4 text-xs lg:mb-0 lg:h-3/4 lg:text-sm xl:h-[73%] 2xl:h-[77%] 2xl:text-base 3xl:h-4/5 3xl:text-lg">
         {WordsListData.map((word, index) => (
           <ListItemWithSentiment key={index} ListItemWithSentimentData={word} />
         ))}

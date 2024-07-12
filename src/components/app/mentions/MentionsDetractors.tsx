@@ -20,13 +20,13 @@ export function MentionsDetractors({
   return (
     <BaseCard className="p-0">
       <BaseCardHeader title="Detratores" />
-      <div className="flex h-[calc(100%-6rem)] w-full flex-col overflow-y-scroll">
+      <div className="mb-12 flex h-80 w-full flex-col overflow-x-scroll overflow-y-scroll p-4 lg:mb-0 lg:h-[73%] lg:overflow-x-auto 3xl:h-4/5">
         {MentionsDetractorsData.map((item, index) => (
           <div
-            className="grid w-full grid-cols-12 border-b border-b-zinc-300 p-4 text-xs"
+            className="flex w-max gap-4 border-b border-b-zinc-300 p-4 text-xs xs:w-full xs:justify-between lg:flex lg:w-max lg:grid-cols-12 lg:text-sm xl:grid xl:w-full 2xl:text-base 3xl:text-lg"
             key={index}
           >
-            <div className="col-span-1 justify-center">
+            <div className="flex justify-center lg:col-span-1">
               <Image
                 src={"/Logos/" + item.socialMedia + ".svg"}
                 alt=""
@@ -35,19 +35,19 @@ export function MentionsDetractors({
                 className="h-10 w-10 rounded-lg"
               />
             </div>
-            <div className="col-span-3 flex flex-col justify-center">
+            <div className="flex flex-col justify-center lg:col-span-3">
               <span className="text-zinc-500">@{item.userName}</span>
               <span className="font-semibold">{item.name}</span>
             </div>
-            <div className="col-span-3 flex flex-col justify-center">
+            <div className="flex flex-col justify-center lg:col-span-3">
               <span className="text-zinc-500">Menções</span>
               <span className="font-semibold">{item.mentions}</span>
             </div>
-            <div className="col-span-3 flex flex-col justify-center">
+            <div className="flex flex-col justify-center lg:col-span-3">
               <span className="text-zinc-500">Sentimento</span>
               <span className="font-semibold">{item.sentiment}</span>
             </div>
-            <div className="col-span-2 flex flex-col items-end justify-center">
+            <div className="flex flex-col items-end justify-center lg:col-span-2">
               <Image
                 src={
                   item.sentiment <= 400
