@@ -1,5 +1,5 @@
 import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
-import { useCallback, useRef } from "react";
+import { useCallback, useLayoutEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { PerfilCard } from "../social-media/PerfilCard";
 
@@ -29,10 +29,37 @@ export function SwiperPoliticians({
     if (!sliderRef.current) return;
     sliderRef.current.swiper.slideNext();
   }, []);
+  const [slidesPerView, setSlidesPerView] = useState(3);
+  const updateSlidesPerView = useCallback(() => {
+    const width = window.innerWidth;
+    if (width >= 1400) {
+      setSlidesPerView(3.5); // Desktop large
+    } else if (width >= 1200) {
+      setSlidesPerView(3); // Desktop
+    } else if (width >= 1000) {
+      setSlidesPerView(2.4); // Tablet
+    } else if (width >= 760) {
+      setSlidesPerView(1.6); // Tablet
+    } else {
+      setSlidesPerView(1.4); // Mobile
+    }
+  }, []);
+
+  useLayoutEffect(() => {
+    updateSlidesPerView();
+    window.addEventListener("resize", updateSlidesPerView);
+    return () => {
+      window.removeEventListener("resize", updateSlidesPerView);
+    };
+  }, [updateSlidesPerView]);
   return (
     <>
       <div className="flex w-full">
-        <Swiper ref={sliderRef} slidesPerView={3.5} spaceBetween={100}>
+        <Swiper
+          ref={sliderRef}
+          slidesPerView={slidesPerView}
+          spaceBetween={100}
+        >
           {politicians.map((politician) => (
             <SwiperSlide key={politician.id} className="py-2">
               <PerfilCard politician={politician} />
