@@ -32,12 +32,11 @@ export function FollowerProgressionChart({
           </div>
         }
       />
-      <div className="flex w-full flex-col">
+      <div className="flex h-96 w-full flex-col lg:h-full">
         <ReactApexChart
           options={FollowerProgressionChartData.ChartOptions.options}
           series={FollowerProgressionChartData.ChartOptions.series}
           type="line"
-          height={275}
         />
       </div>
       <BaseCardFooter />

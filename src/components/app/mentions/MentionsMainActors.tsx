@@ -1,8 +1,10 @@
 "use client";
 import Image from "next/image";
+import { useEffect } from "react";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
+import { useOffsetContext } from "@/context/test";
 
 interface MentionsMainActorsProps {
   MentionsMainActorsData: {
@@ -20,10 +22,24 @@ interface MentionsMainActorsProps {
 export function MentionsMainActors({
   MentionsMainActorsData,
 }: MentionsMainActorsProps) {
+  const { elementRef, isVisible, elementName, setElementName } =
+    useOffsetContext();
+
+  useEffect(() => {
+    if (isVisible) {
+      setElementName("keywords");
+    } else {
+      setElementName("");
+    }
+  }, [isVisible, elementName]);
+
   return (
     <BaseCard className="p-0">
       <BaseCardHeader title="Principais Atores" />
-      <div className="flex h-[calc(100%-6rem)] w-full flex-col overflow-y-scroll">
+      <div
+        ref={elementRef}
+        className="flex h-[calc(100%-6rem)] w-full flex-col overflow-y-scroll"
+      >
         {MentionsMainActorsData.map((item, index) => (
           <div
             className="grid w-full grid-cols-12 border-b border-b-zinc-300 p-4 text-xs"

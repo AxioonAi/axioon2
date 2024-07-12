@@ -25,12 +25,16 @@ export function IndicatorsBaseCard({
   ChartOptions,
 }: IndicatorsBaseCardProps) {
   return (
-    <BaseCard className="flex-row items-center justify-between">
+    <BaseCard className="flex-row items-center justify-between p-2 lg:p-4">
       <div className="flex flex-col">
-        <span className="text-xs text-zinc-500">{IndicatorsData.name}</span>
-        <strong className="text-sm">{IndicatorsData.value}</strong>
+        <span className="text-[10px] text-zinc-500 xl:text-xs 3xl:text-sm">
+          {IndicatorsData.name}
+        </span>
+        <strong className="text-xs xl:text-sm 3xl:text-base">
+          {IndicatorsData.value}
+        </strong>
       </div>
-      <div className="flex w-1/3">
+      <div className="flex w-full lg:w-2/5">
         <ReactApexChart
           options={ChartOptions.options}
           series={ChartOptions.series}
@@ -41,14 +45,16 @@ export function IndicatorsBaseCard({
       <div className="flex flex-col">
         <span
           className={twMerge(
-            "text-xs font-semibold",
+            "text-[10px] font-semibold xl:text-xs 3xl:text-sm",
             IndicatorsData.trendingUp ? "text-green-500" : "text-red-500",
           )}
         >
           {IndicatorsData.trendingUp ? "+" : "-"}
-          {IndicatorsData.trendingValue} %
+          {IndicatorsData.trendingValue}
         </span>
-        <span className="text-xs text-zinc-500">{IndicatorsData.name}</span>
+        <span className="text-xs text-zinc-500 xl:text-sm 3xl:text-base">
+          {IndicatorsData.name}
+        </span>
       </div>
     </BaseCard>
   );

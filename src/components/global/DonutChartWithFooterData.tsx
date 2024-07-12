@@ -25,7 +25,6 @@ export function DonutChartWithFooterData({
           options={ChartOptions.options}
           series={ChartOptions.series}
           type="donut"
-          height={200}
         />
       </div>
       <div className="mb-12 flex w-full items-center justify-center">

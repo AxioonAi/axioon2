@@ -30,12 +30,11 @@ export function LineGradientChart({
           </div>
         }
       />
-      <div className="flex h-full w-full flex-col">
+      <div className="flex h-56 w-full flex-col lg:h-full">
         <ReactApexChart
           type="area"
           series={LineGradientChartData.ChartOptions.series}
           options={LineGradientChartData.ChartOptions.options}
-          height={100}
         />
       </div>
       <BaseCardFooter />

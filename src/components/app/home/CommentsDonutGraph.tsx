@@ -40,11 +40,16 @@ export function CommentsDonutGraph({
             <div className="flex flex-col items-center gap-2">
               <div className="flex items-center gap-2">
                 <div className={twMerge("h-2 w-2 rounded-full", data.color)} />
-                <span key={data.title} className="text-center text-zinc-500">
+                <span
+                  key={data.title}
+                  className="text-center text-xs text-zinc-500 lg:text-sm 2xl:text-base"
+                >
                   {data.title}
                 </span>
               </div>
-              <strong>{data.value}</strong>
+              <strong className="text-sm lg:text-base 2xl:text-lg">
+                {data.value}
+              </strong>
             </div>
           );
         })}

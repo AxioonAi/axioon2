@@ -94,47 +94,53 @@ export function PostsAndComments({
                 <div className="flex w-full items-center justify-between">
                   <div className="flex items-center gap-2">
                     <div className="flex flex-col">
-                      <span className="text-xs font-semibold">{item.url}</span>
-                      <span className="text-[10px] italic text-zinc-500">
+                      <span className="text-xs font-semibold lg:text-sm 2xl:text-base 3xl:text-lg">
+                        {item.url}
+                      </span>
+                      <span className="text-[10px] italic text-zinc-500 lg:text-xs 2xl:text-sm 3xl:text-base">
                         {item.userName} ({item.followers} seguidores)
                       </span>
                     </div>
                   </div>
-                  <span>{item.date}</span>
+                  <span className="text-[10px] lg:text-xs 2xl:text-sm 3xl:text-base">
+                    {item.date}
+                  </span>
                 </div>
                 <div className="flex w-full flex-col gap-2">
                   <div className="flex w-full justify-between">
-                    <span className="max-w-[90%] text-sm">{item.text}</span>
+                    <span className="max-w-[90%] text-xs lg:text-sm 2xl:text-base 3xl:text-lg">
+                      {item.text}
+                    </span>
                   </div>
                   <div className="flex w-full items-center justify-between">
                     <div className="flex items-center gap-2 text-xs text-black">
-                      <div className="flex items-center gap-1">
+                      <div className="flex flex-col items-center gap-1 text-xs sm:flex-row lg:text-sm 2xl:text-base 3xl:text-lg">
                         <Image
                           src={"/Logos/tiktokLike.svg"}
                           alt={""}
                           width={40}
                           height={40}
-                          className="h-6 w-6"
+                          className="h-4 w-4 sm:h-6 sm:w-6 3xl:h-10 3xl:w-10"
                         />
                         <span>{item.likesCount}</span>
                       </div>
-                      <div className="flex items-center gap-1">
+                      <div className="flex flex-col items-center gap-1 text-xs sm:flex-row lg:text-sm 2xl:text-base 3xl:text-lg">
                         <Image
                           src={"/Logos/tiktokComment.svg"}
                           alt={""}
                           width={40}
                           height={40}
-                          className="h-6 w-6"
+                          className="h-4 w-4 sm:h-6 sm:w-6 3xl:h-10 3xl:w-10"
                         />
                         <span>{item.commentsCount}</span>
                       </div>
-                      <div className="flex items-center gap-1">
+                      <div className="flex flex-col items-center gap-1 text-xs sm:flex-row lg:text-sm 2xl:text-base 3xl:text-lg">
                         <Image
                           src={"/Logos/tiktokView.svg"}
                           alt={""}
                           width={40}
                           height={40}
-                          className="h-6 w-6"
+                          className="h-4 w-4 sm:h-6 sm:w-6 3xl:h-10 3xl:w-10"
                         />
                         <span>{item.viewsCount}</span>
                       </div>
@@ -149,7 +155,7 @@ export function PostsAndComments({
                         alt=""
                         width={50}
                         height={50}
-                        className="h-6 w-6"
+                        className="h-4 w-4 sm:h-6 sm:w-6 3xl:h-10 3xl:w-10"
                       />
                       <Image
                         src={
@@ -160,7 +166,7 @@ export function PostsAndComments({
                         alt=""
                         width={50}
                         height={50}
-                        className="h-6 w-6"
+                        className="h-4 w-4 sm:h-6 sm:w-6 3xl:h-10 3xl:w-10"
                       />
                       <Image
                         src={
@@ -171,7 +177,7 @@ export function PostsAndComments({
                         alt=""
                         width={50}
                         height={50}
-                        className="h-6 w-6"
+                        className="h-4 w-4 sm:h-6 sm:w-6 3xl:h-10 3xl:w-10"
                       />
                     </div>
                   </div>
@@ -184,7 +190,7 @@ export function PostsAndComments({
                   {item.comments.map((comment, index) => (
                     <div
                       key={index}
-                      className="flex w-full items-center justify-between rounded-lg bg-zinc-50 p-2 shadow-md"
+                      className="flex w-full flex-col items-end justify-between rounded-lg bg-zinc-50 p-2 shadow-md lg:flex-row lg:items-center"
                     >
                       <div className="flex gap-4">
                         <Image
@@ -192,16 +198,16 @@ export function PostsAndComments({
                           alt={""}
                           width={40}
                           height={40}
-                          className="h-6 w-6"
+                          className="h-4 w-4 sm:h-6 sm:w-6 3xl:h-10 3xl:w-10"
                         />
-                        <div className="flex w-full flex-col text-xs">
+                        <div className="flex w-full flex-col text-xs lg:text-sm 2xl:text-base 3xl:text-lg">
                           <strong>{comment.name}</strong>
-                          <span className="max-w-[80%] text-zinc-500">
+                          <span className="w-full text-zinc-500 lg:max-w-[80%]">
                             {comment.comment}
                           </span>
                         </div>
                       </div>
-                      <div className="flex h-full items-center gap-8 text-xs">
+                      <div className="flex h-full items-end gap-8 text-xs lg:text-sm 2xl:text-base 3xl:text-lg">
                         <div className="flex h-full flex-col items-end justify-between gap-2">
                           <span>{comment.date}</span>
                           <div className="flex items-center gap-2">
@@ -214,7 +220,7 @@ export function PostsAndComments({
                               alt=""
                               width={50}
                               height={50}
-                              className="h-4 w-4"
+                              className="h-4 w-4 sm:h-5 sm:w-5 3xl:h-8 3xl:w-8"
                             />
                             <Image
                               src={
@@ -225,7 +231,7 @@ export function PostsAndComments({
                               alt=""
                               width={50}
                               height={50}
-                              className="h-4 w-4"
+                              className="h-4 w-4 sm:h-5 sm:w-5 3xl:h-8 3xl:w-8"
                             />
                             <Image
                               src={
@@ -236,7 +242,7 @@ export function PostsAndComments({
                               alt=""
                               width={50}
                               height={50}
-                              className="h-4 w-4"
+                              className="h-4 w-4 sm:h-5 sm:w-5 3xl:h-8 3xl:w-8"
                             />
                           </div>
                         </div>

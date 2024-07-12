@@ -31,12 +31,11 @@ export function EngagementTimes({ EngagementTimesData }: EngagementTimesProps) {
           </div>
         }
       />
-      <div className="flex h-full max-h-[35vh] w-full flex-col">
+      <div className="flex h-96 w-full flex-col lg:h-full">
         <ReactApexChart
           options={EngagementTimesData.options}
           series={EngagementTimesData.series}
           type="bar"
-          height={275}
         />
       </div>
       <BaseCardFooter />

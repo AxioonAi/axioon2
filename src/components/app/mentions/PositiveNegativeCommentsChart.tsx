@@ -29,7 +29,7 @@ export function PositiveNegativeCommentsChart({
   return (
     <BaseCard className="p-0">
       <BaseCardHeader title="Comentários" />
-      <div className="flex h-full w-full flex-col justify-evenly gap-4 p-4">
+      <div className="flex h-96 w-full flex-col justify-evenly gap-2 p-2 lg:h-full lg:gap-4 lg:p-4">
         <div className="flex w-full items-center justify-between">
           {headerData.map((idx) => (
             <>{idx}</>

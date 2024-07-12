@@ -1,9 +1,11 @@
 "use client";
 import ReactWordcloud from "react-wordcloud";
 import { EllipsisVertical } from "lucide-react";
+import { useEffect } from "react";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
+import { useOffsetContext } from "@/context/test";
 
 interface WordCloudProps {
   WordCloudData: {
@@ -22,6 +24,17 @@ interface WordCloudProps {
 }
 
 export function WordCloud({ WordCloudData }: WordCloudProps) {
+  const { elementRef, isVisible, elementName, setElementName } =
+    useOffsetContext();
+
+  useEffect(() => {
+    if (isVisible) {
+      setElementName("keywords");
+    } else {
+      setElementName("");
+    }
+  }, [isVisible, elementName]);
+
   return (
     <BaseCard className="p-0">
       <BaseCardHeader
@@ -32,7 +45,10 @@ export function WordCloud({ WordCloudData }: WordCloudProps) {
           </div>
         }
       />
-      <div className="flex h-full max-h-[35vh] w-full flex-col">
+      <div
+        ref={elementRef}
+        className="flex h-full max-h-[35vh] w-full flex-col"
+      >
         <ReactWordcloud
           words={WordCloudData.WordCloudWords}
           options={WordCloudData.options}

@@ -84,7 +84,7 @@ export function ScoreGaugeChart({
       <BaseCardHeader title={"Score " + ScoreGaugeChartData.name} />
       <div
         className={twMerge(
-          "flex h-full w-full gap-8",
+          "flex h-56 w-full gap-8 lg:h-full",
           onlyGauge && "items-center justify-center",
         )}
       >
@@ -92,7 +92,7 @@ export function ScoreGaugeChart({
           options={options}
           series={series}
           type="radialBar"
-          height={200}
+          height={500}
         />
         {!onlyGauge && (
           <div className="flex items-center gap-2">
