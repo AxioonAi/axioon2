@@ -45,7 +45,7 @@ export function Sidebar() {
     <div
       className={twMerge(
         "left-0 top-0 z-[1000] flex min-h-full w-1/2 flex-col gap-8 border-r border-r-gray-800 bg-black px-4 pb-10 pt-4 lg:w-64",
-        `${isOpen ? "fixed" : "hidden"}`,
+        `${isOpen ? "hidden md:fixed" : "hidden"}`,
       )}
     >
       <Image

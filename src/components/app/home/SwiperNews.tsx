@@ -1,6 +1,6 @@
 "use client";
 import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
-import { useCallback, useRef } from "react";
+import { useCallback, useLayoutEffect, useRef, useState } from "react";
 import "swiper/swiper-bundle.css";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { NewsCard } from "../social-media/NewsCard";
@@ -24,11 +24,31 @@ export function SwiperNews({ news }: { news: News[] }) {
     if (!sliderRef.current) return;
     sliderRef.current.swiper.slideNext();
   }, []);
+  const [slidesPerView, setSlidesPerView] = useState(3);
+  const updateSlidesPerView = useCallback(() => {
+    const width = window.innerWidth;
+    if (width >= 1400) {
+      setSlidesPerView(3.5); // Desktop large
+    } else if (width >= 1200) {
+      setSlidesPerView(3.2); // Desktop
+    } else if (width >= 968) {
+      setSlidesPerView(2.1); // Tablet
+    } else {
+      setSlidesPerView(1.5); // Mobile
+    }
+  }, []);
 
+  useLayoutEffect(() => {
+    updateSlidesPerView();
+    window.addEventListener("resize", updateSlidesPerView);
+    return () => {
+      window.removeEventListener("resize", updateSlidesPerView);
+    };
+  }, [updateSlidesPerView]);
   return (
     <>
       <div className="flex w-full">
-        <Swiper ref={sliderRef} slidesPerView={3.5} spaceBetween={30}>
+        <Swiper ref={sliderRef} slidesPerView={slidesPerView} spaceBetween={30}>
           {news.map((item) => (
             <SwiperSlide key={item.id} className="py-2">
               <NewsCard news={item} />
