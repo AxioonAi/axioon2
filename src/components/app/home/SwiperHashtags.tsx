@@ -30,9 +30,11 @@ export function SwiperHashtag({ hashtag }: { hashtag: hashtag[] }) {
     } else if (width >= 1200) {
       setSlidesPerView(3); // Desktop
     } else if (width >= 768) {
-      setSlidesPerView(2); // Tablet
+      setSlidesPerView(1.7); // Tablet
+    } else if (width >= 520) {
+      setSlidesPerView(1.6); // Tablet
     } else {
-      setSlidesPerView(1.2); // Mobile
+      setSlidesPerView(1); // Mobile
     }
   }, []);
 

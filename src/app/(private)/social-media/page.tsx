@@ -141,7 +141,7 @@ export default function SocialMediaPage() {
   const hashtag = [
     {
       id: 1,
-      hashtag: "#hashtag1",
+      hashtag: "#brasilSemCorrupção",
     },
     {
       id: 2,
@@ -186,7 +186,7 @@ export default function SocialMediaPage() {
             buttonText="Solicitar novo Portal"
           />
         </div>
-        <div className="col-span-12 flex flex-col space-x-4 overflow-hidden py-1">
+        <div className="col-span-12 flex flex-col py-1">
           <SwiperNews news={news} />
         </div>
         <div className="col-span-12 rounded-md bg-white shadow-md">
@@ -197,7 +197,7 @@ export default function SocialMediaPage() {
             secondButtonText="Nova Hashtag"
           />
         </div>
-        <div className="col-span-12 flex flex-col space-x-4 overflow-hidden py-1">
+        <div className="col-span-12 flex flex-col py-1">
           <SwiperHashtag hashtag={hashtag} />
         </div>
       </div>

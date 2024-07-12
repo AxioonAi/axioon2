@@ -32,9 +32,11 @@ export function SwiperNews({ news }: { news: News[] }) {
     } else if (width >= 1200) {
       setSlidesPerView(3.2); // Desktop
     } else if (width >= 968) {
-      setSlidesPerView(2.1); // Tablet
+      setSlidesPerView(2.1);
+    } else if (width >= 600) {
+      setSlidesPerView(1.7); // Tablet
     } else {
-      setSlidesPerView(1.5); // Mobile
+      setSlidesPerView(1.2); // Mobile
     }
   }, []);
 

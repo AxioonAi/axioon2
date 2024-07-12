@@ -40,8 +40,10 @@ export function SwiperPoliticians({
       setSlidesPerView(2.4); // Tablet
     } else if (width >= 760) {
       setSlidesPerView(1.6); // Tablet
+    } else if (width >= 430) {
+      setSlidesPerView(1.4); // Tablet
     } else {
-      setSlidesPerView(1.4); // Mobile
+      setSlidesPerView(1); // Mobile
     }
   }, []);
 

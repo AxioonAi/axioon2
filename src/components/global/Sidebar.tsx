@@ -4,13 +4,13 @@ import { twMerge } from "tailwind-merge";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import autoAnimate from "@formkit/auto-animate";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, PanelLeftClose } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useSidebarContext } from "@/context/sidebarStatus";
 import { useOffsetContext } from "@/context/test";
 
 export function Sidebar() {
-  const { isOpen } = useSidebarContext();
+  const { isOpen, setIsOpen } = useSidebarContext();
   const [openAccordion, setOpenAccordion] = useState("");
   const [selectedSection, setSelectedSection] = useState("");
   const parent = useRef(null);
@@ -44,8 +44,8 @@ export function Sidebar() {
   return (
     <div
       className={twMerge(
-        "left-0 top-0 z-[1000] flex min-h-full w-1/2 flex-col gap-8 border-r border-r-gray-800 bg-black px-4 pb-10 pt-4 lg:w-64",
-        `${isOpen ? "hidden md:fixed" : "hidden"}`,
+        "left-0 top-0 z-[1000] flex min-h-full flex-col gap-8 border-r border-r-gray-800 bg-black px-4 pb-10 pt-4 transition-transform md:w-64",
+        `${isOpen ? "fixed" : "hidden"}`,
       )}
     >
       <Image
@@ -239,6 +239,12 @@ export function Sidebar() {
               className="h-5 w-5"
             />
             Parâmetros
+          </button>
+          <button
+            className="flex h-8 w-14 items-center justify-center rounded bg-zinc-400/15 p-2 text-white md:hidden"
+            onClick={() => setIsOpen(false)}
+          >
+            <PanelLeftClose />
           </button>
         </div>
       </div>
