@@ -3,7 +3,7 @@ import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import { useCallback, useLayoutEffect, useRef, useState } from "react";
 import "swiper/swiper-bundle.css";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { HashtagCard } from "../social-media/HashtagCard";
+import { HashtagCard } from "../parameters/HashtagCard";
 
 interface hashtag {
   id: number;

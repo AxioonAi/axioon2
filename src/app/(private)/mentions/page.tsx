@@ -4,7 +4,6 @@ import { WordCloud } from "@/components/app/mentions/WordCloud";
 import { WordsList } from "@/components/app/mentions/WordsList";
 import {
   CommentsDonutGraphData,
-  IndicatorsBaseCardData,
   LineGradientChartData,
   PostsAndCommentsData,
   ScoreGaugeChartData,
@@ -21,7 +20,6 @@ import {
   WordsListData,
 } from "@/components/data/MentionsData";
 import { MentionsHeaderCard } from "@/components/app/mentions/MentionsHeaderCard";
-import { IndicatorsBaseCard } from "@/components/app/home/IndicatorsBaseCard";
 import { LineGradientChart } from "@/components/app/home/LineGradientChart";
 import { ScoreGaugeChart } from "@/components/app/mentions/ScoreGaugeChart";
 import { CommentsDonutGraph } from "@/components/app/home/CommentsDonutGraph";

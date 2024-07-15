@@ -3,7 +3,7 @@ import { register } from "swiper/element/bundle";
 import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import { useCallback, useLayoutEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { PerfilCard } from "../social-media/PerfilCard";
+import { PerfilCard } from "../parameters/PerfilCard";
 import "swiper/swiper-bundle.css";
 register();
 

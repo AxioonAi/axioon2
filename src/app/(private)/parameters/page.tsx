@@ -1,4 +1,4 @@
-import { CardWithTitleAndButton } from "@/components/app/social-media/CardWithTitleAndButton";
+import { CardWithTitleAndButton } from "@/components/app/parameters/CardWithTitleAndButton";
 import { SwiperNews } from "@/components/app/home/SwiperNews";
 import { SwiperPoliticians } from "@/components/app/home/SwiperPoliticians";
 import { SwiperHashtag } from "@/components/app/home/SwiperHashtags";

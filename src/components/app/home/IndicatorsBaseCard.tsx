@@ -39,7 +39,6 @@ export function IndicatorsBaseCard({
           options={ChartOptions.options}
           series={ChartOptions.series}
           type="line"
-          height={80}
         />
       </div>
       <div className="flex flex-col">

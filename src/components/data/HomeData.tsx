@@ -1334,7 +1334,6 @@ export const IndicatorsBaseCardData = [
       ],
       options: {
         chart: {
-          height: 100,
           type: "line" as const,
           zoom: {
             enabled: false,
@@ -1379,6 +1378,24 @@ export const IndicatorsBaseCardData = [
         theme: {
           mode: "light" as const,
         },
+        responsive: [
+          {
+            breakpoint: 2660,
+            options: {
+              chart: {
+                height: 75,
+              },
+            },
+          },
+          {
+            breakpoint: 2561,
+            options: {
+              chart: {
+                height: 100,
+              },
+            },
+          },
+        ],
       },
     },
   },
@@ -1398,7 +1415,6 @@ export const IndicatorsBaseCardData = [
       ],
       options: {
         chart: {
-          height: 100,
           type: "line" as const,
           zoom: {
             enabled: false,
@@ -1443,6 +1459,24 @@ export const IndicatorsBaseCardData = [
         theme: {
           mode: "light" as const,
         },
+        responsive: [
+          {
+            breakpoint: 2660,
+            options: {
+              chart: {
+                height: 75,
+              },
+            },
+          },
+          {
+            breakpoint: 2561,
+            options: {
+              chart: {
+                height: 100,
+              },
+            },
+          },
+        ],
       },
     },
   },
@@ -1462,7 +1496,6 @@ export const IndicatorsBaseCardData = [
       ],
       options: {
         chart: {
-          height: 100,
           type: "line" as const,
           zoom: {
             enabled: false,
@@ -1507,6 +1540,24 @@ export const IndicatorsBaseCardData = [
         theme: {
           mode: "light" as const,
         },
+        responsive: [
+          {
+            breakpoint: 2660,
+            options: {
+              chart: {
+                height: 75,
+              },
+            },
+          },
+          {
+            breakpoint: 2561,
+            options: {
+              chart: {
+                height: 100,
+              },
+            },
+          },
+        ],
       },
     },
   },
