@@ -17,7 +17,7 @@ export function CardWithTitleAndButton({
   secondButtonText,
 }: CardWithTitleAndButtonProps) {
   return (
-    <div className="rounded-md bg-white p-5">
+    <div className="rounded-md bg-white p-5 shadow-md">
       <div className="flex items-center justify-between">
         <div className="flex flex-row items-center gap-1">
           <div className="h-8 w-2 rounded-full bg-sky-900" />
