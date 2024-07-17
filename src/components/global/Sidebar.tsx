@@ -258,7 +258,10 @@ export function Sidebar() {
               )}
             </>
             <>
-              <button className="flex items-center justify-between rounded p-2 text-white">
+              <button
+                onClick={() => handleClick("comparator")}
+                className="flex items-center justify-between rounded p-2 text-white"
+              >
                 <div className="flex items-center gap-4">
                   <Image
                     src="/Icons/at.svg"
@@ -271,7 +274,7 @@ export function Sidebar() {
                 </div>
                 <ChevronDown size={18} className="stroke-[3]" />
               </button>
-              {openAccordion === "comparative" && (
+              {openAccordion === "comparator" && (
                 <div className="flex flex-col gap-2">
                   <div className="flex w-full items-center gap-2">
                     <div className="h-1.5 w-1.5 rounded-full border border-zinc-500 bg-transparent" />
