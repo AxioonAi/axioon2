@@ -11,6 +11,8 @@
   "dependencies": {
     "@formkit/auto-animate": "^0.8.2",
     "apexcharts": "^3.49.2",
+    "axios": "^1.7.3",
+    "framer-motion": "^11.3.21",
     "lucide-react": "^0.397.0",
     "next": "14.2.4",
     "react": "^18",

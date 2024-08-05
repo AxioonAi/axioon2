@@ -5,12 +5,10 @@ import React from "react";
 interface Politician {
   name: string;
   city: string;
-  socialMedia: {
-    youtube: string;
-    tiktok: string;
-    instagram: string;
-    facebook: string;
-  };
+  youtube: string;
+  tiktok: string;
+  instagram: string;
+  facebook: string;
 }
 
 // Alterando o componente para receber os dados como props
@@ -19,6 +17,33 @@ interface PerfilCardProps {
 }
 
 export function PerfilCard({ politician }: PerfilCardProps) {
+  const handleClick = (name: string, username: string) => {
+    if (!username) {
+      return alert("Nome do perfil não informado");
+    }
+    if (name === "youtube") {
+      const url = `https://www.youtube.com/@${name}`;
+      if (confirm("Acessar o canal?")) {
+        return window.open(url, "_blank");
+      }
+    } else if (name === "tiktok") {
+      const url = `https://www.tiktok.com/@${username}`;
+      if (confirm("Acessar o perfil?")) {
+        return window.open(url, "_blank");
+      }
+    } else if (name === "instagram") {
+      const url = `https://www.instagram.com/${username}`;
+      if (confirm("Acessar o perfil?")) {
+        return window.open(url, "_blank");
+      }
+    } else {
+      const url = `https://www.facebook.com/${username}`;
+      if (confirm("Acessar o perfil?")) {
+        return window.open(url, "_blank");
+      }
+    }
+  };
+
   return (
     <div className="flex w-max max-w-80 flex-col rounded-md bg-white p-4 shadow-md">
       <div className="flex flex-col">
@@ -40,8 +65,8 @@ export function PerfilCard({ politician }: PerfilCardProps) {
         <h3 className="text-sm text-black">{politician.city}</h3>
       </div>
       <div className="grid grid-cols-2 gap-x-4 gap-y-4">
-        <a
-          href={`https://www.youtube.com/${politician.socialMedia.youtube}`}
+        <button
+          onClick={() => handleClick("youtube", politician.youtube)}
           className="col-span-1 row-span-1 flex h-full flex-row items-center justify-start gap-2 rounded-md bg-zinc-50 p-2 text-black shadow-md"
         >
           <Image
@@ -52,11 +77,11 @@ export function PerfilCard({ politician }: PerfilCardProps) {
             src={"/Logos/youtube.svg"}
           />
           <span className="text-small max-w-full overflow-hidden truncate whitespace-nowrap">
-            {politician.socialMedia.youtube}
+            {politician.youtube}
           </span>
-        </a>
-        <a
-          href={`https://www.tiktok.com/@${politician.socialMedia.tiktok}`}
+        </button>
+        <button
+          onClick={() => handleClick("tiktok", politician.tiktok)}
           className="col-span-1 row-span-1 flex h-full flex-row items-center justify-start gap-2 rounded-md bg-zinc-50 p-2 text-black shadow-md"
         >
           <Image
@@ -67,11 +92,11 @@ export function PerfilCard({ politician }: PerfilCardProps) {
             src={"/Logos/tiktok.svg"}
           />
           <span className="text-small max-w-full overflow-hidden truncate whitespace-nowrap">
-            {politician.socialMedia.tiktok}
+            {politician.tiktok}
           </span>
-        </a>
-        <a
-          href={`https://www.instagram.com/${politician.socialMedia.instagram}`}
+        </button>
+        <button
+          onClick={() => handleClick("instagram", politician.instagram)}
           className="col-span-1 row-span-1 flex h-full flex-row items-center justify-start gap-2 rounded-md bg-zinc-50 p-2 text-black shadow-md"
         >
           <Image
@@ -82,11 +107,11 @@ export function PerfilCard({ politician }: PerfilCardProps) {
             src={"/Logos/instagram.svg"}
           />
           <span className="text-small max-w-full overflow-hidden truncate whitespace-nowrap">
-            {politician.socialMedia.instagram}
+            {politician.instagram}
           </span>
-        </a>
-        <a
-          href={`https://www.facebook.com/${politician.socialMedia.facebook}`}
+        </button>
+        <button
+          onClick={() => handleClick("facebook", politician.facebook)}
           className="col-span-1 row-span-1 flex h-full flex-row items-center justify-start gap-2 rounded-md bg-zinc-50 p-2 text-black shadow-md"
         >
           <Image
@@ -97,9 +122,9 @@ export function PerfilCard({ politician }: PerfilCardProps) {
             src={"/Logos/facebook.svg"}
           />
           <span className="text-small max-w-full overflow-hidden truncate whitespace-nowrap">
-            {politician.socialMedia.facebook}
+            {politician.facebook}
           </span>
-        </a>
+        </button>
       </div>
     </div>
   );

@@ -6,15 +6,19 @@ import React from "react";
 interface CardWithTitleAndButtonProps {
   title: string;
   buttonText: string;
+  firstButtonOnClick?: () => void;
   hasTwoButtons?: boolean;
   secondButtonText?: string;
+  secondButtonOnClick?: () => void;
 }
 
 export function CardWithTitleAndButton({
   title,
   buttonText,
+  firstButtonOnClick,
   hasTwoButtons,
   secondButtonText,
+  secondButtonOnClick,
 }: CardWithTitleAndButtonProps) {
   return (
     <div className="rounded-md bg-white p-5 shadow-md">
@@ -24,11 +28,17 @@ export function CardWithTitleAndButton({
           <h1 className="text-md font-bold md:text-xl">{title}</h1>
         </div>
         <div className="flex flex-col items-center gap-1 md:flex-row md:gap-4">
-          <button className="whitespace-nowrap rounded-md bg-sky-600 px-2 py-1 text-[10px] text-white transition-transform hover:scale-105 hover:bg-sky-700 md:py-2 md:text-sm">
+          <button
+            onClick={firstButtonOnClick}
+            className="whitespace-nowrap rounded-md bg-sky-600 px-2 py-1 text-[10px] text-white transition-transform hover:scale-105 hover:bg-sky-700 md:py-2 md:text-sm"
+          >
             {buttonText}
           </button>
           {hasTwoButtons && (
-            <button className="flex items-center gap-2 whitespace-nowrap rounded-md bg-green-700 px-2 py-1 text-[10px] text-white transition-transform hover:scale-105 hover:bg-green-800 md:py-2 md:text-sm">
+            <button
+              onClick={secondButtonOnClick}
+              className="flex items-center gap-2 whitespace-nowrap rounded-md bg-green-700 px-2 py-1 text-[10px] text-white transition-transform hover:scale-105 hover:bg-green-800 md:py-2 md:text-sm"
+            >
               {secondButtonText}
               <PlusCircle size={20} />
             </button>

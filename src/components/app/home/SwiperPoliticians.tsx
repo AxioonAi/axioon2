@@ -1,29 +1,49 @@
 "use client";
 import { register } from "swiper/element/bundle";
 import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
-import { useCallback, useLayoutEffect, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useRef,
+  useState,
+} from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { PerfilCard } from "../parameters/PerfilCard";
 import "swiper/swiper-bundle.css";
+import { CardWithTitleAndButton } from "../parameters/CardWithTitleAndButton";
+import { authGetAPI } from "@/lib/axios";
 register();
 
 interface Politician {
-  id: number;
-  name: string;
+  campaignNumber: number;
   city: string;
-  socialMedia: {
-    youtube: string;
-    tiktok: string;
-    instagram: string;
-    facebook: string;
-  };
+  facebook: string;
+  id: string;
+  image: string;
+  instagram: string;
+  name: string;
+  politicalGroup: string;
+  tiktok: string;
+  youtube: string;
 }
-export function SwiperPoliticians({
-  politicians,
-}: {
-  politicians: Politician[];
-}) {
+export function SwiperPoliticians() {
   const sliderRef = useRef<SwiperRef>(null);
+  const [slidesPerView, setSlidesPerView] = useState(3);
+  const [politicians, setPoliticians] = useState<Politician[]>([]);
+  const skeletonArray = [0, 1, 2, 3, 4];
+
+  async function GetPoliticians() {
+    const politicians = await authGetAPI("/profile/monitoring");
+    if (politicians.status === 200) {
+      setPoliticians(politicians.body.profile);
+    }
+  }
+
+  useEffect(() => {
+    GetPoliticians();
+  }, []);
+
   const handlePrev = useCallback(() => {
     if (!sliderRef.current) return;
     sliderRef.current.swiper.slidePrev();
@@ -33,7 +53,7 @@ export function SwiperPoliticians({
     if (!sliderRef.current) return;
     sliderRef.current.swiper.slideNext();
   }, []);
-  const [slidesPerView, setSlidesPerView] = useState(3);
+
   const updateSlidesPerView = useCallback(() => {
     const width = window.innerWidth;
     if (width >= 1400) {
@@ -58,20 +78,43 @@ export function SwiperPoliticians({
       window.removeEventListener("resize", updateSlidesPerView);
     };
   }, [updateSlidesPerView]);
+
   return (
-    <>
+    <div className="flex w-full flex-col gap-4">
+      <div className="col-span-12 rounded-md bg-white shadow-md">
+        <CardWithTitleAndButton
+          title="Perfis Monitorados"
+          buttonText="3 de 5 disponíveis"
+          hasTwoButtons={true}
+          secondButtonText="Novo Perfil"
+        />
+      </div>
       <div className="flex w-full">
-        <Swiper
-          ref={sliderRef}
-          slidesPerView={slidesPerView}
-          spaceBetween={100}
-        >
-          {politicians.map((politician) => (
-            <SwiperSlide key={politician.id} className="py-2">
-              <PerfilCard politician={politician} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+        {politicians.length !== 0 ? (
+          <Swiper
+            ref={sliderRef}
+            slidesPerView={slidesPerView}
+            spaceBetween={100}
+          >
+            {politicians.map((politician) => (
+              <SwiperSlide key={politician.id} className="py-2">
+                <PerfilCard politician={politician} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        ) : (
+          <Swiper
+            ref={sliderRef}
+            slidesPerView={slidesPerView}
+            spaceBetween={100}
+          >
+            {skeletonArray.map((skeleton) => (
+              <SwiperSlide key={skeleton} className="py-2">
+                <div className="from-gray-10 to-gray-10 via-gray-20 flex h-44 w-80 flex-col rounded-md bg-gradient-to-r p-4 shadow-md" />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        )}
       </div>
       <div className="mt-4 flex justify-between">
         <button
@@ -87,6 +130,6 @@ export function SwiperPoliticians({
           <ChevronRight className="stroke-[3]" />
         </button>
       </div>
-    </>
+    </div>
   );
 }

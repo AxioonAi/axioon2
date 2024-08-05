@@ -5,10 +5,10 @@ interface hashtagCardProps {
 }
 export function HashtagCard({ hashtag }: hashtagCardProps) {
   return (
-    <button className="flex w-full flex-row items-center gap-x-4 rounded-md bg-white p-4 shadow-lg shadow-md transition-transform hover:scale-[1.01]">
+    <button className="flex w-full max-w-[26.75rem] flex-row items-center gap-x-4 rounded-md bg-white p-4 shadow-md transition-transform hover:scale-[1.01]">
       <Image
         className="h-8 w-8 rounded-md"
-        src={"/icons/hashtagWithSquare.png"}
+        src={"/Icons/hashtagWithSquare.png"}
         alt=""
         width={48}
         height={48}
