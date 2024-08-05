@@ -28,9 +28,6 @@ export const OffsetContextProvider = ({ children }: ContextProps) => {
   const [elementName, setElementName] = useState("");
   const elementRef = useRef<HTMLDivElement>(null);
 
-  console.log("isVisible: ", isVisible);
-  console.log("elementName: ", elementName);
-
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {

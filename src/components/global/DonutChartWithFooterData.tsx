@@ -28,8 +28,11 @@ export function DonutChartWithFooterData({
         />
       </div>
       <div className="mb-12 flex w-full items-center justify-center">
-        {footerData.map((idx) => (
-          <div className="flex flex-col items-center justify-center border-x border-dashed border-x-zinc-200 p-4 first:border-l-0 last:border-r-0 lg:p-1 xl:p-4">
+        {footerData.map((idx, index) => (
+          <div
+            key={index}
+            className="flex flex-col items-center justify-center border-x border-dashed border-x-zinc-200 p-4 first:border-l-0 last:border-r-0 lg:p-1 xl:p-4"
+          >
             {idx}
           </div>
         ))}

@@ -6,11 +6,15 @@ import { useEffect, useRef, useState } from "react";
 import autoAnimate from "@formkit/auto-animate";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
+import * as Popover from "@radix-ui/react-popover";
 import { useSidebarContext } from "@/context/sidebarStatus";
 import { useOffsetContext } from "@/context/test";
+import { useSelectedPoliticianContext } from "@/context/SelectedPolitician";
 
 export function Sidebar() {
   const { isOpen, setIsOpen } = useSidebarContext();
+  const { politicians, selectedPolitician, setSelectedPolitician } =
+    useSelectedPoliticianContext();
   const [openAccordion, setOpenAccordion] = useState("");
   const [selectedSection, setSelectedSection] = useState("");
   const parent = useRef(null);
@@ -79,6 +83,51 @@ export function Sidebar() {
           className="mx-auto w-2/3 lg:w-full"
         />
         <div className="flex h-full w-full flex-col gap-4 p-2 text-xs lg:text-sm 2xl:text-base">
+          <Popover.Root>
+            <Popover.Trigger className="flex h-10 w-full rounded bg-sky-900/50">
+              <div className="flex h-full w-[85%] items-center justify-between gap-2 border-r-2 border-r-black px-2 text-white">
+                <Image
+                  src="/Icons/user.svg"
+                  alt=""
+                  width={100}
+                  height={100}
+                  className="h-5 w-5"
+                />
+                <span className="w-full truncate">
+                  {selectedPolitician?.name}
+                </span>
+                <ChevronDown />
+              </div>
+              <div className="flex h-full w-[15%] items-center justify-center">
+                <Image
+                  src="/Icons/settingWhite.svg"
+                  alt=""
+                  width={100}
+                  height={100}
+                  className="h-5 w-5"
+                />
+              </div>
+            </Popover.Trigger>
+            <Popover.Content
+              className="z-50 flex max-h-96 w-52 flex-col items-center justify-between overflow-y-scroll rounded bg-white text-center text-sm font-semibold shadow"
+              sideOffset={5}
+              align="start"
+            >
+              {politicians.map((politician, index) => (
+                <button
+                  onClick={() => setSelectedPolitician(politician)}
+                  key={index}
+                  className={twMerge(
+                    "w-full border-y border-y-gray-200 px-2 py-1",
+                    politician.name === selectedPolitician?.name &&
+                      "bg-sky-900/20",
+                  )}
+                >
+                  <span>{politician.name}</span>
+                </button>
+              ))}
+            </Popover.Content>
+          </Popover.Root>
           <div className="flex flex-col gap-4" ref={parent}>
             <>
               <button

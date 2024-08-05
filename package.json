@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@formkit/auto-animate": "^0.8.2",
+    "@radix-ui/react-popover": "^1.1.1",
+    "@radix-ui/react-select": "^2.1.1",
     "apexcharts": "^3.49.2",
     "axios": "^1.7.3",
     "framer-motion": "^11.3.21",

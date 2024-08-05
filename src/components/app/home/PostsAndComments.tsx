@@ -77,10 +77,9 @@ export function PostsAndComments({
       />
       <div className="flex h-full max-h-[60vh] w-full flex-col gap-4 overflow-y-scroll p-4">
         {PostsAndCommentsData.map((item, index) => (
-          <div ref={parent} className="flex w-full flex-col gap-2">
+          <div key={index} ref={parent} className="flex w-full flex-col gap-2">
             <div
               onClick={() => reveal(index)}
-              key={index}
               className="flex w-full gap-2 rounded-lg bg-zinc-50 p-2 shadow-md"
             >
               <Image
