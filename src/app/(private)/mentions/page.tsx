@@ -34,8 +34,8 @@ import { IndicatorsCards } from "@/components/app/home/IndicatorsCards";
 export default function Mentions() {
   return (
     <div className="flex flex-col gap-4 pb-20 lg:grid lg:grid-cols-12">
-      <div className="flex flex-col gap-4 lg:col-span-12 lg:row-span-2 lg:grid lg:grid-cols-12 lg:grid-rows-7">
-        <div className="lg:col-span-12 lg:row-span-3">
+      <div className="flex flex-col gap-4 lg:col-span-12 lg:row-span-2 lg:grid lg:grid-cols-12 lg:grid-rows-6">
+        <div className="lg:col-span-12 lg:row-span-2">
           <MentionsHeaderCard title="Menções" />
         </div>
         <div className="lg:col-span-12 lg:row-span-4">

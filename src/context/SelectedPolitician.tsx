@@ -54,9 +54,6 @@ export const SelectedPoliticianContextProvider = ({
     }
   }
 
-  console.log("politicians: ", politicians);
-  console.log("selectedPolitician: ", selectedPolitician);
-
   useEffect(() => {
     GetPoliticians();
     if (selectedPolitician === null && politicians.length > 0) {

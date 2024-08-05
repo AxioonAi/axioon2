@@ -25,10 +25,14 @@ import { LineGradientChart } from "@/components/app/home/LineGradientChart";
 import { FollowerProgressionChart } from "@/components/app/home/FollowerProgressionChart";
 import { HeaderCards } from "@/components/app/home/HeaderCards";
 import { IndicatorsCards } from "@/components/app/home/IndicatorsCards";
+import { HomeHeaderCard } from "@/components/app/home/HomeHeaderCard";
 
 export default function Home() {
   return (
     <div className="flex flex-col gap-4 pb-20 lg:grid lg:grid-cols-12">
+      <div className="lg:col-span-12">
+        <HomeHeaderCard title="Mídias Sociais" />
+      </div>
       <div className="lg:col-span-12">
         <HeaderCards />
         <IndicatorsCards />
