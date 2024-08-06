@@ -33,6 +33,7 @@ export default function Home() {
       <div className="lg:col-span-12">
         <HomeHeaderCard title="Mídias Sociais" />
       </div>
+
       <div className="lg:col-span-12">
         <HeaderCards />
         <IndicatorsCards />

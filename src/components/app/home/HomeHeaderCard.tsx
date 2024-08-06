@@ -1,7 +1,11 @@
 "use client";
 import { twMerge } from "tailwind-merge";
 import Image from "next/image";
+import * as Popover from "@radix-ui/react-popover";
+import { DateRange, DayPicker } from "react-day-picker";
+import { ptBR } from "date-fns/locale";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
+import { useSocialMediaDataContext } from "@/context/SocialMediaData";
 
 interface HomeHeaderCardProps {
   title: string;
@@ -12,6 +16,9 @@ export function HomeHeaderCard({
   title,
   color = "bg-sky-900",
 }: HomeHeaderCardProps) {
+  const { startDate, endDate, setStartDate, setEndDate } =
+    useSocialMediaDataContext();
+
   return (
     <BaseCard>
       <div className="flex h-full w-full justify-between">
@@ -22,16 +29,38 @@ export function HomeHeaderCard({
           <strong>{title}</strong>
         </div>
         <div className="flex flex-col items-center gap-2 lg:flex-row">
-          <button className="flex items-center gap-1 rounded bg-sky-700 px-1.5 py-1 text-[10px] text-white lg:text-xs 2xl:text-sm 3xl:text-base">
-            <span>07/04/2024 - 07/06/2024</span>
-            <Image
-              src="/Icons/calendar.svg"
-              alt=""
-              width={50}
-              height={50}
-              className="h-4 w-4"
-            />
-          </button>
+          <Popover.Root>
+            <Popover.Trigger className="flex items-center gap-1 rounded bg-sky-700 px-1.5 py-1 text-[10px] text-white lg:text-xs 2xl:text-sm 3xl:text-base">
+              <span>
+                {startDate?.toLocaleDateString()} -{" "}
+                {endDate?.toLocaleDateString()}
+              </span>
+              <Image
+                src="/Icons/calendar.svg"
+                alt=""
+                width={50}
+                height={50}
+                className="h-4 w-4"
+              />
+            </Popover.Trigger>
+            <Popover.Content
+              className="z-50 flex max-h-96 w-80 flex-col items-center justify-between rounded bg-white p-2 text-center text-sm font-semibold shadow-md"
+              align="end"
+              sideOffset={5}
+              side="bottom"
+            >
+              <DayPicker
+                mode="range"
+                required
+                selected={{ from: startDate, to: endDate }}
+                locale={ptBR}
+                onSelect={({ from, to }: DateRange) => {
+                  setStartDate(from);
+                  setEndDate(to);
+                }}
+              />
+            </Popover.Content>
+          </Popover.Root>
           <button className="flex items-center gap-1 rounded bg-sky-600 px-1.5 py-1 text-[10px] text-white lg:text-xs 2xl:text-sm 3xl:text-base">
             <span>Relatório</span>
             <Image

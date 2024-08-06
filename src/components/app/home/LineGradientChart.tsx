@@ -5,6 +5,7 @@ import { ApexOptions } from "apexcharts";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
+import { useSocialMediaDataContext } from "@/context/SocialMediaData";
 
 interface LineGradientChartProps {
   LineGradientChartData: {
@@ -20,6 +21,7 @@ interface LineGradientChartProps {
 export function LineGradientChart({
   LineGradientChartData,
 }: LineGradientChartProps) {
+  const { isGettingData } = useSocialMediaDataContext();
   return (
     <BaseCard className="p-0">
       <BaseCardHeader
@@ -30,13 +32,17 @@ export function LineGradientChart({
           </div>
         }
       />
-      <div className="flex h-56 w-full flex-col lg:h-full">
-        <ReactApexChart
-          type="area"
-          series={LineGradientChartData.ChartOptions.series}
-          options={LineGradientChartData.ChartOptions.options}
-        />
-      </div>
+      {isGettingData ? (
+        <div className="h-full w-full bg-gradient-to-r from-gray-10 via-gray-20 to-gray-10" />
+      ) : (
+        <div className="flex h-56 w-full flex-col lg:h-full">
+          <ReactApexChart
+            type="area"
+            series={LineGradientChartData.ChartOptions.series}
+            options={LineGradientChartData.ChartOptions.options}
+          />
+        </div>
+      )}
       <BaseCardFooter />
     </BaseCard>
   );

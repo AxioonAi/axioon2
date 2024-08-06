@@ -424,6 +424,7 @@ export const WordCloudData = {
     fontWeight: "700",
     fontFamily: "Impact",
     fontSizes: [10, 60] as [number, number],
+    deterministic: true,
   },
 };
 

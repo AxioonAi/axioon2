@@ -10,6 +10,7 @@ import {
 } from "react";
 import { useSelectedPoliticianContext } from "./SelectedPolitician";
 import { authGetAPI } from "@/lib/axios";
+import { SocialMediaDataProps } from "@/types/SocialMediaData";
 
 interface SocialMediaDataContextProps {
   facebook: boolean;
@@ -20,6 +21,16 @@ interface SocialMediaDataContextProps {
   setInstagram: Dispatch<SetStateAction<boolean>>;
   setTiktok: Dispatch<SetStateAction<boolean>>;
   setYoutube: Dispatch<SetStateAction<boolean>>;
+  startDate: Date;
+  setStartDate: Dispatch<SetStateAction<Date>>;
+  endDate: Date;
+  setEndDate: Dispatch<SetStateAction<Date>>;
+  socialMediaData: SocialMediaDataProps | undefined;
+  setSocialMediaData: Dispatch<
+    SetStateAction<SocialMediaDataProps | undefined>
+  >;
+  isGettingData: boolean;
+  setIsGettingData: Dispatch<SetStateAction<boolean>>;
 }
 
 const SocialMediaDataContext = createContext({} as SocialMediaDataContextProps);
@@ -29,31 +40,53 @@ interface ContextProps {
 }
 
 export const SocialMediaDataContextProvider = ({ children }: ContextProps) => {
-  const [facebook, setFacebook] = useState(false);
-  const [instagram, setInstagram] = useState(false);
-  const [tiktok, setTiktok] = useState(false);
-  const [youtube, setYoutube] = useState(false);
+  const [facebook, setFacebook] = useState(true);
+  const [instagram, setInstagram] = useState(true);
+  const [tiktok, setTiktok] = useState(true);
+  const [youtube, setYoutube] = useState(true);
+  const [startDate, setStartDate] = useState<Date>(
+    new Date(new Date().getTime() - 30 * 24 * 60 * 60 * 1000),
+  );
+  const [endDate, setEndDate] = useState<Date>(new Date());
+  const [socialMediaData, setSocialMediaData] =
+    useState<SocialMediaDataProps>();
+  const [isGettingData, setIsGettingData] = useState(false);
   const { selectedPolitician } = useSelectedPoliticianContext();
 
   async function GetSocialMediaData() {
+    setIsGettingData(true);
     const socialMediaData = await authGetAPI(
-      `/profile/media/${selectedPolitician?.id}?endDate=${new Date().toISOString().split("T")[0]}&startDate=${new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000).toISOString().split("T")[0]}&instagram=${instagram}&facebook=${facebook}&tiktok=${tiktok}&youtube=${youtube}`,
+      `/profile/media/${selectedPolitician?.id}?endDate=2024-06-14&startDate=2024-03-14&instagram=${instagram}&facebook=${facebook}&tiktok=${tiktok}&youtube=${youtube}`,
     );
+    if (socialMediaData.status === 200) {
+      setSocialMediaData(socialMediaData.body.data);
+      return setIsGettingData(false);
+    }
+    return setIsGettingData(false);
   }
-
-  async function Test() {
-    const test = await authGetAPI(
-      `/hashtag/mentions?endDate=2024-08-05&startDate=2024-07-05`,
-    );
-  }
-
-  useEffect(() => {
-    Test();
-  }, [selectedPolitician]);
 
   useEffect(() => {
     GetSocialMediaData();
-  }, [selectedPolitician]);
+  }, [
+    selectedPolitician,
+    instagram,
+    facebook,
+    tiktok,
+    youtube,
+    startDate,
+    endDate,
+  ]);
+
+  // async function Test() {
+  //   const test = await authGetAPI(
+  //     `/hashtag/mentions?endDate=2024-06-14&startDate=2024-03-14`,
+  //   );
+  //   console.log("test: ", test);
+  // }
+
+  // useEffect(() => {
+  //   Test();
+  // }, []);
 
   const value = {
     facebook,
@@ -64,6 +97,14 @@ export const SocialMediaDataContextProvider = ({ children }: ContextProps) => {
     setInstagram,
     setTiktok,
     setYoutube,
+    startDate,
+    setStartDate,
+    endDate,
+    setEndDate,
+    socialMediaData,
+    setSocialMediaData,
+    isGettingData,
+    setIsGettingData,
   };
 
   return (
@@ -83,6 +124,14 @@ export function useSocialMediaDataContext() {
     setInstagram,
     setTiktok,
     setYoutube,
+    startDate,
+    setStartDate,
+    endDate,
+    setEndDate,
+    socialMediaData,
+    setSocialMediaData,
+    isGettingData,
+    setIsGettingData,
   } = useContext(SocialMediaDataContext);
 
   return {
@@ -94,5 +143,13 @@ export function useSocialMediaDataContext() {
     setInstagram,
     setTiktok,
     setYoutube,
+    startDate,
+    setStartDate,
+    endDate,
+    setEndDate,
+    socialMediaData,
+    setSocialMediaData,
+    isGettingData,
+    setIsGettingData,
   };
 }
