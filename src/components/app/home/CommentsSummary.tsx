@@ -1,26 +1,82 @@
 "use client";
 import { twMerge } from "tailwind-merge";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { useEffect, useState } from "react";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
 import { useSocialMediaDataContext } from "@/context/SocialMediaData";
 
-interface CommentsSummaryProps {
-  CommentsSummaryData: {
-    value: number;
-    valueChange: number;
-    comments: {
-      total: number;
-      positive: number;
-      neutral: number;
-      negative: number;
-    };
-  };
+interface CommentsBySentimentProps {
+  countSentiment0To350: number;
+  countSentiment351To650: number;
+  countSentiment651To1000: number;
+  sentimentAverage: number;
+  totalSentiment: number;
 }
 
-export function CommentsSummary({ CommentsSummaryData }: CommentsSummaryProps) {
-  const { isGettingData } = useSocialMediaDataContext();
+export function CommentsSummary() {
+  const [facebookCommentsData, setFacebookCommentsData] =
+    useState<CommentsBySentimentProps>();
+  const [instagramCommentsData, setInstagramCommentsData] =
+    useState<CommentsBySentimentProps>();
+  const [tiktokCommentsData, setTiktokCommentsData] =
+    useState<CommentsBySentimentProps>();
+  const [youtubeCommentsData, setYoutubeCommentsData] =
+    useState<CommentsBySentimentProps>();
+  const [commentsBySentiment, setCommentsBySentiment] =
+    useState<CommentsBySentimentProps>();
+  const { isGettingData, socialMediaData } = useSocialMediaDataContext();
+
+  useEffect(() => {
+    if (socialMediaData) {
+      setFacebookCommentsData(
+        socialMediaData.commentsData.commentBySentiment.facebook,
+      );
+      setInstagramCommentsData(
+        socialMediaData.commentsData.commentBySentiment.instagram,
+      );
+      setTiktokCommentsData(
+        socialMediaData.commentsData.commentBySentiment.tiktok,
+      );
+      setYoutubeCommentsData(
+        socialMediaData.commentsData.commentBySentiment.youtube,
+      );
+    }
+  }, [socialMediaData]);
+
+  useEffect(() => {
+    const commentsBySentiment = [
+      facebookCommentsData,
+      instagramCommentsData,
+      tiktokCommentsData,
+      youtubeCommentsData,
+    ];
+    const summedValues = commentsBySentiment.reduce(
+      (acc, curr) => {
+        if (curr) {
+          acc!.countSentiment0To350 += curr.countSentiment0To350;
+          acc!.countSentiment351To650 += curr.countSentiment351To650;
+          acc!.countSentiment651To1000 += curr.countSentiment651To1000;
+          acc!.sentimentAverage += curr.sentimentAverage;
+          acc!.totalSentiment += curr.totalSentiment;
+        }
+        return acc;
+      },
+      {
+        countSentiment0To350: 0,
+        countSentiment351To650: 0,
+        countSentiment651To1000: 0,
+        sentimentAverage: 0,
+        totalSentiment: 0,
+      },
+    );
+    setCommentsBySentiment(summedValues);
+  }, [
+    facebookCommentsData,
+    instagramCommentsData,
+    tiktokCommentsData,
+    youtubeCommentsData,
+  ]);
 
   return (
     <BaseCard className="p-0">
@@ -31,54 +87,36 @@ export function CommentsSummary({ CommentsSummaryData }: CommentsSummaryProps) {
         <div className="flex h-72 w-full flex-col gap-4 p-4 xs:h-60 lg:h-full lg:gap-8 lg:p-8 3xl:gap-16">
           <div className="flex w-full items-center gap-2">
             <strong className="text-xs lg:text-sm 2xl:text-base 3xl:text-lg">
-              {CommentsSummaryData.value}
+              {commentsBySentiment?.totalSentiment.toFixed(2)}
             </strong>
-            <span
-              className={twMerge(
-                "flex items-center gap-1 rounded p-1 text-[10px] lg:text-xs 2xl:text-sm 3xl:text-base",
-                CommentsSummaryData.valueChange > 0
-                  ? "bg-teal-500/10 text-teal-500"
-                  : "text-red-600",
-              )}
-            >
-              {CommentsSummaryData.valueChange}
-              {CommentsSummaryData.valueChange > 0 ? (
-                <ChevronUp size={14} />
-              ) : (
-                <ChevronDown size={14} />
-              )}
-            </span>
-            <span className="text-[10px] text-zinc-500 lg:text-xs 2xl:text-sm 3xl:text-base">
-              Comparado a semana anterior
-            </span>
           </div>
           <div className="flex h-2 w-full overflow-hidden rounded">
             <div
               className={twMerge(
                 "h-full bg-green-600",
-                CommentsSummaryData.comments.positive &&
-                  CommentsSummaryData.comments.total > 0 &&
+                commentsBySentiment &&
+                  commentsBySentiment.countSentiment651To1000 > 0 &&
                   "rounded-l",
               )}
               style={{
-                width: `${(CommentsSummaryData.comments.positive / CommentsSummaryData.comments.total) * 100}%`,
+                width: `${commentsBySentiment && (commentsBySentiment.countSentiment651To1000 / (commentsBySentiment.countSentiment0To350 + commentsBySentiment.countSentiment351To650 + commentsBySentiment.countSentiment651To1000)) * 100}%`,
               }}
             />
             <div
               className={"h-full bg-violet-600"}
               style={{
-                width: `${(CommentsSummaryData.comments.neutral / CommentsSummaryData.comments.total) * 100}%`,
+                width: `${commentsBySentiment && (commentsBySentiment.countSentiment351To650 / (commentsBySentiment.countSentiment0To350 + commentsBySentiment.countSentiment351To650 + commentsBySentiment.countSentiment651To1000)) * 100}%`,
               }}
             />
             <div
               className={twMerge(
                 "h-full bg-red-600",
-                CommentsSummaryData.comments.negative &&
-                  CommentsSummaryData.comments.total > 0 &&
+                commentsBySentiment &&
+                  commentsBySentiment.countSentiment0To350 > 0 &&
                   "rounded-r",
               )}
               style={{
-                width: `${(CommentsSummaryData.comments.negative / CommentsSummaryData.comments.total) * 100}%`,
+                width: `${commentsBySentiment && (commentsBySentiment.countSentiment0To350 / (commentsBySentiment.countSentiment0To350 + commentsBySentiment.countSentiment351To650 + commentsBySentiment.countSentiment651To1000)) * 100}%`,
               }}
             />
           </div>
@@ -91,7 +129,7 @@ export function CommentsSummary({ CommentsSummaryData }: CommentsSummaryProps) {
                 </span>
               </div>
               <span className="text-sm text-zinc-500 lg:text-base 2xl:text-lg">
-                {CommentsSummaryData.comments.positive} Comentários
+                {commentsBySentiment?.countSentiment651To1000} Comentários
               </span>
             </div>
             <div className="flex w-full items-center justify-between">
@@ -102,7 +140,7 @@ export function CommentsSummary({ CommentsSummaryData }: CommentsSummaryProps) {
                 </span>
               </div>
               <span className="text-sm text-zinc-500 lg:text-base 2xl:text-lg">
-                {CommentsSummaryData.comments.neutral} Comentários
+                {commentsBySentiment?.countSentiment351To650} Comentários
               </span>
             </div>
             <div className="flex w-full items-center justify-between">
@@ -113,7 +151,7 @@ export function CommentsSummary({ CommentsSummaryData }: CommentsSummaryProps) {
                 </span>
               </div>
               <span className="text-sm text-zinc-500 lg:text-base 2xl:text-lg">
-                {CommentsSummaryData.comments.negative} Comentários
+                {commentsBySentiment?.countSentiment0To350} Comentários
               </span>
             </div>
           </div>

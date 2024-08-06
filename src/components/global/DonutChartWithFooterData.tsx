@@ -1,21 +1,21 @@
 "use client";
 import { ApexOptions } from "apexcharts";
 import ReactApexChart from "react-apexcharts";
-import dynamic from "next/dynamic";
 // const ReactApexChart = dynamic(() => import("react-apexcharts"), {
 //   ssr: false,
 // });
 
 interface DonutChartWithFooterDataProps {
   ChartOptions: {
-    series: number[];
     options: ApexOptions;
   };
+  series: number[];
   footerData: React.ReactNode[];
 }
 
 export function DonutChartWithFooterData({
   ChartOptions,
+  series,
   footerData,
 }: DonutChartWithFooterDataProps) {
   return (
@@ -23,7 +23,7 @@ export function DonutChartWithFooterData({
       <div className="m-auto">
         <ReactApexChart
           options={ChartOptions.options}
-          series={ChartOptions.series}
+          series={series}
           type="donut"
         />
       </div>

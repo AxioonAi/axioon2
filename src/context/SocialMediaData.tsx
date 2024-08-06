@@ -60,6 +60,7 @@ export const SocialMediaDataContextProvider = ({ children }: ContextProps) => {
     );
     if (socialMediaData.status === 200) {
       setSocialMediaData(socialMediaData.body.data);
+      console.log("socialMediaData: ", socialMediaData.body.data);
       return setIsGettingData(false);
     }
     return setIsGettingData(false);

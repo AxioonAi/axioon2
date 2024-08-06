@@ -9,7 +9,6 @@ import { WordsList } from "@/components/app/home/WordsList";
 import { PositiveNegativeCommentsChart } from "@/components/app/mentions/PositiveNegativeCommentsChart";
 import {
   CommentsDonutGraphData,
-  CommentsSummaryData,
   DefendantsAndDetractorsData,
   EngagementTimesData,
   FollowerProgressionChartData,
@@ -56,7 +55,7 @@ export default function Home() {
       </div>
       <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-[120vh] lg:grid-cols-12 lg:grid-rows-12">
         <div className="lg:col-span-7 lg:row-span-4">
-          <CommentsSummary CommentsSummaryData={CommentsSummaryData} />
+          <CommentsSummary />
         </div>
         <div className="lg:col-span-5 lg:row-span-4">
           <CommentsDonutGraph CommentsDonutGraphData={CommentsDonutGraphData} />

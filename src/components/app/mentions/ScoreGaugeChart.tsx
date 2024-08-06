@@ -27,21 +27,51 @@ export function ScoreGaugeChart({
   ScoreGaugeChartData,
   onlyGauge = true,
 }: ScoreGaugeChartProps) {
-  const [value, setValue] = useState(100);
-  const { isGettingData } = useSocialMediaDataContext();
+  const { isGettingData, socialMediaData } = useSocialMediaDataContext();
+  const [facebookSentiment, setFacebookSentiment] = useState<number | null>(0);
+  const [instagramSentiment, setInstagramSentiment] = useState<number | null>(
+    0,
+  );
+  const [tiktokSentiment, setTiktokSentiment] = useState<number | null>(0);
+  const [youtubeSentiment, setYoutubeSentiment] = useState<number | null>(0);
 
-  const [series, setSeries] = useState([value / 10]);
+  const [series, setSeries] = useState([0]);
   useEffect(() => {
-    if (
-      ScoreGaugeChartData.sentimentData &&
-      ScoreGaugeChartData.sentimentData[0].value
-    ) {
-      setValue(Number(ScoreGaugeChartData.sentimentData[0].value.toFixed(0)));
-      setSeries([
-        Number(ScoreGaugeChartData.sentimentData[0].value.toFixed(0)) / 10,
-      ]);
+    if (socialMediaData) {
+      setFacebookSentiment(
+        socialMediaData.commentsData.currentSentiment.facebook,
+      );
+      setInstagramSentiment(
+        socialMediaData.commentsData.currentSentiment.instagram,
+      );
+      setTiktokSentiment(socialMediaData.commentsData.currentSentiment.tiktok);
+      setYoutubeSentiment(
+        socialMediaData.commentsData.currentSentiment.youtube,
+      );
     }
-  }, [ScoreGaugeChartData.sentimentData]);
+  }, [socialMediaData]);
+
+  useEffect(() => {
+    const sentimentValues = [
+      facebookSentiment,
+      instagramSentiment,
+      tiktokSentiment,
+      youtubeSentiment,
+    ];
+    const numberOfValues = sentimentValues.filter(
+      (value) => value !== null && typeof value === "number",
+    ).length;
+    const sum = sentimentValues.reduce(
+      (acc: number, value) => acc + (value || 0),
+      0,
+    );
+    setSeries([parseFloat(Number(sum / numberOfValues / 10).toFixed(2))]);
+  }, [
+    facebookSentiment,
+    instagramSentiment,
+    tiktokSentiment,
+    youtubeSentiment,
+  ]);
 
   const [options] = useState<ApexOptions>({
     chart: {
