@@ -1,6 +1,7 @@
 "use client";
 import ReactWordcloud from "react-wordcloud";
 import { EllipsisVertical } from "lucide-react";
+import { useEffect, useState } from "react";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
@@ -22,8 +23,60 @@ interface WordCloudProps {
   };
 }
 
+interface WordsProps {
+  text: string;
+  value: number;
+}
+
 export function WordCloud({ WordCloudData }: WordCloudProps) {
-  const { isGettingData } = useSocialMediaDataContext();
+  const [facebookWords, setFacebookWords] = useState<WordsProps[]>();
+  const [instagramWords, setInstagramWords] = useState<WordsProps[]>();
+  const [tiktokWords, setTiktokWords] = useState<WordsProps[]>();
+  const [youtubeWords, setYoutubeWords] = useState<WordsProps[]>();
+  const [wordsList, setWordsList] = useState<WordsProps[]>();
+  const { isGettingData, socialMediaData } = useSocialMediaDataContext();
+
+  useEffect(() => {
+    if (socialMediaData) {
+      const facebookWordsData =
+        socialMediaData.commentsData.wordCloud.facebook.words.map((word) => ({
+          text: word.word,
+          value: word.quantity,
+        }));
+      setFacebookWords(facebookWordsData);
+      const instagramWordsData =
+        socialMediaData.commentsData.wordCloud.instagram.words.map((word) => ({
+          text: word.word,
+          value: word.quantity,
+        }));
+      setInstagramWords(instagramWordsData);
+      const tiktokWordsData =
+        socialMediaData.commentsData.wordCloud.tiktok.words.map((word) => ({
+          text: word.word,
+          value: word.quantity,
+        }));
+      setTiktokWords(tiktokWordsData);
+      const youtubeWordsData =
+        socialMediaData.commentsData.wordCloud.youtube.words.map((word) => ({
+          text: word.word,
+          value: word.quantity,
+        }));
+      setYoutubeWords(youtubeWordsData);
+    }
+  }, [socialMediaData]);
+
+  useEffect(() => {
+    const wordsList = [
+      facebookWords,
+      instagramWords,
+      tiktokWords,
+      youtubeWords,
+    ];
+    const flatWordsList = wordsList
+      .flat()
+      .filter((word): word is WordsProps => word !== undefined);
+    setWordsList(flatWordsList);
+  }, [facebookWords, instagramWords, tiktokWords, youtubeWords]);
 
   return (
     <BaseCard className="p-0">
@@ -38,9 +91,9 @@ export function WordCloud({ WordCloudData }: WordCloudProps) {
       {isGettingData ? (
         <div className="h-full w-full bg-gradient-to-r from-gray-10 via-gray-20 to-gray-10" />
       ) : (
-        <div className="mb-12 flex h-48 w-full flex-col lg:mb-0 2xl:h-56 3xl:h-80">
+        <div className="mb-12 flex h-48 w-full flex-col lg:mb-0 lg:h-[calc(100%-4rem)]">
           <ReactWordcloud
-            words={WordCloudData.WordCloudWords}
+            words={wordsList as WordsProps[]}
             options={WordCloudData.options}
           />
         </div>

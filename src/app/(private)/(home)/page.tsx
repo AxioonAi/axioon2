@@ -1,4 +1,3 @@
-import { twMerge } from "tailwind-merge";
 import { CommentsDonutGraph } from "@/components/app/home/CommentsDonutGraph";
 import { CommentsSummary } from "@/components/app/home/CommentsSummary";
 import { DefendantsAndDetractorsList } from "@/components/app/home/DefendantsAndDetractorsList";
@@ -6,18 +5,14 @@ import { EngagementTimes } from "@/components/app/home/EngagementTimes";
 import { PostsAndComments } from "@/components/app/home/PostsAndComments";
 import { WordCloud } from "@/components/app/home/WordCloud";
 import { WordsList } from "@/components/app/home/WordsList";
-import { PositiveNegativeCommentsChart } from "@/components/app/mentions/PositiveNegativeCommentsChart";
 import {
   CommentsDonutGraphData,
-  DefendantsAndDetractorsData,
   EngagementTimesData,
   FollowerProgressionChartData,
   LineGradientChartData,
-  PositiveNegativeCommentsData,
   PostsAndCommentsData,
   ScoreGaugeChartData,
   WordCloudData,
-  WordsListData,
 } from "@/components/data/HomeData";
 import { ScoreGaugeChart } from "@/components/app/mentions/ScoreGaugeChart";
 import { LineGradientChart } from "@/components/app/home/LineGradientChart";
@@ -25,6 +20,7 @@ import { FollowerProgressionChart } from "@/components/app/home/FollowerProgress
 import { HeaderCards } from "@/components/app/home/HeaderCards";
 import { IndicatorsCards } from "@/components/app/home/IndicatorsCards";
 import { HomeHeaderCard } from "@/components/app/home/HomeHeaderCard";
+import { PositiveNegativeWrapper } from "@/components/app/home/PositiveNegativeWrapper";
 
 export default function Home() {
   return (
@@ -61,39 +57,16 @@ export default function Home() {
           <CommentsDonutGraph CommentsDonutGraphData={CommentsDonutGraphData} />
         </div>
         <div className="lg:col-span-8 lg:row-span-4">
-          <PositiveNegativeCommentsChart
-            PositiveNegativeCommentsData={PositiveNegativeCommentsData}
-            headerData={PositiveNegativeCommentsData.headerData.map(
-              (data, index) => (
-                <div
-                  key={index}
-                  className="flex w-1/3 items-center gap-2 text-[10px] lg:text-xs 2xl:text-sm 3xl:text-base"
-                >
-                  <div
-                    className={twMerge(
-                      "min-h-3 min-w-3 rounded-full",
-                      data.color,
-                    )}
-                  />
-                  <div className="flex flex-col">
-                    <strong>{data.value}</strong>
-                    <span>{data.title}</span>
-                  </div>
-                </div>
-              ),
-            )}
-          />
+          <PositiveNegativeWrapper />
         </div>
         <div className="lg:col-span-4 lg:row-span-4">
-          <DefendantsAndDetractorsList
-            DefendantsAndDetractorsData={DefendantsAndDetractorsData}
-          />
+          <DefendantsAndDetractorsList />
         </div>
         <div className="lg:col-span-7 lg:row-span-4">
           <WordCloud WordCloudData={WordCloudData} />
         </div>
         <div className="lg:col-span-5 lg:row-span-4">
-          <WordsList WordsListData={WordsListData} />
+          <WordsList />
         </div>
       </div>
       <div className="lg:col-span-12">
