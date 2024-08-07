@@ -20,10 +20,57 @@ interface FollowerProgressionChartProps {
   };
 }
 
+// interface FollowersEvolutionProps {
+//   date: string;
+//   followers: number;
+// }
+
 export function FollowerProgressionChart({
   FollowerProgressionChartData,
 }: FollowerProgressionChartProps) {
+  // const [facebookFollowers, setFacebookFollowers] = useState<
+  //   FollowersEvolutionProps[]
+  // >([]);
+  // const [instagramFollowers, setInstagramFollowers] = useState<
+  //   FollowersEvolutionProps[]
+  // >([]);
+  // const [tiktokFollowers, setTiktokFollowers] = useState<
+  //   FollowersEvolutionProps[]
+  // >([]);
+  // const [youtubeFollowers, setYoutubeFollowers] = useState<
+  //   FollowersEvolutionProps[]
+  // >([]);
   const { isGettingData } = useSocialMediaDataContext();
+
+  // useEffect(() => {
+  //   if (socialMediaData) {
+  //     setFacebookFollowers(socialMediaData.followersEvolution.facebook);
+  //     setInstagramFollowers(socialMediaData.followersEvolution.instagram);
+  //     setTiktokFollowers(socialMediaData.followersEvolution.tiktok);
+  //     setYoutubeFollowers(socialMediaData.followersEvolution.youtube);
+  //   }
+  // }, [socialMediaData]);
+
+  // useEffect(() => {
+  //   const followers = [
+  //     facebookFollowers,
+  //     instagramFollowers,
+  //     tiktokFollowers,
+  //     youtubeFollowers,
+  //   ];
+
+  //   // const flatFollowers = followers
+  //   //   .flat()
+  //   //   .filter((follower) => follower !== null);
+  //   // const orderedFlatFollowers = flatFollowers.sort(
+  //   //   (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+  //   // );
+  // }, [
+  //   facebookFollowers,
+  //   instagramFollowers,
+  //   tiktokFollowers,
+  //   youtubeFollowers,
+  // ]);
 
   return (
     <BaseCard className="p-0">

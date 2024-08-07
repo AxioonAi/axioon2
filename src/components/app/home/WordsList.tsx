@@ -73,7 +73,6 @@ export function WordsList() {
     const orderedFlatWordsList = flatWordsList.sort(
       (a, b) => b.value - a.value,
     );
-    console.log("orderedFlatWordsList: ", orderedFlatWordsList);
     setWordsList(orderedFlatWordsList);
   }, [facebookWords, instagramWords, tiktokWords, youtubeWords]);
 

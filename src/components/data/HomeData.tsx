@@ -204,7 +204,7 @@ export const CommentsDonutGraphData = {
           breakpoint: 2560,
           options: {
             chart: {
-              height: 150,
+              height: 200,
             },
           },
         },

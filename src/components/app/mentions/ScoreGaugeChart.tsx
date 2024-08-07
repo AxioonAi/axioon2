@@ -113,7 +113,7 @@ export function ScoreGaugeChart({
 
   return (
     <BaseCard className="p-0">
-      <BaseCardHeader title={"Score " + ScoreGaugeChartData.name} />
+      <BaseCardHeader title={"Score Atual"} />
       {isGettingData ? (
         <div className="h-full w-full bg-gradient-to-r from-gray-10 via-gray-20 to-gray-10" />
       ) : (

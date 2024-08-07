@@ -32,6 +32,142 @@ interface PostsAndCommentsProps {
   }[];
 }
 
+interface FacebookPostsProps {
+  commentCount: number;
+  created_at?: string;
+  date: string;
+  engagement: number;
+  id: string;
+  like: number;
+  percentage: number;
+  politician_id: string;
+  sentiment: number;
+  shares: number;
+  text: string;
+  thumbnail: string;
+  url: string;
+  comments: {
+    authorGender: string;
+    date: string;
+    engager: boolean | null;
+    facebookEngagerId: string | null;
+    id: string;
+    likeCount: number;
+    politician_id: string;
+    postUrl: string;
+    post_id: string;
+    sentimentAnalysis: number;
+    text: string;
+    username: string;
+  }[];
+}
+
+interface InstagramPostsProps {
+  commentCount: number;
+  created_at: string;
+  date?: string;
+  description: string;
+  engagement: number;
+  id: string;
+  imgUrl: string;
+  like: number;
+  percentage: number;
+  playCount: number;
+  politician_id: string;
+  postId: string;
+  postUrl: string;
+  pubDate: string;
+  sentiment: number;
+  text: string;
+  url: string;
+  username: string;
+  viewCount: number;
+  comments: {
+    authorGender: string;
+    engager: boolean | null;
+    id: string;
+    instagramEngagerId: string | null;
+    likeCount: number;
+    ownerProfilePicUrl: string;
+    politician_id: string;
+    post_id: string;
+    sentimentAnalysis: number;
+    text: string;
+    timestamp: string;
+    username: string;
+  }[];
+}
+
+interface TiktokPostsProps {
+  commentCount: number;
+  date: string;
+  created_at?: string;
+  engagement: number;
+  id: string;
+  like: number;
+  percentage: number;
+  playCount: number;
+  politician_id: string;
+  sentiment: number;
+  shares: number;
+  text: string;
+  url: string;
+  comments: {
+    authorGender: string;
+    date: string;
+    engager: {
+      createdAt: string;
+      fans: number;
+      heart: number;
+      id: string;
+      name: string;
+      updatedAt: string;
+      username: string;
+    } | null;
+    id: string;
+    likeCount: string;
+    politician_id: string;
+    replyCount: number;
+    sentimentAnalysis: number;
+    text: string;
+    tiktokEngagerId: string | null;
+    username: string;
+    video_id: string;
+  }[];
+}
+
+interface YoutubePostsProps {
+  commentCount: number;
+  created_at: string;
+  date: string;
+  description: string;
+  duration: string;
+  engagement: number;
+  id: string;
+  imgUrl: string;
+  like: number;
+  percentage: number;
+  politician_id: string;
+  sentiment: number | null;
+  text: string;
+  title: string;
+  url: string;
+  views: number;
+}
+
+interface FinalPostsProps {
+  date?: string;
+  url: string;
+  username?: string;
+  text: string;
+  like: number;
+  commentCount: number;
+  viewCount?: number;
+  playCount?: number;
+  views?: number;
+  sentiment: number | null;
+}
+
 export function PostsAndComments({
   PostsAndCommentsData,
 }: PostsAndCommentsProps) {
@@ -39,7 +175,104 @@ export function PostsAndComments({
   const parent = useRef(null);
   const { elementRef, isVisible, elementName, setElementName } =
     useOffsetContext();
-  const { isGettingData } = useSocialMediaDataContext();
+  const [facebookPosts, setFacebookPosts] = useState<FacebookPostsProps[]>([]);
+  const [instagramPosts, setInstagramPosts] = useState<InstagramPostsProps[]>(
+    [],
+  );
+  const [tiktokPosts, setTiktokPosts] = useState<TiktokPostsProps[]>([]);
+  const [youtubePosts, setYoutubePosts] = useState<YoutubePostsProps[]>([]);
+  const [orderedFacebookPosts, setOrderedFacebookPosts] = useState<
+    FacebookPostsProps[]
+  >([]);
+  const [orderedInstagramPosts, setOrderedInstagramPosts] = useState<
+    InstagramPostsProps[]
+  >([]);
+  const [orderedTiktokPosts, setOrderedTiktokPosts] = useState<
+    TiktokPostsProps[]
+  >([]);
+  const [orderedYoutubePosts, setOrderedYoutubePosts] = useState<
+    YoutubePostsProps[]
+  >([]);
+  const [finalPostData, setFinalPostData] = useState<FinalPostsProps[]>([]);
+  const { isGettingData, socialMediaData } = useSocialMediaDataContext();
+
+  useEffect(() => {
+    if (socialMediaData) {
+      setFacebookPosts(socialMediaData.posts.facebook);
+      setInstagramPosts(socialMediaData.posts.instagram);
+      setTiktokPosts(socialMediaData.posts.tiktok);
+      setYoutubePosts(socialMediaData.posts.youtube);
+    }
+  }, [socialMediaData]);
+
+  useEffect(() => {
+    if (facebookPosts) {
+      setOrderedFacebookPosts(
+        facebookPosts.sort(
+          (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+        ),
+      );
+    }
+    if (instagramPosts) {
+      setOrderedInstagramPosts(
+        instagramPosts.sort(
+          (a, b) =>
+            new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
+        ),
+      );
+    }
+    if (tiktokPosts) {
+      setOrderedTiktokPosts(
+        tiktokPosts.sort(
+          (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+        ),
+      );
+    }
+    if (youtubePosts) {
+      setOrderedYoutubePosts(
+        youtubePosts.sort(
+          (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+        ),
+      );
+    }
+    const orderedPosts = [
+      orderedFacebookPosts,
+      orderedInstagramPosts,
+      orderedTiktokPosts,
+      orderedYoutubePosts,
+    ];
+
+    const flatOrderedPosts = orderedPosts.flat();
+
+    if (flatOrderedPosts) {
+      const postsWithCreatedAt = flatOrderedPosts.filter(
+        (post) => post.created_at,
+      );
+      const postsWithoutCreatedAt = flatOrderedPosts.filter(
+        (post) => !post.created_at,
+      );
+      const postsWithDate = postsWithCreatedAt.map((post) => ({
+        ...post,
+        date: post.created_at,
+      }));
+      const allPosts = [...postsWithDate, ...postsWithoutCreatedAt];
+      const orderedAllPosts = allPosts.sort(
+        (a, b) =>
+          new Date(b.date as string).getTime() -
+          new Date(a.date as string).getTime(),
+      );
+      setFinalPostData(orderedAllPosts);
+    }
+  }, [
+    facebookPosts,
+    instagramPosts,
+    tiktokPosts,
+    youtubePosts,
+    orderedFacebookPosts,
+    orderedInstagramPosts,
+    orderedTiktokPosts,
+    orderedYoutubePosts,
+  ]);
 
   useEffect(() => {
     if (isVisible) {
@@ -81,7 +314,7 @@ export function PostsAndComments({
         <div className="h-full w-full bg-gradient-to-r from-gray-10 via-gray-20 to-gray-10" />
       ) : (
         <div className="flex h-full max-h-[60vh] w-full flex-col gap-4 overflow-y-scroll p-4">
-          {PostsAndCommentsData.map((item, index) => (
+          {finalPostData.map((item, index) => (
             <div
               key={index}
               ref={parent}
@@ -92,7 +325,11 @@ export function PostsAndComments({
                 className="flex w-full gap-2 rounded-lg bg-zinc-50 p-2 shadow-md"
               >
                 <Image
-                  src={"/Logos/" + item.socialMedia + ".svg"}
+                  src={
+                    "/Logos/" +
+                    item.url.split("/")[2].split(".")[1].toLowerCase() +
+                    ".svg"
+                  }
                   alt={""}
                   width={40}
                   height={40}
@@ -103,10 +340,10 @@ export function PostsAndComments({
                     <div className="flex items-center gap-2">
                       <div className="flex flex-col">
                         <span className="text-xs font-semibold lg:text-sm 2xl:text-base 3xl:text-lg">
-                          {item.url}
+                          {item.url.split("/")[2].split("/")[0].split(".")[1]}
                         </span>
                         <span className="text-[10px] italic text-zinc-500 lg:text-xs 2xl:text-sm 3xl:text-base">
-                          {item.userName} ({item.followers} seguidores)
+                          {item.username ? item.username : ""}
                         </span>
                       </div>
                     </div>
@@ -130,7 +367,7 @@ export function PostsAndComments({
                             height={40}
                             className="h-4 w-4 sm:h-6 sm:w-6 3xl:h-10 3xl:w-10"
                           />
-                          <span>{item.likesCount}</span>
+                          <span>{item.like > 0 ? item.like : 0}</span>
                         </div>
                         <div className="flex flex-col items-center gap-1 text-xs sm:flex-row lg:text-sm 2xl:text-base 3xl:text-lg">
                           <Image
@@ -140,7 +377,7 @@ export function PostsAndComments({
                             height={40}
                             className="h-4 w-4 sm:h-6 sm:w-6 3xl:h-10 3xl:w-10"
                           />
-                          <span>{item.commentsCount}</span>
+                          <span>{item.commentCount}</span>
                         </div>
                         <div className="flex flex-col items-center gap-1 text-xs sm:flex-row lg:text-sm 2xl:text-base 3xl:text-lg">
                           <Image
@@ -150,13 +387,21 @@ export function PostsAndComments({
                             height={40}
                             className="h-4 w-4 sm:h-6 sm:w-6 3xl:h-10 3xl:w-10"
                           />
-                          <span>{item.viewsCount}</span>
+                          <span>
+                            {item.viewCount
+                              ? item.viewCount
+                              : item.playCount
+                                ? item.playCount
+                                : item.views
+                                  ? item.views
+                                  : ""}
+                          </span>
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
                         <Image
                           src={
-                            item.sentiment === "Negativo"
+                            item.sentiment && item.sentiment <= 350
                               ? "/Icons/negativeSmile.svg"
                               : "/Icons/negativeSmileOff.svg"
                           }
@@ -167,7 +412,9 @@ export function PostsAndComments({
                         />
                         <Image
                           src={
-                            item.sentiment === "Neutro"
+                            item.sentiment &&
+                            item.sentiment >= 351 &&
+                            item.sentiment <= 650
                               ? "/Icons/neutralSmile.svg"
                               : "/Icons/neutralSmileOff.svg"
                           }
@@ -178,7 +425,7 @@ export function PostsAndComments({
                         />
                         <Image
                           src={
-                            item.sentiment === "Positivo"
+                            item.sentiment && item.sentiment >= 651
                               ? "/Icons/positiveSmile.svg"
                               : "/Icons/positiveSmileOff.svg"
                           }
@@ -192,7 +439,7 @@ export function PostsAndComments({
                   </div>
                 </div>
               </div>
-              {show === index && (
+              {/* {show === index && (
                 <div className="flex min-h-40 w-full items-center justify-end gap-2">
                   <div className="flex w-11/12 flex-col gap-2">
                     {item.comments.map((comment, index) => (
@@ -259,7 +506,7 @@ export function PostsAndComments({
                     ))}
                   </div>
                 </div>
-              )}
+              )} */}
             </div>
           ))}
         </div>

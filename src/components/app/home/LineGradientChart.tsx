@@ -95,7 +95,7 @@ export function LineGradientChart({
   return (
     <BaseCard className="p-0">
       <BaseCardHeader
-        title="Comentários"
+        title="Evolução de Sentimentos"
         children={
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-100 text-zinc-700">
             <EllipsisVertical size={14} />
