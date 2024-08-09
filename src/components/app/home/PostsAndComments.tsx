@@ -3,34 +3,11 @@ import { ChevronDown, EllipsisVertical } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import autoAnimate from "@formkit/auto-animate";
+import { twMerge } from "tailwind-merge";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { useOffsetContext } from "@/context/test";
 import { useSocialMediaDataContext } from "@/context/SocialMediaData";
-
-interface PostsAndCommentsProps {
-  PostsAndCommentsData: {
-    socialMedia: string;
-    url: string;
-    userName: string;
-    followers: number;
-    text: string;
-    sentiment: string;
-    likesCount: number;
-    commentsCount: number;
-    viewsCount: number;
-    date: string;
-    comments: {
-      photo: string;
-      name: string;
-      comment: string;
-      likesCount: number;
-      commentsCount: number;
-      sentiment: number;
-      date: string;
-    }[];
-  }[];
-}
 
 interface FacebookPostsProps {
   commentCount: number;
@@ -166,11 +143,23 @@ interface FinalPostsProps {
   playCount?: number;
   views?: number;
   sentiment: number | null;
+  comments: {
+    authorGender: string;
+    date?: string;
+    timestamp?: string;
+    id: string;
+    likeCount: string;
+    post_id?: string;
+    video_id?: string;
+    sentimentAnalysis: number;
+    text: string;
+    username: string;
+    ownerProfilePicUrl?: string;
+    replyCount?: string;
+  }[];
 }
 
-export function PostsAndComments({
-  PostsAndCommentsData,
-}: PostsAndCommentsProps) {
+export function PostsAndComments() {
   const [show, setShow] = useState<number | null>();
   const parent = useRef(null);
   const { elementRef, isVisible, elementName, setElementName } =
@@ -322,7 +311,11 @@ export function PostsAndComments({
             >
               <div
                 onClick={() => reveal(index)}
-                className="flex w-full gap-2 rounded-lg bg-zinc-50 p-2 shadow-md"
+                className={twMerge(
+                  "flex w-full gap-2 rounded-lg bg-zinc-50 p-2 shadow-md",
+                  item.comments.length !== 0 &&
+                    "cursor-pointer transition duration-200 hover:scale-[1.001] hover:bg-zinc-100",
+                )}
               >
                 <Image
                   src={
@@ -379,24 +372,28 @@ export function PostsAndComments({
                           />
                           <span>{item.commentCount}</span>
                         </div>
-                        <div className="flex flex-col items-center gap-1 text-xs sm:flex-row lg:text-sm 2xl:text-base 3xl:text-lg">
-                          <Image
-                            src={"/Logos/tiktokView.svg"}
-                            alt={""}
-                            width={40}
-                            height={40}
-                            className="h-4 w-4 sm:h-6 sm:w-6 3xl:h-10 3xl:w-10"
-                          />
-                          <span>
-                            {item.viewCount
-                              ? item.viewCount
-                              : item.playCount
-                                ? item.playCount
-                                : item.views
-                                  ? item.views
-                                  : ""}
-                          </span>
-                        </div>
+                        {item.viewCount || item.playCount || item.views ? (
+                          <div className="flex flex-col items-center gap-1 text-xs sm:flex-row lg:text-sm 2xl:text-base 3xl:text-lg">
+                            <Image
+                              src={"/Logos/tiktokView.svg"}
+                              alt={""}
+                              width={40}
+                              height={40}
+                              className="h-4 w-4 sm:h-6 sm:w-6 3xl:h-10 3xl:w-10"
+                            />
+                            <span>
+                              {item.viewCount
+                                ? item.viewCount
+                                : item.playCount
+                                  ? item.playCount
+                                  : item.views
+                                    ? item.views
+                                    : ""}
+                            </span>
+                          </div>
+                        ) : (
+                          <></>
+                        )}
                       </div>
                       <div className="flex items-center gap-2">
                         <Image
@@ -439,7 +436,7 @@ export function PostsAndComments({
                   </div>
                 </div>
               </div>
-              {/* {show === index && (
+              {show === index && item.comments.length !== 0 && (
                 <div className="flex min-h-40 w-full items-center justify-end gap-2">
                   <div className="flex w-11/12 flex-col gap-2">
                     {item.comments.map((comment, index) => (
@@ -448,27 +445,43 @@ export function PostsAndComments({
                         className="flex w-full flex-col items-end justify-between rounded-lg bg-zinc-50 p-2 shadow-md lg:flex-row lg:items-center"
                       >
                         <div className="flex gap-4">
+                          {/* {comment.ownerProfilePicUrl ? (
+                            <Image
+                              src={comment.ownerProfilePicUrl}
+                              alt={""}
+                              width={40}
+                              height={40}
+                              className="h-4 w-4 sm:h-6 sm:w-6 3xl:h-10 3xl:w-10"
+                            />
+                          ) : ( */}
                           <Image
-                            src="/Icons/comment.svg"
+                            src="/Icons/user.svg"
                             alt={""}
                             width={40}
                             height={40}
                             className="h-4 w-4 sm:h-6 sm:w-6 3xl:h-10 3xl:w-10"
                           />
+                          {/* )} */}
                           <div className="flex w-full flex-col text-xs lg:text-sm 2xl:text-base 3xl:text-lg">
-                            <strong>{comment.name}</strong>
+                            <strong>{comment.username}</strong>
                             <span className="w-full text-zinc-500 lg:max-w-[80%]">
-                              {comment.comment}
+                              {comment.text}
                             </span>
                           </div>
                         </div>
                         <div className="flex h-full items-end gap-8 text-xs lg:text-sm 2xl:text-base 3xl:text-lg">
                           <div className="flex h-full flex-col items-end justify-between gap-2">
-                            <span>{comment.date}</span>
+                            <span>
+                              {comment.date
+                                ? comment.date
+                                : comment.timestamp
+                                  ? comment.timestamp
+                                  : ""}
+                            </span>
                             <div className="flex items-center gap-2">
                               <Image
                                 src={
-                                  item.sentiment === "Negativo"
+                                  item.sentiment && item.sentiment <= 350
                                     ? "/Icons/negativeSmile.svg"
                                     : "/Icons/negativeSmileOff.svg"
                                 }
@@ -479,7 +492,9 @@ export function PostsAndComments({
                               />
                               <Image
                                 src={
-                                  item.sentiment === "Neutro"
+                                  item.sentiment &&
+                                  item.sentiment >= 351 &&
+                                  item.sentiment <= 650
                                     ? "/Icons/neutralSmile.svg"
                                     : "/Icons/neutralSmileOff.svg"
                                 }
@@ -490,7 +505,7 @@ export function PostsAndComments({
                               />
                               <Image
                                 src={
-                                  item.sentiment === "Positivo"
+                                  item.sentiment && item.sentiment >= 651
                                     ? "/Icons/positiveSmile.svg"
                                     : "/Icons/positiveSmileOff.svg"
                                 }
@@ -506,7 +521,7 @@ export function PostsAndComments({
                     ))}
                   </div>
                 </div>
-              )} */}
+              )}
             </div>
           ))}
         </div>
