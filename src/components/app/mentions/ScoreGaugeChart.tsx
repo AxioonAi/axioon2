@@ -8,6 +8,7 @@ import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
 import { useSocialMediaDataContext } from "@/context/SocialMediaData";
+import { useMentionsDataContext } from "@/context/MentionsData";
 // const ReactApexChart = dynamic(() => import("react-apexcharts"), {
 //   ssr: false,
 // });
@@ -27,7 +28,8 @@ export function ScoreGaugeChart({
   ScoreGaugeChartData,
   onlyGauge = true,
 }: ScoreGaugeChartProps) {
-  const { isGettingData, socialMediaData } = useSocialMediaDataContext();
+  const { socialMediaData } = useSocialMediaDataContext();
+  const { isGettingData } = useMentionsDataContext();
   const [facebookSentiment, setFacebookSentiment] = useState<number | null>(0);
   const [instagramSentiment, setInstagramSentiment] = useState<number | null>(
     0,

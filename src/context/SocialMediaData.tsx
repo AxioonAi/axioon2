@@ -58,9 +58,9 @@ export const SocialMediaDataContextProvider = ({ children }: ContextProps) => {
     const socialMediaData = await authGetAPI(
       `/profile/media/${selectedPolitician?.id}?endDate=2024-06-14&startDate=2024-03-14&instagram=${instagram}&facebook=${facebook}&tiktok=${tiktok}&youtube=${youtube}`,
     );
+    console.log("socialMediaData: ", socialMediaData);
     if (socialMediaData.status === 200) {
       setSocialMediaData(socialMediaData.body.data);
-      console.log("socialMediaData: ", socialMediaData.body.data);
       return setIsGettingData(false);
     }
     return setIsGettingData(false);

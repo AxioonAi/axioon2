@@ -35,7 +35,7 @@ export function BaseComparativeCard({
         </button>
       </div>
       <div className="flex w-full flex-col items-center justify-evenly gap-1 lg:flex-row lg:flex-wrap">
-        <div className="flex w-full items-center gap-1 rounded bg-zinc-50 p-1 text-xs italic shadow-md lg:w-2/5 xl:w-1/5">
+        <div className="flex w-full items-center gap-1 rounded bg-zinc-50 p-1 text-xs italic shadow-md lg:w-2/5">
           <Image
             src="/Logos/facebook.svg"
             alt=""
@@ -45,7 +45,7 @@ export function BaseComparativeCard({
           />
           <span>@{BaseComparativeCardData.facebook}</span>
         </div>
-        <div className="flex w-full items-center gap-1 rounded bg-zinc-50 p-1 text-xs italic shadow-md lg:w-2/5 xl:w-1/5">
+        <div className="flex w-full items-center gap-1 rounded bg-zinc-50 p-1 text-xs italic shadow-md lg:w-2/5">
           <Image
             src="/Logos/instagram.svg"
             alt=""
@@ -55,7 +55,7 @@ export function BaseComparativeCard({
           />
           <span>@{BaseComparativeCardData.instagram}</span>
         </div>
-        <div className="flex w-full items-center gap-1 rounded bg-zinc-50 p-1 text-xs italic shadow-md lg:w-2/5 xl:w-1/5">
+        <div className="flex w-full items-center gap-1 rounded bg-zinc-50 p-1 text-xs italic shadow-md lg:w-2/5">
           <Image
             src="/Logos/tiktok.svg"
             alt=""
@@ -65,7 +65,7 @@ export function BaseComparativeCard({
           />
           <span>@{BaseComparativeCardData.tiktok}</span>
         </div>
-        <div className="flex w-full items-center gap-1 rounded bg-zinc-50 p-1 text-xs italic shadow-md lg:w-2/5 xl:w-1/5">
+        <div className="flex w-full items-center gap-1 rounded bg-zinc-50 p-1 text-xs italic shadow-md lg:w-2/5">
           <Image
             src="/Logos/youtube.svg"
             alt=""

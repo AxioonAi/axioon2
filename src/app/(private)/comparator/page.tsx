@@ -28,6 +28,8 @@ import { MentionsSentimentChartData } from "@/components/data/MentionsData";
 import { AgeAndGenderChart } from "@/components/app/ads/AgeAndGenderChart";
 import { AgeAndGenderData } from "@/components/data/AdsData";
 import { LineGradientMentionsChart } from "@/components/app/comparator/LineGradientMentionsChart";
+import { BaseCard } from "@/components/global/BaseCard/BaseCard";
+import { ComparatorStickyCards } from "@/components/app/comparator/ComparatorStickyCards";
 
 export default function Comparator() {
   return (
@@ -35,16 +37,7 @@ export default function Comparator() {
       <div className="lg:col-span-12">
         <ComparatorHeaderCard title="Comparador" />
       </div>
-      <div className="lg:col-span-6">
-        <BaseComparativeCard
-          BaseComparativeCardData={BaseComparativeCardData}
-        />
-      </div>
-      <div className="lg:col-span-6">
-        <BaseComparativeCard
-          BaseComparativeCardData={BaseComparativeCardData}
-        />
-      </div>
+      <ComparatorStickyCards />
       <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-[120vh] lg:grid-cols-12 lg:grid-rows-12">
         <div className="lg:col-span-3 lg:row-span-4">
           <FollowersDonutChart
@@ -61,7 +54,7 @@ export default function Comparator() {
             FollowersDonutChartData={FollowersDonutChartData}
           />
         </div>
-        <div className="lg:col-span-3 lg:row-span-4">
+        {/*  <div className="lg:col-span-3 lg:row-span-4">
           <ScoreGaugeChart ScoreGaugeChartData={ScoreGaugeChartData} />
         </div>
         <div className="lg:col-span-6 lg:row-span-4">
@@ -80,10 +73,10 @@ export default function Comparator() {
         </div>
         <div className="lg:col-span-4 lg:row-span-4">
           <CommentsDonutChart CommentsDonutChartData={CommentsDonutChartData} />
-        </div>
+        </div> */}
       </div>
       <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-screen lg:grid-cols-12 lg:grid-rows-12">
-        <div className="lg:col-span-4 lg:row-span-4">
+        {/* <div className="lg:col-span-4 lg:row-span-4">
           <WordCloud WordCloudData={WordCloudData} />
         </div>
         <div className="lg:col-span-4 lg:row-span-4">
@@ -146,9 +139,9 @@ export default function Comparator() {
         </div>
         <div className="lg:col-span-3 lg:row-span-4">
           <ScoreGaugeChart ScoreGaugeChartData={ScoreGaugeChartData} />
-        </div>
+        </div> */}
       </div>
-      <div className="lg:col-span-12 lg:row-span-4">
+      {/* <div className="lg:col-span-12 lg:row-span-4">
         <MentionsSentimentChart
           MentionsSentimentChartData={MentionsSentimentChartData}
         />
@@ -179,7 +172,7 @@ export default function Comparator() {
             FollowersDonutChartData={FollowersDonutChartData}
           />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

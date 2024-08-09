@@ -143,7 +143,7 @@ export default function Login() {
             </div>
             <div className="flex justify-end">
               <span
-                className="text-brand_blue cursor-pointer border-0 bg-transparent"
+                className="cursor-pointer border-0 bg-transparent text-brand_blue"
                 onClick={() => router.push("/recover-password")}
               >
                 Esqueceu sua senha?
@@ -152,7 +152,7 @@ export default function Login() {
             <button
               onClick={handleLogin}
               disabled={buttonLoading}
-              className="bg-darkBlueAxion w-full rounded-xl p-2 text-xl text-white"
+              className="w-full rounded-xl bg-darkBlueAxion p-2 text-xl text-white"
             >
               {buttonLoading ? <Spinner /> : "Entrar"}
             </button>

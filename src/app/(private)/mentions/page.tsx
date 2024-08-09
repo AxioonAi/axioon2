@@ -5,7 +5,6 @@ import { WordsList } from "@/components/app/mentions/WordsList";
 import {
   CommentsDonutGraphData,
   LineGradientChartData,
-  PostsAndCommentsData,
   ScoreGaugeChartData,
 } from "@/components/data/HomeData";
 import {
@@ -20,16 +19,16 @@ import {
   WordsListData,
 } from "@/components/data/MentionsData";
 import { MentionsHeaderCard } from "@/components/app/mentions/MentionsHeaderCard";
-import { LineGradientChart } from "@/components/app/home/LineGradientChart";
 import { ScoreGaugeChart } from "@/components/app/mentions/ScoreGaugeChart";
-import { CommentsDonutGraph } from "@/components/app/home/CommentsDonutGraph";
 import { MentionsSentimentChart } from "@/components/app/mentions/MentionsSentimentChart";
 import { MentionsMainActors } from "@/components/app/mentions/MentionsMainActors";
 import { MentionsMainInfluencers } from "@/components/app/mentions/MentionsMainInfluencers";
 import { MentionsDetractors } from "@/components/app/mentions/MentionsDetractors";
 import { MentionsDefensors } from "@/components/app/mentions/MentionsDefensors";
-import { PostsAndComments } from "@/components/app/home/PostsAndComments";
-import { IndicatorsCards } from "@/components/app/home/IndicatorsCards";
+import { MentionsPostsAndComments } from "@/components/app/mentions/MentionsPostsAndComments";
+import { LineGradientChart } from "@/components/app/mentions/LineGradientChart";
+import { IndicatorsCards } from "@/components/app/mentions/IndicatorsCards";
+import { CommentsDonutGraph } from "@/components/app/mentions/CommentsDonutGraph";
 
 export default function Mentions() {
   return (
@@ -98,7 +97,7 @@ export default function Mentions() {
         </div>
       </div>
       <div className="lg:col-span-12">
-        <PostsAndComments PostsAndCommentsData={PostsAndCommentsData} />
+        <MentionsPostsAndComments />
       </div>
     </div>
   );
