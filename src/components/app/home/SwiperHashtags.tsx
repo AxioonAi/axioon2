@@ -9,9 +9,10 @@ import {
 } from "react";
 import "swiper/swiper-bundle.css";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useCookies } from "next-client-cookies";
 import { HashtagCard } from "../parameters/HashtagCard";
 import { CardWithTitleAndButton } from "../parameters/CardWithTitleAndButton";
-import { authGetAPI, AuthPostAPI } from "@/lib/axios";
+import { authGetAPI, AuthPostAPI, token as Token } from "@/lib/axios";
 import { Modal } from "@/components/global/Modal";
 import { Spinner } from "@/components/global/Spinner";
 
@@ -28,23 +29,30 @@ export function SwiperHashtag() {
   const [newHashtag, setNewHashtag] = useState("");
   const [isAddingHashtag, setIsAddingHashtag] = useState(false);
   const skeletonArray = [0, 1, 2, 3, 4];
+  const cookie = useCookies();
 
   async function GetHashtags() {
-    const hashtag = await authGetAPI("/hashtag");
+    const token = cookie.get(Token);
+    const hashtag = await authGetAPI("/hashtag", token);
     if (hashtag.status === 200) {
       setHashtag(hashtag.body.hashtags);
     }
   }
 
   async function AddHashtag() {
+    const token = cookie.get(Token);
     setIsAddingHashtag(true);
     if (newHashtag === "") {
       alert("Hashtag não informada");
       return setIsAddingHashtag(false);
     }
-    const connect = await AuthPostAPI("/hashtag", {
-      hashtag: newHashtag,
-    });
+    const connect = await AuthPostAPI(
+      "/hashtag",
+      {
+        hashtag: newHashtag,
+      },
+      token,
+    );
     if (connect.status === 200) {
       setNewHashtag("");
       alert("Hashtag adicionada");
@@ -125,7 +133,7 @@ export function SwiperHashtag() {
           >
             {skeletonArray.map((item) => (
               <SwiperSlide key={item} className="py-2">
-                <button className="from-gray-10 via-gray-20 to-gray-10 flex w-full flex-row items-center gap-x-4 rounded-md bg-gradient-to-r p-4 shadow-md transition-transform hover:scale-[1.01]" />{" "}
+                <button className="flex w-full flex-row items-center gap-x-4 rounded-md bg-gradient-to-r from-gray-10 via-gray-20 to-gray-10 p-4 shadow-md transition-transform hover:scale-[1.01]" />{" "}
               </SwiperSlide>
             ))}
           </Swiper>

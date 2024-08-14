@@ -9,10 +9,12 @@ import {
   useState,
 } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useCookies } from "next-client-cookies";
 import { PerfilCard } from "../parameters/PerfilCard";
 import "swiper/swiper-bundle.css";
 import { CardWithTitleAndButton } from "../parameters/CardWithTitleAndButton";
-import { authGetAPI } from "@/lib/axios";
+import { authGetAPI, token as Token } from "@/lib/axios";
+
 register();
 
 interface Politician {
@@ -28,13 +30,15 @@ interface Politician {
   youtube: string;
 }
 export function SwiperPoliticians() {
+  const cookies = useCookies();
   const sliderRef = useRef<SwiperRef>(null);
   const [slidesPerView, setSlidesPerView] = useState(3);
   const [politicians, setPoliticians] = useState<Politician[]>([]);
   const skeletonArray = [0, 1, 2, 3, 4];
 
   async function GetPoliticians() {
-    const politicians = await authGetAPI("/profile/monitoring");
+    const token = cookies.get(Token);
+    const politicians = await authGetAPI("/profile/monitoring", token);
     if (politicians.status === 200) {
       setPoliticians(politicians.body.profile);
     }
@@ -110,7 +114,7 @@ export function SwiperPoliticians() {
           >
             {skeletonArray.map((skeleton) => (
               <SwiperSlide key={skeleton} className="py-2">
-                <div className="from-gray-10 to-gray-10 via-gray-20 flex h-44 w-80 flex-col rounded-md bg-gradient-to-r p-4 shadow-md" />
+                <div className="flex h-44 w-80 flex-col rounded-md bg-gradient-to-r from-gray-10 via-gray-20 to-gray-10 p-4 shadow-md" />
               </SwiperSlide>
             ))}
           </Swiper>

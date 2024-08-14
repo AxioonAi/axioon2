@@ -8,10 +8,10 @@ import {
   useEffect,
   useState,
 } from "react";
+import { useCookies } from "next-client-cookies";
 import { useSelectedPoliticianContext } from "./SelectedPolitician";
-import { authGetAPI } from "@/lib/axios";
+import { authGetAPI, token as Token } from "@/lib/axios";
 import { SocialMediaDataProps } from "@/types/SocialMediaData";
-
 interface SocialMediaDataContextProps {
   facebook: boolean;
   instagram: boolean;
@@ -40,6 +40,7 @@ interface ContextProps {
 }
 
 export const SocialMediaDataContextProvider = ({ children }: ContextProps) => {
+  const cookies = useCookies();
   const [facebook, setFacebook] = useState(true);
   const [instagram, setInstagram] = useState(true);
   const [tiktok, setTiktok] = useState(true);
@@ -54,11 +55,12 @@ export const SocialMediaDataContextProvider = ({ children }: ContextProps) => {
   const { selectedPolitician } = useSelectedPoliticianContext();
 
   async function GetSocialMediaData() {
+    const token = cookies.get(Token);
     setIsGettingData(true);
     const socialMediaData = await authGetAPI(
       `/profile/media/${selectedPolitician?.id}?endDate=2024-06-14&startDate=2024-03-14&instagram=${instagram}&facebook=${facebook}&tiktok=${tiktok}&youtube=${youtube}`,
+      token,
     );
-    console.log("socialMediaData: ", socialMediaData);
     if (socialMediaData.status === 200) {
       setSocialMediaData(socialMediaData.body.data);
       return setIsGettingData(false);

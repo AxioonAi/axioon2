@@ -8,7 +8,8 @@ import {
   useEffect,
   useState,
 } from "react";
-import { authGetAPI } from "@/lib/axios";
+import { useCookies } from "next-client-cookies";
+import { authGetAPI, token as Token } from "@/lib/axios";
 
 interface Politician {
   campaignNumber: number;
@@ -43,12 +44,14 @@ interface ContextProps {
 export const SelectedPoliticianContextProvider = ({
   children,
 }: ContextProps) => {
+  const cookies = useCookies();
   const [politicians, setPoliticians] = useState<Politician[]>([]);
   const [selectedPolitician, setSelectedPolitician] =
     useState<Politician | null>(null);
 
   async function GetPoliticians() {
-    const politicians = await authGetAPI("/profile/monitoring");
+    const token = cookies.get(Token);
+    const politicians = await authGetAPI("/profile/monitoring", token);
     if (politicians.status === 200) {
       setPoliticians(politicians.body.profile);
     }

@@ -8,8 +8,9 @@ import {
   useEffect,
   useState,
 } from "react";
+import { useCookies } from "next-client-cookies";
 import { useSelectedPoliticianContext } from "./SelectedPolitician";
-import { authGetAPI } from "@/lib/axios";
+import { authGetAPI, token as Token } from "@/lib/axios";
 import { MentionsDataProps } from "@/types/MentionsData";
 
 interface MentionsDataContextProps {
@@ -30,6 +31,7 @@ interface ContextProps {
 }
 
 export const MentionsDataContextProvider = ({ children }: ContextProps) => {
+  const cookies = useCookies();
   const [startDate, setStartDate] = useState<Date>(
     new Date(new Date().getTime() - 30 * 24 * 60 * 60 * 1000),
   );
@@ -39,21 +41,23 @@ export const MentionsDataContextProvider = ({ children }: ContextProps) => {
   const { selectedPolitician } = useSelectedPoliticianContext();
 
   async function GetHashtagsMentionsData() {
+    const token = cookies.get(Token);
     const connect = await authGetAPI(
       `/hashtag/mentions?endDate=2024-06-14&startDate=2024-03-14`,
+      token,
     );
-    console.log("connect: ", connect);
   }
 
   async function GetMentionsData() {
+    const token = cookies.get(Token);
     setIsGettingData(true);
     const mentionsData = await authGetAPI(
       // `/profile/mentions/${selectedPolitician?.id}?endDate=2024-06-14&startDate=2024-03-14`,
       `/profile/mentions/${selectedPolitician?.id}?endDate=${endDate.getFullYear()}-${endDate.getMonth() + 1}-${endDate.getDate()}&startDate=${startDate.getFullYear()}-${startDate.getMonth() + 1}-${startDate.getDate()}`,
+      token,
     );
     if (mentionsData.status === 200) {
       setMentionsData(mentionsData.body);
-      console.log("mentionsData: ", mentionsData);
       return setIsGettingData(false);
     }
     return setIsGettingData(false);

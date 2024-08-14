@@ -1,13 +1,16 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useCookies } from "next-client-cookies";
 import { Footer } from "@/components/global/Footer";
 import { Messages } from "@/components/global/Messages";
-import { PostAPI, refreshToken, token, userType } from "@/lib/axios";
+import { PostAPI, token } from "@/lib/axios";
 import { Spinner } from "@/components/global/Spinner";
 
 export default function Login() {
   const router = useRouter();
+  const cookies = useCookies();
+
   const [showPassword, setShowPassword] = useState("password");
   const [buttonLoading, setButtonLoading] = useState(false);
   const [checked, setChecked] = useState(false);
@@ -34,9 +37,8 @@ export default function Login() {
       alert(connect.body);
       return setButtonLoading(false);
     }
-    localStorage.setItem(token, connect.body.token);
-    localStorage.setItem(refreshToken, connect.body.refreshToken);
-    localStorage.setItem(userType, connect.body.type);
+    cookies.set(token, connect.body.token);
+
     router.push("/");
     return setButtonLoading(false);
   }

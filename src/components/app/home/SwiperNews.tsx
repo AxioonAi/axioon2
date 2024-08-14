@@ -9,9 +9,10 @@ import {
 } from "react";
 import "swiper/swiper-bundle.css";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useCookies } from "next-client-cookies/dist";
 import { NewsCard } from "../parameters/NewsCard";
 import { CardWithTitleAndButton } from "../parameters/CardWithTitleAndButton";
-import { authGetAPI, AuthPostAPI } from "@/lib/axios";
+import { authGetAPI, AuthPostAPI, token as Token } from "@/lib/axios";
 import { Modal } from "@/components/global/Modal";
 import { Spinner } from "@/components/global/Spinner";
 
@@ -24,6 +25,7 @@ interface News {
 }
 
 export function SwiperNews() {
+  const cookies = useCookies();
   const sliderRef = useRef<SwiperRef>(null);
   const [slidesPerView, setSlidesPerView] = useState(3);
   const [news, setNews] = useState<News[]>([]);
@@ -33,13 +35,15 @@ export function SwiperNews() {
   const skeletonArray = [0, 1, 2, 3, 4];
 
   async function GetNews() {
-    const news = await authGetAPI("/website");
+    const token = cookies.get(Token);
+    const news = await authGetAPI("/website", token);
     if (news.status === 200) {
       setNews(news.body.websites);
     }
   }
 
   async function AddWebsite() {
+    const token = cookies.get(Token);
     let formattedUrl = "";
     setIsAddingWebsite(true);
     if (newWebsiteUrl === "") {
@@ -49,9 +53,13 @@ export function SwiperNews() {
     if (!newWebsiteUrl.includes("https://")) {
       formattedUrl = `https://${newWebsiteUrl}`;
     }
-    const connect = await AuthPostAPI("/website/request", {
-      url: formattedUrl === "" ? newWebsiteUrl : formattedUrl,
-    });
+    const connect = await AuthPostAPI(
+      "/website/request",
+      {
+        url: formattedUrl === "" ? newWebsiteUrl : formattedUrl,
+      },
+      token,
+    );
     if (connect.status === 200) {
       setNewWebsiteUrl("");
       alert("Requisição efetuada com sucesso");
@@ -128,7 +136,7 @@ export function SwiperNews() {
           >
             {skeletonArray.map((item) => (
               <SwiperSlide key={item} className="py-2">
-                <button className="from-gray-10 via-gray-20 to-gray-10 flex h-28 w-[26.75rem] items-center justify-between rounded-md bg-gradient-to-r p-4 shadow-md transition-transform hover:scale-[1.01]" />{" "}
+                <button className="flex h-28 w-[26.75rem] items-center justify-between rounded-md bg-gradient-to-r from-gray-10 via-gray-20 to-gray-10 p-4 shadow-md transition-transform hover:scale-[1.01]" />{" "}
               </SwiperSlide>
             ))}
           </Swiper>
