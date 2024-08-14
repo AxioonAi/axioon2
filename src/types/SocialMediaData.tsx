@@ -258,11 +258,11 @@ export interface SocialMediaDataProps {
   followersEvolution: {
     facebook: {
       date: string;
-      followers: number;
+      followers_count: number;
     }[];
     instagram: { date: string; followers: number }[];
-    tiktok: { date: string; followers: number }[];
-    youtube: { date: string; followers: number }[];
+    tiktok: { date: string; fans: number }[];
+    youtube: { date: string; channel_total_subs: number }[];
   };
   posts: {
     facebook: {
@@ -353,7 +353,7 @@ export interface SocialMediaDataProps {
           username: string;
         } | null;
         id: string;
-        likeCount: string;
+        likeCount: number;
         politician_id: string;
         replyCount: number;
         sentimentAnalysis: number;
@@ -380,6 +380,68 @@ export interface SocialMediaDataProps {
       title: string;
       url: string;
       views: number;
+      comments: {
+        text: string;
+        id: string;
+        likeCount: number;
+        replyCount: number;
+        author: string;
+        video_id: string;
+        sentimentAnalysis: number;
+        authorGender: string;
+      }[];
+    }[];
+  };
+  staticData: {
+    facebookData: {
+      followers: number;
+      following: number;
+      name: string;
+      posts: number;
+    };
+    instagramData: {
+      followers: number;
+      following: number;
+      name: string;
+      posts: number;
+    };
+    tiktokData: {
+      followers: number;
+      following: number;
+      name: string;
+      posts: number;
+    };
+    youtubeData: {
+      followers: number;
+      following: number;
+      name: string;
+      posts: number;
+    };
+  };
+  profileEvolution: {
+    facebook: {
+      name: string;
+      trendingUp: boolean;
+      trendingValue: number;
+      value: number;
+    }[];
+    instagram: {
+      name: string;
+      trendingUp: boolean;
+      trendingValue: number;
+      value: number;
+    }[];
+    tiktok: {
+      name: string;
+      trendingUp: boolean;
+      trendingValue: number;
+      value: number;
+    }[];
+    youtube: {
+      name: string;
+      trendingUp: boolean;
+      trendingValue: number;
+      value: number;
     }[];
   };
 }

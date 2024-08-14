@@ -81,6 +81,7 @@ export function LineGradientChart({
     );
 
     const series = {
+      name: "Sentimento",
       data: orderedFlatSentimentValues.map((value) => value.value),
     };
 

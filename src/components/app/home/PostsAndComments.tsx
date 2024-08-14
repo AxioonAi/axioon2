@@ -102,7 +102,7 @@ interface TiktokPostsProps {
       username: string;
     } | null;
     id: string;
-    likeCount: string;
+    likeCount: number;
     politician_id: string;
     replyCount: number;
     sentimentAnalysis: number;
@@ -130,6 +130,17 @@ interface YoutubePostsProps {
   title: string;
   url: string;
   views: number;
+  comments: {
+    text: string;
+    id: string;
+    likeCount: number;
+    replyCount: number;
+    author: string;
+    video_id: string;
+    sentimentAnalysis: number;
+    authorGender: string;
+    username?: string;
+  }[];
 }
 
 interface FinalPostsProps {
@@ -148,14 +159,14 @@ interface FinalPostsProps {
     date?: string;
     timestamp?: string;
     id: string;
-    likeCount: string;
+    likeCount: number;
     post_id?: string;
     video_id?: string;
     sentimentAnalysis: number;
     text: string;
-    username: string;
+    username?: string;
     ownerProfilePicUrl?: string;
-    replyCount?: string;
+    replyCount?: number;
   }[];
 }
 
@@ -283,6 +294,12 @@ export function PostsAndComments() {
     }
   };
 
+  const handleRedirect = (url: string) => {
+    if (confirm("Redirecionar para o link?")) {
+      return window.open(url, "_blank");
+    }
+  };
+
   return (
     <BaseCard className="min-h-96 overflow-hidden p-0">
       <BaseCardHeader
@@ -326,7 +343,8 @@ export function PostsAndComments() {
                   alt={""}
                   width={40}
                   height={40}
-                  className="h-8 w-8 rounded-lg"
+                  className="duraiton-200 h-8 w-8 cursor-pointer rounded-lg transition hover:scale-[1.01]"
+                  onClick={() => handleRedirect(item.url)}
                 />
                 <div className="flex h-full w-full flex-col">
                   <div className="flex w-full items-center justify-between">

@@ -21,10 +21,10 @@ interface SocialMediaDataContextProps {
   setInstagram: Dispatch<SetStateAction<boolean>>;
   setTiktok: Dispatch<SetStateAction<boolean>>;
   setYoutube: Dispatch<SetStateAction<boolean>>;
-  startDate: Date;
-  setStartDate: Dispatch<SetStateAction<Date>>;
-  endDate: Date;
-  setEndDate: Dispatch<SetStateAction<Date>>;
+  startDate: Date | undefined;
+  setStartDate: Dispatch<SetStateAction<Date | undefined>>;
+  endDate: Date | undefined;
+  setEndDate: Dispatch<SetStateAction<Date | undefined>>;
   socialMediaData: SocialMediaDataProps | undefined;
   setSocialMediaData: Dispatch<
     SetStateAction<SocialMediaDataProps | undefined>
@@ -45,10 +45,10 @@ export const SocialMediaDataContextProvider = ({ children }: ContextProps) => {
   const [instagram, setInstagram] = useState(true);
   const [tiktok, setTiktok] = useState(true);
   const [youtube, setYoutube] = useState(true);
-  const [startDate, setStartDate] = useState<Date>(
+  const [startDate, setStartDate] = useState<Date | undefined>(
     new Date(new Date().getTime() - 30 * 24 * 60 * 60 * 1000),
   );
-  const [endDate, setEndDate] = useState<Date>(new Date());
+  const [endDate, setEndDate] = useState<Date | undefined>(new Date());
   const [socialMediaData, setSocialMediaData] =
     useState<SocialMediaDataProps>();
   const [isGettingData, setIsGettingData] = useState(false);
@@ -58,9 +58,10 @@ export const SocialMediaDataContextProvider = ({ children }: ContextProps) => {
     const token = cookies.get(Token);
     setIsGettingData(true);
     const socialMediaData = await authGetAPI(
-      `/profile/media/${selectedPolitician?.id}?endDate=2024-06-14&startDate=2024-03-14&instagram=${instagram}&facebook=${facebook}&tiktok=${tiktok}&youtube=${youtube}`,
+      `/profile/media/8eb93d97-4852-4cd3-877f-7938dadca2f5?endDate=2024-06-14&startDate=2024-03-14&instagram=${instagram}&facebook=${facebook}&tiktok=${tiktok}&youtube=${youtube}`,
       token,
     );
+    console.log("socialMediaData: ", socialMediaData);
     if (socialMediaData.status === 200) {
       setSocialMediaData(socialMediaData.body.data);
       return setIsGettingData(false);

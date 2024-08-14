@@ -54,9 +54,11 @@ export function HomeHeaderCard({
                 required
                 selected={{ from: startDate, to: endDate }}
                 locale={ptBR}
-                onSelect={({ from, to }: DateRange) => {
-                  setStartDate(from);
-                  setEndDate(to);
+                onSelect={(range: DateRange | undefined) => {
+                  if (range) {
+                    setStartDate(range.from);
+                    setEndDate(range.to);
+                  }
                 }}
               />
             </Popover.Content>

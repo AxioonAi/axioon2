@@ -1,9 +1,38 @@
 "use client";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useEffect, useState } from "react";
 import { SocialMediaBaseCard } from "./SocialMediaBaseCard";
-import { SocialMediaBaseData } from "@/components/data/HomeData";
+import { useSocialMediaDataContext } from "@/context/SocialMediaData";
+
+interface platformDataProps {
+  followers: number;
+  following: number;
+  name: string;
+  posts: number;
+  username?: string;
+}
 
 export function HeaderCards() {
+  const { socialMediaData } = useSocialMediaDataContext();
+
+  const [staticFacebookData, setStaticFacebookData] =
+    useState<platformDataProps | null>(null);
+  const [staticInstagramData, setStaticInstagramData] =
+    useState<platformDataProps | null>(null);
+  const [staticTiktokData, setStaticTiktokData] =
+    useState<platformDataProps | null>(null);
+  const [staticYoutubeData, setStaticYoutubeData] =
+    useState<platformDataProps | null>(null);
+
+  useEffect(() => {
+    if (socialMediaData) {
+      setStaticFacebookData(socialMediaData?.staticData.facebookData);
+      setStaticInstagramData(socialMediaData?.staticData.instagramData);
+      setStaticTiktokData(socialMediaData?.staticData.tiktokData);
+      setStaticYoutubeData(socialMediaData?.staticData.youtubeData);
+    }
+  }, [socialMediaData]);
+
   return (
     <Swiper
       slidesPerView={1.5}
@@ -23,11 +52,30 @@ export function HeaderCards() {
         },
       }}
     >
-      {SocialMediaBaseData.map((data, index) => (
-        <SwiperSlide key={index} className="py-2">
-          <SocialMediaBaseCard SocialMediaData={data} />
-        </SwiperSlide>
-      ))}
+      <SwiperSlide className="py-2">
+        <SocialMediaBaseCard
+          SocialMediaData={staticInstagramData}
+          platform="Instagram"
+        />
+      </SwiperSlide>
+      <SwiperSlide>
+        <SocialMediaBaseCard
+          SocialMediaData={staticFacebookData}
+          platform="Facebook"
+        />
+      </SwiperSlide>
+      <SwiperSlide>
+        <SocialMediaBaseCard
+          SocialMediaData={staticTiktokData}
+          platform="TikTok"
+        />
+      </SwiperSlide>
+      <SwiperSlide>
+        <SocialMediaBaseCard
+          SocialMediaData={staticYoutubeData}
+          platform="YouTube"
+        />
+      </SwiperSlide>
     </Swiper>
   );
 }

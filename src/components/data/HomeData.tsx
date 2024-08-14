@@ -1572,6 +1572,7 @@ export const LineGradientChartData = {
   ChartOptions: {
     series: [
       {
+        name: "Desktops",
         data: [170, 572, 751, 82, 1063, 653, 553, 23, 735],
       },
     ],
@@ -1618,9 +1619,7 @@ export const LineGradientChartData = {
       yaxis: {
         show: false,
       },
-      tooltip: {
-        enabled: false,
-      },
+
       fill: {
         type: "gradient",
         colors: ["#845ADF"],
@@ -1676,17 +1675,7 @@ export const FollowerProgressionChartData = {
       {
         name: "Projects",
         type: "column",
-        data: [1.8, 2.5, 2.5, 1.5, 2.5, 2.8, 3.8],
-      },
-      {
-        name: "Tasks",
-        type: "column",
-        data: [1.1, 2.2, 3.1, 4, 4.1, 4.9, 6.5],
-      },
-      {
-        name: "Revenue",
-        type: "line",
-        data: [50, 59, 67, 65, 74, 73, 80],
+        data: [1.8, 2.5, 2.5, 1.5, 2.5, 2.8, 3.8, 4, 6, 2, 5],
       },
     ],
     options: {
@@ -1695,7 +1684,7 @@ export const FollowerProgressionChartData = {
         toolbar: {
           show: false,
         },
-        type: "line" as const,
+        type: "bar" as const,
         stacked: false,
         fontFamily: "Poppins, Arial, sans-serif",
         zoom: {
@@ -1713,11 +1702,14 @@ export const FollowerProgressionChartData = {
         enabled: false,
       },
       xaxis: {
-        categories: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
         labels: {
-          style: {
-            colors: "black",
-          },
+          show: false,
+        },
+        axisTicks: {
+          show: false,
+        },
+        axisBorder: {
+          show: false,
         },
       },
       yaxis: [
@@ -1740,40 +1732,6 @@ export const FollowerProgressionChartData = {
             text: "" as const,
           },
         },
-        {
-          seriesName: "Tasks",
-          opposite: true,
-          axisTicks: {
-            show: true,
-          },
-          axisBorder: {
-            show: false,
-            color: "#00E396",
-          },
-          labels: {
-            show: true,
-          },
-          title: {
-            show: false,
-          },
-        },
-        {
-          seriesName: "Revenue",
-          opposite: true,
-          axisTicks: {
-            show: false,
-          },
-          axisBorder: {
-            show: false,
-            color: "#23b7e5",
-          },
-          labels: {
-            show: false,
-          },
-          title: {
-            show: false,
-          },
-        },
       ],
       tooltip: {
         theme: "light",
@@ -1793,7 +1751,7 @@ export const FollowerProgressionChartData = {
           borderRadius: 3,
         },
       },
-      colors: ["#0369A1", "#ededed", "#23b7e5"],
+      colors: ["#0369A1"],
       responsive: [
         {
           breakpoint: 1024,
@@ -1816,7 +1774,7 @@ export const FollowerProgressionChartData = {
           breakpoint: 2560,
           options: {
             chart: {
-              height: 350,
+              height: 250,
             },
           },
         },

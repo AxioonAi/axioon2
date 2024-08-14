@@ -10,7 +10,6 @@ import {
   EngagementTimesData,
   FollowerProgressionChartData,
   LineGradientChartData,
-  PostsAndCommentsData,
   ScoreGaugeChartData,
   WordCloudData,
 } from "@/components/data/HomeData";
@@ -70,7 +69,7 @@ export default function Home() {
         </div>
       </div>
       <div className="lg:col-span-12">
-        <PostsAndComments PostsAndCommentsData={PostsAndCommentsData} />
+        <PostsAndComments />
       </div>
     </div>
   );
