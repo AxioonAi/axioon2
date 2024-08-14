@@ -61,7 +61,6 @@ export const SocialMediaDataContextProvider = ({ children }: ContextProps) => {
       `/profile/media/8eb93d97-4852-4cd3-877f-7938dadca2f5?endDate=2024-06-14&startDate=2024-03-14&instagram=${instagram}&facebook=${facebook}&tiktok=${tiktok}&youtube=${youtube}`,
       token,
     );
-    console.log("socialMediaData: ", socialMediaData);
     if (socialMediaData.status === 200) {
       setSocialMediaData(socialMediaData.body.data);
       return setIsGettingData(false);

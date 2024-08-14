@@ -16,6 +16,52 @@ export interface MentionsDataProps {
       news: number;
       instagram: number;
     };
+    engagers: {
+      negative: {
+        comments: number;
+        followers: number;
+        id: string;
+        negativeComments: number;
+        neutralComments: number;
+        positiveComments: number;
+        sentiment: number;
+        userName: string;
+      }[];
+      positive: {
+        comments: number;
+        followers: number;
+        id: string;
+        negativeComments: number;
+        neutralComments: number;
+        positiveComments: number;
+        sentiment: number;
+        userName: string;
+      }[];
+    };
+    authors: {
+      createdAt: string;
+      engagement: number;
+      followers: number;
+      id: string;
+      lastPost: string;
+      name: string;
+      posts: number;
+      sentiment: number;
+      updatedAt: string;
+      username: string;
+    }[];
+    influencers: {
+      createdAt: string;
+      engagement: number;
+      followers: number;
+      id: string;
+      lastPost: string;
+      name: string;
+      posts: number;
+      sentiment: number;
+      updatedAt: string;
+      username: string;
+    }[];
     mentionsByFount: {
       name: string;
       quantity: number;
@@ -72,6 +118,22 @@ export interface MentionsDataProps {
     };
   };
   wordCloud: {
+    instagram: {
+      words: {
+        word: string;
+        quantity: number;
+        sentimentSum: number;
+        sentimentAvg: number;
+      }[];
+      emojis: {
+        emoji: string;
+        quantity: number;
+        sentimentSum: number;
+        sentimentAvg: number;
+      };
+    };
+  };
+  hashtagCloud: {
     instagram: {
       words: {
         word: string;

@@ -1,108 +1,129 @@
 import { twMerge } from "tailwind-merge";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { useEffect, useState } from "react";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
+import { useMentionsDataContext } from "@/context/MentionsData";
 
-interface CommentsSummaryProps {
-  CommentsSummaryData: {
-    value: number;
-    valueChange: number;
-    comments: {
-      total: number;
-      positive: number;
-      neutral: number;
-      negative: number;
-    };
-  };
+interface CommentsBySentimentProps {
+  countSentiment0To350: number;
+  countSentiment351To650: number;
+  countSentiment651To1000: number;
+  sentimentAverage: number;
+  totalSentiment: number;
 }
 
-export function CommentsSummary({ CommentsSummaryData }: CommentsSummaryProps) {
+export function CommentsSummary() {
+  const [commentsBySentiment, setCommentsBySentiment] =
+    useState<CommentsBySentimentProps>();
+  const { mentionsData, isGettingData } = useMentionsDataContext();
+
+  useEffect(() => {
+    if (mentionsData) {
+      const commentsBySentiment = mentionsData.mentions.commentsBySentiment;
+      const array = [commentsBySentiment];
+      const summedValues = array.reduce(
+        (acc, curr) => {
+          if (curr) {
+            acc!.countSentiment0To350 += curr.countSentiment0To350;
+            acc!.countSentiment351To650 += curr.countSentiment351To650;
+            acc!.countSentiment651To1000 += curr.countSentiment651To1000;
+            acc!.sentimentAverage += curr.sentimentAverage;
+            acc!.totalSentiment += curr.totalSentiment;
+          }
+          return acc;
+        },
+        {
+          countSentiment0To350: 0,
+          countSentiment351To650: 0,
+          countSentiment651To1000: 0,
+          sentimentAverage: 0,
+          totalSentiment: 0,
+        },
+      );
+      setCommentsBySentiment(summedValues);
+    }
+  }, [mentionsData]);
+
   return (
     <BaseCard className="p-0">
       <BaseCardHeader title="Comentários em Menções" />
-      <div className="flex h-full w-full flex-col justify-evenly gap-8 p-8">
-        <div className="flex w-full items-center gap-2">
-          <strong className="text-xl">{CommentsSummaryData.value}</strong>
-          <span
-            className={twMerge(
-              "flex items-center gap-1 rounded p-1 text-sm",
-              CommentsSummaryData.valueChange > 0
-                ? "bg-teal-500/10 text-teal-500"
-                : "text-red-600",
-            )}
-          >
-            {CommentsSummaryData.valueChange}
-            {CommentsSummaryData.valueChange > 0 ? (
-              <ChevronUp size={14} />
-            ) : (
-              <ChevronDown size={14} />
-            )}
-          </span>
-          <span className="text-sm text-zinc-500">
-            Comparado a semana anterior
-          </span>
-        </div>
-        <div className="flex h-2 w-full overflow-hidden rounded">
-          <div
-            className={twMerge(
-              "h-full bg-green-600",
-              CommentsSummaryData.comments.positive &&
-                CommentsSummaryData.comments.total > 0 &&
-                "rounded-l",
-            )}
-            style={{
-              width: `${(CommentsSummaryData.comments.positive / CommentsSummaryData.comments.total) * 100}%`,
-            }}
-          />
-          <div
-            className={"h-full bg-violet-600"}
-            style={{
-              width: `${(CommentsSummaryData.comments.neutral / CommentsSummaryData.comments.total) * 100}%`,
-            }}
-          />
-          <div
-            className={twMerge(
-              "h-full bg-red-600",
-              CommentsSummaryData.comments.negative &&
-                CommentsSummaryData.comments.total > 0 &&
-                "rounded-r",
-            )}
-            style={{
-              width: `${(CommentsSummaryData.comments.negative / CommentsSummaryData.comments.total) * 100}%`,
-            }}
-          />
-        </div>
-        <div className="flex flex-col gap-4">
-          <div className="flex w-full items-center justify-between">
-            <div className="flex items-center gap-2">
-              <div className="h-4 w-4 rounded-full bg-green-600" />
-              <span>Comentários Positivos</span>
-            </div>
-            <span className="text-sm text-zinc-500">
-              {CommentsSummaryData.comments.positive} Comentários
-            </span>
+      {isGettingData ? (
+        <div className="h-full w-full bg-gradient-to-r from-gray-10 via-gray-20 to-gray-10" />
+      ) : (
+        <div className="flex h-72 w-full flex-col gap-4 p-4 xs:h-60 lg:h-full lg:gap-8 lg:p-8 3xl:gap-16">
+          <div className="flex w-full items-center gap-2">
+            <strong className="text-xs lg:text-sm 2xl:text-base 3xl:text-lg">
+              {commentsBySentiment?.totalSentiment.toFixed(2)}
+            </strong>
           </div>
-          <div className="flex w-full items-center justify-between">
-            <div className="flex items-center gap-2">
-              <div className="h-4 w-4 rounded-full bg-violet-600" />
-              <span>Comentários Neutros</span>
-            </div>
-            <span className="text-sm text-zinc-500">
-              {CommentsSummaryData.comments.neutral} Comentários
-            </span>
+          <div className="flex h-2 w-full overflow-hidden rounded">
+            <div
+              className={twMerge(
+                "h-full bg-green-600",
+                commentsBySentiment &&
+                  commentsBySentiment.countSentiment651To1000 > 0 &&
+                  "rounded-l",
+              )}
+              style={{
+                width: `${commentsBySentiment && (commentsBySentiment.countSentiment651To1000 / (commentsBySentiment.countSentiment0To350 + commentsBySentiment.countSentiment351To650 + commentsBySentiment.countSentiment651To1000)) * 100}%`,
+              }}
+            />
+            <div
+              className={"h-full bg-violet-600"}
+              style={{
+                width: `${commentsBySentiment && (commentsBySentiment.countSentiment351To650 / (commentsBySentiment.countSentiment0To350 + commentsBySentiment.countSentiment351To650 + commentsBySentiment.countSentiment651To1000)) * 100}%`,
+              }}
+            />
+            <div
+              className={twMerge(
+                "h-full bg-red-600",
+                commentsBySentiment &&
+                  commentsBySentiment.countSentiment0To350 > 0 &&
+                  "rounded-r",
+              )}
+              style={{
+                width: `${commentsBySentiment && (commentsBySentiment.countSentiment0To350 / (commentsBySentiment.countSentiment0To350 + commentsBySentiment.countSentiment351To650 + commentsBySentiment.countSentiment651To1000)) * 100}%`,
+              }}
+            />
           </div>
-          <div className="flex w-full items-center justify-between">
-            <div className="flex items-center gap-2">
-              <div className="h-4 w-4 rounded-full bg-red-600" />
-              <span>Comentários Negativos</span>
+          <div className="flex flex-col gap-4">
+            <div className="flex w-full items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="h-4 w-4 rounded-full bg-green-600" />
+                <span className="text-sm lg:text-base 2xl:text-lg">
+                  Comentários Positivos
+                </span>
+              </div>
+              <span className="text-sm text-zinc-500 lg:text-base 2xl:text-lg">
+                {commentsBySentiment?.countSentiment651To1000} Comentários
+              </span>
             </div>
-            <span className="text-sm text-zinc-500">
-              {CommentsSummaryData.comments.negative} Comentários
-            </span>
+            <div className="flex w-full items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="h-4 w-4 rounded-full bg-violet-600" />
+                <span className="text-sm lg:text-base 2xl:text-lg">
+                  Comentários Neutros
+                </span>
+              </div>
+              <span className="text-sm text-zinc-500 lg:text-base 2xl:text-lg">
+                {commentsBySentiment?.countSentiment351To650} Comentários
+              </span>
+            </div>
+            <div className="flex w-full items-center justify-between">
+              <div className="flex items-center gap-2">
+                <div className="h-4 w-4 rounded-full bg-red-600" />
+                <span className="text-sm lg:text-base 2xl:text-lg">
+                  Comentários Negativos
+                </span>
+              </div>
+              <span className="text-sm text-zinc-500 lg:text-base 2xl:text-lg">
+                {commentsBySentiment?.countSentiment0To350} Comentários
+              </span>
+            </div>
           </div>
         </div>
-      </div>
+      )}
       <BaseCardFooter />
     </BaseCard>
   );

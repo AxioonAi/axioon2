@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
-import { useSocialMediaDataContext } from "@/context/SocialMediaData";
 import { useMentionsDataContext } from "@/context/MentionsData";
 
 interface LineGradientChartProps {
@@ -57,6 +56,7 @@ export function LineGradientChart({
     );
 
     const series = {
+      name: "Sentimento",
       data: orderedFlatSentimentValues.map((value) => value.value),
     };
 

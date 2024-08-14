@@ -341,7 +341,10 @@ export function Sidebar() {
               )}
             </>
             <>
-              <button className="flex items-center justify-between rounded p-2 text-white">
+              <button
+                onClick={() => handleClick("legal")}
+                className="flex items-center justify-between rounded p-2 text-white"
+              >
                 <div className="flex items-center gap-4">
                   <Image
                     src="/Icons/at.svg"

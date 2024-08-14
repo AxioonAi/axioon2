@@ -23,10 +23,12 @@ interface CommentsDonutGraphProps {
   };
 }
 
-interface CommentsByGenderProps {
-  male: number;
-  female: number;
-  unknown: number;
+interface CommentsBySentimentProps {
+  countSentiment0To350: number;
+  countSentiment351To650: number;
+  countSentiment651To1000: number;
+  sentimentAverage: number;
+  totalSentiment: number;
 }
 
 interface SeriesProps {
@@ -37,22 +39,22 @@ export function CommentsDonutGraph({
   CommentsDonutGraphData,
 }: CommentsDonutGraphProps) {
   const [instagramComments, setInstagramComments] =
-    useState<CommentsByGenderProps>();
-  const [commentsByGender, setCommentsByGender] = useState<SeriesProps>();
+    useState<CommentsBySentimentProps>();
+  const [commentsBySentiment, setCommentsBySentiment] = useState<SeriesProps>();
   const { isGettingData, mentionsData } = useMentionsDataContext();
   const [footerData, setFooterData] = useState([
     {
-      title: "Homem",
+      title: "Positivo",
       color: "bg-sky-900",
       value: 1624,
     },
     {
-      title: "Mulher",
+      title: "Neutro",
       color: "bg-sky-400",
       value: 1267,
     },
     {
-      title: "Indefinido",
+      title: "Negativo",
       color: "bg-sky-200",
       value: 162,
     },
@@ -60,47 +62,51 @@ export function CommentsDonutGraph({
 
   useEffect(() => {
     if (mentionsData) {
-      setInstagramComments(mentionsData.mentions.commentsByGender);
+      setInstagramComments(mentionsData.mentions.commentsBySentiment);
     }
   }, [mentionsData]);
 
   useEffect(() => {
-    const genderValues = [instagramComments];
-    const summedValues = genderValues.reduce(
+    const sentimentValues = [instagramComments];
+    const summedValues = sentimentValues.reduce(
       (acc, curr) => {
         if (curr) {
-          acc!.male += curr.male;
-          acc!.female += curr.female;
-          acc!.unknown += curr.unknown;
+          acc!.countSentiment651To1000 += curr.countSentiment651To1000;
+          acc!.countSentiment351To650 += curr.countSentiment351To650;
+          acc!.countSentiment0To350 += curr.countSentiment0To350;
         }
         return acc;
       },
       {
-        male: 0,
-        female: 0,
-        unknown: 0,
+        countSentiment651To1000: 0,
+        countSentiment351To650: 0,
+        countSentiment0To350: 0,
       },
     );
 
-    setCommentsByGender({
-      series: [summedValues!.male, summedValues!.female, summedValues!.unknown],
+    setCommentsBySentiment({
+      series: [
+        summedValues!.countSentiment651To1000,
+        summedValues!.countSentiment351To650,
+        summedValues!.countSentiment0To350,
+      ],
     });
 
     setFooterData([
       {
-        title: "Homem",
+        title: "Positivo",
         color: "bg-sky-900",
-        value: summedValues!.male,
+        value: summedValues!.countSentiment651To1000,
       },
       {
-        title: "Mulher",
+        title: "Neutro",
         color: "bg-sky-400",
-        value: summedValues!.female,
+        value: summedValues!.countSentiment351To650,
       },
       {
-        title: "Indefinido",
+        title: "Negativo",
         color: "bg-sky-200",
-        value: summedValues!.unknown,
+        value: summedValues!.countSentiment0To350,
       },
     ]);
   }, [instagramComments]);
@@ -120,7 +126,7 @@ export function CommentsDonutGraph({
       ) : (
         <DonutChartWithFooterData
           ChartOptions={CommentsDonutGraphData.ChartOptions}
-          series={commentsByGender ? commentsByGender?.series : []}
+          series={commentsBySentiment ? commentsBySentiment?.series : []}
           footerData={footerData.map((data) => {
             return (
               <div className="flex flex-col items-center gap-2">

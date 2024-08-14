@@ -8,7 +8,7 @@ import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
 import { useOffsetContext } from "@/context/test";
 import { useMentionsDataContext } from "@/context/MentionsData";
 
-interface WordCloudProps {
+interface WordCloudHashtagsProps {
   WordCloudData: {
     WordCloudWords: {
       text: string;
@@ -29,7 +29,7 @@ interface WordsProps {
   value: number;
 }
 
-export function WordCloud({ WordCloudData }: WordCloudProps) {
+export function WordCloudHashtags({ WordCloudData }: WordCloudHashtagsProps) {
   const [instagramWords, setInstagramWords] = useState<WordsProps[]>();
   const [wordsList, setWordsList] = useState<WordsProps[]>();
   const { isGettingData, mentionsData } = useMentionsDataContext();
@@ -55,7 +55,6 @@ export function WordCloud({ WordCloudData }: WordCloudProps) {
       .filter((word): word is WordsProps => word !== undefined);
     setWordsList(flatWordsList);
   }, [instagramWords]);
-
   useEffect(() => {
     if (isVisible) {
       setElementName("keywords");

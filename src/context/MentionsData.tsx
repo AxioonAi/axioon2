@@ -22,6 +22,8 @@ interface MentionsDataContextProps {
   setMentionsData: Dispatch<SetStateAction<MentionsDataProps | undefined>>;
   isGettingData: boolean;
   setIsGettingData: Dispatch<SetStateAction<boolean>>;
+  selectedMentionsType: string;
+  setSelectedMentionsType: Dispatch<SetStateAction<string>>;
 }
 
 const MentionsDataContext = createContext({} as MentionsDataContextProps);
@@ -38,6 +40,8 @@ export const MentionsDataContextProvider = ({ children }: ContextProps) => {
   const [endDate, setEndDate] = useState<Date>(new Date());
   const [mentionsData, setMentionsData] = useState<MentionsDataProps>();
   const [isGettingData, setIsGettingData] = useState(false);
+  const [selectedMentionsType, setSelectedMentionsType] =
+    useState<string>("personal");
   const { selectedPolitician } = useSelectedPoliticianContext();
 
   async function GetHashtagsMentionsData() {
@@ -46,6 +50,7 @@ export const MentionsDataContextProvider = ({ children }: ContextProps) => {
       `/hashtag/mentions?endDate=2024-06-14&startDate=2024-03-14`,
       token,
     );
+    console.log("connect", connect);
   }
 
   async function GetMentionsData() {
@@ -53,9 +58,10 @@ export const MentionsDataContextProvider = ({ children }: ContextProps) => {
     setIsGettingData(true);
     const mentionsData = await authGetAPI(
       // `/profile/mentions/${selectedPolitician?.id}?endDate=2024-06-14&startDate=2024-03-14`,
-      `/profile/mentions/${selectedPolitician?.id}?endDate=${endDate.getFullYear()}-${endDate.getMonth() + 1}-${endDate.getDate()}&startDate=${startDate.getFullYear()}-${startDate.getMonth() + 1}-${startDate.getDate()}`,
+      `/profile/mentions/8eb93d97-4852-4cd3-877f-7938dadca2f5?endDate=2024-06-14&startDate=2024-03-14`,
       token,
     );
+    console.log("mentionsData", mentionsData);
     if (mentionsData.status === 200) {
       setMentionsData(mentionsData.body);
       return setIsGettingData(false);
@@ -79,6 +85,8 @@ export const MentionsDataContextProvider = ({ children }: ContextProps) => {
     setMentionsData,
     isGettingData,
     setIsGettingData,
+    selectedMentionsType,
+    setSelectedMentionsType,
   };
 
   return (
@@ -98,6 +106,8 @@ export function useMentionsDataContext() {
     setMentionsData,
     isGettingData,
     setIsGettingData,
+    selectedMentionsType,
+    setSelectedMentionsType,
   } = useContext(MentionsDataContext);
 
   return {
@@ -109,5 +119,7 @@ export function useMentionsDataContext() {
     setMentionsData,
     isGettingData,
     setIsGettingData,
+    selectedMentionsType,
+    setSelectedMentionsType,
   };
 }

@@ -148,7 +148,101 @@ export const CommentsDonutGraphData = {
   ChartOptions: {
     series: [1624, 1267, 162],
     options: {
-      labels: ["Female Candidates", "Male Candidates"],
+      labels: ["Feminino", "Masculino", "Outros"],
+      chart: {
+        type: "donut" as const,
+      },
+      legend: {
+        show: false,
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      stroke: {
+        width: 0,
+      },
+      plotOptions: {
+        pie: {
+          expandOnClick: false,
+          donut: {
+            size: "80%",
+            background: "transparent",
+            labels: {
+              show: true,
+              name: {
+                fontSize: "16px",
+                color: undefined,
+                offsetY: 5,
+              },
+              value: {
+                fontSize: "15px",
+                color: "#000",
+              },
+              total: {
+                show: true,
+                showAlways: true,
+                label: "Total",
+                fontSize: "22px",
+                fontWeight: 600,
+                color: "#000",
+              },
+            },
+          },
+        },
+      },
+      colors: ["#0C4A6E", "#38BDF8", "#BAE6FD"],
+      responsive: [
+        {
+          breakpoint: 1024,
+          options: {
+            chart: {
+              height: 150,
+            },
+          },
+        },
+        {
+          breakpoint: 2560,
+          options: {
+            chart: {
+              height: 200,
+            },
+          },
+        },
+        {
+          breakpoint: 2561,
+          options: {
+            chart: {
+              height: 450,
+            },
+          },
+        },
+      ],
+    },
+  },
+  footerData: [
+    {
+      title: "Homem",
+      color: "bg-sky-900",
+      value: 1624,
+    },
+    {
+      title: "Mulher",
+      color: "bg-sky-400",
+      value: 1267,
+    },
+    {
+      title: "Indefinido",
+      color: "bg-sky-200",
+      value: 162,
+    },
+  ],
+};
+
+export const CommentsSentimentDonutGraphData = {
+  ChartOptions: {
+    series: [1624, 1267, 162],
+    options: {
+      labels: ["Positivo", "Neutro", "Negativo"],
       chart: {
         type: "donut" as const,
       },

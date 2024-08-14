@@ -14,14 +14,14 @@ interface WordsProps {
   sentimentAvg: number;
 }
 
-export function WordsList() {
+export function WordsListHashtags() {
   const [instagramWords, setInstagramWords] = useState<WordsProps[]>();
   const [wordsList, setWordsList] = useState<WordsProps[]>([]);
   const { isGettingData, mentionsData } = useMentionsDataContext();
 
   useEffect(() => {
     if (mentionsData) {
-      const instagramWordsData = mentionsData.wordCloud.instagram.words.map(
+      const instagramWordsData = mentionsData.hashtagCloud.instagram.words.map(
         (word) => ({
           text: word.word,
           value: word.quantity,

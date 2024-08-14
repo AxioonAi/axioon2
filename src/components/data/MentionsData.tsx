@@ -197,6 +197,7 @@ export const WordCloudData = {
     fontWeight: "700",
     fontFamily: "Impact",
     fontSizes: [20, 60] as [number, number],
+    deterministic: true,
   },
 };
 
@@ -654,7 +655,7 @@ export const MentionsSentimentChartData = {
           breakpoint: 2560,
           options: {
             chart: {
-              height: 275,
+              height: 175,
             },
           },
         },
