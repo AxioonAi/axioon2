@@ -151,6 +151,9 @@ export const CommentsDonutGraphData = {
       labels: ["Feminino", "Masculino", "Outros"],
       chart: {
         type: "donut" as const,
+        animations: {
+          enabled: false,
+        },
       },
       legend: {
         show: false,
@@ -407,6 +410,9 @@ export const EngagementTimesData = {
       toolbar: {
         show: false,
       },
+      animations: {
+        enabled: false,
+      },
     },
     plotOptions: {
       bar: {
@@ -519,6 +525,9 @@ export const WordCloudData = {
     fontFamily: "Impact",
     fontSizes: [10, 60] as [number, number],
     deterministic: true,
+    enableOptimizations: true,
+    enableTooltip: false,
+    transitionDuration: 0,
   },
 };
 
@@ -1314,6 +1323,9 @@ export const PositiveNegativeCommentsData = {
           show: false,
         },
         background: "transparent" as const,
+        animations: {
+          enabled: false,
+        },
       },
       colors: ["#16A34A", "#DC2626"],
       stroke: {
@@ -1687,6 +1699,9 @@ export const LineGradientChartData = {
           blur: 1,
           opacity: 0.1,
         },
+        animations: {
+          enabled: false,
+        },
       },
       dataLabels: {
         enabled: false,
@@ -1782,6 +1797,9 @@ export const FollowerProgressionChartData = {
         stacked: false,
         fontFamily: "Poppins, Arial, sans-serif",
         zoom: {
+          enabled: false,
+        },
+        animations: {
           enabled: false,
         },
       },

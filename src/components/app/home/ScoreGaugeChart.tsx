@@ -79,6 +79,9 @@ export function ScoreGaugeChart({
   const [options] = useState<ApexOptions>({
     chart: {
       type: "radialBar",
+      animations: {
+        enabled: false,
+      },
     },
     plotOptions: {
       radialBar: {

@@ -64,9 +64,13 @@ export const SocialMediaDataContextProvider = ({ children }: ContextProps) => {
     console.log("socialMediaData: ", socialMediaData);
     if (socialMediaData.status === 200) {
       setSocialMediaData(socialMediaData.body.data);
-      return setIsGettingData(false);
+      return setTimeout(() => {
+        setIsGettingData(false);
+      }, 1000);
     }
-    return setIsGettingData(false);
+    return setTimeout(() => {
+      setIsGettingData(false);
+    }, 1000);
   }
 
   useEffect(() => {

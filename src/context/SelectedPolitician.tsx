@@ -57,12 +57,12 @@ export const SelectedPoliticianContextProvider = ({
     }
   }
 
-  useEffect(() => {
-    GetPoliticians();
-    if (selectedPolitician === null && politicians.length > 0) {
-      setSelectedPolitician(politicians[0]);
-    }
-  }, [politicians, selectedPolitician]);
+  // useEffect(() => {
+  //   GetPoliticians();
+  //   if (selectedPolitician === null && politicians.length > 0) {
+  //     setSelectedPolitician(politicians[0]);
+  //   }
+  // }, [politicians, selectedPolitician]);
 
   const value = {
     politicians,
