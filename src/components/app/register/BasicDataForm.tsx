@@ -1,15 +1,22 @@
+import { Dispatch } from "react";
 import { maskPhone } from "@/utils/masks";
 
+interface FormProps {
+  name: string;
+  email: string;
+  social_name: string;
+  password: string;
+  cpfCnpj: string;
+  birth_date: string;
+  sex: string;
+  mobilePhone: string;
+}
+
 interface FormDataProps {
-  formData: {
-    name: string;
-    email: string;
-    mobilePhone: string;
-    password: string;
-  };
-  setFormData: any;
+  formData: FormProps;
+  setFormData: Dispatch<FormProps>;
   terms: boolean;
-  setTerms: any;
+  setTerms: Dispatch<boolean>;
 }
 
 export function BasicDataForm({
@@ -22,7 +29,7 @@ export function BasicDataForm({
     <div>
       <div className="registerFormHeader mb-8 flex flex-col items-center">
         <strong className="text-2xl">Dados Básicos</strong>
-        <span className="text-gray-80 text-sm">
+        <span className="text-sm text-gray-80">
           Preencha os campos logo abaixo
         </span>
       </div>
@@ -32,7 +39,7 @@ export function BasicDataForm({
           Nome Completo
         </label>
         <input
-          className="border-gray-40 rounded border p-2 transition duration-300"
+          className="rounded border border-gray-40 p-2 transition duration-300"
           type="text"
           id="name"
           placeholder="Seu nome"
@@ -45,7 +52,7 @@ export function BasicDataForm({
           Email
         </label>
         <input
-          className="border-gray-40 rounded border p-2 transition duration-300"
+          className="rounded border border-gray-40 p-2 transition duration-300"
           type="email"
           placeholder="Digite seu email"
           value={formData.email}
@@ -57,7 +64,7 @@ export function BasicDataForm({
           Telefone
         </label>
         <input
-          className="border-gray-40 rounded border p-2 transition duration-300"
+          className="rounded border border-gray-40 p-2 transition duration-300"
           type="text"
           id="phoneNumber"
           maxLength={14}
@@ -73,7 +80,7 @@ export function BasicDataForm({
           Crie uma senha
         </label>
         <input
-          className="border-gray-40 rounded border p-2 transition duration-300"
+          className="rounded border border-gray-40 p-2 transition duration-300"
           type="password"
           placeholder="Crie uma senha segura"
           value={formData.password}
@@ -92,11 +99,11 @@ export function BasicDataForm({
         />
         <label htmlFor="terms">
           Ao informar meus dados, tenho ciência dos{" "}
-          <span className="text-darkBlueAxion hover:text-purpleAxion cursor-pointer transition duration-300">
+          <span className="cursor-pointer text-darkBlueAxion transition duration-300 hover:text-purpleAxion">
             Termos de Uso
           </span>{" "}
           e da{" "}
-          <span className="text-darkBlueAxion hover:text-purpleAxion cursor-pointer transition duration-300">
+          <span className="cursor-pointer text-darkBlueAxion transition duration-300 hover:text-purpleAxion">
             Política de Privacidade
           </span>
           .

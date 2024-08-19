@@ -44,7 +44,7 @@ export function HomeHeaderCard({
               />
             </Popover.Trigger>
             <Popover.Content
-              className="z-50 flex max-h-96 w-80 flex-col items-center justify-between rounded bg-white p-2 text-center text-sm font-semibold shadow-md"
+              className="z-50 flex w-80 flex-col items-center justify-between rounded bg-white p-4 text-center text-sm font-semibold shadow-md"
               align="end"
               sideOffset={5}
               side="bottom"

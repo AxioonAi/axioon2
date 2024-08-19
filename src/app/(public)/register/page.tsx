@@ -101,7 +101,7 @@ export default function RegisterAccount() {
     <div className="Container relative min-h-screen bg-white pb-16">
       <RegisterAccountHeader where="login" type="light" />
       <div
-        className={`progressBar bg-darkBlueAxion absolute top-[3.7rem] h-1 transition duration-500 ease-in-out ${step === 1 ? "w-[10%]" : step === 2 ? "w-1/2" : step === 3 ? "w-[90%]" : "w-full"}`}
+        className={`progressBar absolute top-[3.7rem] h-1 bg-darkBlueAxion transition duration-500 ease-in-out ${step === 1 ? "w-[10%]" : step === 2 ? "w-1/2" : step === 3 ? "w-[90%]" : "w-full"}`}
       />
       <main className="mb-0 flex w-full flex-col items-center justify-around lg:flex-row">
         <div className="formContainer w-[calc(100%-3vw)] px-[8%] lg:w-[50vw]">
@@ -120,7 +120,7 @@ export default function RegisterAccount() {
 
           {step === 1 ? (
             <button
-              className="bg-darkBlueAxion border-darkBlueAxion my-[3vh] w-full rounded border-2 p-3 font-bold text-white transition duration-300 hover:opacity-85"
+              className="my-[3vh] w-full rounded border-2 border-darkBlueAxion bg-darkBlueAxion p-3 font-bold text-white transition duration-300 hover:opacity-85"
               onClick={handleNext}
             >
               Proximo
@@ -128,13 +128,13 @@ export default function RegisterAccount() {
           ) : (
             <div className="mt-4 flex gap-4">
               <button
-                className="border-darkBlueAxion text-darkBlueAxion my-[3vh] w-full rounded border-2 bg-transparent p-3 font-bold transition duration-300 hover:opacity-85"
+                className="my-[3vh] w-full rounded border-2 border-darkBlueAxion bg-transparent p-3 font-bold text-darkBlueAxion transition duration-300 hover:opacity-85"
                 onClick={() => setStep(step - 1)}
               >
                 Voltar
               </button>
               <button
-                className="bg-darkBlueAxion border-darkBlueAxion my-[3vh] w-full rounded border-2 p-3 font-bold text-white transition duration-300 hover:opacity-85"
+                className="my-[3vh] w-full rounded border-2 border-darkBlueAxion bg-darkBlueAxion p-3 font-bold text-white transition duration-300 hover:opacity-85"
                 onClick={handleNext}
                 disabled={loading}
               >

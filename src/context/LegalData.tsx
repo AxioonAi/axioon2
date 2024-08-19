@@ -34,12 +34,15 @@ export const LegalDataContextProvider = ({ children }: ContextProps) => {
       `/profile/legal/9f0eb382-87a3-498e-91da-69f8ac23fa10`,
       token,
     );
-    console.log("legal", legal);
     if (legal.status === 200) {
       setLegalData(legal.body.politicianProfile);
-      return setIsGettingData(false);
+      return setTimeout(() => {
+        setIsGettingData(false);
+      }, 1500);
     }
-    return setIsGettingData(false);
+    return setTimeout(() => {
+      setIsGettingData(false);
+    }, 1500);
   }
 
   useEffect(() => {

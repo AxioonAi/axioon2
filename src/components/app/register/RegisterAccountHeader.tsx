@@ -13,7 +13,7 @@ export function RegisterAccountHeader({ type = "light", where }: Props) {
   const router = useRouter();
 
   return (
-    <header className="registerHeader border-gray-60 flex h-16 items-center justify-between border-b">
+    <header className="registerHeader flex h-16 items-center justify-between border-b border-gray-60">
       {type === "light" ? (
         <img
           className="ml-[2%] h-auto w-28 md:w-40"
@@ -29,7 +29,7 @@ export function RegisterAccountHeader({ type = "light", where }: Props) {
       )}
       <button
         className={twMerge(
-          "hover:bg-darkBlueAxion mr-[2%] rounded-md border bg-transparent px-3 py-2 text-sm font-bold transition duration-300",
+          "mr-[2%] rounded-md border bg-transparent px-3 py-2 text-sm font-bold transition duration-300 hover:bg-darkBlueAxion",
           type === "light"
             ? "border-darkBlueAxion bg-darkBlueAxion text-gray-10"
             : "border-gray-10 bg-gray-10 text-black",

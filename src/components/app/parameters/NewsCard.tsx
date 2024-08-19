@@ -34,7 +34,7 @@ export function NewsCard({ news }: NewsCardProps) {
             height={48}
           />
         ) : (
-          <div className="bg-gray-20 h-20 w-20 rounded-md" />
+          <div className="h-20 w-20 rounded-md bg-gray-20" />
         )}
       </div>
     </button>

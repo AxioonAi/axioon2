@@ -323,7 +323,7 @@ export function Sidebar() {
                 </div>
                 <ChevronDown size={18} className="stroke-[3]" />
               </button>
-              {openAccordion === "comparator" && (
+              {openAccordion === "/comparator" && (
                 <div className="flex flex-col gap-2">
                   <div className="flex w-full items-center gap-2">
                     <div className="h-1.5 w-1.5 rounded-full border border-zinc-500 bg-transparent" />
@@ -357,7 +357,7 @@ export function Sidebar() {
                 </div>
                 <ChevronDown size={18} className="stroke-[3]" />
               </button>
-              {openAccordion === "cerberus" && (
+              {openAccordion === "/legal" && (
                 <div className="flex flex-col gap-2">
                   <div className="flex w-full items-center gap-2">
                     <div className="h-1.5 w-1.5 rounded-full border border-zinc-500 bg-transparent" />
@@ -374,7 +374,13 @@ export function Sidebar() {
                 </div>
               )}
             </>
-            <button className="flex items-center gap-4 rounded p-2 text-white">
+            <button
+              onClick={() => router.push("/ai")}
+              className={twMerge(
+                "flex items-center gap-4 rounded p-2 text-white",
+                pathname === "/ai" && "bg-zinc-400/15",
+              )}
+            >
               <Image
                 src="/Icons/ai.svg"
                 alt=""

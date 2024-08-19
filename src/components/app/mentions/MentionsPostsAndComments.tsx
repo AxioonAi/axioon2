@@ -143,7 +143,7 @@ export function MentionsPostsAndComments() {
           new Date(b.date as string).getTime() -
           new Date(a.date as string).getTime(),
       );
-      setFinalPostData(orderedAllPosts);
+      setFinalPostData(orderedAllPosts as FinalPostsProps[]);
     }
   }, [instagramPosts, orderedInstagramPosts]);
 

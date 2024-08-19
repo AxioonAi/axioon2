@@ -1,35 +1,22 @@
-import { twMerge } from "tailwind-merge";
-import { BaseComparativeCard } from "@/components/app/comparator/BaseComparativeCard";
 import { CommentsBySentiment } from "@/components/app/comparator/CommentsBySentiment";
-import { CommentsDonutChart } from "@/components/app/comparator/CommentsDonutChart";
 import { ComparatorHeaderCard } from "@/components/app/comparator/ComparatorHeaderCard";
-import { FollowerProgressionChart } from "@/components/app/comparator/FollowerProgressionChart";
-import { FollowersDonutChart } from "@/components/app/comparator/FollowersDonutChart";
 import { LineGradientChart } from "@/components/app/comparator/LineGradientChart";
-import { PositiveCommentsChart } from "@/components/app/comparator/PositiveCommentsChart";
-import { WordCloud } from "@/components/app/home/WordCloud";
-import { ScoreGaugeChart } from "@/components/app/mentions/ScoreGaugeChart";
 import {
-  BaseComparativeCardData,
   CommentsBySentimentData,
-  CommentsDonutChartData,
   FollowerProgressionChartData,
+  FollowersDonutByGenderChartData,
   FollowersDonutChartData,
   LineGradientChartData,
-  LineGradientMentionsChartData,
-  NegativeCommentsData,
-  PositiveCommentsData,
   ScoreGaugeChartData,
-  WordCloudData,
 } from "@/components/data/ComparatorData";
-import { NegativeCommentsChart } from "@/components/app/comparator/NegativeCommentsChart";
-import { MentionsSentimentChart } from "@/components/app/mentions/MentionsSentimentChart";
-import { MentionsSentimentChartData } from "@/components/data/MentionsData";
-import { AgeAndGenderChart } from "@/components/app/ads/AgeAndGenderChart";
-import { AgeAndGenderData } from "@/components/data/AdsData";
-import { LineGradientMentionsChart } from "@/components/app/comparator/LineGradientMentionsChart";
-import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { ComparatorStickyCards } from "@/components/app/comparator/ComparatorStickyCards";
+import { ActiveScoreGaugeChart } from "@/components/app/comparator/ActiveScoreGaugeChart";
+import { PassiveScoreGaugeChart } from "@/components/app/comparator/PassiveScoreGaugeChart";
+import { ActiveFollowersByGenderDonutChart } from "@/components/app/comparator/ActiveFollowersByGenderDonutChart";
+import { PassiveFollowersByGenderDonutChart } from "@/components/app/comparator/PassiveFollowersByGenderDonutChart";
+import { PassiveFollowersDonutChart } from "@/components/app/comparator/PassiveFollowersDonutChart";
+import { ActiveFollowersDonutChart } from "@/components/app/comparator/ActiveFollowersDonutChart";
+import { FollowerProgressionChart } from "@/components/app/comparator/FollowerProgressionChart";
 
 export default function Comparator() {
   return (
@@ -40,7 +27,7 @@ export default function Comparator() {
       <ComparatorStickyCards />
       <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-[120vh] lg:grid-cols-12 lg:grid-rows-12">
         <div className="lg:col-span-3 lg:row-span-4">
-          <FollowersDonutChart
+          <ActiveFollowersDonutChart
             FollowersDonutChartData={FollowersDonutChartData}
           />
         </div>
@@ -50,21 +37,23 @@ export default function Comparator() {
           />
         </div>
         <div className="lg:col-span-3 lg:row-span-4">
-          <FollowersDonutChart
+          <PassiveFollowersDonutChart
             FollowersDonutChartData={FollowersDonutChartData}
           />
         </div>
         <div className="lg:col-span-3 lg:row-span-4">
-          <ScoreGaugeChart ScoreGaugeChartData={ScoreGaugeChartData} />
+          <ActiveScoreGaugeChart ScoreGaugeChartData={ScoreGaugeChartData} />
         </div>
         <div className="lg:col-span-6 lg:row-span-4">
           <LineGradientChart LineGradientChartData={LineGradientChartData} />
         </div>
         <div className="lg:col-span-3 lg:row-span-4">
-          <ScoreGaugeChart ScoreGaugeChartData={ScoreGaugeChartData} />
+          <PassiveScoreGaugeChart ScoreGaugeChartData={ScoreGaugeChartData} />
         </div>
         <div className="lg:col-span-4 lg:row-span-4">
-          <CommentsDonutChart CommentsDonutChartData={CommentsDonutChartData} />
+          <ActiveFollowersByGenderDonutChart
+            FollowersDonutChartData={FollowersDonutByGenderChartData}
+          />
         </div>
         <div className="lg:col-span-4 lg:row-span-4">
           <CommentsBySentiment
@@ -72,10 +61,12 @@ export default function Comparator() {
           />
         </div>
         <div className="lg:col-span-4 lg:row-span-4">
-          <CommentsDonutChart CommentsDonutChartData={CommentsDonutChartData} />
+          <PassiveFollowersByGenderDonutChart
+            FollowersDonutChartData={FollowersDonutByGenderChartData}
+          />
         </div>
       </div>
-      <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-screen lg:grid-cols-12 lg:grid-rows-12">
+      {/*  <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-screen lg:grid-cols-12 lg:grid-rows-12">
         <div className="lg:col-span-4 lg:row-span-4">
           <WordCloud WordCloudData={WordCloudData} />
         </div>
@@ -172,7 +163,7 @@ export default function Comparator() {
             FollowersDonutChartData={FollowersDonutChartData}
           />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

@@ -52,17 +52,18 @@ export const SelectedPoliticianContextProvider = ({
   async function GetPoliticians() {
     const token = cookies.get(Token);
     const politicians = await authGetAPI("/profile/monitoring", token);
+    console.log("politicians", politicians);
     if (politicians.status === 200) {
       setPoliticians(politicians.body.profile);
+      if (selectedPolitician === null && politicians.body.profile.length > 0) {
+        setSelectedPolitician(politicians.body.profile[0]);
+      }
     }
   }
 
-  // useEffect(() => {
-  //   GetPoliticians();
-  //   if (selectedPolitician === null && politicians.length > 0) {
-  //     setSelectedPolitician(politicians[0]);
-  //   }
-  // }, [politicians, selectedPolitician]);
+  useEffect(() => {
+    GetPoliticians();
+  }, []);
 
   const value = {
     politicians,

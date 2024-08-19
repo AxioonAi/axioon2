@@ -9,7 +9,7 @@ interface DonutChartWithFooterDataProps {
   ChartOptions: {
     options: ApexOptions;
   };
-  series: number[];
+  series?: number[];
   footerData: React.ReactNode[];
 }
 

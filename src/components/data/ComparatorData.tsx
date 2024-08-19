@@ -10,11 +10,11 @@ export const BaseComparativeCardData = {
   youtube: "YouTube",
 };
 
-export const FollowersDonutChartData = {
+export const FollowersDonutByGenderChartData = {
   ChartOptions: {
     series: [1624, 1267, 162],
     options: {
-      labels: ["Female Candidates", "Male Candidates"],
+      labels: ["Masculino", "Feminino", "Outro"],
       chart: {
         type: "donut" as const,
       },
@@ -112,23 +112,115 @@ export const FollowersDonutChartData = {
   ],
 };
 
+export const FollowersDonutChartData = {
+  ChartOptions: {
+    series: [1624, 1267, 162],
+    options: {
+      labels: ["Facebook", "Instagram", "TikTok", "YouTube"],
+      chart: {
+        type: "donut" as const,
+      },
+      legend: {
+        show: false,
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      stroke: {
+        width: 0,
+      },
+      plotOptions: {
+        pie: {
+          expandOnClick: false,
+          donut: {
+            size: "80%",
+            background: "transparent",
+            labels: {
+              show: true,
+              name: {
+                fontSize: "16px",
+                color: undefined,
+                offsetY: 5,
+              },
+              value: {
+                fontSize: "15px",
+                color: "#000",
+              },
+              total: {
+                show: true,
+                showAlways: true,
+                label: "Total",
+                fontSize: "22px",
+                fontWeight: 600,
+                color: "#000",
+              },
+            },
+          },
+        },
+      },
+      colors: ["#0c4a6e", "#0369a1", "#38bdf8", "#bae6fd"],
+      responsive: [
+        {
+          breakpoint: 1024,
+          options: {
+            chart: {
+              height: 300,
+            },
+          },
+        },
+        {
+          breakpoint: 1920,
+          options: {
+            chart: {
+              height: 150,
+            },
+          },
+        },
+        {
+          breakpoint: 2560,
+          options: {
+            chart: {
+              height: 200,
+            },
+          },
+        },
+        {
+          breakpoint: 2561,
+          options: {
+            chart: {
+              height: 450,
+            },
+          },
+        },
+      ],
+    },
+  },
+  footerData: [
+    {
+      title: "Homem",
+      color: "bg-sky-900",
+      value: 1624,
+    },
+    {
+      title: "Mulher",
+      color: "bg-sky-400",
+      value: 1267,
+    },
+    {
+      title: "Indefinido",
+      color: "bg-sky-200",
+      value: 162,
+    },
+  ],
+};
+
 export const FollowerProgressionChartData = {
   ChartOptions: {
     series: [
       {
         name: "Projects",
         type: "column",
-        data: [1.8, 2.5, 2.5, 1.5, 2.5, 2.8, 3.8],
-      },
-      {
-        name: "Tasks",
-        type: "column",
-        data: [1.1, 2.2, 3.1, 4, 4.1, 4.9, 6.5],
-      },
-      {
-        name: "Revenue",
-        type: "line",
-        data: [50, 59, 67, 65, 74, 73, 80],
+        data: [1.8, 2.5, 2.5, 1.5, 2.5, 2.8, 3.8, 4, 6, 2, 5],
       },
     ],
     options: {
@@ -137,10 +229,13 @@ export const FollowerProgressionChartData = {
         toolbar: {
           show: false,
         },
-        type: "line" as const,
+        type: "bar" as const,
         stacked: false,
         fontFamily: "Poppins, Arial, sans-serif",
         zoom: {
+          enabled: false,
+        },
+        animations: {
           enabled: false,
         },
       },
@@ -151,15 +246,29 @@ export const FollowerProgressionChartData = {
         borderColor: "#f5f4f4",
         strokeDashArray: 3,
       },
+      plotOptions: {
+        bar: {
+          columnWidth: "75%",
+          borderRadius: 3,
+        },
+      },
       dataLabels: {
         enabled: false,
       },
+      stroke: {
+        show: true,
+        width: 2,
+        colors: ["transparent"],
+      },
       xaxis: {
-        categories: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
         labels: {
-          style: {
-            colors: "black",
-          },
+          show: false,
+        },
+        axisBorder: {
+          show: false,
+        },
+        axisTicks: {
+          show: false,
         },
       },
       yaxis: [
@@ -182,40 +291,6 @@ export const FollowerProgressionChartData = {
             text: "" as const,
           },
         },
-        {
-          seriesName: "Tasks",
-          opposite: true,
-          axisTicks: {
-            show: true,
-          },
-          axisBorder: {
-            show: false,
-            color: "#00E396",
-          },
-          labels: {
-            show: true,
-          },
-          title: {
-            show: false,
-          },
-        },
-        {
-          seriesName: "Revenue",
-          opposite: true,
-          axisTicks: {
-            show: false,
-          },
-          axisBorder: {
-            show: false,
-            color: "#23b7e5",
-          },
-          labels: {
-            show: false,
-          },
-          title: {
-            show: false,
-          },
-        },
       ],
       tooltip: {
         theme: "light",
@@ -224,18 +299,11 @@ export const FollowerProgressionChartData = {
       legend: {
         show: false,
       },
-      stroke: {
-        width: [0, 0, 1.5],
-        curve: "straight" as const,
-        dashArray: [0, 0, 0],
+
+      fill: {
+        opacity: 1,
       },
-      plotOptions: {
-        bar: {
-          columnWidth: "35%",
-          borderRadius: 3,
-        },
-      },
-      colors: ["#0369A1", "#ededed", "#23b7e5"],
+      colors: ["#0369A1"],
       responsive: [
         {
           breakpoint: 1024,
@@ -250,7 +318,7 @@ export const FollowerProgressionChartData = {
           breakpoint: 1920,
           options: {
             chart: {
-              height: 250,
+              height: 300,
             },
           },
         },
@@ -258,7 +326,7 @@ export const FollowerProgressionChartData = {
           breakpoint: 2560,
           options: {
             chart: {
-              height: 300,
+              height: 225,
             },
           },
         },
@@ -266,7 +334,7 @@ export const FollowerProgressionChartData = {
           breakpoint: 2561,
           options: {
             chart: {
-              height: 400,
+              height: 450,
             },
           },
         },
@@ -274,6 +342,169 @@ export const FollowerProgressionChartData = {
     },
   },
 };
+
+// export const FollowerProgressionChartData = {
+//   ChartOptions: {
+//     series: [
+//       {
+//         name: "Projects",
+//         type: "column",
+//         data: [1.8, 2.5, 2.5, 1.5, 2.5, 2.8, 3.8],
+//       },
+//       {
+//         name: "Tasks",
+//         type: "column",
+//         data: [1.1, 2.2, 3.1, 4, 4.1, 4.9, 6.5],
+//       },
+//       {
+//         name: "Revenue",
+//         type: "line",
+//         data: [50, 59, 67, 65, 74, 73, 80],
+//       },
+//     ],
+//     options: {
+//       chart: {
+//         background: "transparent",
+//         toolbar: {
+//           show: false,
+//         },
+//         type: "line" as const,
+//         stacked: false,
+//         fontFamily: "Poppins, Arial, sans-serif",
+//         zoom: {
+//           enabled: false,
+//         },
+//       },
+//       theme: {
+//         mode: "light" as const,
+//       },
+//       grid: {
+//         borderColor: "#f5f4f4",
+//         strokeDashArray: 3,
+//       },
+//       dataLabels: {
+//         enabled: false,
+//       },
+//       xaxis: {
+//         categories: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+//         labels: {
+//           style: {
+//             colors: "black",
+//           },
+//         },
+//       },
+//       yaxis: [
+//         {
+//           seriesName: "Projects",
+//           axisTicks: {
+//             show: true,
+//           },
+//           axisBorder: {
+//             show: true,
+//             color: "#3d4142",
+//           },
+//           labels: {
+//             show: true,
+//             style: {
+//               colors: "black",
+//             },
+//           },
+//           title: {
+//             text: "" as const,
+//           },
+//         },
+//         {
+//           seriesName: "Tasks",
+//           opposite: true,
+//           axisTicks: {
+//             show: true,
+//           },
+//           axisBorder: {
+//             show: false,
+//             color: "#00E396",
+//           },
+//           labels: {
+//             show: true,
+//           },
+//           title: {
+//             show: false,
+//           },
+//         },
+//         {
+//           seriesName: "Revenue",
+//           opposite: true,
+//           axisTicks: {
+//             show: false,
+//           },
+//           axisBorder: {
+//             show: false,
+//             color: "#23b7e5",
+//           },
+//           labels: {
+//             show: false,
+//           },
+//           title: {
+//             show: false,
+//           },
+//         },
+//       ],
+//       tooltip: {
+//         theme: "light",
+//         enabled: true,
+//       },
+//       legend: {
+//         show: false,
+//       },
+//       stroke: {
+//         width: [0, 0, 1.5],
+//         curve: "straight" as const,
+//         dashArray: [0, 0, 0],
+//       },
+//       plotOptions: {
+//         bar: {
+//           columnWidth: "35%",
+//           borderRadius: 3,
+//         },
+//       },
+//       colors: ["#0369A1", "#ededed", "#23b7e5"],
+//       responsive: [
+//         {
+//           breakpoint: 1024,
+//           options: {
+//             chart: {
+//               height: 325,
+//             },
+//           },
+//         },
+
+//         {
+//           breakpoint: 1920,
+//           options: {
+//             chart: {
+//               height: 250,
+//             },
+//           },
+//         },
+//         {
+//           breakpoint: 2560,
+//           options: {
+//             chart: {
+//               height: 300,
+//             },
+//           },
+//         },
+//         {
+//           breakpoint: 2561,
+//           options: {
+//             chart: {
+//               height: 400,
+//             },
+//           },
+//         },
+//       ],
+//     },
+//   },
+// };
 
 export const ScoreGaugeChartData = {
   name: "Instagram",

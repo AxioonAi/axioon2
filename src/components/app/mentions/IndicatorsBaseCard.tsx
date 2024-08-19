@@ -3,7 +3,6 @@ import { ApexOptions } from "apexcharts";
 import ReactApexChart from "react-apexcharts";
 import { twMerge } from "tailwind-merge";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
-import { useSocialMediaDataContext } from "@/context/SocialMediaData";
 import { useMentionsDataContext } from "@/context/MentionsData";
 
 interface IndicatorsBaseCardProps {

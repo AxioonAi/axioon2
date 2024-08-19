@@ -1,11 +1,13 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
-import { BaseComparativeCard } from "./BaseComparativeCard";
-import { BaseComparativeCardData } from "@/components/data/ComparatorData";
+import Image from "next/image";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
+import { useComparatorDataContext } from "@/context/ComparatorData";
 
 export function ComparatorStickyCards() {
+  const { activeUserProfileData, passiveUserProfileData } =
+    useComparatorDataContext();
   const [isVisible, setIsVisible] = useState(false);
   const elementRef = useRef<HTMLDivElement>(null);
 
@@ -47,17 +49,143 @@ export function ComparatorStickyCards() {
         )}
       >
         <div className="lg:col-span-3">
-          <BaseComparativeCard
-            BaseComparativeCardData={BaseComparativeCardData}
-          />
+          <BaseCard className="gap-2">
+            <div className="flex w-full items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="text-sm font-semibold">
+                  {activeUserProfileData?.name}
+                </span>
+                <span className="text-xs italic text-zinc-500">
+                  {activeUserProfileData?.city}
+                </span>
+              </div>
+              {/* <button className="flex items-center gap-1 rounded bg-sky-100 p-1 font-semibold text-sky-700">
+                <span>Alterar</span>
+                <ChevronDown size={14} />
+              </button> */}
+            </div>
+            <div className="flex w-full flex-col items-center justify-evenly gap-1 lg:flex-row lg:flex-wrap">
+              <div className="flex w-full items-center gap-1 rounded bg-zinc-50 p-1 text-xs italic shadow-md lg:w-[45%]">
+                <Image
+                  src="/Logos/facebook.svg"
+                  alt=""
+                  width={50}
+                  height={50}
+                  className="h-5 w-5 rounded"
+                />
+                <span className="truncate">
+                  @{activeUserProfileData?.facebook}
+                </span>
+              </div>
+              <div className="flex w-full items-center gap-1 rounded bg-zinc-50 p-1 text-xs italic shadow-md lg:w-[45%]">
+                <Image
+                  src="/Logos/instagram.svg"
+                  alt=""
+                  width={50}
+                  height={50}
+                  className="h-5 w-5 rounded"
+                />
+                <span className="truncate">
+                  @{activeUserProfileData?.instagram}
+                </span>
+              </div>
+              <div className="flex w-full items-center gap-1 rounded bg-zinc-50 p-1 text-xs italic shadow-md lg:w-[45%]">
+                <Image
+                  src="/Logos/tiktok.svg"
+                  alt=""
+                  width={50}
+                  height={50}
+                  className="h-5 w-5 rounded"
+                />
+                <span className="truncate">
+                  @{activeUserProfileData?.tiktok}
+                </span>
+              </div>
+              <div className="flex w-full items-center gap-1 rounded bg-zinc-50 p-1 text-xs italic shadow-md lg:w-[45%]">
+                <Image
+                  src="/Logos/youtube.svg"
+                  alt=""
+                  width={50}
+                  height={50}
+                  className="h-5 w-5 rounded"
+                />
+                <span className="truncate">
+                  @{activeUserProfileData?.youtube}
+                </span>
+              </div>
+            </div>
+          </BaseCard>
         </div>
         <div className="lg:col-span-6">
           <BaseCard>1</BaseCard>
         </div>
         <div className="lg:col-span-3">
-          <BaseComparativeCard
-            BaseComparativeCardData={BaseComparativeCardData}
-          />
+          <BaseCard className="gap-2">
+            <div className="flex w-full items-center justify-between">
+              <div className="flex items-center gap-2">
+                <span className="text-sm font-semibold">
+                  {passiveUserProfileData?.name}
+                </span>
+                <span className="text-xs italic text-zinc-500">
+                  {passiveUserProfileData?.city}
+                </span>
+              </div>
+              {/* <button className="flex items-center gap-1 rounded bg-sky-100 p-1 font-semibold text-sky-700">
+                <span>Alterar</span>
+                <ChevronDown size={14} />
+              </button> */}
+            </div>
+            <div className="flex w-full flex-col items-center justify-evenly gap-1 lg:flex-row lg:flex-wrap">
+              <div className="flex w-full items-center gap-1 rounded bg-zinc-50 p-1 text-xs italic shadow-md lg:w-[45%]">
+                <Image
+                  src="/Logos/facebook.svg"
+                  alt=""
+                  width={50}
+                  height={50}
+                  className="h-5 w-5 rounded"
+                />
+                <span className="truncate">
+                  @{passiveUserProfileData?.facebook}
+                </span>
+              </div>
+              <div className="flex w-full items-center gap-1 rounded bg-zinc-50 p-1 text-xs italic shadow-md lg:w-[45%]">
+                <Image
+                  src="/Logos/instagram.svg"
+                  alt=""
+                  width={50}
+                  height={50}
+                  className="h-5 w-5 rounded"
+                />
+                <span className="truncate">
+                  @{passiveUserProfileData?.instagram}
+                </span>
+              </div>
+              <div className="flex w-full items-center gap-1 rounded bg-zinc-50 p-1 text-xs italic shadow-md lg:w-[45%]">
+                <Image
+                  src="/Logos/tiktok.svg"
+                  alt=""
+                  width={50}
+                  height={50}
+                  className="h-5 w-5 rounded"
+                />
+                <span className="truncate">
+                  @{passiveUserProfileData?.tiktok}
+                </span>
+              </div>
+              <div className="flex w-full items-center gap-1 rounded bg-zinc-50 p-1 text-xs italic shadow-md lg:w-[45%]">
+                <Image
+                  src="/Logos/youtube.svg"
+                  alt=""
+                  width={50}
+                  height={50}
+                  className="h-5 w-5 rounded"
+                />
+                <span className="truncate">
+                  @{passiveUserProfileData?.youtube}
+                </span>
+              </div>
+            </div>
+          </BaseCard>
         </div>
       </div>
     </div>

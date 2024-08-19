@@ -1,13 +1,20 @@
+import { Dispatch } from "react";
 import { maskCpfCnpj } from "@/utils/masks";
 
+interface FormProps {
+  name: string;
+  email: string;
+  social_name: string;
+  password: string;
+  cpfCnpj: string;
+  birth_date: string;
+  sex: string;
+  mobilePhone: string;
+}
+
 interface FormDataProps {
-  formData: {
-    social_name: string;
-    cpfCnpj: string;
-    birth_date: string;
-    sex: string;
-  };
-  setFormData: any;
+  formData: FormProps;
+  setFormData: Dispatch<FormProps>;
 }
 
 export function PersonalDataForm({ formData, setFormData }: FormDataProps) {
@@ -15,7 +22,7 @@ export function PersonalDataForm({ formData, setFormData }: FormDataProps) {
     <div>
       <div className="registerFormHeader mb-8 flex flex-col items-center">
         <strong className="text-2xl">Dados Pessoais</strong>
-        <span className="text-gray-80 text-sm">
+        <span className="text-sm text-gray-80">
           Preencha os campos logo abaixo
         </span>
       </div>
@@ -25,7 +32,7 @@ export function PersonalDataForm({ formData, setFormData }: FormDataProps) {
           Nome Social
         </label>
         <input
-          className="border-gray-40 rounded border p-2 transition duration-300"
+          className="rounded border border-gray-40 p-2 transition duration-300"
           type="text"
           id="social_name"
           placeholder="Digite seu Nome Social"
@@ -41,7 +48,7 @@ export function PersonalDataForm({ formData, setFormData }: FormDataProps) {
           Seu CPF
         </label>
         <input
-          className="border-gray-40 rounded border p-2 transition duration-300"
+          className="rounded border border-gray-40 p-2 transition duration-300"
           type="text"
           id="cpf"
           placeholder="Digite seu CPF"
@@ -57,7 +64,7 @@ export function PersonalDataForm({ formData, setFormData }: FormDataProps) {
           Data de Nascimento
         </label>
         <input
-          className="border-gray-40 rounded border p-2 transition duration-300"
+          className="rounded border border-gray-40 p-2 transition duration-300"
           type="date"
           placeholder="Sua Data de Nascimento"
           value={formData.birth_date}
@@ -72,7 +79,7 @@ export function PersonalDataForm({ formData, setFormData }: FormDataProps) {
       <div className="radioContainer flex gap-5">
         <div className="radioGroup flex items-center gap-2">
           <label
-            className="radioSelector border-gray-60 flex h-6 w-6 items-center justify-center rounded-full border"
+            className="radioSelector flex h-6 w-6 items-center justify-center rounded-full border border-gray-60"
             htmlFor="MALE"
           >
             <div
@@ -93,7 +100,7 @@ export function PersonalDataForm({ formData, setFormData }: FormDataProps) {
 
         <div className="radioGroup flex items-center gap-2">
           <label
-            className="radioSelector border-gray-60 flex h-6 w-6 items-center justify-center rounded-full border"
+            className="radioSelector flex h-6 w-6 items-center justify-center rounded-full border border-gray-60"
             htmlFor="FEMALE"
           >
             <div

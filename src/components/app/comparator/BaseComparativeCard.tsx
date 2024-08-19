@@ -1,6 +1,8 @@
+"use client";
 import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
+import { useComparatorDataContext } from "@/context/ComparatorData";
 
 interface BaseComparativeCardProps {
   BaseComparativeCardData: {
@@ -19,14 +21,17 @@ interface BaseComparativeCardProps {
 export function BaseComparativeCard({
   BaseComparativeCardData,
 }: BaseComparativeCardProps) {
+  const { activeUserProfileData } = useComparatorDataContext();
+
+  console.log("activeUserProfileData", activeUserProfileData);
+
   return (
     <BaseCard className="gap-2">
       <div className="flex w-full items-center justify-between">
         <div className="flex items-center gap-2">
-          <span className="font-semibold">{BaseComparativeCardData.name}</span>
+          <span className="font-semibold">{activeUserProfileData?.name}</span>
           <span className="italic text-zinc-500">
-            {BaseComparativeCardData.place.city} -{" "}
-            {BaseComparativeCardData.place.state}
+            {activeUserProfileData?.city}
           </span>
         </div>
         <button className="flex items-center gap-1 rounded bg-sky-100 p-1 font-semibold text-sky-700">

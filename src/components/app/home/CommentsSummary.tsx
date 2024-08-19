@@ -81,7 +81,7 @@ export function CommentsSummary() {
 
   return (
     <BaseCard className="p-0">
-      <BaseCardHeader title="Comentários" />
+      <BaseCardHeader title="Comentários por Sentimento" />
       {isGettingData ? (
         <Skeleton className="mx-auto mt-4 h-[17rem] w-11/12" />
       ) : (
