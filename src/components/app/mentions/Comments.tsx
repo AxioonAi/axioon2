@@ -38,6 +38,7 @@ export function Comments() {
         )}
       >
         <CommentsDonutGraph
+          className="h-96"
           CommentsDonutGraphData={CommentsSentimentDonutGraphData}
         />
       </div>

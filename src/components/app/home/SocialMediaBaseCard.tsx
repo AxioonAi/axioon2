@@ -2,6 +2,7 @@ import Image from "next/image";
 import { twMerge } from "tailwind-merge";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { useSocialMediaDataContext } from "@/context/SocialMediaData";
+import { Skeleton } from "@/components/global/Skeleton";
 
 interface SocialMediaBaseCardProps {
   SocialMediaData: {
@@ -27,11 +28,33 @@ export function SocialMediaBaseCard({
     instagram,
     tiktok,
     youtube,
+    isGettingData,
   } = useSocialMediaDataContext();
 
   return (
     <BaseCard className="relative h-36 gap-8 overflow-hidden p-0">
-      {SocialMediaData === null ? (
+      {isGettingData ? (
+        <button className="flex flex-col p-2 xl:p-4" disabled>
+          <div className="flex w-full items-center gap-4 border-b border-b-zinc-700/50 pb-2">
+            <Skeleton className="h-8 w-8 rounded-lg xl:h-14 xl:w-14" />
+            <div className="flex h-full w-full flex-col justify-center gap-2">
+              <Skeleton className="h-6 w-full" />
+              <Skeleton className="h-4 w-2/3" />
+            </div>
+          </div>
+          <div className="mt-1 flex w-full items-center justify-evenly">
+            <div className="flex h-full w-full flex-col items-center justify-center">
+              <Skeleton className="h-6 w-1/3" />
+            </div>
+            <div className="flex h-full w-full flex-col items-center justify-center">
+              <Skeleton className="h-6 w-1/3" />
+            </div>
+            <div className="flex h-full w-full flex-col items-center justify-center">
+              <Skeleton className="h-6 w-1/3" />
+            </div>
+          </div>
+        </button>
+      ) : SocialMediaData === null ? (
         <div
           className={twMerge(
             "absolute flex h-full w-full flex-col items-center justify-center rounded-lg bg-white/50 backdrop-blur-sm",

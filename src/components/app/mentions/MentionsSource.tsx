@@ -5,6 +5,7 @@ import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
 import { useMentionsDataContext } from "@/context/MentionsData";
+import { Skeleton } from "@/components/global/Skeleton";
 
 interface MentionsSourceDataProps {
   name: string;
@@ -42,7 +43,7 @@ export function MentionsSource() {
         }
       />
       {isGettingData ? (
-        <div className="h-full w-full bg-gradient-to-r from-gray-10 via-gray-20 to-gray-10" />
+        <Skeleton className="mx-auto mt-4 h-80 w-11/12" />
       ) : (
         <div className="flex h-full w-full flex-col">
           <div className="flex items-center gap-1 px-8 py-2">

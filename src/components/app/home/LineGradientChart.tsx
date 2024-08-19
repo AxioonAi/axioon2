@@ -7,6 +7,7 @@ import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
 import { useSocialMediaDataContext } from "@/context/SocialMediaData";
+import { Skeleton } from "@/components/global/Skeleton";
 
 interface LineGradientChartProps {
   LineGradientChartData: {
@@ -104,7 +105,7 @@ export function LineGradientChart({
         }
       />
       {isGettingData ? (
-        <div className="h-full w-full bg-gradient-to-r from-gray-10 via-gray-20 to-gray-10" />
+        <Skeleton className="mx-auto mt-4 h-48 w-11/12" />
       ) : (
         <div className="flex h-56 w-full flex-col lg:h-full">
           <ReactApexChart

@@ -4,12 +4,11 @@ import ReactApexChart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
+import { useSocialMediaDataContext } from "@/context/SocialMediaData";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
-import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
-import { useSocialMediaDataContext } from "@/context/SocialMediaData";
 import { Skeleton } from "@/components/global/Skeleton";
-import { useMentionsDataContext } from "@/context/MentionsData";
+import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
 // const ReactApexChart = dynamic(() => import("react-apexcharts"), {
 //   ssr: false,
 // });
@@ -31,8 +30,7 @@ export function ScoreGaugeChart({
   onlyGauge = true,
   className,
 }: ScoreGaugeChartProps) {
-  const { socialMediaData } = useSocialMediaDataContext();
-  const { isGettingData } = useMentionsDataContext();
+  const { socialMediaData, isGettingData } = useSocialMediaDataContext();
   const [facebookSentiment, setFacebookSentiment] = useState<number | null>(0);
   const [instagramSentiment, setInstagramSentiment] = useState<number | null>(
     0,

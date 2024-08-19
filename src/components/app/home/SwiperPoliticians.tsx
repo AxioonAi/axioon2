@@ -14,6 +14,7 @@ import { PerfilCard } from "../parameters/PerfilCard";
 import "swiper/swiper-bundle.css";
 import { CardWithTitleAndButton } from "../parameters/CardWithTitleAndButton";
 import { authGetAPI, token as Token } from "@/lib/axios";
+import { Skeleton } from "@/components/global/Skeleton";
 
 register();
 
@@ -34,14 +35,17 @@ export function SwiperPoliticians() {
   const sliderRef = useRef<SwiperRef>(null);
   const [slidesPerView, setSlidesPerView] = useState(3);
   const [politicians, setPoliticians] = useState<Politician[]>([]);
-  const skeletonArray = [0, 1, 2, 3, 4];
+  const [isGettingData, setIsGettingData] = useState(true);
 
   async function GetPoliticians() {
+    setIsGettingData(true);
     const token = cookies.get(Token);
     const politicians = await authGetAPI("/profile/monitoring", token);
     if (politicians.status === 200) {
       setPoliticians(politicians.body.profile);
+      return setIsGettingData(false);
     }
+    return setIsGettingData(false);
   }
 
   useEffect(() => {
@@ -94,7 +98,34 @@ export function SwiperPoliticians() {
         />
       </div>
       <div className="flex w-full">
-        {politicians.length !== 0 ? (
+        {isGettingData ? (
+          <Swiper
+            ref={sliderRef}
+            slidesPerView={slidesPerView}
+            spaceBetween={100}
+          >
+            <SwiperSlide className="py-2">
+              <div className="flex w-80 flex-col rounded-md bg-white p-4 shadow-md">
+                <Skeleton className="h-[9.5rem] w-full" />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide className="py-2">
+              <div className="flex w-80 flex-col rounded-md bg-white p-4 shadow-md">
+                <Skeleton className="h-[9.5rem] w-full" />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide className="py-2">
+              <div className="flex w-80 flex-col rounded-md bg-white p-4 shadow-md">
+                <Skeleton className="h-[9.5rem] w-full" />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide className="py-2">
+              <div className="flex w-80 flex-col rounded-md bg-white p-4 shadow-md">
+                <Skeleton className="h-[9.5rem] w-full" />
+              </div>
+            </SwiperSlide>
+          </Swiper>
+        ) : (
           <Swiper
             ref={sliderRef}
             slidesPerView={slidesPerView}
@@ -103,18 +134,6 @@ export function SwiperPoliticians() {
             {politicians.map((politician) => (
               <SwiperSlide key={politician.id} className="py-2">
                 <PerfilCard politician={politician} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        ) : (
-          <Swiper
-            ref={sliderRef}
-            slidesPerView={slidesPerView}
-            spaceBetween={100}
-          >
-            {skeletonArray.map((skeleton) => (
-              <SwiperSlide key={skeleton} className="py-2">
-                <div className="flex h-44 w-80 flex-col rounded-md bg-gradient-to-r from-gray-10 via-gray-20 to-gray-10 p-4 shadow-md" />
               </SwiperSlide>
             ))}
           </Swiper>

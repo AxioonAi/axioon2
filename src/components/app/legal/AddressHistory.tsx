@@ -5,6 +5,7 @@ import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { useLegalDataContext } from "@/context/LegalData";
+import { Skeleton } from "@/components/global/Skeleton";
 
 interface AddressessProps {
   address: string;
@@ -32,7 +33,7 @@ export function AddressHistory() {
     <BaseCard className="p-0">
       <BaseCardHeader title="Histórico de Endereços" />
       {isGettingData ? (
-        <div className="h-full w-full bg-gradient-to-r from-gray-10 via-gray-20 to-gray-10" />
+        <Skeleton className="mx-auto mt-4 h-96 w-11/12" />
       ) : (
         <div className="mb-12 flex h-60 flex-wrap justify-around gap-4 overflow-y-scroll p-4 pb-10 text-[10px] lg:h-full xl:text-xs 2xl:text-sm 3xl:text-base">
           {addressess && addressess.length !== 0 ? (

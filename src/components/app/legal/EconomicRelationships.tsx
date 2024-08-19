@@ -5,6 +5,7 @@ import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { useLegalDataContext } from "@/context/LegalData";
+import { Skeleton } from "@/components/global/Skeleton";
 
 interface EconomicRelationshipsDataProps {
   cnpj: string;
@@ -34,7 +35,7 @@ export function EconomicRelationships() {
     <BaseCard className="p-0">
       <BaseCardHeader title="Relacionamentos Econômicos" />
       {isGettingData ? (
-        <div className="h-full w-full bg-gradient-to-r from-gray-10 via-gray-20 to-gray-10" />
+        <Skeleton className="mx-auto mt-4 h-[22rem] w-11/12" />
       ) : (
         <div className="mb-12 flex h-80 flex-wrap justify-around gap-4 overflow-y-scroll p-4 pb-10 text-[10px] lg:h-full xl:text-xs 2xl:text-sm 3xl:text-base">
           {economicRelationships && economicRelationships.length !== 0 ? (

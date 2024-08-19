@@ -13,13 +13,13 @@ import {
   ScoreGaugeChartData,
   WordCloudData,
 } from "@/components/data/HomeData";
-import { ScoreGaugeChart } from "@/components/app/mentions/ScoreGaugeChart";
 import { LineGradientChart } from "@/components/app/home/LineGradientChart";
 import { FollowerProgressionChart } from "@/components/app/home/FollowerProgressionChart";
 import { HeaderCards } from "@/components/app/home/HeaderCards";
 import { IndicatorsCards } from "@/components/app/home/IndicatorsCards";
 import { HomeHeaderCard } from "@/components/app/home/HomeHeaderCard";
 import { PositiveNegativeWrapper } from "@/components/app/home/PositiveNegativeWrapper";
+import { ScoreGaugeChart } from "@/components/app/home/ScoreGaugeChart";
 
 export default function Home() {
   return (
@@ -30,7 +30,9 @@ export default function Home() {
 
       <div className="lg:col-span-12">
         <HeaderCards />
-        <IndicatorsCards />
+        <div className="h-40">
+          <IndicatorsCards />
+        </div>
       </div>
       <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-[75vh] lg:grid-cols-12 lg:grid-rows-12">
         <div className="lg:col-span-8 lg:row-span-5">

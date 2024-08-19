@@ -5,6 +5,7 @@ import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
 import { useMentionsDataContext } from "@/context/MentionsData";
+import { Skeleton } from "@/components/global/Skeleton";
 
 interface MentionsDefensorsProps {
   comments: number;
@@ -34,7 +35,7 @@ export function MentionsDefensors() {
     <BaseCard className="p-0">
       <BaseCardHeader title="Defensores" />
       {isGettingData ? (
-        <div className="h-full w-full bg-gradient-to-r from-gray-10 via-gray-20 to-gray-10" />
+        <Skeleton className="mx-auto mt-4 h-[17rem] w-11/12" />
       ) : (
         <div className="mb-12 flex h-80 w-full flex-col overflow-x-scroll overflow-y-scroll p-4 lg:mb-0 lg:h-[73%] lg:overflow-x-auto 3xl:h-4/5">
           {mentionsDefensors.map((item, index) => (

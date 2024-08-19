@@ -7,6 +7,7 @@ import { BaseCard } from "../../global/BaseCard/BaseCard";
 import { BaseCardFooter } from "../../global/BaseCard/BaseCardFooter";
 import { BaseCardHeader } from "../../global/BaseCard/BaseCardHeader";
 import { useLegalDataContext } from "@/context/LegalData";
+import { Skeleton } from "@/components/global/Skeleton";
 
 interface ProcessListProps {
   activePole: string | null;
@@ -62,7 +63,7 @@ export function LegalProcessList() {
     <BaseCard className="p-0">
       <BaseCardHeader title="Lista de Protestos" />
       {isGettingData ? (
-        <div className="h-full w-full bg-gradient-to-r from-gray-10 via-gray-20 to-gray-10" />
+        <Skeleton className="mx-auto mt-4 h-[21rem] w-11/12" />
       ) : (
         <div className="mb-12 flex h-[50vh] w-full flex-col justify-around gap-4 overflow-y-scroll p-4 pb-10 text-[10px] lg:h-full xl:text-xs 2xl:text-sm 3xl:text-base">
           {processList.map((item, index) => (

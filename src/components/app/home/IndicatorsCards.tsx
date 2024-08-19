@@ -3,6 +3,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { useEffect, useState } from "react";
 import { IndicatorsBaseCard } from "./IndicatorsBaseCard";
 import { useSocialMediaDataContext } from "@/context/SocialMediaData";
+import { Skeleton } from "@/components/global/Skeleton";
+import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 
 interface IndicatorsProps {
   name: string;
@@ -24,8 +26,8 @@ export function IndicatorsCards() {
   const [youtubeIndicators, setYoutubeIndicators] = useState<
     IndicatorsProps[] | null
   >(null);
-  const [indicators, setIndicators] = useState<IndicatorsProps[] | null>([]);
-  const { socialMediaData } = useSocialMediaDataContext();
+  const [indicators, setIndicators] = useState<IndicatorsProps[]>([]);
+  const { socialMediaData, isGettingData } = useSocialMediaDataContext();
 
   useEffect(() => {
     if (socialMediaData) {
@@ -97,12 +99,31 @@ export function IndicatorsCards() {
         },
       }}
     >
-      {indicators &&
-        indicators.map((data, index) => (
+      {isGettingData ? (
+        <>
+          <SwiperSlide className="py-2">
+            <BaseCard className="relative h-36 items-center justify-center overflow-hidden">
+              <Skeleton className="h-10 w-full" />
+            </BaseCard>
+          </SwiperSlide>
+          <SwiperSlide className="py-2">
+            <BaseCard className="relative h-36 items-center justify-center overflow-hidden">
+              <Skeleton className="h-10 w-full" />
+            </BaseCard>
+          </SwiperSlide>
+          <SwiperSlide className="py-2">
+            <BaseCard className="relative h-36 items-center justify-center overflow-hidden">
+              <Skeleton className="h-10 w-full" />
+            </BaseCard>
+          </SwiperSlide>
+        </>
+      ) : (
+        indicators?.map((data, index) => (
           <SwiperSlide className="py-2" key={index}>
             <IndicatorsBaseCard IndicatorsData={data} />
           </SwiperSlide>
-        ))}
+        ))
+      )}
     </Swiper>
   );
 }

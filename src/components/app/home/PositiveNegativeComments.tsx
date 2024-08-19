@@ -5,6 +5,7 @@ import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
 import { useSocialMediaDataContext } from "@/context/SocialMediaData";
+import { Skeleton } from "@/components/global/Skeleton";
 // const ReactApexChart = dynamic(() => import("react-apexcharts"), {
 //   ssr: false,
 // });
@@ -37,7 +38,7 @@ export function PositiveNegativeCommentsChart({
     <BaseCard className="p-0">
       <BaseCardHeader title="Comentários" />
       {isGettingData ? (
-        <div className="h-full w-full bg-gradient-to-r from-gray-10 via-gray-20 to-gray-10" />
+        <Skeleton className="mx-auto mt-4 h-[17rem] w-11/12" />
       ) : (
         <div className="flex h-96 w-full flex-col justify-evenly gap-2 p-2 lg:h-full lg:gap-4 lg:p-4">
           <div className="flex w-full items-center justify-between">

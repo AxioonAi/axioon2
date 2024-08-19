@@ -8,6 +8,7 @@ import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { DonutChartWithFooterData } from "@/components/global/DonutChartWithFooterData";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
 import { useMentionsDataContext } from "@/context/MentionsData";
+import { Skeleton } from "@/components/global/Skeleton";
 
 interface CommentsDonutGraphProps {
   CommentsDonutGraphData: {
@@ -21,6 +22,7 @@ interface CommentsDonutGraphProps {
       value: number;
     }[];
   };
+  className?: string;
 }
 
 interface CommentsBySentimentProps {
@@ -37,6 +39,7 @@ interface SeriesProps {
 
 export function CommentsDonutGraph({
   CommentsDonutGraphData,
+  className,
 }: CommentsDonutGraphProps) {
   const [instagramComments, setInstagramComments] =
     useState<CommentsBySentimentProps>();
@@ -122,7 +125,7 @@ export function CommentsDonutGraph({
         }
       />
       {isGettingData ? (
-        <div className="h-full w-full bg-gradient-to-r from-gray-10 via-gray-20 to-gray-10" />
+        <Skeleton className={twMerge("mx-auto mt-4 h-80 w-11/12", className)} />
       ) : (
         <DonutChartWithFooterData
           ChartOptions={CommentsDonutGraphData.ChartOptions}

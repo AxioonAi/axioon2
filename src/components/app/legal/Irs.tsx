@@ -5,6 +5,7 @@ import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
 import { useLegalDataContext } from "@/context/LegalData";
+import { Skeleton } from "@/components/global/Skeleton";
 
 interface PersonalIrsDataProps {
   full_name: string;
@@ -43,7 +44,7 @@ export function Irs() {
     <BaseCard className="p-0">
       <BaseCardHeader title="Dados da Receita Federal" />
       {isGettingData ? (
-        <div className="h-full w-full bg-gradient-to-r from-gray-10 via-gray-20 to-gray-10" />
+        <Skeleton className="mx-auto mt-4 h-96 w-11/12" />
       ) : (
         <div className="flex w-full flex-col">
           <div className="flex items-center gap-4 p-4">

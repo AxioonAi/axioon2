@@ -8,6 +8,7 @@ import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { useOffsetContext } from "@/context/test";
 import { useSocialMediaDataContext } from "@/context/SocialMediaData";
+import { Skeleton } from "@/components/global/Skeleton";
 
 interface FacebookPostsProps {
   commentCount: number;
@@ -317,7 +318,7 @@ export function PostsAndComments() {
         }
       />
       {isGettingData ? (
-        <div className="h-full w-full bg-gradient-to-r from-gray-10 via-gray-20 to-gray-10" />
+        <Skeleton className="mx-auto mt-4 h-[17rem] w-11/12" />
       ) : (
         <div className="flex h-full max-h-[60vh] w-full flex-col gap-4 overflow-y-scroll p-4">
           {finalPostData.map((item, index) => (

@@ -4,6 +4,7 @@ import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
 import { useMentionsDataContext } from "@/context/MentionsData";
+import { Skeleton } from "@/components/global/Skeleton";
 
 interface CommentsBySentimentProps {
   countSentiment0To350: number;
@@ -49,7 +50,7 @@ export function CommentsSummary() {
     <BaseCard className="p-0">
       <BaseCardHeader title="Comentários em Menções" />
       {isGettingData ? (
-        <div className="h-full w-full bg-gradient-to-r from-gray-10 via-gray-20 to-gray-10" />
+        <Skeleton className="mx-auto mt-4 h-96 w-11/12" />
       ) : (
         <div className="flex h-72 w-full flex-col gap-4 p-4 xs:h-60 lg:h-full lg:gap-8 lg:p-8 3xl:gap-16">
           <div className="flex w-full items-center gap-2">

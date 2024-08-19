@@ -15,6 +15,7 @@ import { CardWithTitleAndButton } from "../parameters/CardWithTitleAndButton";
 import { authGetAPI, AuthPostAPI, token as Token } from "@/lib/axios";
 import { Modal } from "@/components/global/Modal";
 import { Spinner } from "@/components/global/Spinner";
+import { Skeleton } from "@/components/global/Skeleton";
 
 interface hashtag {
   id: number;
@@ -28,15 +29,18 @@ export function SwiperHashtag() {
   const [openModal, setOpenModal] = useState(false);
   const [newHashtag, setNewHashtag] = useState("");
   const [isAddingHashtag, setIsAddingHashtag] = useState(false);
-  const skeletonArray = [0, 1, 2, 3, 4];
+  const [isGettingData, setIsGettingData] = useState(true);
   const cookie = useCookies();
 
   async function GetHashtags() {
+    setIsGettingData(true);
     const token = cookie.get(Token);
     const hashtag = await authGetAPI("/hashtag", token);
     if (hashtag.status === 200) {
       setHashtag(hashtag.body.hashtags);
+      return setIsGettingData(false);
     }
+    return setIsGettingData(false);
   }
 
   async function AddHashtag() {
@@ -112,7 +116,34 @@ export function SwiperHashtag() {
         />
       </div>
       <div className="flex w-full">
-        {hashtag.length !== 0 ? (
+        {isGettingData ? (
+          <Swiper
+            ref={sliderRef}
+            slidesPerView={slidesPerView}
+            spaceBetween={30}
+          >
+            <SwiperSlide className="py-2">
+              <div className="flex w-80 flex-col rounded-md bg-white p-4 shadow-md">
+                <Skeleton className="h-12 w-full" />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide className="py-2">
+              <div className="flex w-80 flex-col rounded-md bg-white p-4 shadow-md">
+                <Skeleton className="h-12 w-full" />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide className="py-2">
+              <div className="flex w-80 flex-col rounded-md bg-white p-4 shadow-md">
+                <Skeleton className="h-12 w-full" />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide className="py-2">
+              <div className="flex w-80 flex-col rounded-md bg-white p-4 shadow-md">
+                <Skeleton className="h-12 w-full" />
+              </div>
+            </SwiperSlide>
+          </Swiper>
+        ) : (
           <Swiper
             ref={sliderRef}
             slidesPerView={
@@ -122,18 +153,6 @@ export function SwiperHashtag() {
             {hashtag.map((item) => (
               <SwiperSlide key={item.id} className="py-2">
                 <HashtagCard hashtag={item.hashtag} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        ) : (
-          <Swiper
-            ref={sliderRef}
-            slidesPerView={slidesPerView}
-            spaceBetween={30}
-          >
-            {skeletonArray.map((item) => (
-              <SwiperSlide key={item} className="py-2">
-                <button className="flex w-full flex-row items-center gap-x-4 rounded-md bg-gradient-to-r from-gray-10 via-gray-20 to-gray-10 p-4 shadow-md transition-transform hover:scale-[1.01]" />{" "}
               </SwiperSlide>
             ))}
           </Swiper>

@@ -7,6 +7,7 @@ import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
 import { useOffsetContext } from "@/context/test";
 import { useMentionsDataContext } from "@/context/MentionsData";
+import { Skeleton } from "@/components/global/Skeleton";
 
 interface WordCloudHashtagsProps {
   WordCloudData: {
@@ -74,7 +75,7 @@ export function WordCloudHashtags({ WordCloudData }: WordCloudHashtagsProps) {
         }
       />
       {isGettingData ? (
-        <div className="h-full w-full bg-gradient-to-r from-gray-10 via-gray-20 to-gray-10" />
+        <Skeleton className="mx-auto mt-4 h-96 w-11/12" />
       ) : (
         <div
           ref={elementRef}

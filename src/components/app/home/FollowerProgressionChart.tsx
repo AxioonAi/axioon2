@@ -8,6 +8,7 @@ import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
 import { useSocialMediaDataContext } from "@/context/SocialMediaData";
+import { Skeleton } from "@/components/global/Skeleton";
 
 interface FollowerProgressionChartProps {
   FollowerProgressionChartData: {
@@ -192,11 +193,11 @@ export function FollowerProgressionChart({
         }
       />
       {isGettingData ? (
-        <div className="h-full w-full bg-gradient-to-r from-gray-10 via-gray-20 to-gray-10" />
+        <Skeleton className="mx-auto mt-4 h-80 w-11/12" />
       ) : (
         <div className="flex h-96 w-full flex-col lg:h-full">
           <div className="mt-2 flex w-full items-center gap-4 overflow-y-hidden overflow-x-scroll p-4 lg:overflow-x-auto">
-            <div
+            <button
               onClick={() => setSelected("facebook")}
               className={`${
                 selected === "facebook" && "bg-primary-100/20 text-primary-100"
@@ -212,8 +213,8 @@ export function FollowerProgressionChart({
                 />
               </div>
               Facebook
-            </div>
-            <div
+            </button>
+            <button
               onClick={() => setSelected("instagram")}
               className={`${
                 selected === "instagram" && "bg-primary-100/20 text-primary-100"
@@ -229,8 +230,8 @@ export function FollowerProgressionChart({
                 />
               </div>
               Instagram
-            </div>
-            <div
+            </button>
+            <button
               onClick={() => setSelected("tiktok")}
               className={`${
                 selected === "tiktok" && "bg-primary-100/20 text-primary-100"
@@ -246,8 +247,8 @@ export function FollowerProgressionChart({
                 />
               </div>
               TikTok
-            </div>
-            <div
+            </button>
+            <button
               onClick={() => setSelected("youtube")}
               className={`${
                 selected === "youtube" && "bg-primary-100/20 text-primary-100"
@@ -263,7 +264,7 @@ export function FollowerProgressionChart({
                 />
               </div>
               YouTube
-            </div>
+            </button>
           </div>
           <ReactApexChart
             options={FollowerProgressionChartData.ChartOptions.options}

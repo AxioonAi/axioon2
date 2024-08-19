@@ -1,7 +1,10 @@
+"use client";
 import { CircleCheck } from "lucide-react";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
+import { useLegalDataContext } from "@/context/LegalData";
+import { Skeleton } from "@/components/global/Skeleton";
 
 interface OpenDebtsProps {
   OpenDebtsData: {
@@ -18,11 +21,14 @@ interface OpenDebtsProps {
 }
 
 export function OpenDebts({ OpenDebtsData }: OpenDebtsProps) {
+  const { isGettingData } = useLegalDataContext();
   return (
     <BaseCard className="p-0">
       <BaseCardHeader title="Consulta de Débitos Ativos" />
       <div className="mb-12 flex h-80 flex-wrap justify-around gap-4 overflow-y-scroll p-4 pb-10 text-[10px] lg:h-full xl:text-xs 2xl:text-sm 3xl:text-base">
-        {OpenDebtsData && OpenDebtsData.length !== 0 ? (
+        {isGettingData ? (
+          <Skeleton className="mx-auto mt-4 h-[21rem] w-11/12" />
+        ) : OpenDebtsData && OpenDebtsData.length !== 0 ? (
           OpenDebtsData.map((item, index) => (
             <div
               key={index}

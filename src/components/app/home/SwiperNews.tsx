@@ -9,12 +9,13 @@ import {
 } from "react";
 import "swiper/swiper-bundle.css";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useCookies } from "next-client-cookies/dist";
+import { useCookies } from "next-client-cookies";
 import { NewsCard } from "../parameters/NewsCard";
 import { CardWithTitleAndButton } from "../parameters/CardWithTitleAndButton";
 import { authGetAPI, AuthPostAPI, token as Token } from "@/lib/axios";
 import { Modal } from "@/components/global/Modal";
 import { Spinner } from "@/components/global/Spinner";
+import { Skeleton } from "@/components/global/Skeleton";
 
 interface News {
   id: string;
@@ -32,14 +33,17 @@ export function SwiperNews() {
   const [openModal, setOpenModal] = useState(false);
   const [newWebsiteUrl, setNewWebsiteUrl] = useState("");
   const [isAddingWebsite, setIsAddingWebsite] = useState(false);
-  const skeletonArray = [0, 1, 2, 3, 4];
+  const [isGettingData, setIsGettingData] = useState(true);
 
   async function GetNews() {
+    setIsGettingData(true);
     const token = cookies.get(Token);
     const news = await authGetAPI("/website", token);
     if (news.status === 200) {
       setNews(news.body.websites);
+      return setIsGettingData(false);
     }
+    return setIsGettingData(false);
   }
 
   async function AddWebsite() {
@@ -116,7 +120,34 @@ export function SwiperNews() {
         />
       </div>
       <div className="flex w-full">
-        {news.length !== 0 ? (
+        {isGettingData ? (
+          <Swiper
+            ref={sliderRef}
+            slidesPerView={slidesPerView}
+            spaceBetween={30}
+          >
+            <SwiperSlide className="py-2">
+              <div className="flex w-80 flex-col rounded-md bg-white p-4 shadow-md">
+                <Skeleton className="h-20 w-full" />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide className="py-2">
+              <div className="flex w-80 flex-col rounded-md bg-white p-4 shadow-md">
+                <Skeleton className="h-20 w-full" />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide className="py-2">
+              <div className="flex w-80 flex-col rounded-md bg-white p-4 shadow-md">
+                <Skeleton className="h-20 w-full" />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide className="py-2">
+              <div className="flex w-80 flex-col rounded-md bg-white p-4 shadow-md">
+                <Skeleton className="h-20 w-full" />
+              </div>
+            </SwiperSlide>
+          </Swiper>
+        ) : (
           <Swiper
             ref={sliderRef}
             slidesPerView={slidesPerView}
@@ -125,18 +156,6 @@ export function SwiperNews() {
             {news.map((item) => (
               <SwiperSlide key={item.id} className="py-2">
                 <NewsCard news={item} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        ) : (
-          <Swiper
-            ref={sliderRef}
-            slidesPerView={slidesPerView}
-            spaceBetween={30}
-          >
-            {skeletonArray.map((item) => (
-              <SwiperSlide key={item} className="py-2">
-                <button className="flex h-28 w-[26.75rem] items-center justify-between rounded-md bg-gradient-to-r from-gray-10 via-gray-20 to-gray-10 p-4 shadow-md transition-transform hover:scale-[1.01]" />{" "}
               </SwiperSlide>
             ))}
           </Swiper>

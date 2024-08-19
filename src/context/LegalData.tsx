@@ -23,7 +23,7 @@ interface ContextProps {
 
 export const LegalDataContextProvider = ({ children }: ContextProps) => {
   const cookies = useCookies();
-  const [isGettingData, setIsGettingData] = useState(false);
+  const [isGettingData, setIsGettingData] = useState(true);
   const [legalData, setLegalData] = useState<LegalDataProps>();
   const { selectedPolitician } = useSelectedPoliticianContext();
 

@@ -39,7 +39,7 @@ export const MentionsDataContextProvider = ({ children }: ContextProps) => {
   );
   const [endDate, setEndDate] = useState<Date>(new Date());
   const [mentionsData, setMentionsData] = useState<MentionsDataProps>();
-  const [isGettingData, setIsGettingData] = useState(false);
+  const [isGettingData, setIsGettingData] = useState(true);
   const [selectedMentionsType, setSelectedMentionsType] =
     useState<string>("personal");
   const { selectedPolitician } = useSelectedPoliticianContext();

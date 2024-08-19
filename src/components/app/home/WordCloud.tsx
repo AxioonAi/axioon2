@@ -6,6 +6,7 @@ import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
 import { useSocialMediaDataContext } from "@/context/SocialMediaData";
+import { Skeleton } from "@/components/global/Skeleton";
 
 interface WordCloudProps {
   WordCloudData: {
@@ -89,7 +90,7 @@ export function WordCloud({ WordCloudData }: WordCloudProps) {
         }
       />
       {isGettingData ? (
-        <div className="h-full w-full bg-gradient-to-r from-gray-10 via-gray-20 to-gray-10" />
+        <Skeleton className="mx-auto mt-4 h-[17rem] w-11/12" />
       ) : (
         <div className="mb-12 flex h-48 w-full flex-col lg:mb-0 lg:h-[calc(100%-4rem)]">
           <ReactWordcloud

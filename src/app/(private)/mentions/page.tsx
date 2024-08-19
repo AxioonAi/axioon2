@@ -37,7 +37,10 @@ export default function Mentions() {
           <LineGradientChart LineGradientChartData={LineGradientChartData} />
         </div>
         <div className="lg:col-span-4 lg:row-span-4">
-          <ScoreGaugeChart ScoreGaugeChartData={ScoreGaugeChartData} />
+          <ScoreGaugeChart
+            className="h-56"
+            ScoreGaugeChartData={ScoreGaugeChartData}
+          />
         </div>
         <div className="lg:col-span-7 lg:row-span-5">
           <CommentsDonutGraph CommentsDonutGraphData={CommentsDonutGraphData} />

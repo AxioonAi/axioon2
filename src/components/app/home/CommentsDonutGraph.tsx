@@ -8,6 +8,7 @@ import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { DonutChartWithFooterData } from "@/components/global/DonutChartWithFooterData";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
 import { useSocialMediaDataContext } from "@/context/SocialMediaData";
+import { Skeleton } from "@/components/global/Skeleton";
 
 interface CommentsDonutGraphProps {
   CommentsDonutGraphData: {
@@ -133,7 +134,7 @@ export function CommentsDonutGraph({
         }
       />
       {isGettingData ? (
-        <div className="h-full w-full bg-gradient-to-r from-gray-10 via-gray-20 to-gray-10" />
+        <Skeleton className="mx-auto mt-4 h-[17rem] w-11/12" />
       ) : (
         <DonutChartWithFooterData
           ChartOptions={CommentsDonutGraphData.ChartOptions}
