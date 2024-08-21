@@ -199,41 +199,46 @@ export function PostsAndComments() {
 
   useEffect(() => {
     if (socialMediaData) {
-      setFacebookPosts(socialMediaData.posts.facebook);
-      setInstagramPosts(socialMediaData.posts.instagram);
-      setTiktokPosts(socialMediaData.posts.tiktok);
-      setYoutubePosts(socialMediaData.posts.youtube);
+      setFacebookPosts(socialMediaData.posts.facebook || []);
+      setInstagramPosts(socialMediaData.posts.instagram || []);
+      setTiktokPosts(socialMediaData.posts.tiktok || []);
+      setYoutubePosts(socialMediaData.posts.youtube || []);
     }
   }, [socialMediaData]);
 
   useEffect(() => {
     if (facebookPosts) {
       setOrderedFacebookPosts(
-        facebookPosts.sort(
-          (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
-        ),
+        facebookPosts &&
+          facebookPosts.sort(
+            (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+          ),
       );
     }
     if (instagramPosts) {
       setOrderedInstagramPosts(
-        instagramPosts.sort(
-          (a, b) =>
-            new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
-        ),
+        instagramPosts &&
+          instagramPosts.sort(
+            (a, b) =>
+              new Date(b.created_at).getTime() -
+              new Date(a.created_at).getTime(),
+          ),
       );
     }
     if (tiktokPosts) {
       setOrderedTiktokPosts(
-        tiktokPosts.sort(
-          (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
-        ),
+        tiktokPosts &&
+          tiktokPosts.sort(
+            (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+          ),
       );
     }
     if (youtubePosts) {
       setOrderedYoutubePosts(
-        youtubePosts.sort(
-          (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
-        ),
+        youtubePosts &&
+          youtubePosts.sort(
+            (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
+          ),
       );
     }
     const orderedPosts = [

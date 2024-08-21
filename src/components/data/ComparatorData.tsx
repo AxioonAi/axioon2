@@ -17,6 +17,9 @@ export const FollowersDonutByGenderChartData = {
       labels: ["Masculino", "Feminino", "Outro"],
       chart: {
         type: "donut" as const,
+        animations: {
+          enabled: false,
+        },
       },
       legend: {
         show: false,
@@ -119,6 +122,9 @@ export const FollowersDonutChartData = {
       labels: ["Facebook", "Instagram", "TikTok", "YouTube"],
       chart: {
         type: "donut" as const,
+        animations: {
+          enabled: false,
+        },
       },
       legend: {
         show: false,
@@ -309,7 +315,7 @@ export const FollowerProgressionChartData = {
           breakpoint: 1024,
           options: {
             chart: {
-              height: 325,
+              height: 260,
             },
           },
         },
@@ -318,7 +324,7 @@ export const FollowerProgressionChartData = {
           breakpoint: 1920,
           options: {
             chart: {
-              height: 300,
+              height: 175,
             },
           },
         },
@@ -334,7 +340,7 @@ export const FollowerProgressionChartData = {
           breakpoint: 2561,
           options: {
             chart: {
-              height: 450,
+              height: 325,
             },
           },
         },
@@ -516,7 +522,7 @@ export const ScoreGaugeChartData = {
   ],
 };
 
-export const LineGradientChartData = {
+export const LineGradientSentimentChartData = {
   ChartOptions: {
     series: [
       {
@@ -542,6 +548,9 @@ export const LineGradientChartData = {
           left: 1,
           blur: 1,
           opacity: 0.1,
+        },
+        animations: {
+          enabled: false,
         },
       },
       dataLabels: {
@@ -616,6 +625,117 @@ export const LineGradientChartData = {
           options: {
             chart: {
               height: 375,
+            },
+          },
+        },
+      ],
+    },
+  },
+};
+
+export const LineGradientChartData = {
+  ChartOptions: {
+    series: [
+      {
+        data: [170, 572, 751, 82, 1063, 653, 553, 23, 735],
+      },
+      {
+        data: [60, 729, 360, 708, 126, 350, 626, 167, 350],
+      },
+    ],
+    options: {
+      chart: {
+        type: "line" as const,
+        zoom: {
+          enabled: false,
+        },
+        toolbar: {
+          show: false,
+        },
+        offsetY: 20,
+        dropShadow: {
+          enabled: true,
+          top: 1,
+          left: 1,
+          blur: 1,
+          opacity: 0.1,
+        },
+        animations: {
+          enabled: false,
+        },
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      stroke: {
+        curve: "smooth" as const,
+        width: 1,
+        colors: ["#0ea5e9", "#0c4a6e"],
+      },
+      grid: {
+        show: false,
+      },
+      legend: {
+        show: false,
+      },
+      xaxis: {
+        axisBorder: {
+          show: false,
+        },
+        axisTicks: {
+          show: false,
+        },
+        labels: {
+          show: false,
+        },
+      },
+      yaxis: {
+        show: false,
+      },
+      tooltip: {
+        enabled: false,
+      },
+      fill: {
+        type: "gradient",
+        colors: ["#0ea5e9", "#0c4a6e"],
+        gradient: {
+          shadeIntensity: 1,
+          opacityFrom: 0.7,
+          opacityTo: 0.9,
+          stops: [0, 100],
+        },
+      },
+      responsive: [
+        {
+          breakpoint: 1024,
+          options: {
+            chart: {
+              height: 175,
+            },
+          },
+        },
+
+        {
+          breakpoint: 1920,
+          options: {
+            chart: {
+              height: 175,
+            },
+          },
+        },
+        {
+          breakpoint: 2560,
+          options: {
+            chart: {
+              height: 220,
+            },
+          },
+        },
+        {
+          breakpoint: 2561,
+          options: {
+            chart: {
+              height: 310,
             },
           },
         },
@@ -784,6 +904,10 @@ export const WordCloudData = {
     fontWeight: "700",
     fontFamily: "Impact",
     fontSizes: [10, 60] as [number, number],
+    deterministic: true,
+    enableOptimizations: true,
+    enableTooltip: false,
+    transitionDuration: 0,
   },
 };
 
@@ -869,7 +993,7 @@ export const PositiveCommentsData = {
           breakpoint: 1440,
           options: {
             chart: {
-              height: 175,
+              height: 140,
             },
           },
         },
@@ -877,7 +1001,7 @@ export const PositiveCommentsData = {
           breakpoint: 1920,
           options: {
             chart: {
-              height: 150,
+              height: 125,
             },
           },
         },
@@ -893,7 +1017,7 @@ export const PositiveCommentsData = {
           breakpoint: 2561,
           options: {
             chart: {
-              height: 250,
+              height: 225,
             },
           },
         },
@@ -1004,7 +1128,7 @@ export const NegativeCommentsData = {
           breakpoint: 1440,
           options: {
             chart: {
-              height: 175,
+              height: 140,
             },
           },
         },
@@ -1012,7 +1136,7 @@ export const NegativeCommentsData = {
           breakpoint: 1920,
           options: {
             chart: {
-              height: 150,
+              height: 125,
             },
           },
         },
@@ -1028,7 +1152,7 @@ export const NegativeCommentsData = {
           breakpoint: 2561,
           options: {
             chart: {
-              height: 250,
+              height: 225,
             },
           },
         },

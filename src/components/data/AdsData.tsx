@@ -20,6 +20,9 @@ export const AgeAndGenderData = {
         toolbar: {
           show: false,
         },
+        animations: {
+          enabled: false,
+        },
       },
       plotOptions: {
         bar: {

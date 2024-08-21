@@ -5,13 +5,16 @@ import { useSocialMediaDataContext } from "@/context/SocialMediaData";
 import { Skeleton } from "@/components/global/Skeleton";
 
 interface SocialMediaBaseCardProps {
-  SocialMediaData: {
-    followers: number;
-    following: number;
-    name: string;
-    posts: number;
-    username?: string;
-  } | null;
+  SocialMediaData:
+    | {
+        followers: number;
+        following: number;
+        name: string;
+        posts: number;
+        username?: string;
+      }
+    | null
+    | undefined;
   platform: string;
 }
 
@@ -115,17 +118,19 @@ export function SocialMediaBaseCard({
             />
             <div className="flex h-full flex-col justify-center">
               <strong className="text-[10px] leading-4 xl:text-xs 3xl:text-sm">
-                {SocialMediaData.name}
+                {SocialMediaData?.name}
               </strong>
               <span className="text-xs xl:text-sm 3xl:text-base">
-                {SocialMediaData.username ? "@" + SocialMediaData.username : ""}
+                {SocialMediaData?.username
+                  ? "@" + SocialMediaData?.username
+                  : ""}
               </span>
             </div>
           </div>
           <div className="mt-1 flex w-full items-center justify-evenly">
             <div className="flex h-full flex-col items-center justify-center">
               <strong className="text-xs xl:text-sm 3xl:text-base">
-                {SocialMediaData.posts}
+                {SocialMediaData?.posts}
               </strong>
               <span className="text-[10px] xl:text-xs 3xl:text-base">
                 Posts
@@ -133,7 +138,7 @@ export function SocialMediaBaseCard({
             </div>
             <div className="flex h-full flex-col items-center justify-center">
               <strong className="text-xs xl:text-sm 3xl:text-base">
-                {SocialMediaData.followers}
+                {SocialMediaData?.followers}
               </strong>
               <span className="text-[10px] xl:text-xs 3xl:text-base">
                 Seguidores
@@ -141,7 +146,7 @@ export function SocialMediaBaseCard({
             </div>
             <div className="flex h-full flex-col items-center justify-center">
               <strong className="text-xs xl:text-sm 3xl:text-base">
-                {SocialMediaData.following}
+                {SocialMediaData?.following}
               </strong>
               <span className="text-[10px] xl:text-xs 3xl:text-base">
                 Seguindo

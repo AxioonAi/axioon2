@@ -104,7 +104,7 @@ export function MentionsWordCloud({ WordCloudData }: WordCloudProps) {
       {isGettingData ? (
         <Skeleton className="mx-auto mt-4 h-[17rem] w-11/12" />
       ) : (
-        <div className="mb-12 flex h-48 w-full flex-col lg:mb-0 lg:h-[calc(100%-4rem)]">
+        <div className="mb-12 flex h-48 w-full flex-col lg:mb-0 lg:h-[calc(100%-5.5rem)]">
           <ReactWordcloud
             words={finalWordsList as WordsProps[]}
             options={WordCloudData.options}

@@ -13,25 +13,45 @@ interface platformDataProps {
 }
 
 export function HeaderCards() {
-  const { socialMediaData } = useSocialMediaDataContext();
+  const { staticData } = useSocialMediaDataContext();
 
-  const [staticFacebookData, setStaticFacebookData] =
-    useState<platformDataProps | null>(null);
-  const [staticInstagramData, setStaticInstagramData] =
-    useState<platformDataProps | null>(null);
-  const [staticTiktokData, setStaticTiktokData] =
-    useState<platformDataProps | null>(null);
-  const [staticYoutubeData, setStaticYoutubeData] =
-    useState<platformDataProps | null>(null);
+  const [staticFacebookData, setStaticFacebookData] = useState<
+    platformDataProps | null | undefined
+  >(null);
+  const [staticInstagramData, setStaticInstagramData] = useState<
+    platformDataProps | null | undefined
+  >(null);
+  const [staticTiktokData, setStaticTiktokData] = useState<
+    platformDataProps | null | undefined
+  >(null);
+  const [staticYoutubeData, setStaticYoutubeData] = useState<
+    platformDataProps | null | undefined
+  >(null);
 
   useEffect(() => {
-    if (socialMediaData) {
-      setStaticFacebookData(socialMediaData?.staticData.facebookData);
-      setStaticInstagramData(socialMediaData?.staticData.instagramData);
-      setStaticTiktokData(socialMediaData?.staticData.tiktokData);
-      setStaticYoutubeData(socialMediaData?.staticData.youtubeData);
+    if (staticData) {
+      setStaticFacebookData(
+        staticData?.staticData.facebookData
+          ? staticData.staticData.facebookData
+          : undefined,
+      );
+      setStaticInstagramData(
+        staticData?.staticData.instagramData
+          ? staticData.staticData.instagramData
+          : undefined,
+      );
+      setStaticTiktokData(
+        staticData?.staticData.tiktokData
+          ? staticData.staticData.tiktokData
+          : undefined,
+      );
+      setStaticYoutubeData(
+        staticData?.staticData.youtubeData
+          ? staticData.staticData.youtubeData
+          : undefined,
+      );
     }
-  }, [socialMediaData]);
+  }, [staticData]);
 
   return (
     <Swiper

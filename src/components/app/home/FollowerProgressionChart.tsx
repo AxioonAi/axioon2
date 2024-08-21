@@ -31,7 +31,7 @@ interface FollowersEvolutionProps {
 interface SeriesProps {
   name: string;
   type: string;
-  data: number[];
+  data: number[] | null;
 }
 
 export function FollowerProgressionChart({
@@ -51,127 +51,118 @@ export function FollowerProgressionChart({
     FollowersEvolutionProps[]
   >([]);
   const [series, setSeries] = useState<SeriesProps[]>([]);
-  // const [dates, setDates] = useState<string[]>([]);
   const { isGettingData, socialMediaData } = useSocialMediaDataContext();
 
   useEffect(() => {
     if (socialMediaData) {
       setFacebookFollowers(
-        socialMediaData.followersEvolution.facebook.map((follower) => ({
-          date: follower.date,
-          followers: follower.followers_count,
-        })),
+        socialMediaData.followersEvolution.facebook &&
+          socialMediaData.followersEvolution.facebook.map((follower) => ({
+            date: follower.date,
+            followers: follower.followers_count,
+          })),
       );
       setInstagramFollowers(
-        socialMediaData.followersEvolution.instagram.map((follower) => ({
-          date: follower.date,
-          followers: follower.followers,
-        })),
+        socialMediaData.followersEvolution.instagram &&
+          socialMediaData.followersEvolution.instagram.map((follower) => ({
+            date: follower.date,
+            followers: follower.followers,
+          })),
       );
       setTiktokFollowers(
-        socialMediaData.followersEvolution.tiktok.map((follower) => ({
-          date: follower.date,
-          followers: follower.fans,
-        })),
+        socialMediaData.followersEvolution.tiktok &&
+          socialMediaData.followersEvolution.tiktok.map((follower) => ({
+            date: follower.date,
+            followers: follower.fans,
+          })),
       );
       setYoutubeFollowers(
-        socialMediaData.followersEvolution.youtube.map((follower) => ({
-          date: follower.date,
-          followers: follower.channel_total_subs,
-        })),
+        socialMediaData.followersEvolution.youtube &&
+          socialMediaData.followersEvolution.youtube.map((follower) => ({
+            date: follower.date,
+            followers: follower.channel_total_subs,
+          })),
       );
     }
   }, [socialMediaData]);
 
   useEffect(() => {
-    const flatFacebookFollowers = facebookFollowers
-      .flat()
-      .filter((follower) => follower !== null);
-    const orderedFlatFacebookFollowers = flatFacebookFollowers.sort(
-      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
-    );
+    const flatFacebookFollowers =
+      facebookFollowers &&
+      facebookFollowers.flat().filter((follower) => follower !== null);
+    const orderedFlatFacebookFollowers =
+      flatFacebookFollowers &&
+      flatFacebookFollowers.sort(
+        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+      );
     const facebookSeries = [
       {
         name: "Facebook",
         type: "column",
-        data: orderedFlatFacebookFollowers.map(
-          (follower) => follower.followers,
-        ),
+        data: orderedFlatFacebookFollowers
+          ? orderedFlatFacebookFollowers.map((follower) => follower.followers)
+          : null,
       },
     ];
-
-    // const facebookDates = orderedFlatFacebookFollowers.map(
-    //   (follower) => follower.date,
-    // );
-
-    const flatInstagramFollowers = instagramFollowers
-      .flat()
-      .filter((follower) => follower !== null);
-    const orderedFlatInstagramFollowers = flatInstagramFollowers.sort(
-      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
-    );
+    const flatInstagramFollowers =
+      instagramFollowers &&
+      instagramFollowers.flat().filter((follower) => follower !== null);
+    const orderedFlatInstagramFollowers =
+      flatInstagramFollowers &&
+      flatInstagramFollowers.sort(
+        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+      );
     const instagramSeries = [
       {
         name: "Instagram",
         type: "column",
-        data: orderedFlatInstagramFollowers.map(
-          (follower) => follower.followers,
-        ),
+        data: orderedFlatInstagramFollowers
+          ? orderedFlatInstagramFollowers.map((follower) => follower.followers)
+          : null,
       },
     ];
-
-    // const instagramDates = orderedFlatInstagramFollowers.map(
-    //   (follower) => follower.date,
-    // );
-
-    const flatTikTokFollowers = tiktokFollowers
-      .flat()
-      .filter((follower) => follower !== null);
-    const orderedFlatTikTokFollowers = flatTikTokFollowers.sort(
-      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
-    );
+    const flatTikTokFollowers =
+      tiktokFollowers &&
+      tiktokFollowers.flat().filter((follower) => follower !== null);
+    const orderedFlatTikTokFollowers =
+      flatTikTokFollowers &&
+      flatTikTokFollowers.sort(
+        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+      );
     const tikTokSeries = [
       {
         name: "TikTok",
         type: "column",
-        data: orderedFlatTikTokFollowers.map((follower) => follower.followers),
+        data: orderedFlatTikTokFollowers
+          ? orderedFlatTikTokFollowers.map((follower) => follower.followers)
+          : null,
       },
     ];
-
-    // const tikTokDates = orderedFlatTikTokFollowers.map(
-    //   (follower) => follower.date,
-    // );
-
-    const flatYouTubeFollowers = youtubeFollowers
-      .flat()
-      .filter((follower) => follower !== null);
-    const orderedFlatYouTubeFollowers = flatYouTubeFollowers.sort(
-      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
-    );
+    const flatYouTubeFollowers =
+      youtubeFollowers &&
+      youtubeFollowers.flat().filter((follower) => follower !== null);
+    const orderedFlatYouTubeFollowers =
+      flatYouTubeFollowers &&
+      flatYouTubeFollowers.sort(
+        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+      );
     const youTubeSeries = [
       {
         name: "YouTube",
         type: "column",
-        data: orderedFlatYouTubeFollowers.map((follower) => follower.followers),
+        data: orderedFlatYouTubeFollowers
+          ? orderedFlatYouTubeFollowers.map((follower) => follower.followers)
+          : null,
       },
     ];
-
-    // const youTubeDates = orderedFlatYouTubeFollowers.map(
-    //   (follower) => follower.date,
-    // );
-
     if (selected === "facebook") {
       setSeries(facebookSeries);
-      // setDates(facebookDates);
     } else if (selected === "instagram") {
       setSeries(instagramSeries);
-      // setDates(instagramDates);
     } else if (selected === "tiktok") {
       setSeries(tikTokSeries);
-      // setDates(tikTokDates);
     } else if (selected === "youtube") {
       setSeries(youTubeSeries);
-      // setDates(youTubeDates);
     }
   }, [
     facebookFollowers,
@@ -179,7 +170,6 @@ export function FollowerProgressionChart({
     tiktokFollowers,
     youtubeFollowers,
     selected,
-    // dates,
   ]);
 
   return (
@@ -268,7 +258,7 @@ export function FollowerProgressionChart({
           </div>
           <ReactApexChart
             options={FollowerProgressionChartData.ChartOptions.options}
-            series={series as SeriesProps[]}
+            series={series.map((s) => ({ ...s, data: s.data || [] }))}
             type="line"
           />
         </div>

@@ -58,24 +58,28 @@ export function ActiveFollowersDonutChart({
   useEffect(() => {
     if (activeUserData) {
       setFacebookFollowers(
-        activeUserData.profileEvolution.facebook.find(
-          (item) => item.name === "Seguidores",
-        )?.value,
+        activeUserData.profileEvolution.facebook &&
+          activeUserData.profileEvolution.facebook.find(
+            (item) => item.name === "Seguidores",
+          )?.value,
       );
       setInstagramFollowers(
-        activeUserData.profileEvolution.instagram.find(
-          (item) => item.name === "Seguidores",
-        )?.value,
+        activeUserData.profileEvolution.instagram &&
+          activeUserData.profileEvolution.instagram.find(
+            (item) => item.name === "Seguidores",
+          )?.value,
       );
       setTiktokFollowers(
-        activeUserData.profileEvolution.tiktok.find(
-          (item) => item.name === "Seguidores",
-        )?.value,
+        activeUserData.profileEvolution.tiktok &&
+          activeUserData.profileEvolution.tiktok.find(
+            (item) => item.name === "Seguidores",
+          )?.value,
       );
       setYoutubeFollowers(
-        activeUserData.profileEvolution.youtube.find(
-          (item) => item.name === "Seguidores",
-        )?.value,
+        activeUserData.profileEvolution.youtube &&
+          activeUserData.profileEvolution.youtube.find(
+            (item) => item.name === "Seguidores",
+          )?.value,
       );
     }
   }, [activeUserData]);
@@ -83,10 +87,10 @@ export function ActiveFollowersDonutChart({
   useEffect(() => {
     setFollowers({
       series: [
-        facebookFollowers!,
-        instagramFollowers!,
-        tiktokFollowers!,
-        youtubeFollowers!,
+        facebookFollowers || 0,
+        instagramFollowers || 0,
+        tiktokFollowers || 0,
+        youtubeFollowers || 0,
       ],
     });
 
@@ -137,22 +141,26 @@ export function ActiveFollowersDonutChart({
           ChartOptions={FollowersDonutChartData.ChartOptions}
           footerData={footerData.map((data) => {
             return (
-              <div className="flex flex-col items-center gap-2">
-                <div className="flex items-center gap-2">
-                  <div
-                    className={twMerge("h-2 w-2 rounded-full", data.color)}
-                  />
-                  <span
-                    key={data.title}
-                    className="text-center text-xs text-zinc-500 lg:text-sm 2xl:text-base"
-                  >
-                    {data.title}
-                  </span>
-                </div>
-                <strong className="text-sm lg:text-base 2xl:text-lg">
-                  {data.value}
-                </strong>
-              </div>
+              <>
+                {data.value && (
+                  <div className="flex flex-col items-center gap-1">
+                    <div className="flex items-center gap-1">
+                      <div
+                        className={twMerge("h-2 w-2 rounded-full", data.color)}
+                      />
+                      <span
+                        key={data.title}
+                        className="text-center text-[10px] text-zinc-500 xl:text-sm 2xl:text-base"
+                      >
+                        {data.title}
+                      </span>
+                    </div>
+                    <strong className="text-xs xl:text-base 2xl:text-lg">
+                      {data.value}
+                    </strong>
+                  </div>
+                )}
+              </>
             );
           })}
         />

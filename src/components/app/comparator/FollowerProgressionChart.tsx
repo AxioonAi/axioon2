@@ -72,53 +72,62 @@ export function FollowerProgressionChart({
   useEffect(() => {
     if (activeUserData) {
       setActiveFacebookFollowers(
-        activeUserData.followersEvolution.facebook.map((follower) => ({
-          date: follower.date,
-          followers: follower.followers_count,
-        })),
+        activeUserData.followersEvolution.facebook &&
+          activeUserData.followersEvolution.facebook.map((follower) => ({
+            date: follower.date,
+            followers: follower.followers_count,
+          })),
       );
       setActiveInstagramFollowers(
-        activeUserData.followersEvolution.instagram.map((follower) => ({
-          date: follower.date,
-          followers: follower.followers,
-        })),
+        activeUserData.followersEvolution.instagram &&
+          activeUserData.followersEvolution.instagram.map((follower) => ({
+            date: follower.date,
+            followers: follower.followers,
+          })),
       );
       setActiveTiktokFollowers(
-        activeUserData.followersEvolution.tiktok.map((follower) => ({
-          date: follower.date,
-          followers: follower.fans,
-        })),
+        activeUserData.followersEvolution.tiktok &&
+          activeUserData.followersEvolution.tiktok.map((follower) => ({
+            date: follower.date,
+            followers: follower.fans,
+          })),
       );
       setActiveYoutubeFollowers(
-        activeUserData.followersEvolution.youtube.map((follower) => ({
-          date: follower.date,
-          followers: follower.channel_total_subs,
-        })),
+        activeUserData.followersEvolution.youtube &&
+          activeUserData.followersEvolution.youtube.map((follower) => ({
+            date: follower.date,
+            followers: follower.channel_total_subs,
+          })),
       );
     }
   }, [activeUserData]);
 
   useEffect(() => {
-    const flatactiveFacebookFollowers = activeFacebookFollowers
-      .flat()
-      .filter((follower) => follower !== null);
-    const orderedFlatactiveFacebookFollowers = flatactiveFacebookFollowers.sort(
-      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
-    );
+    const flatactiveFacebookFollowers =
+      activeFacebookFollowers &&
+      activeFacebookFollowers.flat().filter((follower) => follower !== null);
+    const orderedFlatactiveFacebookFollowers =
+      flatactiveFacebookFollowers &&
+      flatactiveFacebookFollowers.sort(
+        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+      );
     const facebookActiveSeries = [
       {
         name: "Facebook",
         type: "column",
-        data: orderedFlatactiveFacebookFollowers.map(
-          (follower) => follower.followers,
-        ),
+        data: orderedFlatactiveFacebookFollowers
+          ? orderedFlatactiveFacebookFollowers.map(
+              (follower) => follower.followers,
+            )
+          : [],
       },
     ];
 
-    const flatactiveInstagramFollowers = activeInstagramFollowers
-      .flat()
-      .filter((follower) => follower !== null);
+    const flatactiveInstagramFollowers =
+      activeInstagramFollowers &&
+      activeInstagramFollowers.flat().filter((follower) => follower !== null);
     const orderedFlatactiveInstagramFollowers =
+      flatactiveInstagramFollowers &&
       flatactiveInstagramFollowers.sort(
         (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
       );
@@ -126,41 +135,51 @@ export function FollowerProgressionChart({
       {
         name: "Instagram",
         type: "column",
-        data: orderedFlatactiveInstagramFollowers.map(
-          (follower) => follower.followers,
-        ),
+        data: orderedFlatactiveInstagramFollowers
+          ? orderedFlatactiveInstagramFollowers.map(
+              (follower) => follower.followers,
+            )
+          : [],
       },
     ];
 
-    const flatactiveTikTokFollowers = activeTiktokFollowers
-      .flat()
-      .filter((follower) => follower !== null);
-    const orderedFlatactiveTikTokFollowers = flatactiveTikTokFollowers.sort(
-      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
-    );
+    const flatactiveTikTokFollowers =
+      activeTiktokFollowers &&
+      activeTiktokFollowers.flat().filter((follower) => follower !== null);
+    const orderedFlatactiveTikTokFollowers =
+      flatactiveTikTokFollowers &&
+      flatactiveTikTokFollowers.sort(
+        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+      );
     const tikTokActiveSeries = [
       {
         name: "TikTok",
         type: "column",
-        data: orderedFlatactiveTikTokFollowers.map(
-          (follower) => follower.followers,
-        ),
+        data: orderedFlatactiveTikTokFollowers
+          ? orderedFlatactiveTikTokFollowers.map(
+              (follower) => follower.followers,
+            )
+          : [],
       },
     ];
 
-    const flatactiveYouTubeFollowers = activeYoutubeFollowers
-      .flat()
-      .filter((follower) => follower !== null);
-    const orderedFlatactiveYouTubeFollowers = flatactiveYouTubeFollowers.sort(
-      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
-    );
+    const flatactiveYouTubeFollowers =
+      activeYoutubeFollowers &&
+      activeYoutubeFollowers.flat().filter((follower) => follower !== null);
+    const orderedFlatactiveYouTubeFollowers =
+      flatactiveYouTubeFollowers &&
+      flatactiveYouTubeFollowers.sort(
+        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+      );
     const youTubeActiveSeries = [
       {
         name: "YouTube",
         type: "column",
-        data: orderedFlatactiveYouTubeFollowers.map(
-          (follower) => follower.followers,
-        ),
+        data: orderedFlatactiveYouTubeFollowers
+          ? orderedFlatactiveYouTubeFollowers.map(
+              (follower) => follower.followers,
+            )
+          : [],
       },
     ];
 
@@ -184,37 +203,42 @@ export function FollowerProgressionChart({
   useEffect(() => {
     if (passiveUserData) {
       setPassiveFacebookFollowers(
-        passiveUserData.followersEvolution.facebook.map((follower) => ({
-          date: follower.date,
-          followers: follower.followers_count,
-        })),
+        passiveUserData.followersEvolution.facebook &&
+          passiveUserData.followersEvolution.facebook.map((follower) => ({
+            date: follower.date,
+            followers: follower.followers_count,
+          })),
       );
       setPassiveInstagramFollowers(
-        passiveUserData.followersEvolution.instagram.map((follower) => ({
-          date: follower.date,
-          followers: follower.followers,
-        })),
+        passiveUserData.followersEvolution.instagram &&
+          passiveUserData.followersEvolution.instagram.map((follower) => ({
+            date: follower.date,
+            followers: follower.followers,
+          })),
       );
       setPassiveTiktokFollowers(
-        passiveUserData.followersEvolution.tiktok.map((follower) => ({
-          date: follower.date,
-          followers: follower.fans,
-        })),
+        passiveUserData.followersEvolution.tiktok &&
+          passiveUserData.followersEvolution.tiktok.map((follower) => ({
+            date: follower.date,
+            followers: follower.fans,
+          })),
       );
       setPassiveYoutubeFollowers(
-        passiveUserData.followersEvolution.youtube.map((follower) => ({
-          date: follower.date,
-          followers: follower.channel_total_subs,
-        })),
+        passiveUserData.followersEvolution.youtube &&
+          passiveUserData.followersEvolution.youtube.map((follower) => ({
+            date: follower.date,
+            followers: follower.channel_total_subs,
+          })),
       );
     }
   }, [passiveUserData]);
 
   useEffect(() => {
-    const flatpassiveFacebookFollowers = passiveFacebookFollowers
-      .flat()
-      .filter((follower) => follower !== null);
+    const flatpassiveFacebookFollowers =
+      passiveFacebookFollowers &&
+      passiveFacebookFollowers.flat().filter((follower) => follower !== null);
     const orderedFlatpassiveFacebookFollowers =
+      flatpassiveFacebookFollowers &&
       flatpassiveFacebookFollowers.sort(
         (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
       );
@@ -222,16 +246,19 @@ export function FollowerProgressionChart({
       {
         name: "Facebook",
         type: "column",
-        data: orderedFlatpassiveFacebookFollowers.map(
-          (follower) => follower.followers,
-        ),
+        data: orderedFlatpassiveFacebookFollowers
+          ? orderedFlatpassiveFacebookFollowers.map(
+              (follower) => follower.followers,
+            )
+          : [],
       },
     ];
 
-    const flatpassiveInstagramFollowers = passiveInstagramFollowers
-      .flat()
-      .filter((follower) => follower !== null);
+    const flatpassiveInstagramFollowers =
+      passiveInstagramFollowers &&
+      passiveInstagramFollowers.flat().filter((follower) => follower !== null);
     const orderedFlatpassiveInstagramFollowers =
+      flatpassiveInstagramFollowers &&
       flatpassiveInstagramFollowers.sort(
         (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
       );
@@ -239,41 +266,51 @@ export function FollowerProgressionChart({
       {
         name: "Instagram",
         type: "column",
-        data: orderedFlatpassiveInstagramFollowers.map(
-          (follower) => follower.followers,
-        ),
+        data: orderedFlatpassiveInstagramFollowers
+          ? orderedFlatpassiveInstagramFollowers.map(
+              (follower) => follower.followers,
+            )
+          : [],
       },
     ];
 
-    const flatpassiveTikTokFollowers = passiveTiktokFollowers
-      .flat()
-      .filter((follower) => follower !== null);
-    const orderedFlatpassiveTikTokFollowers = flatpassiveTikTokFollowers.sort(
-      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
-    );
+    const flatpassiveTikTokFollowers =
+      passiveTiktokFollowers &&
+      passiveTiktokFollowers.flat().filter((follower) => follower !== null);
+    const orderedFlatpassiveTikTokFollowers =
+      flatpassiveTikTokFollowers &&
+      flatpassiveTikTokFollowers.sort(
+        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+      );
     const tikTokPassiveSeries = [
       {
         name: "TikTok",
         type: "column",
-        data: orderedFlatpassiveTikTokFollowers.map(
-          (follower) => follower.followers,
-        ),
+        data: orderedFlatpassiveTikTokFollowers
+          ? orderedFlatpassiveTikTokFollowers.map(
+              (follower) => follower.followers,
+            )
+          : [],
       },
     ];
 
-    const flatpassiveYouTubeFollowers = passiveYoutubeFollowers
-      .flat()
-      .filter((follower) => follower !== null);
-    const orderedFlatpassiveYouTubeFollowers = flatpassiveYouTubeFollowers.sort(
-      (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
-    );
+    const flatpassiveYouTubeFollowers =
+      passiveYoutubeFollowers &&
+      passiveYoutubeFollowers.flat().filter((follower) => follower !== null);
+    const orderedFlatpassiveYouTubeFollowers =
+      flatpassiveYouTubeFollowers &&
+      flatpassiveYouTubeFollowers.sort(
+        (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
+      );
     const youTubePassiveSeries = [
       {
         name: "YouTube",
         type: "column",
-        data: orderedFlatpassiveYouTubeFollowers.map(
-          (follower) => follower.followers,
-        ),
+        data: orderedFlatpassiveYouTubeFollowers
+          ? orderedFlatpassiveYouTubeFollowers.map(
+              (follower) => follower.followers,
+            )
+          : [],
       },
     ];
 
@@ -319,11 +356,11 @@ export function FollowerProgressionChart({
               onClick={() => setSelected("facebook")}
               className={`${
                 selected === "facebook" && "bg-primary-100/20 text-primary-100"
-              } flex h-10 cursor-pointer items-center gap-2 rounded-full border pr-4 text-sm text-primary-100/70 shadow-md transition duration-200 hover:bg-primary-100/20 hover:text-primary-100`}
+              } flex h-6 cursor-pointer items-center gap-2 rounded-full border pr-4 text-[10px] text-primary-100/70 shadow-md transition duration-200 hover:bg-primary-100/20 hover:text-primary-100 lg:h-10 lg:text-xs xl:text-sm`}
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-100/20">
+              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary-100/20 lg:h-10 lg:w-10">
                 <Image
-                  className="rounded-md"
+                  className="h-3 w-3 rounded-md lg:h-5 lg:w-5"
                   src="/Logos/facebook.svg"
                   alt=""
                   width={24}
@@ -336,11 +373,11 @@ export function FollowerProgressionChart({
               onClick={() => setSelected("instagram")}
               className={`${
                 selected === "instagram" && "bg-primary-100/20 text-primary-100"
-              }cursor-pointer flex h-10 items-center gap-2 rounded-full border pr-4 text-sm text-primary-100/70 shadow-md transition duration-200 hover:bg-primary-100/20 hover:text-primary-100`}
+              }cursor-pointer flex h-6 items-center gap-2 rounded-full border pr-4 text-[10px] text-primary-100/70 shadow-md transition duration-200 hover:bg-primary-100/20 hover:text-primary-100 lg:h-10 lg:text-xs xl:text-sm`}
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-100/20">
+              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary-100/20 lg:h-10 lg:w-10">
                 <Image
-                  className="rounded-md"
+                  className="h-3 w-3 rounded-md lg:h-5 lg:w-5"
                   src="/Logos/instagram.svg"
                   alt=""
                   width={24}
@@ -353,11 +390,11 @@ export function FollowerProgressionChart({
               onClick={() => setSelected("tiktok")}
               className={`${
                 selected === "tiktok" && "bg-primary-100/20 text-primary-100"
-              }cursor-pointer flex h-10 items-center gap-2 rounded-full border pr-4 text-sm text-primary-100/70 shadow-md transition duration-200 hover:bg-primary-100/20 hover:text-primary-100`}
+              }cursor-pointer flex h-6 items-center gap-2 rounded-full border pr-4 text-[10px] text-primary-100/70 shadow-md transition duration-200 hover:bg-primary-100/20 hover:text-primary-100 lg:h-10 lg:text-xs xl:text-sm`}
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-100/20">
+              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary-100/20 lg:h-10 lg:w-10">
                 <Image
-                  className="rounded-md"
+                  className="h-3 w-3 rounded-md lg:h-5 lg:w-5"
                   src="/Logos/tiktok.svg"
                   alt=""
                   width={24}
@@ -370,11 +407,11 @@ export function FollowerProgressionChart({
               onClick={() => setSelected("youtube")}
               className={`${
                 selected === "youtube" && "bg-primary-100/20 text-primary-100"
-              }cursor-pointer flex h-10 items-center gap-2 rounded-full border pr-4 text-sm text-primary-100/70 shadow-md transition duration-200 hover:bg-primary-100/20 hover:text-primary-100`}
+              }cursor-pointer flex h-6 items-center gap-2 rounded-full border pr-4 text-[10px] text-primary-100/70 shadow-md transition duration-200 hover:bg-primary-100/20 hover:text-primary-100 lg:h-10 lg:text-xs xl:text-sm`}
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-100/20">
+              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary-100/20 lg:h-10 lg:w-10">
                 <Image
-                  className="rounded-md"
+                  className="h-3 w-3 rounded-md lg:h-5 lg:w-5"
                   src="/Logos/youtube.svg"
                   alt=""
                   width={24}

@@ -89,27 +89,20 @@ export const ComparatorDataContextProvider = ({ children }: ContextProps) => {
     const token = cookies.get(Token);
     const [activeUser, passiveUser] = await Promise.all([
       authGetAPI(
-        `/profile/media/8eb93d97-4852-4cd3-877f-7938dadca2f5?endDate=2024-06-14&startDate=2024-03-14&instagram=true&facebook=true&tiktok=true&youtube=true`,
+        // `/profile/media/8eb93d97-4852-4cd3-877f-7938dadca2f5?endDate=2024-06-14&startDate=2024-03-14&instagram=true&facebook=true&tiktok=true&youtube=true`,
+        `/profile/media/8eb93d97-4852-4cd3-877f-7938dadca2f5?endDate=${endDate}&startDate=${startDate}&instagram=true&facebook=true&tiktok=true&youtube=true`,
         token,
       ),
       authGetAPI(
-        `/profile/media/8eb93d97-4852-4cd3-877f-7938dadca2f5?endDate=2024-06-14&startDate=2024-03-14&instagram=true&facebook=true&tiktok=true&youtube=true`,
         // `/profile/media/4e7f0981-ae98-40f9-832e-e0770e98d8f2?endDate=2024-06-14&startDate=2024-03-14&instagram=true&facebook=true&tiktok=true&youtube=true`,
+        `/profile/media/8eb93d97-4852-4cd3-877f-7938dadca2f5?endDate=${endDate}&startDate=${startDate}&instagram=true&facebook=true&tiktok=true&youtube=true`,
         token,
       ),
     ]);
-    console.log("activeUser", activeUser);
-    console.log("passiveUser", passiveUser);
     if (activeUser.status === 200 && passiveUser.status === 200) {
       setActiveUserData(activeUser.body.data);
       setPassiveUserData(passiveUser.body.data);
-      return setTimeout(() => {
-        setIsGettingData(false);
-      }, 1000);
     }
-    return setTimeout(() => {
-      setIsGettingData(false);
-    }, 1000);
   }
 
   async function GetMentionsData() {
@@ -117,24 +110,20 @@ export const ComparatorDataContextProvider = ({ children }: ContextProps) => {
     setIsGettingData(true);
     const [activeUser, passiveUser] = await Promise.all([
       authGetAPI(
-        `/profile/mentions/8eb93d97-4852-4cd3-877f-7938dadca2f5?endDate=2024-06-14&startDate=2024-03-14`,
+        // `/profile/mentions/8eb93d97-4852-4cd3-877f-7938dadca2f5?endDate=2024-06-14&startDate=2024-03-14`,
+        `/profile/mentions/8eb93d97-4852-4cd3-877f-7938dadca2f5?endDate=${endDate}&startDate=${startDate}`,
         token,
       ),
       authGetAPI(
-        `/profile/mentions/8eb93d97-4852-4cd3-877f-7938dadca2f5?endDate=2024-06-14&startDate=2024-03-14`,
+        // `/profile/mentions/8eb93d97-4852-4cd3-877f-7938dadca2f5?endDate=2024-06-14&startDate=2024-03-14`,
+        `/profile/mentions/8eb93d97-4852-4cd3-877f-7938dadca2f5?endDate=${endDate}&startDate=${startDate}`,
         token,
       ),
     ]);
     if (activeUser.status === 200 && passiveUser.status === 200) {
       setActiveUserMentionsData(activeUser.body);
       setPassiveUserMentionsData(passiveUser.body);
-      return setTimeout(() => {
-        setIsGettingData(false);
-      }, 1000);
     }
-    return setTimeout(() => {
-      setIsGettingData(false);
-    }, 1000);
   }
 
   useEffect(() => {
@@ -153,8 +142,15 @@ export const ComparatorDataContextProvider = ({ children }: ContextProps) => {
   }, [selectedPolitician]);
 
   useEffect(() => {
-    GetSocialMediaData();
-    GetMentionsData();
+    async function GetData() {
+      setIsGettingData(true);
+      await Promise.all([GetSocialMediaData(), GetMentionsData()]);
+      setTimeout(() => {
+        setIsGettingData(false);
+      }, 1500);
+    }
+
+    GetData();
   }, [selectedPolitician, startDate, endDate]);
 
   const value = {

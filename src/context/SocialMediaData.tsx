@@ -25,6 +25,8 @@ interface SocialMediaDataContextProps {
   setStartDate: Dispatch<SetStateAction<Date | undefined>>;
   endDate: Date | undefined;
   setEndDate: Dispatch<SetStateAction<Date | undefined>>;
+  staticData: SocialMediaDataProps | undefined;
+  setStaticData: Dispatch<SetStateAction<SocialMediaDataProps | undefined>>;
   socialMediaData: SocialMediaDataProps | undefined;
   setSocialMediaData: Dispatch<
     SetStateAction<SocialMediaDataProps | undefined>
@@ -49,10 +51,23 @@ export const SocialMediaDataContextProvider = ({ children }: ContextProps) => {
     new Date(new Date().getTime() - 30 * 24 * 60 * 60 * 1000),
   );
   const [endDate, setEndDate] = useState<Date | undefined>(new Date());
+  const [staticData, setStaticData] = useState<SocialMediaDataProps>();
   const [socialMediaData, setSocialMediaData] =
     useState<SocialMediaDataProps>();
   const [isGettingData, setIsGettingData] = useState(true);
   const { selectedPolitician } = useSelectedPoliticianContext();
+
+  async function GetStaticData() {
+    setIsGettingData(true);
+    const token = cookies.get(Token);
+    const socialMediaData = await authGetAPI(
+      `/profile/media/8eb93d97-4852-4cd3-877f-7938dadca2f5?endDate=2024-06-14&startDate=2024-03-14&instagram=true&facebook=true&tiktok=true&youtube=true`,
+      token,
+    );
+    if (socialMediaData.status === 200) {
+      setStaticData(socialMediaData.body.data);
+    }
+  }
 
   async function GetSocialMediaData() {
     setIsGettingData(true);
@@ -61,19 +76,22 @@ export const SocialMediaDataContextProvider = ({ children }: ContextProps) => {
       `/profile/media/8eb93d97-4852-4cd3-877f-7938dadca2f5?endDate=2024-06-14&startDate=2024-03-14&instagram=${instagram}&facebook=${facebook}&tiktok=${tiktok}&youtube=${youtube}`,
       token,
     );
+    console.log("socialMediaData: ", socialMediaData.body.data);
     if (socialMediaData.status === 200) {
       setSocialMediaData(socialMediaData.body.data);
-      return setTimeout(() => {
-        setIsGettingData(false);
-      }, 1000);
     }
-    return setTimeout(() => {
-      setIsGettingData(false);
-    }, 1000);
   }
 
   useEffect(() => {
-    GetSocialMediaData();
+    async function GetData() {
+      setIsGettingData(true);
+      await Promise.all([GetStaticData(), GetSocialMediaData()]);
+      setTimeout(() => {
+        setIsGettingData(false);
+      }, 1500);
+    }
+
+    GetData();
   }, [
     selectedPolitician,
     instagram,
@@ -110,6 +128,9 @@ export const SocialMediaDataContextProvider = ({ children }: ContextProps) => {
     setEndDate,
     socialMediaData,
     setSocialMediaData,
+    staticData,
+    setStaticData,
+
     isGettingData,
     setIsGettingData,
   };
@@ -137,6 +158,8 @@ export function useSocialMediaDataContext() {
     setEndDate,
     socialMediaData,
     setSocialMediaData,
+    staticData,
+    setStaticData,
     isGettingData,
     setIsGettingData,
   } = useContext(SocialMediaDataContext);
@@ -156,6 +179,8 @@ export function useSocialMediaDataContext() {
     setEndDate,
     socialMediaData,
     setSocialMediaData,
+    staticData,
+    setStaticData,
     isGettingData,
     setIsGettingData,
   };

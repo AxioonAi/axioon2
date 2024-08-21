@@ -7,6 +7,7 @@ import {
   FollowersDonutByGenderChartData,
   FollowersDonutChartData,
   LineGradientChartData,
+  LineGradientSentimentChartData,
   ScoreGaugeChartData,
   WordCloudData,
 } from "@/components/data/ComparatorData";
@@ -40,17 +41,17 @@ export default function Comparator() {
       </div>
       <ComparatorStickyCards />
       <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-[120vh] lg:grid-cols-12 lg:grid-rows-12">
-        <div className="lg:col-span-3 lg:row-span-4">
+        <div className="lg:col-span-4 lg:row-span-4 2xl:col-span-3">
           <ActiveFollowersDonutChart
             FollowersDonutChartData={FollowersDonutChartData}
           />
         </div>
-        <div className="lg:col-span-6 lg:row-span-4">
+        <div className="lg:col-span-4 lg:row-span-4 2xl:col-span-6">
           <FollowerProgressionChart
             FollowerProgressionChartData={FollowerProgressionChartData}
           />
         </div>
-        <div className="lg:col-span-3 lg:row-span-4">
+        <div className="lg:col-span-4 lg:row-span-4 2xl:col-span-3">
           <PassiveFollowersDonutChart
             FollowersDonutChartData={FollowersDonutChartData}
           />
@@ -59,7 +60,9 @@ export default function Comparator() {
           <ActiveScoreGaugeChart ScoreGaugeChartData={ScoreGaugeChartData} />
         </div>
         <div className="lg:col-span-6 lg:row-span-4">
-          <LineGradientChart LineGradientChartData={LineGradientChartData} />
+          <LineGradientChart
+            LineGradientChartData={LineGradientSentimentChartData}
+          />
         </div>
         <div className="lg:col-span-3 lg:row-span-4">
           <PassiveScoreGaugeChart ScoreGaugeChartData={ScoreGaugeChartData} />
@@ -80,7 +83,7 @@ export default function Comparator() {
           />
         </div>
       </div>
-      <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-screen lg:grid-cols-12 lg:grid-rows-12">
+      {/* <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-screen lg:grid-cols-12 lg:grid-rows-12">
         <div className="lg:col-span-4 lg:row-span-4">
           <ActiveWordCloud WordCloudData={WordCloudData} />
         </div>
@@ -111,13 +114,8 @@ export default function Comparator() {
             ScoreGaugeChartData={ScoreGaugeChartData}
           />
         </div>
-      </div>
-      {/* <div className="lg:col-span-12 lg:row-span-4">
-        <MentionsSentimentChart
-          MentionsSentimentChartData={MentionsSentimentChartData}
-        />
       </div> */}
-      <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-[120vh] lg:grid-cols-12 lg:grid-rows-12">
+      {/* <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-[120vh] lg:grid-cols-12 lg:grid-rows-12">
         <div className="lg:col-span-4 lg:row-span-4">
           <ActiveMentionsWordCloud WordCloudData={WordCloudData} />
         </div>
@@ -143,7 +141,7 @@ export default function Comparator() {
             FollowersDonutChartData={FollowersDonutByGenderChartData}
           />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

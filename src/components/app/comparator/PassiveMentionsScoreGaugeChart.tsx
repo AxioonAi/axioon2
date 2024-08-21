@@ -79,6 +79,9 @@ export function PassiveMentionsScoreGaugeChart({
   const [options] = useState<ApexOptions>({
     chart: {
       type: "radialBar",
+      animations: {
+        enabled: false,
+      },
     },
     plotOptions: {
       radialBar: {
