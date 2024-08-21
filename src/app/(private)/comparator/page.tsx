@@ -8,6 +8,7 @@ import {
   FollowersDonutChartData,
   LineGradientChartData,
   ScoreGaugeChartData,
+  WordCloudData,
 } from "@/components/data/ComparatorData";
 import { ComparatorStickyCards } from "@/components/app/comparator/ComparatorStickyCards";
 import { ActiveScoreGaugeChart } from "@/components/app/comparator/ActiveScoreGaugeChart";
@@ -17,6 +18,19 @@ import { PassiveFollowersByGenderDonutChart } from "@/components/app/comparator/
 import { PassiveFollowersDonutChart } from "@/components/app/comparator/PassiveFollowersDonutChart";
 import { ActiveFollowersDonutChart } from "@/components/app/comparator/ActiveFollowersDonutChart";
 import { FollowerProgressionChart } from "@/components/app/comparator/FollowerProgressionChart";
+import { ActiveWordCloud } from "@/components/app/comparator/ActiveWordCloud";
+import { PassiveWordCloud } from "@/components/app/comparator/PassiveWordCloud";
+import { WordCloud } from "@/components/app/comparator/WordCloud";
+import { PositiveWrapper } from "@/components/app/comparator/PositiveCommentsWrapper";
+import { NegativeWrapper } from "@/components/app/comparator/NegativeCommentsWrapper";
+import { LineGradientMentionsChart } from "@/components/app/comparator/LineGradientMentionsChart";
+import { ActiveMentionsScoreGaugeChart } from "@/components/app/comparator/ActiveMentionsScoreGaugeChart";
+import { PassiveMentionsScoreGaugeChart } from "@/components/app/comparator/PassiveMentionsScoreGaugeChart";
+import { ActiveMentionsWordCloud } from "@/components/app/comparator/ActiveMentionsWordCloud";
+import { PassiveMentionsWordCloud } from "@/components/app/comparator/PassiveMentionsWordCloud";
+import { MentionsWordCloud } from "@/components/app/comparator/MentionsWordCloud";
+import { AgeAndGenderChart } from "@/components/app/ads/AgeAndGenderChart";
+import { AgeAndGenderData } from "@/components/data/AdsData";
 
 export default function Comparator() {
   return (
@@ -66,104 +80,70 @@ export default function Comparator() {
           />
         </div>
       </div>
-      {/*  <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-screen lg:grid-cols-12 lg:grid-rows-12">
+      <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-screen lg:grid-cols-12 lg:grid-rows-12">
         <div className="lg:col-span-4 lg:row-span-4">
-          <WordCloud WordCloudData={WordCloudData} />
+          <ActiveWordCloud WordCloudData={WordCloudData} />
         </div>
         <div className="lg:col-span-4 lg:row-span-4">
           <WordCloud WordCloudData={WordCloudData} />
         </div>
         <div className="lg:col-span-4 lg:row-span-4">
-          <WordCloud WordCloudData={WordCloudData} />
+          <PassiveWordCloud WordCloudData={WordCloudData} />
         </div>
         <div className="lg:col-span-6 lg:row-span-4">
-          <PositiveCommentsChart
-            PositiveCommentsChartData={PositiveCommentsData}
-            headerData={PositiveCommentsData.headerData.map((data, index) => (
-              <div
-                key={index}
-                className="flex w-1/3 items-center gap-1 text-[10px] lg:text-xs 2xl:text-sm 3xl:text-base"
-              >
-                <div
-                  className={twMerge(
-                    "min-h-3 min-w-3 rounded-full",
-                    data.color,
-                  )}
-                />
-                <div className="flex flex-col">
-                  <strong>{data.value}</strong>
-                  <span>{data.title}</span>
-                </div>
-              </div>
-            ))}
-          />
+          <PositiveWrapper />
         </div>
         <div className="lg:col-span-6 lg:row-span-4">
-          <NegativeCommentsChart
-            NegativeCommentsChartData={NegativeCommentsData}
-            headerData={PositiveCommentsData.headerData.map((data, index) => (
-              <div
-                key={index}
-                className="flex w-1/3 items-center gap-1 text-[10px] lg:text-xs 2xl:text-sm 3xl:text-base"
-              >
-                <div
-                  className={twMerge(
-                    "min-h-3 min-w-3 rounded-full",
-                    data.color,
-                  )}
-                />
-                <div className="flex flex-col">
-                  <strong>{data.value}</strong>
-                  <span>{data.title}</span>
-                </div>
-              </div>
-            ))}
-          />
+          <NegativeWrapper />
         </div>
         <div className="lg:col-span-3 lg:row-span-4">
-          <ScoreGaugeChart ScoreGaugeChartData={ScoreGaugeChartData} />
+          <ActiveMentionsScoreGaugeChart
+            ScoreGaugeChartData={ScoreGaugeChartData}
+          />
         </div>
         <div className="lg:col-span-6 lg:row-span-4">
           <LineGradientMentionsChart
-            LineGradientMentionsChartData={LineGradientMentionsChartData}
+            LineGradientChartData={LineGradientChartData}
           />
         </div>
         <div className="lg:col-span-3 lg:row-span-4">
-          <ScoreGaugeChart ScoreGaugeChartData={ScoreGaugeChartData} />
+          <PassiveMentionsScoreGaugeChart
+            ScoreGaugeChartData={ScoreGaugeChartData}
+          />
         </div>
       </div>
-      <div className="lg:col-span-12 lg:row-span-4">
+      {/* <div className="lg:col-span-12 lg:row-span-4">
         <MentionsSentimentChart
           MentionsSentimentChartData={MentionsSentimentChartData}
         />
-      </div>
+      </div> */}
       <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-[120vh] lg:grid-cols-12 lg:grid-rows-12">
         <div className="lg:col-span-4 lg:row-span-4">
-          <WordCloud WordCloudData={WordCloudData} />
+          <ActiveMentionsWordCloud WordCloudData={WordCloudData} />
         </div>
         <div className="lg:col-span-4 lg:row-span-4">
-          <WordCloud WordCloudData={WordCloudData} />
+          <MentionsWordCloud WordCloudData={WordCloudData} />
         </div>
         <div className="lg:col-span-4 lg:row-span-4">
-          <WordCloud WordCloudData={WordCloudData} />
+          <PassiveMentionsWordCloud WordCloudData={WordCloudData} />
         </div>
         <div className="lg:col-span-8 lg:row-span-4">
           <AgeAndGenderChart AgeAndGenderData={AgeAndGenderData} />
         </div>
         <div className="lg:col-span-4 lg:row-span-4">
-          <FollowersDonutChart
-            FollowersDonutChartData={FollowersDonutChartData}
+          <ActiveFollowersByGenderDonutChart
+            FollowersDonutChartData={FollowersDonutByGenderChartData}
           />
         </div>
         <div className="lg:col-span-8 lg:row-span-4">
           <AgeAndGenderChart AgeAndGenderData={AgeAndGenderData} />
         </div>
         <div className="lg:col-span-4 lg:row-span-4">
-          <FollowersDonutChart
-            FollowersDonutChartData={FollowersDonutChartData}
+          <PassiveFollowersByGenderDonutChart
+            FollowersDonutChartData={FollowersDonutByGenderChartData}
           />
         </div>
-      </div> */}
+      </div>
     </div>
   );
 }

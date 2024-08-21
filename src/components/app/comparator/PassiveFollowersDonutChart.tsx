@@ -81,15 +81,6 @@ export function PassiveFollowersDonutChart({
   }, [passiveUserData]);
 
   useEffect(() => {
-    const followersValues = [
-      facebookFollowers,
-      instagramFollowers,
-      tiktokFollowers,
-      youtubeFollowers,
-    ];
-
-    console.log("followersValues", followersValues);
-
     setFollowers({
       series: [
         facebookFollowers!,

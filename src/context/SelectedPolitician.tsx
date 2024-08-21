@@ -52,7 +52,6 @@ export const SelectedPoliticianContextProvider = ({
   async function GetPoliticians() {
     const token = cookies.get(Token);
     const politicians = await authGetAPI("/profile/monitoring", token);
-    console.log("politicians", politicians);
     if (politicians.status === 200) {
       setPoliticians(politicians.body.profile);
       if (selectedPolitician === null && politicians.body.profile.length > 0) {

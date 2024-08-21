@@ -12,6 +12,7 @@ import { useCookies } from "next-client-cookies";
 import { useSelectedPoliticianContext } from "./SelectedPolitician";
 import { authGetAPI, token as Token } from "@/lib/axios";
 import { SocialMediaDataProps } from "@/types/SocialMediaData";
+import { MentionsDataProps } from "@/types/MentionsData";
 
 interface Politician {
   campaignNumber: number;
@@ -43,6 +44,14 @@ interface ComparatorDataContextProps {
   setPassiveUserProfileData: Dispatch<SetStateAction<Politician | undefined>>;
   isGettingData: boolean;
   setIsGettingData: Dispatch<SetStateAction<boolean>>;
+  activeUserMentionsData: MentionsDataProps | undefined;
+  setActiveUserMentionsData: Dispatch<
+    SetStateAction<MentionsDataProps | undefined>
+  >;
+  passiveUserMentionsData: MentionsDataProps | undefined;
+  setPassiveUserMentionsData: Dispatch<
+    SetStateAction<MentionsDataProps | undefined>
+  >;
 }
 
 const ComparatorDataContext = createContext({} as ComparatorDataContextProps);
@@ -61,6 +70,11 @@ export const ComparatorDataContextProvider = ({ children }: ContextProps) => {
   const [activeUserData, setActiveUserData] = useState<SocialMediaDataProps>();
   const [passiveUserData, setPassiveUserData] =
     useState<SocialMediaDataProps>();
+  const [activeUserMentionsData, setActiveUserMentionsData] =
+    useState<MentionsDataProps>();
+  const [passiveUserMentionsData, setPassiveUserMentionsData] =
+    useState<MentionsDataProps>();
+
   const [activeUserProfileData, setActiveUserProfileData] = useState<
     Politician | undefined
   >();
@@ -84,13 +98,36 @@ export const ComparatorDataContextProvider = ({ children }: ContextProps) => {
         token,
       ),
     ]);
-
-    console.log("activeUser: ", activeUser);
-    console.log("passiveUser: ", passiveUser);
-
+    console.log("activeUser", activeUser);
+    console.log("passiveUser", passiveUser);
     if (activeUser.status === 200 && passiveUser.status === 200) {
       setActiveUserData(activeUser.body.data);
       setPassiveUserData(passiveUser.body.data);
+      return setTimeout(() => {
+        setIsGettingData(false);
+      }, 1000);
+    }
+    return setTimeout(() => {
+      setIsGettingData(false);
+    }, 1000);
+  }
+
+  async function GetMentionsData() {
+    const token = cookies.get(Token);
+    setIsGettingData(true);
+    const [activeUser, passiveUser] = await Promise.all([
+      authGetAPI(
+        `/profile/mentions/8eb93d97-4852-4cd3-877f-7938dadca2f5?endDate=2024-06-14&startDate=2024-03-14`,
+        token,
+      ),
+      authGetAPI(
+        `/profile/mentions/8eb93d97-4852-4cd3-877f-7938dadca2f5?endDate=2024-06-14&startDate=2024-03-14`,
+        token,
+      ),
+    ]);
+    if (activeUser.status === 200 && passiveUser.status === 200) {
+      setActiveUserMentionsData(activeUser.body);
+      setPassiveUserMentionsData(passiveUser.body);
       return setTimeout(() => {
         setIsGettingData(false);
       }, 1000);
@@ -117,6 +154,7 @@ export const ComparatorDataContextProvider = ({ children }: ContextProps) => {
 
   useEffect(() => {
     GetSocialMediaData();
+    GetMentionsData();
   }, [selectedPolitician, startDate, endDate]);
 
   const value = {
@@ -134,6 +172,10 @@ export const ComparatorDataContextProvider = ({ children }: ContextProps) => {
     setPassiveUserProfileData,
     isGettingData,
     setIsGettingData,
+    activeUserMentionsData,
+    setActiveUserMentionsData,
+    passiveUserMentionsData,
+    setPassiveUserMentionsData,
   };
 
   return (
@@ -159,6 +201,10 @@ export function useComparatorDataContext() {
     setPassiveUserProfileData,
     isGettingData,
     setIsGettingData,
+    activeUserMentionsData,
+    setActiveUserMentionsData,
+    passiveUserMentionsData,
+    setPassiveUserMentionsData,
   } = useContext(ComparatorDataContext);
 
   return {
@@ -176,5 +222,9 @@ export function useComparatorDataContext() {
     setPassiveUserProfileData,
     isGettingData,
     setIsGettingData,
+    activeUserMentionsData,
+    setActiveUserMentionsData,
+    passiveUserMentionsData,
+    setPassiveUserMentionsData,
   };
 }

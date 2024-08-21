@@ -820,6 +820,9 @@ export const PositiveCommentsData = {
           show: false,
         },
         background: "transparent" as const,
+        animations: {
+          enabled: false,
+        },
       },
       colors: ["#0ea5e9", "#0c4a6e"],
       stroke: {
@@ -834,24 +837,18 @@ export const PositiveCommentsData = {
         },
       },
       xaxis: {
-        categories: [
-          "01 Jan",
-          "02 Jan",
-          "03 Jan",
-          "04 Jan",
-          "05 Jan",
-          "06 Jan",
-          "07 Jan",
-          "08 Jan",
-          "09 Jan",
-          "10 Jan",
-          "11 Jan",
-          "12 Jan",
-        ],
+        axisTicks: {
+          show: false,
+        },
+        labels: {
+          show: false,
+        },
+        axisBorder: {
+          show: false,
+        },
       },
       yaxis: {
-        min: 10,
-        max: 90,
+        stepSize: 10,
       },
       legend: {
         show: false,
@@ -888,7 +885,7 @@ export const PositiveCommentsData = {
           breakpoint: 2560,
           options: {
             chart: {
-              height: 175,
+              height: 150,
             },
           },
         },
@@ -929,11 +926,11 @@ export const NegativeCommentsData = {
   ChartOptions: {
     series: [
       {
-        name: "Comentários Negativos 1",
+        name: "Comentários Positivos 1",
         data: [35, 35, 62, 63, 12, 12, 60, 60, 51, 51, 81, 81],
       },
       {
-        name: "Comentários Negativos 2",
+        name: "Comentários Positivos 2",
         data: [75, 78, 38, 39, 38, 72, 72, 52, 52, 17, 17, 52],
       },
     ],
@@ -958,6 +955,9 @@ export const NegativeCommentsData = {
           show: false,
         },
         background: "transparent" as const,
+        animations: {
+          enabled: false,
+        },
       },
       colors: ["#0ea5e9", "#0c4a6e"],
       stroke: {
@@ -972,24 +972,18 @@ export const NegativeCommentsData = {
         },
       },
       xaxis: {
-        categories: [
-          "01 Jan",
-          "02 Jan",
-          "03 Jan",
-          "04 Jan",
-          "05 Jan",
-          "06 Jan",
-          "07 Jan",
-          "08 Jan",
-          "09 Jan",
-          "10 Jan",
-          "11 Jan",
-          "12 Jan",
-        ],
+        axisTicks: {
+          show: false,
+        },
+        labels: {
+          show: false,
+        },
+        axisBorder: {
+          show: false,
+        },
       },
       yaxis: {
-        min: 10,
-        max: 90,
+        stepSize: 10,
       },
       legend: {
         show: false,
@@ -1026,7 +1020,7 @@ export const NegativeCommentsData = {
           breakpoint: 2560,
           options: {
             chart: {
-              height: 175,
+              height: 150,
             },
           },
         },

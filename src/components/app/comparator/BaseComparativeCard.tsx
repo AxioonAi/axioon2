@@ -23,8 +23,6 @@ export function BaseComparativeCard({
 }: BaseComparativeCardProps) {
   const { activeUserProfileData } = useComparatorDataContext();
 
-  console.log("activeUserProfileData", activeUserProfileData);
-
   return (
     <BaseCard className="gap-2">
       <div className="flex w-full items-center justify-between">

@@ -45,12 +45,11 @@ export const MentionsDataContextProvider = ({ children }: ContextProps) => {
   const { selectedPolitician } = useSelectedPoliticianContext();
 
   async function GetHashtagsMentionsData() {
-    const token = cookies.get(Token);
-    const connect = await authGetAPI(
-      `/hashtag/mentions?endDate=2024-06-14&startDate=2024-03-14`,
-      token,
-    );
-    console.log("connect", connect);
+    // const token = cookies.get(Token);
+    // const connect = await authGetAPI(
+    //   `/hashtag/mentions?endDate=2024-06-14&startDate=2024-03-14`,
+    //   token,
+    // );
   }
 
   async function GetMentionsData() {
@@ -61,7 +60,6 @@ export const MentionsDataContextProvider = ({ children }: ContextProps) => {
       `/profile/mentions/8eb93d97-4852-4cd3-877f-7938dadca2f5?endDate=2024-06-14&startDate=2024-03-14`,
       token,
     );
-    console.log("mentionsData", mentionsData);
     if (mentionsData.status === 200) {
       setMentionsData(mentionsData.body);
       return setTimeout(() => {
