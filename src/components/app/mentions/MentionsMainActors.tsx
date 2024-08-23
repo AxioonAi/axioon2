@@ -47,11 +47,11 @@ export function MentionsMainActors() {
     <BaseCard className="p-0">
       <BaseCardHeader title="Principais Atores" />
       {isGettingData ? (
-        <Skeleton className="mx-auto mt-4 h-[17rem] w-11/12" />
+        <Skeleton className="mx-auto mt-4 h-[23rem] w-11/12" />
       ) : (
         <div
           ref={elementRef}
-          className="mb-12 flex h-80 w-full flex-col overflow-x-scroll overflow-y-scroll p-4 lg:mb-0 lg:h-[73%] lg:overflow-x-auto 3xl:h-4/5"
+          className="mb-12 flex h-80 w-full flex-col overflow-x-scroll overflow-y-scroll p-4 lg:mb-0 lg:h-[calc(100%-5.5rem)] lg:overflow-x-auto"
         >
           {MentionsMainActorsData.map((item, index) => (
             <div

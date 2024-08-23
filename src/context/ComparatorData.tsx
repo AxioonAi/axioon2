@@ -87,6 +87,10 @@ export const ComparatorDataContextProvider = ({ children }: ContextProps) => {
   async function GetSocialMediaData() {
     setIsGettingData(true);
     const token = cookies.get(Token);
+    if (!selectedPolitician?.id) {
+      return;
+    }
+    console.log("selectedPolitician", selectedPolitician?.id);
     const [activeUser, passiveUser] = await Promise.all([
       authGetAPI(
         // `/profile/media/8eb93d97-4852-4cd3-877f-7938dadca2f5?endDate=2024-06-14&startDate=2024-03-14&instagram=true&facebook=true&tiktok=true&youtube=true`,
@@ -95,10 +99,13 @@ export const ComparatorDataContextProvider = ({ children }: ContextProps) => {
       ),
       authGetAPI(
         // `/profile/media/4e7f0981-ae98-40f9-832e-e0770e98d8f2?endDate=2024-06-14&startDate=2024-03-14&instagram=true&facebook=true&tiktok=true&youtube=true`,
-        `/profile/media/8eb93d97-4852-4cd3-877f-7938dadca2f5?endDate=${endDate}&startDate=${startDate}&instagram=true&facebook=true&tiktok=true&youtube=true`,
+        `/profile/media/${politicians[0]?.id}?endDate=${endDate}&startDate=${startDate}&instagram=true&facebook=true&tiktok=true&youtube=true`,
         token,
       ),
     ]);
+
+    console.log("activeUser", activeUser);
+    console.log("passiveUser", passiveUser);
     if (activeUser.status === 200 && passiveUser.status === 200) {
       setActiveUserData(activeUser.body.data);
       setPassiveUserData(passiveUser.body.data);
@@ -116,7 +123,7 @@ export const ComparatorDataContextProvider = ({ children }: ContextProps) => {
       ),
       authGetAPI(
         // `/profile/mentions/8eb93d97-4852-4cd3-877f-7938dadca2f5?endDate=2024-06-14&startDate=2024-03-14`,
-        `/profile/mentions/8eb93d97-4852-4cd3-877f-7938dadca2f5?endDate=${endDate}&startDate=${startDate}`,
+        `/profile/mentions/${selectedPolitician?.id}?endDate=${endDate}&startDate=${startDate}`,
         token,
       ),
     ]);
@@ -126,20 +133,20 @@ export const ComparatorDataContextProvider = ({ children }: ContextProps) => {
     }
   }
 
-  useEffect(() => {
-    if (selectedPolitician) {
-      setActiveUserProfileData(
-        politicians.find(
-          (politician) => politician.id === selectedPolitician.id,
-        ),
-      );
-      setPassiveUserProfileData(
-        politicians.filter(
-          (politician) => politician.id !== selectedPolitician.id,
-        )[0],
-      );
-    }
-  }, [selectedPolitician]);
+  // useEffect(() => {
+  //   if (selectedPolitician) {
+  //     setActiveUserProfileData(
+  //       politicians.find(
+  //         (politician) => politician.id === selectedPolitician.id,
+  //       ),
+  //     );
+  //     setPassiveUserProfileData(
+  //       politicians.filter(
+  //         (politician) => politician.id !== selectedPolitician.id,
+  //       )[0],
+  //     );
+  //   }
+  // }, [selectedPolitician]);
 
   useEffect(() => {
     async function GetData() {

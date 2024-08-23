@@ -35,9 +35,9 @@ export function MentionsDefensors() {
     <BaseCard className="p-0">
       <BaseCardHeader title="Defensores" />
       {isGettingData ? (
-        <Skeleton className="mx-auto mt-4 h-[17rem] w-11/12" />
+        <Skeleton className="mx-auto mt-4 h-[23rem] w-11/12" />
       ) : (
-        <div className="mb-12 flex h-80 w-full flex-col overflow-x-scroll overflow-y-scroll p-4 lg:mb-0 lg:h-[73%] lg:overflow-x-auto 3xl:h-4/5">
+        <div className="mb-12 flex h-80 w-full flex-col overflow-x-scroll overflow-y-scroll p-4 lg:mb-0 lg:h-[calc(100%-5.5rem)] lg:overflow-x-auto">
           {mentionsDefensors.map((item, index) => (
             <div
               className="flex w-max gap-4 border-b border-b-zinc-300 p-4 text-xs xs:w-full xs:justify-between lg:flex lg:w-max lg:grid-cols-12 lg:text-sm xl:grid xl:w-full 2xl:text-base 3xl:text-lg"

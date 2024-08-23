@@ -37,7 +37,9 @@ export function ComparatorStickyCards() {
   return (
     <div
       ref={elementRef}
-      className="z-50 flex flex-col gap-4 lg:col-span-12 lg:grid lg:grid-cols-12"
+      className={twMerge(
+        "z-50 flex flex-col gap-4 lg:col-span-12 lg:grid lg:grid-cols-12",
+      )}
     >
       <div
         className={twMerge(
@@ -48,7 +50,9 @@ export function ComparatorStickyCards() {
       <div
         className={twMerge(
           "flex flex-col gap-4 md:w-full lg:col-span-12 lg:grid lg:w-auto lg:grid-cols-12",
-          isVisible ? "" : "fixed top-4 pr-4 md:pr-16 lg:pr-4 xl:pr-8 2xl:pr-8",
+          isVisible
+            ? ""
+            : "fixed top-0 bg-white/30 pr-4 pt-8 shadow-2xl backdrop-blur-sm md:pr-16 lg:pr-4 xl:pr-8 2xl:pr-8",
         )}
       >
         <div className="lg:col-span-3">

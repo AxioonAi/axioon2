@@ -54,7 +54,7 @@ export default function Mentions() {
           />
         </div> */}
       </div>
-      <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-[120vh] lg:grid-cols-12 lg:grid-rows-12">
+      <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-[150vh] lg:grid-cols-12 lg:grid-rows-12">
         <div className="lg:col-span-12 lg:row-span-4">
           <MentionsMainActors />
         </div>

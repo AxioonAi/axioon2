@@ -83,7 +83,7 @@ export default function Comparator() {
           />
         </div>
       </div>
-      {/* <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-screen lg:grid-cols-12 lg:grid-rows-12">
+      <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-screen lg:grid-cols-12 lg:grid-rows-12">
         <div className="lg:col-span-4 lg:row-span-4">
           <ActiveWordCloud WordCloudData={WordCloudData} />
         </div>
@@ -114,8 +114,8 @@ export default function Comparator() {
             ScoreGaugeChartData={ScoreGaugeChartData}
           />
         </div>
-      </div> */}
-      {/* <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-[120vh] lg:grid-cols-12 lg:grid-rows-12">
+      </div>
+      <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-[120vh] lg:grid-cols-12 lg:grid-rows-12">
         <div className="lg:col-span-4 lg:row-span-4">
           <ActiveMentionsWordCloud WordCloudData={WordCloudData} />
         </div>
@@ -141,7 +141,7 @@ export default function Comparator() {
             FollowersDonutChartData={FollowersDonutByGenderChartData}
           />
         </div>
-      </div> */}
+      </div>
     </div>
   );
 }
