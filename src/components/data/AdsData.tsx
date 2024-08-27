@@ -41,15 +41,7 @@ export const AgeAndGenderData = {
       },
       colors: ["#bae6fd", "#38bdf8", "#0c4a6e"],
       xaxis: {
-        categories: [
-          "18-24",
-          "25-34",
-          "35-44",
-          "45-54",
-          "55-64",
-          "65-74",
-          "75+",
-        ],
+        categories: ["0-19", "20-29", "30-39", "40-49", "50-59", "60+"],
       },
       fill: {
         opacity: 1,

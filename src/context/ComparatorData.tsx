@@ -90,7 +90,6 @@ export const ComparatorDataContextProvider = ({ children }: ContextProps) => {
     if (!selectedPolitician?.id) {
       return;
     }
-    console.log("selectedPolitician", selectedPolitician?.id);
     const [activeUser, passiveUser] = await Promise.all([
       authGetAPI(
         // `/profile/media/8eb93d97-4852-4cd3-877f-7938dadca2f5?endDate=2024-06-14&startDate=2024-03-14&instagram=true&facebook=true&tiktok=true&youtube=true`,
@@ -104,8 +103,6 @@ export const ComparatorDataContextProvider = ({ children }: ContextProps) => {
       ),
     ]);
 
-    console.log("activeUser", activeUser);
-    console.log("passiveUser", passiveUser);
     if (activeUser.status === 200 && passiveUser.status === 200) {
       setActiveUserData(activeUser.body.data);
       setPassiveUserData(passiveUser.body.data);

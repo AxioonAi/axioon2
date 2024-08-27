@@ -61,7 +61,7 @@ export const SocialMediaDataContextProvider = ({ children }: ContextProps) => {
     setIsGettingData(true);
     const token = cookies.get(Token);
     const socialMediaData = await authGetAPI(
-      `/profile/media/8eb93d97-4852-4cd3-877f-7938dadca2f5?endDate=2024-06-14&startDate=2024-03-14&instagram=true&facebook=true&tiktok=true&youtube=true`,
+      `/profile/media/${selectedPolitician?.id}?endDate=${endDate}&startDate=${startDate}&instagram=true&facebook=true&tiktok=true&youtube=true`,
       token,
     );
     if (socialMediaData.status === 200) {
@@ -73,7 +73,7 @@ export const SocialMediaDataContextProvider = ({ children }: ContextProps) => {
     setIsGettingData(true);
     const token = cookies.get(Token);
     const socialMediaData = await authGetAPI(
-      `/profile/media/8eb93d97-4852-4cd3-877f-7938dadca2f5?endDate=2024-06-14&startDate=2024-03-14&instagram=${instagram}&facebook=${facebook}&tiktok=${tiktok}&youtube=${youtube}`,
+      `/profile/media/${selectedPolitician?.id}?endDate=${endDate}&startDate=${startDate}&instagram=${instagram}&facebook=${facebook}&tiktok=${tiktok}&youtube=${youtube}`,
       token,
     );
     if (socialMediaData.status === 200) {

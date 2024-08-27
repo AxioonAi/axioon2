@@ -375,6 +375,22 @@ export function Sidebar() {
               )}
             </>
             <button
+              onClick={() => router.push("/ads")}
+              className={twMerge(
+                "flex items-center gap-4 rounded p-2 text-white",
+                pathname === "/ads" && "bg-zinc-400/15",
+              )}
+            >
+              <Image
+                src="/Icons/ai.svg"
+                alt=""
+                width={50}
+                height={50}
+                className="h-5 w-5"
+              />
+              Anúncios Meta
+            </button>
+            <button
               onClick={() => router.push("/ai")}
               className={twMerge(
                 "flex items-center gap-4 rounded p-2 text-white",

@@ -61,7 +61,7 @@ export function LegalProcessList() {
 
   return (
     <BaseCard className="p-0">
-      <BaseCardHeader title="Lista de Protestos" />
+      <BaseCardHeader title="Lista de Processos" />
       {isGettingData ? (
         <Skeleton className="mx-auto mt-4 h-[21rem] w-11/12" />
       ) : (
