@@ -1,12 +1,25 @@
 "use client";
 import { SendHorizonal, Sun, TriangleAlert, Zap } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CardWithTitleAndButton } from "@/components/app/parameters/CardWithTitleAndButton";
+import { useCookies } from "next-client-cookies";
+import { AuthPostAPI, token as Token, authGetAPI } from "@/lib/axios";
+import OpenAI from "openai";
+import { Spinner } from "@/components/global/Spinner";
+
+interface Message {
+  content: string;
+  role: "user" | "assistant";
+}
 
 export default function AxioonAi() {
+  const cookies = useCookies();
+  const [isMessageLoading, setIsMessageLoading] = useState(false);
   const [hasMessages, setHasMessages] = useState(false);
-  const [userMessages, setUserMessages] = useState<string[]>([]);
+  const [userMessages, setUserMessages] = useState<Message[]>([]);
+  const [userChats, setUserChats] = useState([]);
   const [inputMessage, setInputMessage] = useState("");
+  const [chatId, setChatId] = useState<string | null>(null);
 
   const itemsToShow = [
     { id: 1, prompt: "Explain quantum computing in simple terms" },
@@ -26,18 +39,100 @@ export default function AxioonAi() {
     { id: 9, prompt: "Limited knowledge of world and events after 2021" },
   ];
 
-  const handleSendMessage = () => {
+  async function handleSendGptMessage(messageContent: string) {
+    const client = new OpenAI({
+      dangerouslyAllowBrowser: true,
+      apiKey: "",
+    });
+    const message = await client.chat.completions.create({
+      model: "gpt-4o-mini",
+      messages: [...userMessages, { role: "user", content: messageContent }],
+    });
+
+    return message.choices[0].message.content;
+  }
+
+  const handleSendMessage = async () => {
     if (inputMessage.trim() !== "") {
-      setUserMessages([...userMessages, inputMessage]);
+      setIsMessageLoading(true);
+      const token = cookies.get(Token);
+      let newChatId: string = "";
+      if (!chatId) {
+        const createChat = await AuthPostAPI(
+          "/user/chat",
+          {
+            message: inputMessage,
+            name: inputMessage,
+          },
+          token,
+        );
+
+        if (createChat.status === 200) {
+          setChatId(createChat.body.chat.id);
+          newChatId = createChat.body.chat.id;
+        }
+      } else {
+        const sendMessage = await AuthPostAPI(
+          `/user/chat/message`,
+          {
+            message: inputMessage,
+            type: "USER",
+            chatId: chatId,
+          },
+          token,
+        );
+      }
+      const aiMessage = await handleSendGptMessage(inputMessage);
+      setUserMessages((prev) => [
+        ...prev,
+        { content: inputMessage, role: "user" },
+        { content: aiMessage || "Error", role: "assistant" },
+      ]);
+
+      await AuthPostAPI(
+        `/user/chat/message`,
+        {
+          message: aiMessage || "Error",
+          type: "AI",
+          chatId: chatId || newChatId,
+        },
+        token,
+      );
+
       setHasMessages(true);
+      setIsMessageLoading(false);
       setInputMessage("");
     }
   };
 
   const handleButtonClick = (message: string) => {
-    setUserMessages([...userMessages, message]);
+    setUserMessages([...userMessages, { content: message, role: "user" }]);
     setHasMessages(true);
   };
+
+  useEffect(() => {
+    async function handleGetChats() {
+      const token = cookies.get(Token);
+
+      const connect = await authGetAPI(`/user/chat`, token);
+      console.log(connect);
+      if (connect.status === 200) {
+        setUserChats(
+          connect.body.chatList.map(
+            (item: { id: string; message: string; type: "USER" | "AI" }) => {
+              return {
+                id: item.id,
+                content: item.message,
+                role: item.type === "USER" ? "user" : "assistant",
+              };
+            },
+          ),
+        );
+      }
+    }
+
+    handleGetChats();
+  }, [chatId]);
 
   return (
     <div className="flex h-full flex-col">
@@ -148,7 +243,7 @@ export default function AxioonAi() {
                 className="ml-auto flex flex-col items-start justify-center rounded-lg rounded-tr-sm bg-white px-8 py-2"
               >
                 <h3 className="text-sm font-medium text-zinc-900 xl:text-lg">
-                  {message}
+                  {message.content}
                 </h3>
               </div>
             ))}
@@ -158,16 +253,21 @@ export default function AxioonAi() {
           <input
             type="text"
             placeholder="Digite sua mensagem..."
-            className="h-full w-[95%] p-2 text-zinc-900 focus:outline-none"
+            className="h-full w-[95%] p-2 text-zinc-900 focus:outline-none disabled:opacity-50"
             value={inputMessage}
+            onKeyUp={(e) => e.key === "Enter" && handleSendMessage()}
+            disabled={isMessageLoading}
             onChange={(e) => setInputMessage(e.target.value)}
-            onKeyPress={(e) => e.key === "Enter" && handleSendMessage()}
           />
           <button
             className="flex h-full w-[5%] items-center justify-center"
             onClick={handleSendMessage}
           >
-            <SendHorizonal size={20} className="text-[#8E8E9E]" />
+            {isMessageLoading ? (
+              <Spinner />
+            ) : (
+              <SendHorizonal size={20} className="text-[#8E8E9E]" />
+            )}
           </button>
         </div>
       </div>
