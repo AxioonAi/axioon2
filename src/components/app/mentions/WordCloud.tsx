@@ -76,12 +76,9 @@ export function WordCloud({ WordCloudData }: WordCloudProps) {
         }
       />
       {isGettingData ? (
-        <Skeleton className="mx-auto mt-4 h-96 w-11/12" />
+        <Skeleton className="mx-auto mt-4 h-48 w-11/12" />
       ) : (
-        <div
-          ref={elementRef}
-          className="flex h-full max-h-[35vh] w-full flex-col"
-        >
+        <div ref={elementRef} className="flex h-full max-h-56 w-full flex-col">
           <ReactWordcloud
             words={wordsList as WordsProps[]}
             options={WordCloudData.options}

@@ -10,6 +10,7 @@ import {
 } from "react";
 import { useCookies } from "next-client-cookies";
 import { useSelectedPoliticianContext } from "./SelectedPolitician";
+import { useSelectedDateContext } from "./SelectedDate";
 import { authGetAPI, token as Token } from "@/lib/axios";
 import { SocialMediaDataProps } from "@/types/SocialMediaData";
 interface SocialMediaDataContextProps {
@@ -21,10 +22,6 @@ interface SocialMediaDataContextProps {
   setInstagram: Dispatch<SetStateAction<boolean>>;
   setTiktok: Dispatch<SetStateAction<boolean>>;
   setYoutube: Dispatch<SetStateAction<boolean>>;
-  startDate: Date | undefined;
-  setStartDate: Dispatch<SetStateAction<Date | undefined>>;
-  endDate: Date | undefined;
-  setEndDate: Dispatch<SetStateAction<Date | undefined>>;
   staticData: SocialMediaDataProps | undefined;
   setStaticData: Dispatch<SetStateAction<SocialMediaDataProps | undefined>>;
   socialMediaData: SocialMediaDataProps | undefined;
@@ -43,14 +40,11 @@ interface ContextProps {
 
 export const SocialMediaDataContextProvider = ({ children }: ContextProps) => {
   const cookies = useCookies();
+  const { startDate, endDate } = useSelectedDateContext();
   const [facebook, setFacebook] = useState(true);
   const [instagram, setInstagram] = useState(true);
   const [tiktok, setTiktok] = useState(true);
   const [youtube, setYoutube] = useState(true);
-  const [startDate, setStartDate] = useState<Date | undefined>(
-    new Date(new Date().getTime() - 30 * 24 * 60 * 60 * 1000),
-  );
-  const [endDate, setEndDate] = useState<Date | undefined>(new Date());
   const [staticData, setStaticData] = useState<SocialMediaDataProps>();
   const [socialMediaData, setSocialMediaData] =
     useState<SocialMediaDataProps>();
@@ -58,7 +52,6 @@ export const SocialMediaDataContextProvider = ({ children }: ContextProps) => {
   const { selectedPolitician } = useSelectedPoliticianContext();
 
   async function GetStaticData() {
-    setIsGettingData(true);
     const token = cookies.get(Token);
     const socialMediaData = await authGetAPI(
       `/profile/media/${selectedPolitician?.id}?endDate=${endDate}&startDate=${startDate}&instagram=true&facebook=true&tiktok=true&youtube=true`,
@@ -70,7 +63,6 @@ export const SocialMediaDataContextProvider = ({ children }: ContextProps) => {
   }
 
   async function GetSocialMediaData() {
-    setIsGettingData(true);
     const token = cookies.get(Token);
     const socialMediaData = await authGetAPI(
       `/profile/media/${selectedPolitician?.id}?endDate=${endDate}&startDate=${startDate}&instagram=${instagram}&facebook=${facebook}&tiktok=${tiktok}&youtube=${youtube}`,
@@ -89,7 +81,6 @@ export const SocialMediaDataContextProvider = ({ children }: ContextProps) => {
         setIsGettingData(false);
       }, 1500);
     }
-
     GetData();
   }, [
     selectedPolitician,
@@ -101,17 +92,6 @@ export const SocialMediaDataContextProvider = ({ children }: ContextProps) => {
     endDate,
   ]);
 
-  // async function Test() {
-  //   const test = await authGetAPI(
-  //     `/hashtag/mentions?endDate=2024-06-14&startDate=2024-03-14`,
-  //   );
-  //   console.log("test: ", test);
-  // }
-
-  // useEffect(() => {
-  //   Test();
-  // }, []);
-
   const value = {
     facebook,
     instagram,
@@ -121,15 +101,10 @@ export const SocialMediaDataContextProvider = ({ children }: ContextProps) => {
     setInstagram,
     setTiktok,
     setYoutube,
-    startDate,
-    setStartDate,
-    endDate,
-    setEndDate,
     socialMediaData,
     setSocialMediaData,
     staticData,
     setStaticData,
-
     isGettingData,
     setIsGettingData,
   };
@@ -151,10 +126,6 @@ export function useSocialMediaDataContext() {
     setInstagram,
     setTiktok,
     setYoutube,
-    startDate,
-    setStartDate,
-    endDate,
-    setEndDate,
     socialMediaData,
     setSocialMediaData,
     staticData,
@@ -172,10 +143,6 @@ export function useSocialMediaDataContext() {
     setInstagram,
     setTiktok,
     setYoutube,
-    startDate,
-    setStartDate,
-    endDate,
-    setEndDate,
     socialMediaData,
     setSocialMediaData,
     staticData,

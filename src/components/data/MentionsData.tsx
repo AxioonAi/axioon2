@@ -196,8 +196,11 @@ export const WordCloudData = {
     colors: ["#556AFB", "#33429A", "#0A27E6"],
     fontWeight: "700",
     fontFamily: "Impact",
-    fontSizes: [20, 60] as [number, number],
+    fontSizes: [10, 60] as [number, number],
     deterministic: true,
+    enableOptimizations: true,
+    enableTooltip: false,
+    transitionDuration: 0,
   },
 };
 

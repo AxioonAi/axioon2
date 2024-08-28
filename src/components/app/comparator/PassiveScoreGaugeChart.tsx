@@ -1,17 +1,18 @@
 "use client";
 import { useEffect, useState } from "react";
-import ReactApexChart from "react-apexcharts";
+// import ReactApexChart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
+import dynamic from "next/dynamic";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
 import { Skeleton } from "@/components/global/Skeleton";
 import { useComparatorDataContext } from "@/context/ComparatorData";
-// const ReactApexChart = dynamic(() => import("react-apexcharts"), {
-//   ssr: false,
-// });
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
+  ssr: false,
+});
 
 interface PassiveScoreGaugeChartProps {
   ScoreGaugeChartData: {
@@ -64,11 +65,12 @@ export function PassiveScoreGaugeChart({
     const numberOfValues = sentimentValues.filter(
       (value) => value !== null && typeof value === "number",
     ).length;
-    const sum = sentimentValues.reduce(
-      (acc: number, value) => acc + (value || 0),
-      0,
+    const sum = Number(
+      sentimentValues
+        .reduce((acc: number, value) => acc + (value || 0), 0)
+        .toFixed(2),
     );
-    setSeries([parseFloat(Number(sum / numberOfValues / 10).toFixed(2))]);
+    setSeries([Number(sum / numberOfValues / 10)]);
   }, [
     facebookSentiment,
     instagramSentiment,

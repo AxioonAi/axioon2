@@ -5,7 +5,6 @@ import { LegalHeaderCard } from "@/components/app/legal/LegalHeaderCard";
 import { LegalProcessList } from "@/components/app/legal/LegalProcessList";
 import { OpenDebts } from "@/components/app/legal/OpenDebts";
 import { ProtestList } from "@/components/app/legal/ProtestList";
-import { OpenDebtsData, ProtestListData } from "@/components/data/LegalData";
 
 export default function Legal() {
   return (
@@ -21,7 +20,7 @@ export default function Legal() {
           <AddressHistory />
         </div>
         <div className="lg:col-span-6 lg:row-span-6">
-          <OpenDebts OpenDebtsData={OpenDebtsData} />
+          <OpenDebts />
         </div>
         <div className="lg:col-span-6 lg:row-span-6">
           <EconomicRelationships />
@@ -29,7 +28,7 @@ export default function Legal() {
       </div>
       <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-screen lg:grid-cols-12 lg:grid-rows-12">
         <div className="lg:col-span-12 lg:row-span-6">
-          <ProtestList ProtestListData={ProtestListData} />
+          <ProtestList />
         </div>
         <div className="lg:col-span-12 lg:row-span-6">
           <LegalProcessList />

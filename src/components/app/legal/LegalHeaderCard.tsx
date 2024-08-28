@@ -22,16 +22,6 @@ export function LegalHeaderCard({
           <strong>{title}</strong>
         </div>
         <div className="flex flex-col items-center gap-2 lg:flex-row">
-          <button className="flex items-center gap-1 rounded bg-sky-700 px-1.5 py-1 text-[10px] text-white lg:text-xs 2xl:text-sm 3xl:text-base">
-            <span>07/04/2024 - 07/06/2024</span>
-            <Image
-              src="/Icons/calendar.svg"
-              alt=""
-              width={50}
-              height={50}
-              className="h-4 w-4"
-            />
-          </button>
           <button className="flex items-center gap-1 rounded bg-sky-600 px-1.5 py-1 text-[10px] text-white lg:text-xs 2xl:text-sm 3xl:text-base">
             <span>Relatório</span>
             <Image

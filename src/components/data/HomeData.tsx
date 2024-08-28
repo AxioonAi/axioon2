@@ -301,7 +301,7 @@ export const CommentsSentimentDonutGraphData = {
           breakpoint: 2560,
           options: {
             chart: {
-              height: 200,
+              height: 150,
             },
           },
         },

@@ -33,22 +33,22 @@ export function HeaderCards() {
       setStaticFacebookData(
         staticData?.staticData.facebookData
           ? staticData.staticData.facebookData
-          : undefined,
+          : null,
       );
       setStaticInstagramData(
         staticData?.staticData.instagramData
           ? staticData.staticData.instagramData
-          : undefined,
+          : null,
       );
       setStaticTiktokData(
         staticData?.staticData.tiktokData
           ? staticData.staticData.tiktokData
-          : undefined,
+          : null,
       );
       setStaticYoutubeData(
         staticData?.staticData.youtubeData
           ? staticData.staticData.youtubeData
-          : undefined,
+          : null,
       );
     }
   }, [staticData]);

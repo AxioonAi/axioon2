@@ -53,7 +53,7 @@ export function Irs() {
               width={100}
               height={100}
               alt=""
-              className="w-1/3 md:w-40 lg:w-1/4 xl:w-40"
+              className="w-1/3 object-contain md:w-40 lg:w-1/4 xl:h-24"
             />
             <div className="flex flex-col text-[10px] text-black lg:text-xs 2xl:text-sm 3xl:text-base">
               <strong>{personalIrsData?.full_name}</strong>

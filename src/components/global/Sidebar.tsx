@@ -7,6 +7,7 @@ import autoAnimate from "@formkit/auto-animate";
 import { ChevronDown, ChevronRight } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import * as Popover from "@radix-ui/react-popover";
+import { useCookies } from "next-client-cookies";
 import { useSidebarContext } from "@/context/sidebarStatus";
 import { useOffsetContext } from "@/context/test";
 import { useSelectedPoliticianContext } from "@/context/SelectedPolitician";
@@ -21,6 +22,7 @@ export function Sidebar() {
   const { elementName } = useOffsetContext();
   const pathname = usePathname();
   const router = useRouter();
+  const cookies = useCookies();
 
   // Lógica para colocar highlight na subdivisão específica
   useEffect(() => {
@@ -115,7 +117,10 @@ export function Sidebar() {
             >
               {politicians.map((politician, index) => (
                 <button
-                  onClick={() => setSelectedPolitician(politician)}
+                  onClick={() => {
+                    cookies.set("selectedPoliticianId", politician?.id);
+                    setSelectedPolitician(politician);
+                  }}
                   key={index}
                   className={twMerge(
                     "w-full border-y border-y-gray-200 px-2 py-1",
@@ -321,7 +326,11 @@ export function Sidebar() {
                   />
                   Comparador
                 </div>
-                <ChevronDown size={18} className="stroke-[3]" />
+                {openAccordion === "/comparator" ? (
+                  <ChevronDown size={18} className="stroke-[3]" />
+                ) : (
+                  <ChevronRight size={18} className="stroke-[3]" />
+                )}
               </button>
               {openAccordion === "/comparator" && (
                 <div className="flex flex-col gap-2">
@@ -355,7 +364,11 @@ export function Sidebar() {
                   />
                   Axioon Cerberus
                 </div>
-                <ChevronDown size={18} className="stroke-[3]" />
+                {openAccordion === "/legal" ? (
+                  <ChevronDown size={18} className="stroke-[3]" />
+                ) : (
+                  <ChevronRight size={18} className="stroke-[3]" />
+                )}
               </button>
               {openAccordion === "/legal" && (
                 <div className="flex flex-col gap-2">

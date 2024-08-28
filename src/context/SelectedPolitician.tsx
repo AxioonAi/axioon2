@@ -54,8 +54,14 @@ export const SelectedPoliticianContextProvider = ({
     const politicians = await authGetAPI("/profile/monitoring", token);
     if (politicians.status === 200) {
       setPoliticians(politicians.body.profile);
-      if (selectedPolitician === null && politicians.body.profile.length > 0) {
-        setSelectedPolitician(politicians.body.profile[0]);
+      if (cookies.get("selectedPoliticianId")) {
+        setSelectedPolitician(
+          politicians.body.profile.find(
+            (p: Politician) => p.id === cookies.get("selectedPoliticianId"),
+          ) ?? null,
+        );
+      } else {
+        setSelectedPolitician(politicians.body.profile[0] ?? null);
       }
     }
   }
@@ -63,6 +69,19 @@ export const SelectedPoliticianContextProvider = ({
   useEffect(() => {
     GetPoliticians();
   }, []);
+
+  useEffect(() => {
+    if (cookies.get("selectedPoliticianId")) {
+      setSelectedPolitician(
+        politicians.find((p) => p.id === cookies.get("selectedPoliticianId")) ??
+          null,
+      );
+    }
+  }, [
+    cookies.get("selectedPoliticianId")
+      ? cookies.get("selectedPoliticianId")
+      : "",
+  ]);
 
   const value = {
     politicians,

@@ -1,6 +1,7 @@
 "use client";
 import { EllipsisVertical } from "lucide-react";
 import { twMerge } from "tailwind-merge";
+import { useEffect, useState } from "react";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
@@ -8,22 +9,151 @@ import { useComparatorDataContext } from "@/context/ComparatorData";
 import { Skeleton } from "@/components/global/Skeleton";
 
 interface CommentsBySentimentProps {
-  CommentsBySentimentData: {
-    Profile: {
-      comments: {
-        positive: number;
-        neutral: number;
-        negative: number;
-        total: number;
-      };
-    }[];
-  };
+  countSentiment0To350: number;
+  countSentiment351To650: number;
+  countSentiment651To1000: number;
+  sentimentAverage: number;
+  totalSentiment: number;
 }
 
-export function CommentsBySentiment({
-  CommentsBySentimentData,
-}: CommentsBySentimentProps) {
-  const { isGettingData } = useComparatorDataContext();
+export function CommentsBySentiment() {
+  const { isGettingData, activeUserData, passiveUserData } =
+    useComparatorDataContext();
+  const [activeFacebookCommentsData, setActiveFacebookCommentsData] =
+    useState<CommentsBySentimentProps>();
+  const [activeInstagramCommentsData, setActiveInstagramCommentsData] =
+    useState<CommentsBySentimentProps>();
+  const [activeTiktokCommentsData, setActiveTiktokCommentsData] =
+    useState<CommentsBySentimentProps>();
+  const [activeYoutubeCommentsData, setActiveYoutubeCommentsData] =
+    useState<CommentsBySentimentProps>();
+  const [passiveFacebookCommentsData, setPassiveFacebookCommentsData] =
+    useState<CommentsBySentimentProps>();
+  const [passiveInstagramCommentsData, setPassiveInstagramCommentsData] =
+    useState<CommentsBySentimentProps>();
+  const [passiveTiktokCommentsData, setPassiveTiktokCommentsData] =
+    useState<CommentsBySentimentProps>();
+  const [passiveYoutubeCommentsData, setPassiveYoutubeCommentsData] =
+    useState<CommentsBySentimentProps>();
+  const [activeCommentsBySentiment, setActiveCommentsBySentiment] =
+    useState<CommentsBySentimentProps>({
+      countSentiment0To350: 0,
+      countSentiment351To650: 0,
+      countSentiment651To1000: 0,
+      sentimentAverage: 0,
+      totalSentiment: 0,
+    });
+  const [passiveCommentsBySentiment, setPassiveCommentsBySentiment] =
+    useState<CommentsBySentimentProps>({
+      countSentiment0To350: 0,
+      countSentiment351To650: 0,
+      countSentiment651To1000: 0,
+      sentimentAverage: 0,
+      totalSentiment: 0,
+    });
+
+  useEffect(() => {
+    if (activeUserData) {
+      setActiveFacebookCommentsData(
+        activeUserData.commentsData.commentBySentiment.facebook,
+      );
+      setActiveInstagramCommentsData(
+        activeUserData.commentsData.commentBySentiment.instagram,
+      );
+      setActiveTiktokCommentsData(
+        activeUserData.commentsData.commentBySentiment.tiktok,
+      );
+      setActiveYoutubeCommentsData(
+        activeUserData.commentsData.commentBySentiment.youtube,
+      );
+    }
+  }, [activeUserData]);
+
+  useEffect(() => {
+    const commentsBySentiment = [
+      activeFacebookCommentsData,
+      activeInstagramCommentsData,
+      activeTiktokCommentsData,
+      activeYoutubeCommentsData,
+    ];
+    const summedValues = commentsBySentiment.reduce(
+      (acc, curr) => {
+        if (curr) {
+          acc!.countSentiment0To350 += curr.countSentiment0To350;
+          acc!.countSentiment351To650 += curr.countSentiment351To650;
+          acc!.countSentiment651To1000 += curr.countSentiment651To1000;
+          acc!.sentimentAverage += curr.sentimentAverage;
+          acc!.totalSentiment += curr.totalSentiment;
+        }
+        return acc;
+      },
+      {
+        countSentiment0To350: 0,
+        countSentiment351To650: 0,
+        countSentiment651To1000: 0,
+        sentimentAverage: 0,
+        totalSentiment: 0,
+      },
+    );
+    setActiveCommentsBySentiment(summedValues as CommentsBySentimentProps);
+  }, [
+    activeFacebookCommentsData,
+    activeInstagramCommentsData,
+    activeTiktokCommentsData,
+    activeYoutubeCommentsData,
+  ]);
+
+  useEffect(() => {
+    if (passiveUserData) {
+      setPassiveFacebookCommentsData(
+        passiveUserData.commentsData.commentBySentiment.facebook,
+      );
+      setPassiveInstagramCommentsData(
+        passiveUserData.commentsData.commentBySentiment.instagram,
+      );
+      setPassiveTiktokCommentsData(
+        passiveUserData.commentsData.commentBySentiment.tiktok,
+      );
+      setPassiveYoutubeCommentsData(
+        passiveUserData.commentsData.commentBySentiment.youtube,
+      );
+    }
+  }, [passiveUserData]);
+
+  useEffect(() => {
+    const commentsBySentiment = [
+      passiveFacebookCommentsData,
+      passiveInstagramCommentsData,
+      passiveTiktokCommentsData,
+      passiveYoutubeCommentsData,
+    ];
+    const summedValues = commentsBySentiment.reduce(
+      (acc, curr) => {
+        if (curr) {
+          acc!.countSentiment0To350 += curr.countSentiment0To350;
+          acc!.countSentiment351To650 += curr.countSentiment351To650;
+          acc!.countSentiment651To1000 += curr.countSentiment651To1000;
+          acc!.sentimentAverage += curr.sentimentAverage;
+          acc!.totalSentiment += curr.totalSentiment;
+        }
+        return acc;
+      },
+      {
+        countSentiment0To350: 0,
+        countSentiment351To650: 0,
+        countSentiment651To1000: 0,
+        sentimentAverage: 0,
+        totalSentiment: 0,
+      },
+    );
+    setPassiveCommentsBySentiment(summedValues as CommentsBySentimentProps);
+  }, [
+    passiveFacebookCommentsData,
+    passiveInstagramCommentsData,
+    passiveTiktokCommentsData,
+    passiveYoutubeCommentsData,
+  ]);
+
   return (
     <BaseCard className="p-0">
       <BaseCardHeader
@@ -43,29 +173,29 @@ export function CommentsBySentiment({
             <div
               className={twMerge(
                 "h-full bg-green-600",
-                CommentsBySentimentData.Profile[0].comments.positive &&
-                  CommentsBySentimentData.Profile[0].comments.total > 0 &&
+                activeCommentsBySentiment &&
+                  activeCommentsBySentiment.countSentiment651To1000 > 0 &&
                   "rounded-l",
               )}
               style={{
-                width: `${(CommentsBySentimentData.Profile[0].comments.positive / CommentsBySentimentData.Profile[0].comments.total) * 100}%`,
+                width: `${(activeCommentsBySentiment!.countSentiment651To1000 / (activeCommentsBySentiment!.countSentiment0To350 + activeCommentsBySentiment!.countSentiment351To650 + activeCommentsBySentiment!.countSentiment651To1000)) * 100}%`,
               }}
             />
             <div
               className={"h-full bg-violet-600"}
               style={{
-                width: `${(CommentsBySentimentData.Profile[0].comments.neutral / CommentsBySentimentData.Profile[0].comments.total) * 100}%`,
+                width: `${(activeCommentsBySentiment!.countSentiment351To650 / (activeCommentsBySentiment!.countSentiment0To350 + activeCommentsBySentiment!.countSentiment351To650 + activeCommentsBySentiment!.countSentiment651To1000)) * 100}%`,
               }}
             />
             <div
               className={twMerge(
                 "h-full bg-red-600",
-                CommentsBySentimentData.Profile[0].comments.negative &&
-                  CommentsBySentimentData.Profile[0].comments.total > 0 &&
+                activeCommentsBySentiment &&
+                  activeCommentsBySentiment.countSentiment0To350 > 0 &&
                   "rounded-r",
               )}
               style={{
-                width: `${(CommentsBySentimentData.Profile[0].comments.negative / CommentsBySentimentData.Profile[0].comments.total) * 100}%`,
+                width: `${(activeCommentsBySentiment!.countSentiment0To350 / (activeCommentsBySentiment!.countSentiment0To350 + activeCommentsBySentiment!.countSentiment351To650 + activeCommentsBySentiment!.countSentiment651To1000)) * 100}%`,
               }}
             />
           </div>
@@ -74,29 +204,29 @@ export function CommentsBySentiment({
             <div
               className={twMerge(
                 "h-full bg-green-600",
-                CommentsBySentimentData.Profile[1].comments.positive &&
-                  CommentsBySentimentData.Profile[1].comments.total > 0 &&
+                passiveCommentsBySentiment &&
+                  passiveCommentsBySentiment.countSentiment651To1000 > 0 &&
                   "rounded-l",
               )}
               style={{
-                width: `${(CommentsBySentimentData.Profile[1].comments.positive / CommentsBySentimentData.Profile[1].comments.total) * 100}%`,
+                width: `${(passiveCommentsBySentiment!.countSentiment651To1000 / (passiveCommentsBySentiment!.countSentiment0To350 + passiveCommentsBySentiment!.countSentiment351To650 + passiveCommentsBySentiment!.countSentiment651To1000)) * 100}%`,
               }}
             />
             <div
               className={"h-full bg-violet-600"}
               style={{
-                width: `${(CommentsBySentimentData.Profile[1].comments.neutral / CommentsBySentimentData.Profile[1].comments.total) * 100}%`,
+                width: `${(passiveCommentsBySentiment!.countSentiment351To650 / (passiveCommentsBySentiment!.countSentiment0To350 + passiveCommentsBySentiment!.countSentiment351To650 + passiveCommentsBySentiment!.countSentiment651To1000)) * 100}%`,
               }}
             />
             <div
               className={twMerge(
                 "h-full bg-red-600",
-                CommentsBySentimentData.Profile[1].comments.negative &&
-                  CommentsBySentimentData.Profile[1].comments.total > 0 &&
+                passiveCommentsBySentiment &&
+                  passiveCommentsBySentiment.countSentiment0To350 > 0 &&
                   "rounded-r",
               )}
               style={{
-                width: `${(CommentsBySentimentData.Profile[1].comments.negative / CommentsBySentimentData.Profile[1].comments.total) * 100}%`,
+                width: `${(passiveCommentsBySentiment!.countSentiment0To350 / (passiveCommentsBySentiment!.countSentiment0To350 + passiveCommentsBySentiment!.countSentiment351To650 + passiveCommentsBySentiment!.countSentiment651To1000)) * 100}%`,
               }}
             />
           </div>
@@ -110,10 +240,10 @@ export function CommentsBySentiment({
               <span>Comentários Positivos</span>
             </div>
             <span className="col-span-1 text-zinc-500">
-              {CommentsBySentimentData.Profile[0].comments.positive}
+              {activeCommentsBySentiment?.countSentiment651To1000}
             </span>
             <span className="col-span-1 text-zinc-500">
-              {CommentsBySentimentData.Profile[1].comments.positive}
+              {passiveCommentsBySentiment?.countSentiment651To1000}
             </span>
             <span className="col-span-1 text-zinc-500">Comentários</span>
             <div className="col-span-2 flex items-center gap-2">
@@ -121,10 +251,10 @@ export function CommentsBySentiment({
               <span>Comentários Neutros</span>
             </div>
             <span className="col-span-1 text-zinc-500">
-              {CommentsBySentimentData.Profile[0].comments.neutral}
+              {activeCommentsBySentiment?.countSentiment351To650}
             </span>
             <span className="col-span-1 text-zinc-500">
-              {CommentsBySentimentData.Profile[1].comments.neutral}
+              {passiveCommentsBySentiment?.countSentiment351To650}
             </span>
             <span className="col-span-1 text-zinc-500">Comentários</span>
             <div className="col-span-2 flex items-center gap-2">
@@ -132,10 +262,10 @@ export function CommentsBySentiment({
               <span>Comentários Negativos</span>
             </div>
             <span className="col-span-1 text-zinc-500">
-              {CommentsBySentimentData.Profile[0].comments.negative}
+              {activeCommentsBySentiment?.countSentiment0To350}
             </span>
             <span className="col-span-1 text-zinc-500">
-              {CommentsBySentimentData.Profile[1].comments.negative}
+              {passiveCommentsBySentiment?.countSentiment0To350}
             </span>
             <span className="col-span-1 text-zinc-500">Comentários</span>
           </div>

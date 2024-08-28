@@ -8,8 +8,9 @@ import {
   useState,
 } from "react";
 import "swiper/swiper-bundle.css";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useCookies } from "next-client-cookies";
+import CreatableSelect from "react-select/creatable";
 import { NewsCard } from "../parameters/NewsCard";
 import { CardWithTitleAndButton } from "../parameters/CardWithTitleAndButton";
 import { authGetAPI, AuthPostAPI, token as Token } from "@/lib/axios";
@@ -31,7 +32,7 @@ export function SwiperNews() {
   const [slidesPerView, setSlidesPerView] = useState(3);
   const [news, setNews] = useState<News[]>([]);
   const [openModal, setOpenModal] = useState(false);
-  const [newWebsiteUrl, setNewWebsiteUrl] = useState("");
+  const [newWebsiteUrls, setNewWebsiteUrls] = useState([""]);
   const [isAddingWebsite, setIsAddingWebsite] = useState(false);
   const [isGettingData, setIsGettingData] = useState(true);
 
@@ -48,24 +49,20 @@ export function SwiperNews() {
 
   async function AddWebsite() {
     const token = cookies.get(Token);
-    let formattedUrl = "";
     setIsAddingWebsite(true);
-    if (newWebsiteUrl === "") {
+    if (newWebsiteUrls[0] === "") {
       alert("Url não informada");
       return setIsAddingWebsite(false);
-    }
-    if (!newWebsiteUrl.includes("https://")) {
-      formattedUrl = `https://${newWebsiteUrl}`;
     }
     const connect = await AuthPostAPI(
       "/website/request",
       {
-        url: formattedUrl === "" ? newWebsiteUrl : formattedUrl,
+        url: newWebsiteUrls,
       },
       token,
     );
     if (connect.status === 200) {
-      setNewWebsiteUrl("");
+      setNewWebsiteUrls([""]);
       alert("Requisição efetuada com sucesso");
       setOpenModal(false);
       return setIsAddingWebsite(false);
@@ -179,19 +176,28 @@ export function SwiperNews() {
         <form
           action={AddWebsite}
           onSubmit={(e) => e.preventDefault()}
-          className="flex flex-col p-4"
+          className="flex w-full flex-col px-4 pb-4"
         >
-          <label className="text-lg font-semibold">
-            Enviar Pedido de Portal
-          </label>
-          <div className="flex w-full items-center gap-1 rounded-md bg-white p-2">
-            <input
-              className="focus:outline-none"
-              placeholder="https://www.site.com.br"
-              value={newWebsiteUrl}
-              onChange={(e) => setNewWebsiteUrl(e.target.value)}
-            />
+          <div className="flex w-full items-center justify-between">
+            <label className="text-lg font-semibold">Adicionar Sites</label>
+            <button
+              onClick={() => setOpenModal(false)}
+              className="h-8 w-8 items-center justify-center"
+            >
+              <X />
+            </button>
           </div>
+          <CreatableSelect
+            className="w-full"
+            isMulti
+            placeholder="https://exemplo.com.br"
+            onChange={(e) =>
+              setNewWebsiteUrls(
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                e.map((item: any) => item.value),
+              )
+            }
+          />
           <button
             type="submit"
             onClick={() => AddWebsite()}

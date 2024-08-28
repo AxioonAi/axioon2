@@ -45,15 +45,14 @@ export function IndicatorsCards() {
       tiktokIndicators,
       youtubeIndicators,
     ];
-    if (allIndicators.filter((x) => x !== null).length > 0) {
+    if (allIndicators.filter((x) => x).length > 0) {
       const result = allIndicators
-        .filter((x) => x !== null)
+        .filter((x) => x)
         .flat()
         .reduce<Record<string, IndicatorsProps>>((acc, item) => {
-          const { name, value, trendingValue } = item;
+          const { name, value, trendingValue } = item as IndicatorsProps;
 
           if (!acc[name]) {
-            // Se o objeto com o nome ainda não existe no acumulador, cria-o
             acc[name] = {
               name,
               value: 0,
@@ -61,14 +60,8 @@ export function IndicatorsCards() {
               trendingValue: 0,
             };
           }
-
-          // Soma os valores
           acc[name].value += value;
           acc[name].trendingValue += trendingValue;
-
-          // Soma os valores de evolution por índice
-          // acc[name].evolution.push(...evolution);
-
           return acc;
         }, {});
       setIndicators(Object.values(result));
@@ -98,6 +91,7 @@ export function IndicatorsCards() {
           spaceBetween: 50,
         },
       }}
+      centeredSlides={indicators.length === 0 && !isGettingData}
     >
       {isGettingData ? (
         <>
@@ -117,6 +111,14 @@ export function IndicatorsCards() {
             </BaseCard>
           </SwiperSlide>
         </>
+      ) : indicators.length === 0 ? (
+        <SwiperSlide className="py-2">
+          <BaseCard className="relative h-36 items-center justify-center overflow-hidden">
+            <span className="text-lg font-semibold italic">
+              Nenhum dado Encontrado no Período Selecionado
+            </span>
+          </BaseCard>
+        </SwiperSlide>
       ) : (
         indicators?.map((data, index) => (
           <SwiperSlide className="py-2" key={index}>

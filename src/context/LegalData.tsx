@@ -31,7 +31,7 @@ export const LegalDataContextProvider = ({ children }: ContextProps) => {
     setIsGettingData(true);
     const token = cookies.get(Token);
     const legal = await authGetAPI(
-      `/profile/legal/9f0eb382-87a3-498e-91da-69f8ac23fa10`,
+      `/profile/legal/${selectedPolitician?.id}`,
       token,
     );
     if (legal.status === 200) {

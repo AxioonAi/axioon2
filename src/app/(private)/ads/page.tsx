@@ -1,10 +1,10 @@
 import { AdSummary } from "@/components/app/ads/AdSummary";
 import { AgeAndGenderChart } from "@/components/app/ads/AgeAndGenderChart";
-import { CommentsDonutGraph } from "@/components/app/home/CommentsDonutGraph";
 import { IndicatorsCards } from "@/components/app/ads/IndicatorsCards";
 import { AgeAndGenderData } from "@/components/data/AdsData";
 import { CommentsDonutGraphData } from "@/components/data/HomeData";
 import { HeaderCard } from "@/components/app/ads/HeaderCard";
+import { CommentsDonutGraph } from "@/components/app/ads/CommentsDonutGraph";
 
 export default function Ads() {
   return (

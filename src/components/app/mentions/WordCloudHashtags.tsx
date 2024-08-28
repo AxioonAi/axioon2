@@ -33,13 +33,14 @@ interface WordsProps {
 export function WordCloudHashtags({ WordCloudData }: WordCloudHashtagsProps) {
   const [instagramWords, setInstagramWords] = useState<WordsProps[]>();
   const [wordsList, setWordsList] = useState<WordsProps[]>();
+  const [isHashtagsEmpty, setIsHashtagsEmpty] = useState(true);
   const { isGettingData, mentionsData } = useMentionsDataContext();
   const { elementRef, isVisible, elementName, setElementName } =
     useOffsetContext();
 
   useEffect(() => {
-    if (mentionsData) {
-      const instagramWordsData = mentionsData.wordCloud.instagram.words.map(
+    if (mentionsData?.hashtagCloud.instagram) {
+      const instagramWordsData = mentionsData.hashtagCloud.instagram.words.map(
         (word) => ({
           text: word.word,
           value: word.quantity,
@@ -54,8 +55,16 @@ export function WordCloudHashtags({ WordCloudData }: WordCloudHashtagsProps) {
     const flatWordsList = wordsList
       .flat()
       .filter((word): word is WordsProps => word !== undefined);
+
+    if (flatWordsList.length === 0) {
+      setIsHashtagsEmpty(true);
+    } else {
+      setIsHashtagsEmpty(false);
+    }
+
     setWordsList(flatWordsList);
   }, [instagramWords]);
+
   useEffect(() => {
     if (isVisible) {
       setElementName("keywords");
@@ -67,7 +76,7 @@ export function WordCloudHashtags({ WordCloudData }: WordCloudHashtagsProps) {
   return (
     <BaseCard className="p-0">
       <BaseCardHeader
-        title="Nuvem de Palavras"
+        title="Nuvem de Hashtags"
         children={
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-100 text-zinc-700">
             <EllipsisVertical size={14} />
@@ -75,12 +84,15 @@ export function WordCloudHashtags({ WordCloudData }: WordCloudHashtagsProps) {
         }
       />
       {isGettingData ? (
-        <Skeleton className="mx-auto mt-4 h-96 w-11/12" />
+        <Skeleton className="mx-auto mt-4 h-48 w-11/12" />
+      ) : isHashtagsEmpty ? (
+        <div className="flex h-full min-h-40 w-full items-center justify-center">
+          <span className="text-lg font-semibold italic">
+            Não encontramos nenhuma Hashtag
+          </span>
+        </div>
       ) : (
-        <div
-          ref={elementRef}
-          className="flex h-full max-h-[35vh] w-full flex-col"
-        >
+        <div ref={elementRef} className="flex h-full max-h-56 w-full flex-col">
           <ReactWordcloud
             words={wordsList as WordsProps[]}
             options={WordCloudData.options}

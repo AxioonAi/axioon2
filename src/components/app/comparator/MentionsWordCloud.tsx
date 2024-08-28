@@ -81,8 +81,9 @@ export function MentionsWordCloud({ WordCloudData }: WordCloudProps) {
   useEffect(() => {
     if (activeWordsList && passiveWordsList) {
       const finalWordsList = [...activeWordsList, ...passiveWordsList].filter(
-        (word) =>
-          activeWordsList.some((activeWord) => activeWord.text === word.text) ||
+        (word, index, self) =>
+          self.findIndex((w) => w.text === word.text) === index &&
+          activeWordsList.some((activeWord) => activeWord.text === word.text) &&
           passiveWordsList.some(
             (passiveWord) => passiveWord.text === word.text,
           ),

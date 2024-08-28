@@ -13,6 +13,7 @@ export default function Login() {
 
   const [showPassword, setShowPassword] = useState("password");
   const [buttonLoading, setButtonLoading] = useState(false);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, no-unused-vars
   const [checked, setChecked] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
@@ -58,7 +59,7 @@ export default function Login() {
               Acesse aqui todas as suas contas pelo painel principal.
             </span>
           </div>
-          <div className="LoginTypeSelector my-4 flex h-20 w-full flex-col justify-between gap-2 lg:flex-row">
+          {/* <div className="LoginTypeSelector my-4 flex h-20 w-full flex-col justify-between gap-2 lg:flex-row">
             <label
               htmlFor="loginType1"
               className={`Selector1 flex w-full cursor-pointer items-center justify-start gap-2 rounded border-2 p-3 lg:w-2/5 lg:px-2 ${
@@ -88,13 +89,13 @@ export default function Login() {
               />
               <span>Convidado</span>
             </label>
-          </div>
+          </div> */}
           <div className="relative mb-8 mt-20 lg:mt-8">
             <div className="border border-gray-300" />
 
-            <p className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform bg-white px-2 text-gray-400">
+            {/* <p className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform bg-white px-2 text-gray-400">
               ou
-            </p>
+            </p> */}
           </div>
           <form
             action={handleLogin}

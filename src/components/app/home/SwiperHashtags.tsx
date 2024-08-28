@@ -8,8 +8,9 @@ import {
   useState,
 } from "react";
 import "swiper/swiper-bundle.css";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useCookies } from "next-client-cookies";
+import CreatableSelect from "react-select/creatable";
 import { HashtagCard } from "../parameters/HashtagCard";
 import { CardWithTitleAndButton } from "../parameters/CardWithTitleAndButton";
 import { authGetAPI, AuthPostAPI, token as Token } from "@/lib/axios";
@@ -27,7 +28,7 @@ export function SwiperHashtag() {
   const [slidesPerView, setSlidesPerView] = useState(3);
   const [hashtag, setHashtag] = useState<hashtag[]>([]);
   const [openModal, setOpenModal] = useState(false);
-  const [newHashtag, setNewHashtag] = useState("");
+  const [newHashtags, setNewHashtags] = useState<string[]>([""]);
   const [isAddingHashtag, setIsAddingHashtag] = useState(false);
   const [isGettingData, setIsGettingData] = useState(true);
   const cookie = useCookies();
@@ -46,19 +47,19 @@ export function SwiperHashtag() {
   async function AddHashtag() {
     const token = cookie.get(Token);
     setIsAddingHashtag(true);
-    if (newHashtag === "") {
+    if (newHashtags[0] === "") {
       alert("Hashtag não informada");
       return setIsAddingHashtag(false);
     }
     const connect = await AuthPostAPI(
       "/hashtag",
       {
-        hashtag: newHashtag,
+        hashtag: newHashtags,
       },
       token,
     );
     if (connect.status === 200) {
-      setNewHashtag("");
+      setNewHashtags([""]);
       alert("Hashtag adicionada");
       setOpenModal(false);
       GetHashtags();
@@ -176,10 +177,29 @@ export function SwiperHashtag() {
         <form
           action={AddHashtag}
           onSubmit={(e) => e.preventDefault()}
-          className="flex flex-col p-4"
+          className="flex w-full flex-col px-4 pb-4"
         >
-          <label className="text-lg font-semibold">Adicionar Hashtag</label>
-          <div className="flex w-full items-center gap-1 rounded-md bg-white p-2">
+          <div className="flex w-full items-center justify-between">
+            <label className="text-lg font-semibold">Adicionar Hashtag</label>
+            <button
+              onClick={() => setOpenModal(false)}
+              className="h-8 w-8 items-center justify-center"
+            >
+              <X />
+            </button>
+          </div>
+          <CreatableSelect
+            className="w-full"
+            isMulti
+            placeholder="#"
+            onChange={(e) =>
+              setNewHashtags(
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                e.map((item: any) => item.value),
+              )
+            }
+          />
+          {/* <div className="flex w-full items-center gap-1 rounded-md bg-white p-2">
             #
             <input
               className="focus:outline-none"
@@ -187,7 +207,7 @@ export function SwiperHashtag() {
               value={newHashtag}
               onChange={(e) => setNewHashtag(e.target.value)}
             />
-          </div>
+          </div> */}
           <button
             type="submit"
             onClick={() => AddHashtag()}

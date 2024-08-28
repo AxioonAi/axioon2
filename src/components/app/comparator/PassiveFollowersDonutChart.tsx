@@ -126,7 +126,7 @@ export function PassiveFollowersDonutChart({
   return (
     <BaseCard className="p-0">
       <BaseCardHeader
-        title="Seguidores Candidato 1"
+        title="Seguidores Candidato"
         children={
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-100 text-zinc-700">
             <EllipsisVertical size={14} />

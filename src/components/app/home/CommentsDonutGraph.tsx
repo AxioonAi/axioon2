@@ -8,7 +8,7 @@ import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { DonutChartWithFooterData } from "@/components/global/DonutChartWithFooterData";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
 import { Skeleton } from "@/components/global/Skeleton";
-import { useAdsDataContext } from "@/context/AdsData";
+import { useSocialMediaDataContext } from "@/context/SocialMediaData";
 
 interface CommentsDonutGraphProps {
   CommentsDonutGraphData: {
@@ -24,6 +24,12 @@ interface CommentsDonutGraphProps {
   };
 }
 
+interface CommentsByGenderProps {
+  male: number;
+  female: number;
+  unknown: number;
+}
+
 interface SeriesProps {
   series: number[];
 }
@@ -31,8 +37,15 @@ interface SeriesProps {
 export function CommentsDonutGraph({
   CommentsDonutGraphData,
 }: CommentsDonutGraphProps) {
-  const { adsData, isGettingData } = useAdsDataContext();
-  const [series, setSeries] = useState<SeriesProps>();
+  const [facebookComments, setFacebookComments] =
+    useState<CommentsByGenderProps>();
+  const [instagramComments, setInstagramComments] =
+    useState<CommentsByGenderProps>();
+  const [tiktokComments, setTiktokComments] = useState<CommentsByGenderProps>();
+  const [youtubeComments, setYoutubeComments] =
+    useState<CommentsByGenderProps>();
+  const [commentsByGender, setCommentsByGender] = useState<SeriesProps>();
+  const { isGettingData, socialMediaData } = useSocialMediaDataContext();
   const [footerData, setFooterData] = useState([
     {
       title: "Homem",
@@ -52,54 +65,63 @@ export function CommentsDonutGraph({
   ]);
 
   useEffect(() => {
-    if (adsData) {
-      setFooterData([
-        {
-          title: "Homem",
-          color: "bg-sky-900",
-          value:
-            Number(
-              adsData?.public_by_gender.male &&
-                adsData?.public_by_gender.male.toFixed(0),
-            ) || 0,
-        },
-        {
-          title: "Mulher",
-          color: "bg-sky-400",
-          value:
-            Number(
-              adsData?.public_by_gender.female &&
-                adsData?.public_by_gender.female.toFixed(0),
-            ) || 0,
-        },
-        {
-          title: "Outro",
-          color: "bg-sky-200",
-          value:
-            Number(
-              adsData?.public_by_gender.unknown &&
-                adsData?.public_by_gender.unknown.toFixed(0),
-            ) || 0,
-        },
-      ]);
-      setSeries({
-        series: [
-          Number(
-            adsData?.public_by_gender.male &&
-              adsData?.public_by_gender.male.toFixed(0),
-          ) || 0,
-          Number(
-            adsData?.public_by_gender.female &&
-              adsData?.public_by_gender.female.toFixed(0),
-          ) || 0,
-          Number(
-            adsData?.public_by_gender.unknown &&
-              adsData?.public_by_gender.unknown.toFixed(0),
-          ) || 0,
-        ],
-      });
+    if (socialMediaData) {
+      setFacebookComments(
+        socialMediaData.commentsData.commentByGender.facebook,
+      );
+      setInstagramComments(
+        socialMediaData.commentsData.commentByGender.instagram,
+      );
+      setTiktokComments(socialMediaData.commentsData.commentByGender.tiktok);
+      setYoutubeComments(socialMediaData.commentsData.commentByGender.youtube);
     }
-  }, [adsData]);
+  }, [socialMediaData]);
+
+  useEffect(() => {
+    const genderValues = [
+      facebookComments,
+      instagramComments,
+      tiktokComments,
+      youtubeComments,
+    ];
+    const summedValues = genderValues.reduce(
+      (acc, curr) => {
+        if (curr) {
+          acc!.male += curr.male;
+          acc!.female += curr.female;
+          acc!.unknown += curr.unknown;
+        }
+        return acc;
+      },
+      {
+        male: 0,
+        female: 0,
+        unknown: 0,
+      },
+    );
+
+    setCommentsByGender({
+      series: [summedValues!.male, summedValues!.female, summedValues!.unknown],
+    });
+
+    setFooterData([
+      {
+        title: "Homem",
+        color: "bg-sky-900",
+        value: summedValues!.male,
+      },
+      {
+        title: "Mulher",
+        color: "bg-sky-400",
+        value: summedValues!.female,
+      },
+      {
+        title: "Indefinido",
+        color: "bg-sky-200",
+        value: summedValues!.unknown,
+      },
+    ]);
+  }, [facebookComments, instagramComments, tiktokComments, youtubeComments]);
 
   return (
     <BaseCard className="p-0">
@@ -116,7 +138,7 @@ export function CommentsDonutGraph({
       ) : (
         <DonutChartWithFooterData
           ChartOptions={CommentsDonutGraphData.ChartOptions}
-          series={series?.series}
+          series={commentsByGender ? commentsByGender?.series : []}
           footerData={footerData.map((data) => {
             return (
               <div className="flex flex-col items-center gap-2">

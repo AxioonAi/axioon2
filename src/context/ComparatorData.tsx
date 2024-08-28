@@ -10,6 +10,7 @@ import {
 } from "react";
 import { useCookies } from "next-client-cookies";
 import { useSelectedPoliticianContext } from "./SelectedPolitician";
+import { useSelectedDateContext } from "./SelectedDate";
 import { authGetAPI, token as Token } from "@/lib/axios";
 import { SocialMediaDataProps } from "@/types/SocialMediaData";
 import { MentionsDataProps } from "@/types/MentionsData";
@@ -27,11 +28,31 @@ interface Politician {
   youtube: string;
 }
 
+interface AdsDataProps {
+  ads: {
+    average_impressions: number;
+    average_spend: number;
+    end_date?: string;
+    id: string;
+    start_date: string;
+    status: string;
+  }[];
+  public_by_age_and_gender: {
+    age_group: string;
+    gender: string;
+    value: number;
+  }[];
+  public_by_gender: {
+    female: number;
+    male: number;
+    unknown: number;
+  };
+  total_ads: number;
+  total_impressions: number;
+  total_spend: number;
+}
+
 interface ComparatorDataContextProps {
-  startDate: Date | undefined;
-  setStartDate: Dispatch<SetStateAction<Date | undefined>>;
-  endDate: Date | undefined;
-  setEndDate: Dispatch<SetStateAction<Date | undefined>>;
   activeUserData: SocialMediaDataProps | undefined;
   setActiveUserData: Dispatch<SetStateAction<SocialMediaDataProps | undefined>>;
   passiveUserData: SocialMediaDataProps | undefined;
@@ -52,6 +73,10 @@ interface ComparatorDataContextProps {
   setPassiveUserMentionsData: Dispatch<
     SetStateAction<MentionsDataProps | undefined>
   >;
+  activeAdsData: AdsDataProps | undefined;
+  setActiveAdsData: Dispatch<SetStateAction<AdsDataProps | undefined>>;
+  passiveAdsData: AdsDataProps | undefined;
+  setPassiveAdsData: Dispatch<SetStateAction<AdsDataProps | undefined>>;
 }
 
 const ComparatorDataContext = createContext({} as ComparatorDataContextProps);
@@ -62,11 +87,8 @@ interface ContextProps {
 
 export const ComparatorDataContextProvider = ({ children }: ContextProps) => {
   const cookies = useCookies();
+  const { startDate, endDate } = useSelectedDateContext();
   const { selectedPolitician, politicians } = useSelectedPoliticianContext();
-  const [startDate, setStartDate] = useState<Date | undefined>(
-    new Date(new Date().getTime() - 30 * 24 * 60 * 60 * 1000),
-  );
-  const [endDate, setEndDate] = useState<Date | undefined>(new Date());
   const [activeUserData, setActiveUserData] = useState<SocialMediaDataProps>();
   const [passiveUserData, setPassiveUserData] =
     useState<SocialMediaDataProps>();
@@ -74,6 +96,8 @@ export const ComparatorDataContextProvider = ({ children }: ContextProps) => {
     useState<MentionsDataProps>();
   const [passiveUserMentionsData, setPassiveUserMentionsData] =
     useState<MentionsDataProps>();
+  const [activeAdsData, setActiveAdsData] = useState<AdsDataProps>();
+  const [passiveAdsData, setPassiveAdsData] = useState<AdsDataProps>();
 
   const [activeUserProfileData, setActiveUserProfileData] = useState<
     Politician | undefined
@@ -85,7 +109,6 @@ export const ComparatorDataContextProvider = ({ children }: ContextProps) => {
   const [isGettingData, setIsGettingData] = useState(true);
 
   async function GetSocialMediaData() {
-    setIsGettingData(true);
     const token = cookies.get(Token);
     if (!selectedPolitician?.id) {
       return;
@@ -93,12 +116,12 @@ export const ComparatorDataContextProvider = ({ children }: ContextProps) => {
     const [activeUser, passiveUser] = await Promise.all([
       authGetAPI(
         // `/profile/media/8eb93d97-4852-4cd3-877f-7938dadca2f5?endDate=2024-06-14&startDate=2024-03-14&instagram=true&facebook=true&tiktok=true&youtube=true`,
-        `/profile/media/8eb93d97-4852-4cd3-877f-7938dadca2f5?endDate=${endDate}&startDate=${startDate}&instagram=true&facebook=true&tiktok=true&youtube=true`,
+        `/profile/media/${activeUserProfileData?.id}?endDate=${endDate}&startDate=${startDate}&instagram=true&facebook=true&tiktok=true&youtube=true`,
         token,
       ),
       authGetAPI(
         // `/profile/media/4e7f0981-ae98-40f9-832e-e0770e98d8f2?endDate=2024-06-14&startDate=2024-03-14&instagram=true&facebook=true&tiktok=true&youtube=true`,
-        `/profile/media/${politicians[0]?.id}?endDate=${endDate}&startDate=${startDate}&instagram=true&facebook=true&tiktok=true&youtube=true`,
+        `/profile/media/${passiveUserProfileData?.id}?endDate=${endDate}&startDate=${startDate}&instagram=true&facebook=true&tiktok=true&youtube=true`,
         token,
       ),
     ]);
@@ -111,16 +134,15 @@ export const ComparatorDataContextProvider = ({ children }: ContextProps) => {
 
   async function GetMentionsData() {
     const token = cookies.get(Token);
-    setIsGettingData(true);
     const [activeUser, passiveUser] = await Promise.all([
       authGetAPI(
         // `/profile/mentions/8eb93d97-4852-4cd3-877f-7938dadca2f5?endDate=2024-06-14&startDate=2024-03-14`,
-        `/profile/mentions/8eb93d97-4852-4cd3-877f-7938dadca2f5?endDate=${endDate}&startDate=${startDate}`,
+        `/profile/mentions/${activeUserProfileData?.id}?endDate=${endDate}&startDate=${startDate}`,
         token,
       ),
       authGetAPI(
         // `/profile/mentions/8eb93d97-4852-4cd3-877f-7938dadca2f5?endDate=2024-06-14&startDate=2024-03-14`,
-        `/profile/mentions/${selectedPolitician?.id}?endDate=${endDate}&startDate=${startDate}`,
+        `/profile/mentions/${passiveUserProfileData?.id}?endDate=${endDate}&startDate=${startDate}`,
         token,
       ),
     ]);
@@ -130,38 +152,64 @@ export const ComparatorDataContextProvider = ({ children }: ContextProps) => {
     }
   }
 
-  // useEffect(() => {
-  //   if (selectedPolitician) {
-  //     setActiveUserProfileData(
-  //       politicians.find(
-  //         (politician) => politician.id === selectedPolitician.id,
-  //       ),
-  //     );
-  //     setPassiveUserProfileData(
-  //       politicians.filter(
-  //         (politician) => politician.id !== selectedPolitician.id,
-  //       )[0],
-  //     );
-  //   }
-  // }, [selectedPolitician]);
+  async function GetAdsData() {
+    const token = cookies.get(Token);
+    const [activeUser, passiveUser] = await Promise.all([
+      authGetAPI(
+        `/profile/advertising/${activeUserProfileData?.id}?endDate=${endDate}&startDate=${startDate}`,
+        token,
+      ),
+      authGetAPI(
+        `/profile/advertising/${passiveUserProfileData?.id}?endDate=${endDate}&startDate=${startDate}`,
+        token,
+      ),
+    ]);
+
+    if (activeUser.status === 200 && passiveUser.status === 200) {
+      setActiveAdsData(activeUser.body.advertising);
+      setPassiveAdsData(passiveUser.body.advertising);
+    }
+  }
+
+  useEffect(() => {
+    if (selectedPolitician) {
+      setActiveUserProfileData(
+        politicians.find(
+          (politician) => politician.id === selectedPolitician.id,
+        ),
+      );
+      setPassiveUserProfileData(
+        politicians.filter(
+          (politician) => politician.id !== selectedPolitician.id,
+        )[0],
+      );
+    }
+  }, [selectedPolitician]);
 
   useEffect(() => {
     async function GetData() {
       setIsGettingData(true);
-      await Promise.all([GetSocialMediaData(), GetMentionsData()]);
+      await Promise.all([
+        GetSocialMediaData(),
+        GetMentionsData(),
+        GetAdsData(),
+      ]);
       setTimeout(() => {
         setIsGettingData(false);
       }, 1500);
     }
-
-    GetData();
-  }, [selectedPolitician, startDate, endDate]);
+    if (activeUserProfileData?.id && passiveUserProfileData?.id) {
+      GetData();
+    }
+  }, [
+    selectedPolitician,
+    startDate,
+    endDate,
+    activeUserProfileData,
+    passiveUserProfileData,
+  ]);
 
   const value = {
-    startDate,
-    setStartDate,
-    endDate,
-    setEndDate,
     activeUserData,
     setActiveUserData,
     passiveUserData,
@@ -176,6 +224,10 @@ export const ComparatorDataContextProvider = ({ children }: ContextProps) => {
     setActiveUserMentionsData,
     passiveUserMentionsData,
     setPassiveUserMentionsData,
+    activeAdsData,
+    setActiveAdsData,
+    passiveAdsData,
+    setPassiveAdsData,
   };
 
   return (
@@ -187,10 +239,6 @@ export const ComparatorDataContextProvider = ({ children }: ContextProps) => {
 
 export function useComparatorDataContext() {
   const {
-    startDate,
-    setStartDate,
-    endDate,
-    setEndDate,
     activeUserData,
     setActiveUserData,
     passiveUserData,
@@ -205,13 +253,13 @@ export function useComparatorDataContext() {
     setActiveUserMentionsData,
     passiveUserMentionsData,
     setPassiveUserMentionsData,
+    activeAdsData,
+    setActiveAdsData,
+    passiveAdsData,
+    setPassiveAdsData,
   } = useContext(ComparatorDataContext);
 
   return {
-    startDate,
-    setStartDate,
-    endDate,
-    setEndDate,
     activeUserData,
     setActiveUserData,
     passiveUserData,
@@ -226,5 +274,9 @@ export function useComparatorDataContext() {
     setActiveUserMentionsData,
     passiveUserMentionsData,
     setPassiveUserMentionsData,
+    activeAdsData,
+    setActiveAdsData,
+    passiveAdsData,
+    setPassiveAdsData,
   };
 }

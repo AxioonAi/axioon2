@@ -58,7 +58,7 @@ export function WordsList() {
         }
       />
       {isGettingData ? (
-        <Skeleton className="mx-auto mt-4 h-96 w-11/12" />
+        <Skeleton className="mx-auto mt-4 h-48 w-11/12" />
       ) : (
         <div className="mb-12 flex h-80 w-full flex-col gap-8 overflow-y-scroll p-4 lg:mb-0 lg:h-[74%] 2xl:h-3/4 3xl:h-4/5">
           {wordsList.map((word, index) => (

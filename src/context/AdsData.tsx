@@ -3,6 +3,7 @@
 import { useCookies } from "next-client-cookies";
 import { createContext, useContext, useEffect, useState } from "react";
 import { useSelectedPoliticianContext } from "./SelectedPolitician";
+import { useSelectedDateContext } from "./SelectedDate";
 import { authGetAPI, token as Token } from "@/lib/axios";
 
 interface AdsDataProps {
@@ -32,10 +33,6 @@ interface AdsDataProps {
 interface AdsDataContextProps {
   adsData: AdsDataProps | undefined;
   setAdsData: React.Dispatch<React.SetStateAction<AdsDataProps | undefined>>;
-  startDate: Date | undefined;
-  setStartDate: React.Dispatch<React.SetStateAction<Date | undefined>>;
-  endDate: Date | undefined;
-  setEndDate: React.Dispatch<React.SetStateAction<Date | undefined>>;
   isGettingData: boolean;
   setIsGettingData: React.Dispatch<React.SetStateAction<boolean>>;
 }
@@ -48,12 +45,9 @@ interface ContextProps {
 
 export const AdsDataContextProvider = ({ children }: ContextProps) => {
   const cookies = useCookies();
+  const { startDate, endDate } = useSelectedDateContext();
   const { selectedPolitician } = useSelectedPoliticianContext();
   const [adsData, setAdsData] = useState<AdsDataProps | undefined>();
-  const [startDate, setStartDate] = useState<Date | undefined>(
-    new Date(new Date().getTime() - 30 * 24 * 60 * 60 * 1000),
-  );
-  const [endDate, setEndDate] = useState<Date | undefined>(new Date());
   const [isGettingData, setIsGettingData] = useState(false);
 
   async function GetAdsData() {
@@ -79,15 +73,11 @@ export const AdsDataContextProvider = ({ children }: ContextProps) => {
     if (selectedPolitician?.id) {
       GetAdsData();
     }
-  }, [selectedPolitician]);
+  }, [selectedPolitician, startDate, endDate]);
 
   const value = {
     adsData,
     setAdsData,
-    startDate,
-    setStartDate,
-    endDate,
-    setEndDate,
     isGettingData,
     setIsGettingData,
   };
@@ -98,24 +88,12 @@ export const AdsDataContextProvider = ({ children }: ContextProps) => {
 };
 
 export function useAdsDataContext() {
-  const {
-    adsData,
-    setAdsData,
-    startDate,
-    setStartDate,
-    endDate,
-    setEndDate,
-    isGettingData,
-    setIsGettingData,
-  } = useContext(AdsDataContext);
+  const { adsData, setAdsData, isGettingData, setIsGettingData } =
+    useContext(AdsDataContext);
 
   return {
     adsData,
     setAdsData,
-    startDate,
-    setStartDate,
-    endDate,
-    setEndDate,
     isGettingData,
     setIsGettingData,
   };

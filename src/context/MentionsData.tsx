@@ -10,20 +10,24 @@ import {
 } from "react";
 import { useCookies } from "next-client-cookies";
 import { useSelectedPoliticianContext } from "./SelectedPolitician";
+import { useSelectedDateContext } from "./SelectedDate";
 import { authGetAPI, token as Token } from "@/lib/axios";
-import { MentionsDataProps } from "@/types/MentionsData";
+import {
+  HashtagsMentionsDataProps,
+  MentionsDataProps,
+} from "@/types/MentionsData";
 
 interface MentionsDataContextProps {
-  startDate: Date;
-  setStartDate: Dispatch<SetStateAction<Date>>;
-  endDate: Date;
-  setEndDate: Dispatch<SetStateAction<Date>>;
   mentionsData: MentionsDataProps | undefined;
   setMentionsData: Dispatch<SetStateAction<MentionsDataProps | undefined>>;
   isGettingData: boolean;
   setIsGettingData: Dispatch<SetStateAction<boolean>>;
   selectedMentionsType: string;
   setSelectedMentionsType: Dispatch<SetStateAction<string>>;
+  hashtagData: HashtagsMentionsDataProps | undefined;
+  setHashtagData: Dispatch<
+    SetStateAction<HashtagsMentionsDataProps | undefined>
+  >;
 }
 
 const MentionsDataContext = createContext({} as MentionsDataContextProps);
@@ -34,22 +38,24 @@ interface ContextProps {
 
 export const MentionsDataContextProvider = ({ children }: ContextProps) => {
   const cookies = useCookies();
-  const [startDate, setStartDate] = useState<Date>(
-    new Date(new Date().getTime() - 30 * 24 * 60 * 60 * 1000),
-  );
-  const [endDate, setEndDate] = useState<Date>(new Date());
+  const { startDate, setStartDate, endDate, setEndDate } =
+    useSelectedDateContext();
   const [mentionsData, setMentionsData] = useState<MentionsDataProps>();
+  const [hashtagData, setHashtagData] = useState<HashtagsMentionsDataProps>();
   const [isGettingData, setIsGettingData] = useState(true);
   const [selectedMentionsType, setSelectedMentionsType] =
     useState<string>("personal");
   const { selectedPolitician } = useSelectedPoliticianContext();
 
+  const token = cookies.get(Token);
   async function GetHashtagsMentionsData() {
-    // const token = cookies.get(Token);
-    // const connect = await authGetAPI(
-    //   `/hashtag/mentions?endDate=2024-06-14&startDate=2024-03-14`,
-    //   token,
-    // );
+    const hashtagData = await authGetAPI(
+      `/hashtag/mentions?endDate=${endDate}&startDate=${startDate}`,
+      token,
+    );
+    if (hashtagData.status === 200) {
+      setHashtagData(hashtagData.body);
+    }
   }
 
   async function GetMentionsData() {
@@ -72,8 +78,8 @@ export const MentionsDataContextProvider = ({ children }: ContextProps) => {
   }
 
   useEffect(() => {
-    GetHashtagsMentionsData();
     if (selectedPolitician && selectedPolitician.id) {
+      GetHashtagsMentionsData();
       GetMentionsData();
     }
   }, [selectedPolitician, startDate, endDate]);
@@ -89,6 +95,8 @@ export const MentionsDataContextProvider = ({ children }: ContextProps) => {
     setIsGettingData,
     selectedMentionsType,
     setSelectedMentionsType,
+    hashtagData,
+    setHashtagData,
   };
 
   return (
@@ -100,28 +108,24 @@ export const MentionsDataContextProvider = ({ children }: ContextProps) => {
 
 export function useMentionsDataContext() {
   const {
-    startDate,
-    setStartDate,
-    endDate,
-    setEndDate,
     mentionsData,
     setMentionsData,
     isGettingData,
     setIsGettingData,
     selectedMentionsType,
     setSelectedMentionsType,
+    hashtagData,
+    setHashtagData,
   } = useContext(MentionsDataContext);
 
   return {
-    startDate,
-    setStartDate,
-    endDate,
-    setEndDate,
     mentionsData,
     setMentionsData,
     isGettingData,
     setIsGettingData,
     selectedMentionsType,
     setSelectedMentionsType,
+    hashtagData,
+    setHashtagData,
   };
 }

@@ -18,10 +18,11 @@ interface WordsProps {
 export function WordsListHashtags() {
   const [instagramWords, setInstagramWords] = useState<WordsProps[]>();
   const [wordsList, setWordsList] = useState<WordsProps[]>([]);
+  const [isHashtagsEmpty, setIsHashtagsEmpty] = useState(true);
   const { isGettingData, mentionsData } = useMentionsDataContext();
 
   useEffect(() => {
-    if (mentionsData) {
+    if (mentionsData?.hashtagCloud.instagram) {
       const instagramWordsData = mentionsData.hashtagCloud.instagram.words.map(
         (word) => ({
           text: word.word,
@@ -43,13 +44,20 @@ export function WordsListHashtags() {
     const orderedFlatWordsList = flatWordsList.sort(
       (a, b) => b.value - a.value,
     );
+
+    if (flatWordsList.length === 0) {
+      setIsHashtagsEmpty(true);
+    } else {
+      setIsHashtagsEmpty(false);
+    }
+
     setWordsList(orderedFlatWordsList);
   }, [instagramWords]);
 
   return (
     <BaseCard className="p-0">
       <BaseCardHeader
-        title="Lista de Palavras"
+        title="Lista de Hashtags"
         children={
           <div className="flex items-center gap-2 text-xs text-zinc-500">
             <span>Ver todos</span>
@@ -58,7 +66,13 @@ export function WordsListHashtags() {
         }
       />
       {isGettingData ? (
-        <Skeleton className="mx-auto mt-4 h-96 w-11/12" />
+        <Skeleton className="mx-auto mt-4 h-48 w-11/12" />
+      ) : isHashtagsEmpty ? (
+        <div className="flex h-full min-h-40 w-full items-center justify-center">
+          <span className="text-lg font-semibold italic">
+            Não encontramos nenhuma Hashtag
+          </span>
+        </div>
       ) : (
         <div className="mb-12 flex h-80 w-full flex-col gap-8 overflow-y-scroll p-4 lg:mb-0 lg:h-[74%] 2xl:h-3/4 3xl:h-4/5">
           {wordsList.map((word, index) => (

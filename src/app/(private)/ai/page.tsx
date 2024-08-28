@@ -1,15 +1,27 @@
 "use client";
-import { SendHorizonal, Sun, TriangleAlert, Zap } from "lucide-react";
+import { SendHorizonal, Sun, TriangleAlert, X, Zap } from "lucide-react";
 import { useEffect, useState } from "react";
-import { CardWithTitleAndButton } from "@/components/app/parameters/CardWithTitleAndButton";
 import { useCookies } from "next-client-cookies";
-import { AuthPostAPI, token as Token, authGetAPI } from "@/lib/axios";
 import OpenAI from "openai";
+import Image from "next/image";
+import { CardWithTitleAndButton } from "@/components/app/parameters/CardWithTitleAndButton";
+import { authGetAPI, AuthPostAPI, token as Token } from "@/lib/axios";
 import { Spinner } from "@/components/global/Spinner";
+import { Modal } from "@/components/global/Modal";
 
 interface Message {
   content: string;
   role: "user" | "assistant";
+}
+
+interface UserChatsProps {
+  createdAt: string;
+  id: string;
+  name: string;
+  messages: {
+    content: string;
+    role: "user" | "assistant";
+  }[];
 }
 
 export default function AxioonAi() {
@@ -17,9 +29,10 @@ export default function AxioonAi() {
   const [isMessageLoading, setIsMessageLoading] = useState(false);
   const [hasMessages, setHasMessages] = useState(false);
   const [userMessages, setUserMessages] = useState<Message[]>([]);
-  const [userChats, setUserChats] = useState([]);
+  const [userChats, setUserChats] = useState<UserChatsProps[]>([]);
   const [inputMessage, setInputMessage] = useState("");
   const [chatId, setChatId] = useState<string | null>(null);
+  const [showModal, setShowModal] = useState(false);
 
   const itemsToShow = [
     { id: 1, prompt: "Explain quantum computing in simple terms" },
@@ -77,10 +90,11 @@ export default function AxioonAi() {
           {
             message: inputMessage,
             type: "USER",
-            chatId: chatId,
+            chatId,
           },
           token,
         );
+        console.log("sendMessage", sendMessage);
       }
       const aiMessage = await handleSendGptMessage(inputMessage);
       setUserMessages((prev) => [
@@ -115,15 +129,25 @@ export default function AxioonAi() {
       const token = cookies.get(Token);
 
       const connect = await authGetAPI(`/user/chat`, token);
-      console.log(connect);
       if (connect.status === 200) {
         setUserChats(
           connect.body.chatList.map(
-            (item: { id: string; message: string; type: "USER" | "AI" }) => {
+            (item: {
+              id: string;
+              name: string;
+              createdAt: Date;
+              messages: { message: string; type: "USER" | "AI" }[];
+            }) => {
               return {
                 id: item.id,
-                content: item.message,
-                role: item.type === "USER" ? "user" : "assistant",
+                name: item.name,
+                createdAt: item.createdAt,
+                messages: item.messages.map((item) => {
+                  return {
+                    content: item.message,
+                    role: item.type === "USER" ? "user" : "assistant",
+                  };
+                }),
               };
             },
           ),
@@ -135,15 +159,16 @@ export default function AxioonAi() {
   }, [chatId]);
 
   return (
-    <div className="flex h-full flex-col">
+    <div className="flex min-h-[calc(100vh-8rem)] flex-col">
       <CardWithTitleAndButton
         title="Axioon AI"
         buttonText="Histórico de Chats"
+        firstButtonOnClick={() => setShowModal(true)}
       />
-      <div className="flex h-screen flex-1 flex-col items-center justify-center">
+      <div className="flex h-full flex-1 flex-col">
         <h1 className="mt-20 text-4xl font-bold text-zinc-900">Axioon AI</h1>
         {!hasMessages ? (
-          <div className="mb-10 mt-10 grid w-[80%] grid-cols-12 flex-col items-center justify-center gap-x-6 gap-y-2">
+          <div className="mx-auto mb-10 mt-10 grid w-[80%] grid-cols-12 flex-col items-center justify-center gap-x-6 gap-y-2">
             <div className="col-span-4 row-span-2 hidden flex-col items-center justify-center gap-4 md:flex">
               <Sun size={32} className="text-zinc-900" />
               <h2 className="text-2xl text-zinc-900">Examples</h2>
@@ -236,20 +261,31 @@ export default function AxioonAi() {
             </div>
           </div>
         ) : (
-          <div className="flex h-[400px] w-full flex-col items-end justify-end gap-4 overflow-y-scroll py-4">
-            {userMessages.map((message, index) => (
-              <div
-                key={index}
-                className="ml-auto flex flex-col items-start justify-center rounded-lg rounded-tr-sm bg-white px-8 py-2"
-              >
-                <h3 className="text-sm font-medium text-zinc-900 xl:text-lg">
-                  {message.content}
-                </h3>
-              </div>
-            ))}
+          <div className="flex min-h-[calc(100vh-24rem)] w-full flex-col gap-4 overflow-y-scroll px-2 py-4">
+            {userMessages.map((message, index) =>
+              message.role === "user" ? (
+                <div
+                  key={index}
+                  className="ml-auto flex w-max max-w-[calc(100%-50px)] flex-col items-start justify-center rounded-lg rounded-tr-sm bg-white px-8 py-2"
+                >
+                  <h3 className="text-sm font-medium text-zinc-900 xl:text-lg">
+                    {message.content}
+                  </h3>
+                </div>
+              ) : (
+                <div
+                  key={index}
+                  className="flex w-max max-w-[calc(100%-50px)] flex-col items-start justify-center rounded-lg rounded-tl-sm bg-sky-900/80 px-8 py-2"
+                >
+                  <h3 className="text-sm font-medium text-white xl:text-lg">
+                    {message.content}
+                  </h3>
+                </div>
+              ),
+            )}
           </div>
         )}
-        <div className="flex h-10 w-[90%] flex-row rounded-sm border border-zinc-300 bg-white shadow-sm">
+        <div className="mx-auto flex h-10 w-[90%] flex-row rounded-sm border border-zinc-300 bg-white shadow-sm">
           <input
             type="text"
             placeholder="Digite sua mensagem..."
@@ -271,6 +307,53 @@ export default function AxioonAi() {
           </button>
         </div>
       </div>
+      <Modal
+        show={showModal}
+        onHide={() => setShowModal(false)}
+        className="max-w-[560px]"
+      >
+        <div className="flex flex-col gap-4">
+          <div className="flex w-full items-center justify-between">
+            <span className="text-lg font-semibold">Histórico De Chats</span>
+            <button
+              onClick={() => setShowModal(false)}
+              className="flex h-8 w-8 items-center justify-center"
+            >
+              <X />
+            </button>
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-2 p-2">
+            {userChats.length !== 0 &&
+              userChats.map((chat, index) => (
+                <div
+                  key={index}
+                  className="flex flex-col gap-1 rounded-md border border-zinc-300 bg-white p-2 shadow-sm lg:w-60"
+                >
+                  <div className="flex items-center gap-1">
+                    <Image
+                      src="/Icons/aiBlack.svg"
+                      alt=""
+                      width={50}
+                      height={50}
+                      className="h-5 w-5"
+                    />
+                    <div className="flex w-full items-center justify-between">
+                      <span className="text-sm font-medium text-zinc-900">
+                        {chat.name}
+                      </span>
+                      <span className="text-xs text-zinc-700">
+                        {new Date(chat.createdAt).toLocaleDateString("pt-BR")}
+                      </span>
+                    </div>
+                  </div>
+                  <span className="ml-5 truncate text-xs italic text-zinc-500">
+                    {chat.messages[chat.messages.length - 1].content}
+                  </span>
+                </div>
+              ))}
+          </div>
+        </div>
+      </Modal>
     </div>
   );
 }
