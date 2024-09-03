@@ -60,7 +60,7 @@ export function MentionsMainActors() {
             >
               <div className="flex justify-center lg:col-span-1">
                 <Image
-                  src="/Logos/instagram.svg"
+                  src="/Logos/InstagramLogo.png"
                   alt=""
                   width={200}
                   height={200}

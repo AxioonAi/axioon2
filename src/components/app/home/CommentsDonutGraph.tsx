@@ -149,12 +149,12 @@ export function CommentsDonutGraph({
                   />
                   <span
                     key={data.title}
-                    className="text-center text-xs text-zinc-500 lg:text-sm 2xl:text-base"
+                    className="text-center text-xs text-zinc-500 lg:text-sm"
                   >
                     {data.title}
                   </span>
                 </div>
-                <strong className="text-sm lg:text-base 2xl:text-lg">
+                <strong className="text-sm lg:text-base">
                   {shortenNumber(data.value)}
                 </strong>
               </div>

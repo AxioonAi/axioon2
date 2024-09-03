@@ -86,7 +86,7 @@ export function CommentsSummary() {
       {isGettingData ? (
         <Skeleton className="mx-auto mt-4 h-[17rem] w-11/12" />
       ) : (
-        <div className="flex h-72 w-full flex-col gap-4 p-4 xs:h-60 lg:h-full lg:gap-8 lg:p-8 3xl:gap-16">
+        <div className="flex h-72 w-full flex-col gap-4 p-4 xs:h-60 lg:h-full lg:gap-4 lg:p-4 3xl:gap-16">
           <div className="flex w-full items-center gap-2">
             <strong className="text-xs lg:text-sm 2xl:text-base 3xl:text-lg">
               {shortenNumber(commentsBySentiment?.totalSentiment || 0)}

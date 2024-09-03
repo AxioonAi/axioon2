@@ -73,7 +73,7 @@ export const FollowersDonutByGenderChartData = {
           breakpoint: 1920,
           options: {
             chart: {
-              height: 150,
+              height: 125,
             },
           },
         },

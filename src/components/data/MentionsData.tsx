@@ -272,13 +272,13 @@ export const MentionsSourceData = {
   sources: [
     {
       name: "Instagram",
-      icon: "/Logos/instagram.svg",
+      icon: "/Logos/InstagramLogo.png",
       trendingUp: true,
       value: 5932,
     },
     {
       name: "TikTok",
-      icon: "/Logos/tiktok.svg",
+      icon: "/Logos/TikTokLogo.png",
       trendingUp: false,
       value: 5383,
     },
@@ -302,13 +302,13 @@ export const MentionsSourceData = {
     },
     {
       name: "Instagram",
-      icon: "/Logos/instagram.svg",
+      icon: "/Logos/InstagramLogo.png",
       trendingUp: true,
       value: 5932,
     },
     {
       name: "TikTok",
-      icon: "/Logos/tiktok.svg",
+      icon: "/Logos/TikTokLogo.png",
       trendingUp: false,
       value: 5383,
     },

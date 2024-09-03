@@ -45,7 +45,7 @@ export function MentionsMainInfluencers() {
             >
               <div className="col-span-1 flex justify-center">
                 <Image
-                  src="/Logos/instagram.svg"
+                  src="/Logos/InstagramLogo.png"
                   alt=""
                   width={200}
                   height={200}

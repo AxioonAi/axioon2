@@ -109,7 +109,7 @@ export function SocialMediaBaseCard({
         >
           <div className="flex w-full items-center gap-4 border-b border-b-zinc-700/50 pb-2">
             <Image
-              src={"/Logos/" + platform + ".svg"}
+              src={"/Logos/" + platform + "Logo.png"}
               alt="icon"
               width={200}
               height={200}

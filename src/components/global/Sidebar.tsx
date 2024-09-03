@@ -22,6 +22,7 @@ export function Sidebar() {
   const parent = useRef(null);
   const { elementName } = useOffsetContext();
   const pathname = usePathname();
+  console.log("pathname: ", pathname);
   const router = useRouter();
   const cookies = useCookies();
 
@@ -325,7 +326,10 @@ export function Sidebar() {
                 <Accordion.Trigger asChild>
                   <button
                     onClick={() => handleClick("/comparator")}
-                    className="flex w-full items-center justify-between rounded p-2 text-white"
+                    className={twMerge(
+                      "flex w-full items-center justify-between rounded p-2 text-white",
+                      pathname === "/comparator" && "bg-zinc-400/15",
+                    )}
                   >
                     <div className="flex items-center gap-4">
                       <Image
@@ -369,7 +373,10 @@ export function Sidebar() {
                 <Accordion.Trigger asChild>
                   <button
                     onClick={() => handleClick("/legal")}
-                    className="flex w-full items-center justify-between rounded p-2 text-white"
+                    className={twMerge(
+                      "flex w-full items-center justify-between rounded p-2 text-white",
+                      pathname === "/legal" && "bg-zinc-400/15",
+                    )}
                   >
                     <div className="flex items-center gap-4">
                       <Image

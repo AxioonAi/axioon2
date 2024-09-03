@@ -355,17 +355,17 @@ export function FollowerProgressionChart({
         <Skeleton className="mx-auto mt-4 h-80 w-11/12" />
       ) : (
         <div className="flex h-96 w-full flex-col lg:h-full">
-          <div className="mt-2 flex w-full items-center gap-4 overflow-y-hidden overflow-x-scroll p-4 lg:overflow-x-auto">
+          <div className="mt-2 flex w-full items-center gap-4 overflow-y-hidden overflow-x-scroll p-4 lg:mt-0 lg:gap-2 lg:overflow-x-auto lg:p-1">
             <button
               onClick={() => setSelected("facebook")}
               className={`${
                 selected === "facebook" && "bg-primary-100/20 text-primary-100"
-              } flex h-6 cursor-pointer items-center gap-2 rounded-full border pr-4 text-[10px] text-primary-100/70 shadow-md transition duration-200 hover:bg-primary-100/20 hover:text-primary-100 lg:h-10 lg:text-xs xl:text-sm`}
+              } flex h-6 cursor-pointer items-center gap-2 rounded-full border pr-4 text-[10px] text-primary-100/70 shadow-md transition duration-200 hover:bg-primary-100/20 hover:text-primary-100 lg:h-8 lg:text-xs xl:text-sm`}
             >
-              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary-100/20 lg:h-10 lg:w-10">
+              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary-100/20 lg:h-8 lg:w-8">
                 <Image
                   className="h-3 w-3 rounded-md lg:h-5 lg:w-5"
-                  src="/Logos/facebook.svg"
+                  src="/Logos/FacebookLogo.png"
                   alt=""
                   width={24}
                   height={24}
@@ -377,12 +377,12 @@ export function FollowerProgressionChart({
               onClick={() => setSelected("instagram")}
               className={`${
                 selected === "instagram" && "bg-primary-100/20 text-primary-100"
-              }cursor-pointer flex h-6 items-center gap-2 rounded-full border pr-4 text-[10px] text-primary-100/70 shadow-md transition duration-200 hover:bg-primary-100/20 hover:text-primary-100 lg:h-10 lg:text-xs xl:text-sm`}
+              }cursor-pointer flex h-6 items-center gap-2 rounded-full border pr-4 text-[10px] text-primary-100/70 shadow-md transition duration-200 hover:bg-primary-100/20 hover:text-primary-100 lg:h-8 lg:text-xs xl:text-sm`}
             >
-              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary-100/20 lg:h-10 lg:w-10">
+              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary-100/20 lg:h-8 lg:w-8">
                 <Image
                   className="h-3 w-3 rounded-md lg:h-5 lg:w-5"
-                  src="/Logos/instagram.svg"
+                  src="/Logos/InstagramLogo.png"
                   alt=""
                   width={24}
                   height={24}
@@ -394,12 +394,12 @@ export function FollowerProgressionChart({
               onClick={() => setSelected("tiktok")}
               className={`${
                 selected === "tiktok" && "bg-primary-100/20 text-primary-100"
-              }cursor-pointer flex h-6 items-center gap-2 rounded-full border pr-4 text-[10px] text-primary-100/70 shadow-md transition duration-200 hover:bg-primary-100/20 hover:text-primary-100 lg:h-10 lg:text-xs xl:text-sm`}
+              }cursor-pointer flex h-6 items-center gap-2 rounded-full border pr-4 text-[10px] text-primary-100/70 shadow-md transition duration-200 hover:bg-primary-100/20 hover:text-primary-100 lg:h-8 lg:text-xs xl:text-sm`}
             >
-              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary-100/20 lg:h-10 lg:w-10">
+              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary-100/20 lg:h-8 lg:w-8">
                 <Image
                   className="h-3 w-3 rounded-md lg:h-5 lg:w-5"
-                  src="/Logos/tiktok.svg"
+                  src="/Logos/TikTokLogo.png"
                   alt=""
                   width={24}
                   height={24}
@@ -411,12 +411,12 @@ export function FollowerProgressionChart({
               onClick={() => setSelected("youtube")}
               className={`${
                 selected === "youtube" && "bg-primary-100/20 text-primary-100"
-              }cursor-pointer flex h-6 items-center gap-2 rounded-full border pr-4 text-[10px] text-primary-100/70 shadow-md transition duration-200 hover:bg-primary-100/20 hover:text-primary-100 lg:h-10 lg:text-xs xl:text-sm`}
+              }cursor-pointer flex h-6 items-center gap-2 rounded-full border pr-4 text-[10px] text-primary-100/70 shadow-md transition duration-200 hover:bg-primary-100/20 hover:text-primary-100 lg:h-8 lg:text-xs xl:text-sm`}
             >
-              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary-100/20 lg:h-10 lg:w-10">
+              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary-100/20 lg:h-8 lg:w-8">
                 <Image
                   className="h-3 w-3 rounded-md lg:h-5 lg:w-5"
-                  src="/Logos/youtube.svg"
+                  src="/Logos/YouTubeLogo.png"
                   alt=""
                   width={24}
                   height={24}

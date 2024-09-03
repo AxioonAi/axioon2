@@ -310,7 +310,7 @@ export default function AxioonAi() {
       <Modal
         show={showModal}
         onHide={() => setShowModal(false)}
-        className="max-w-[560px]"
+        className="max-w-[560px] overflow-y-scroll"
       >
         <div className="flex flex-col gap-4">
           <div className="flex w-full items-center justify-between">

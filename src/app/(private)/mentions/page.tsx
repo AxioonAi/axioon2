@@ -48,7 +48,7 @@ export default function Mentions() {
           <div className="lg:col-span-12 lg:row-span-4">
             <IndicatorsCards />
           </div>
-          <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-[80vh] lg:grid-cols-12 lg:grid-rows-9">
+          <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-[110vh] lg:grid-cols-12 lg:grid-rows-9 2xl:h-[80vh]">
             <div className="lg:col-span-8 lg:row-span-4">
               <LineGradientChart
                 LineGradientChartData={LineGradientChartData}
@@ -74,7 +74,7 @@ export default function Mentions() {
           />
         </div> */}
           </div>
-          <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-[150vh] lg:grid-cols-12 lg:grid-rows-12">
+          <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-[180vh] lg:grid-cols-12 lg:grid-rows-12 2xl:h-[150vh]">
             <div className="lg:col-span-12 lg:row-span-4">
               <MentionsMainActors />
             </div>
@@ -88,7 +88,7 @@ export default function Mentions() {
               <MentionsMainInfluencers />
             </div>
           </div>
-          <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-screen lg:grid-cols-12 lg:grid-rows-12">
+          <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-[130vh] lg:grid-cols-12 lg:grid-rows-12 2xl:h-screen">
             <Words />
             <Hashtags />
             <Comments />
@@ -99,7 +99,7 @@ export default function Mentions() {
         </>
       ) : (
         <>
-          <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-[80vh] lg:grid-cols-12 lg:grid-rows-9">
+          <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-[120vh] lg:grid-cols-12 lg:grid-rows-9 2xl:h-[80vh]">
             <div className="lg:col-span-8 lg:row-span-4">
               <HashtagsLineGradientChart
                 LineGradientChartData={LineGradientChartData}
@@ -120,7 +120,7 @@ export default function Mentions() {
               <HashtagsMentionsSource />
             </div>
           </div>
-          <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-[150vh] lg:grid-cols-12 lg:grid-rows-12">
+          <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-[180vh] lg:grid-cols-12 lg:grid-rows-12 2xl:h-[150vh]">
             <div className="lg:col-span-12 lg:row-span-4">
               <HashtagsMentionsMainActors />
             </div>
@@ -134,7 +134,7 @@ export default function Mentions() {
               <HashtagsMentionsMainInfluencers />
             </div>
           </div>
-          <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-screen lg:grid-cols-12 lg:grid-rows-12">
+          <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-[120vh] lg:grid-cols-12 lg:grid-rows-12 2xl:h-screen">
             <HashtagsWords />
             <HashtagsHashtags />
             <HashtagsComments />

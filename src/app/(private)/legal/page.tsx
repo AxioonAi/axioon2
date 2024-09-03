@@ -12,7 +12,7 @@ export default function Legal() {
       <div className="lg:col-span-12 lg:row-span-1">
         <LegalHeaderCard title="Jurídico" />
       </div>
-      <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-screen lg:grid-cols-12 lg:grid-rows-12">
+      <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-[140vh] lg:grid-cols-12 lg:grid-rows-12 2xl:h-screen">
         <div className="lg:col-span-6 lg:row-span-6">
           <Irs />
         </div>
@@ -26,7 +26,7 @@ export default function Legal() {
           <EconomicRelationships />
         </div>
       </div>
-      <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-screen lg:grid-cols-12 lg:grid-rows-12">
+      <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-[140vh] lg:grid-cols-12 lg:grid-rows-12 2xl:h-screen">
         <div className="lg:col-span-12 lg:row-span-6">
           <ProtestList />
         </div>

@@ -74,7 +74,7 @@ export function HashtagsMentionsMainInfluencers() {
               <div className="col-span-1 flex justify-center">
                 {item.socialMedia === "Instagram" ? (
                   <Image
-                    src="/Logos/instagram.svg"
+                    src="/Logos/InstagramLogo.png"
                     alt=""
                     width={200}
                     height={200}
@@ -82,7 +82,7 @@ export function HashtagsMentionsMainInfluencers() {
                   />
                 ) : (
                   <Image
-                    src="/Logos/tiktok.svg"
+                    src="/Logos/TikTokLogo.png"
                     alt=""
                     width={200}
                     height={200}

@@ -79,7 +79,7 @@ export function ComparatorStickyCards() {
             <div className="flex w-full flex-wrap items-center justify-evenly gap-1">
               <div className="flex w-[45%] items-center gap-1 rounded bg-zinc-50 p-1 text-xs italic shadow-md lg:w-full xl:w-[45%]">
                 <Image
-                  src="/Logos/facebook.svg"
+                  src="/Logos/FacebookLogo.png"
                   alt=""
                   width={50}
                   height={50}
@@ -91,7 +91,7 @@ export function ComparatorStickyCards() {
               </div>
               <div className="flex w-[45%] items-center gap-1 rounded bg-zinc-50 p-1 text-xs italic shadow-md lg:w-full xl:w-[45%]">
                 <Image
-                  src="/Logos/instagram.svg"
+                  src="/Logos/InstagramLogo.png"
                   alt=""
                   width={50}
                   height={50}
@@ -103,7 +103,7 @@ export function ComparatorStickyCards() {
               </div>
               <div className="flex w-[45%] items-center gap-1 rounded bg-zinc-50 p-1 text-xs italic shadow-md lg:w-full xl:w-[45%]">
                 <Image
-                  src="/Logos/tiktok.svg"
+                  src="/Logos/TikTokLogo.png"
                   alt=""
                   width={50}
                   height={50}
@@ -115,7 +115,7 @@ export function ComparatorStickyCards() {
               </div>
               <div className="flex w-[45%] items-center gap-1 rounded bg-zinc-50 p-1 text-xs italic shadow-md lg:w-full xl:w-[45%]">
                 <Image
-                  src="/Logos/youtube.svg"
+                  src="/Logos/YouTubeLogo.png"
                   alt=""
                   width={50}
                   height={50}
@@ -248,7 +248,7 @@ export function ComparatorStickyCards() {
             <div className="flex w-full flex-wrap items-center justify-evenly gap-1">
               <div className="flex w-[45%] items-center gap-1 rounded bg-zinc-50 p-1 text-xs italic shadow-md lg:w-full xl:w-[45%]">
                 <Image
-                  src="/Logos/facebook.svg"
+                  src="/Logos/FacebookLogo.png"
                   alt=""
                   width={50}
                   height={50}
@@ -260,7 +260,7 @@ export function ComparatorStickyCards() {
               </div>
               <div className="flex w-[45%] items-center gap-1 rounded bg-zinc-50 p-1 text-xs italic shadow-md lg:w-full xl:w-[45%]">
                 <Image
-                  src="/Logos/instagram.svg"
+                  src="/Logos/InstagramLogo.png"
                   alt=""
                   width={50}
                   height={50}
@@ -272,7 +272,7 @@ export function ComparatorStickyCards() {
               </div>
               <div className="flex w-[45%] items-center gap-1 rounded bg-zinc-50 p-1 text-xs italic shadow-md lg:w-full xl:w-[45%]">
                 <Image
-                  src="/Logos/tiktok.svg"
+                  src="/Logos/TikTokLogo.png"
                   alt=""
                   width={50}
                   height={50}
@@ -284,7 +284,7 @@ export function ComparatorStickyCards() {
               </div>
               <div className="flex w-[45%] items-center gap-1 rounded bg-zinc-50 p-1 text-xs italic shadow-md lg:w-full xl:w-[45%]">
                 <Image
-                  src="/Logos/youtube.svg"
+                  src="/Logos/YouTubeLogo.png"
                   alt=""
                   width={50}
                   height={50}

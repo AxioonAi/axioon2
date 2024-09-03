@@ -200,7 +200,7 @@ export function FollowerProgressionChart({
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-100/20">
                 <Image
                   className="rounded-md"
-                  src="/Logos/facebook.svg"
+                  src="/Logos/FacebookLogo.png"
                   alt=""
                   width={24}
                   height={24}
@@ -217,7 +217,7 @@ export function FollowerProgressionChart({
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-100/20">
                 <Image
                   className="rounded-md"
-                  src="/Logos/instagram.svg"
+                  src="/Logos/InstagramLogo.png"
                   alt=""
                   width={24}
                   height={24}
@@ -234,7 +234,7 @@ export function FollowerProgressionChart({
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-100/20">
                 <Image
                   className="rounded-md"
-                  src="/Logos/tiktok.svg"
+                  src="/Logos/TikTokLogo.png"
                   alt=""
                   width={24}
                   height={24}
@@ -251,7 +251,7 @@ export function FollowerProgressionChart({
               <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-100/20">
                 <Image
                   className="rounded-md"
-                  src="/Logos/youtube.svg"
+                  src="/Logos/YouTubeLogo.png"
                   alt=""
                   width={24}
                   height={24}

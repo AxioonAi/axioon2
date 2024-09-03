@@ -74,7 +74,7 @@ export function PerfilCard({ politician }: PerfilCardProps) {
             width={100}
             height={100}
             className="h-full w-6 rounded-md"
-            src={"/Logos/youtube.svg"}
+            src={"/Logos/YouTubeLogo.png"}
           />
           <span className="text-small max-w-full overflow-hidden truncate whitespace-nowrap">
             {politician.youtube}
@@ -89,7 +89,7 @@ export function PerfilCard({ politician }: PerfilCardProps) {
             width={100}
             height={100}
             className="h-full w-6 rounded-md"
-            src={"/Logos/tiktok.svg"}
+            src={"/Logos/TikTokLogo.png"}
           />
           <span className="text-small max-w-full overflow-hidden truncate whitespace-nowrap">
             {politician.tiktok}
@@ -104,7 +104,7 @@ export function PerfilCard({ politician }: PerfilCardProps) {
             width={100}
             height={100}
             className="h-full w-6 rounded-md"
-            src={"/Logos/instagram.svg"}
+            src={"/Logos/InstagramLogo.png"}
           />
           <span className="text-small max-w-full overflow-hidden truncate whitespace-nowrap">
             {politician.instagram}
@@ -119,7 +119,7 @@ export function PerfilCard({ politician }: PerfilCardProps) {
             width={100}
             height={100}
             className="h-full w-6 rounded-md"
-            src={"/Logos/facebook.svg"}
+            src={"/Logos/FacebookLogo.png"}
           />
           <span className="text-small max-w-full overflow-hidden truncate whitespace-nowrap">
             {politician.facebook}

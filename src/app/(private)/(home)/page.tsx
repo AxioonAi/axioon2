@@ -105,7 +105,7 @@ export default function Home() {
       </div>
       {indicators.length !== 0 && (
         <>
-          <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-[75vh] lg:grid-cols-12 lg:grid-rows-12">
+          <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-[100vh] lg:grid-cols-12 lg:grid-rows-12 2xl:h-[75vh]">
             <div className="lg:col-span-8 lg:row-span-5">
               <LineGradientChart
                 LineGradientChartData={LineGradientChartData2}
@@ -123,7 +123,7 @@ export default function Home() {
               <EngagementTimes EngagementTimesData={EngagementTimesData} />
             </div>
           </div>
-          <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-[120vh] lg:grid-cols-12 lg:grid-rows-12">
+          <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-[150vh] lg:grid-cols-12 lg:grid-rows-12 2xl:h-[120vh]">
             <div className="lg:col-span-7 lg:row-span-4">
               <CommentsSummary />
             </div>

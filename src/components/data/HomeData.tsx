@@ -1,6 +1,6 @@
 export const SocialMediaBaseData = [
   {
-    icon: "/Logos/instagram.svg",
+    icon: "/Logos/InstagramLogo.png",
     name: "Nome Do Usuário",
     username: "nome_do_usuario",
     dataPoints: [
@@ -21,7 +21,7 @@ export const SocialMediaBaseData = [
     platformName: "Instagram",
   },
   {
-    icon: "/Logos/facebook.svg",
+    icon: "/Logos/FacebookLogo.png",
     name: "Nome Do Usuário",
     username: "nome_do_usuario",
     dataPoints: [
@@ -42,7 +42,7 @@ export const SocialMediaBaseData = [
     platformName: "Facebook",
   },
   {
-    icon: "/Logos/tiktok.svg",
+    icon: "/Logos/TikTokLogo.png",
     name: "Nome Do Usuário",
     username: "nome_do_usuario",
     dataPoints: [
@@ -63,7 +63,7 @@ export const SocialMediaBaseData = [
     platformName: "TikTok",
   },
   {
-    icon: "/Logos/youtube.svg",
+    icon: "/Logos/YouTubeLogo.png",
     name: "Nome Do Usuário",
     username: "nome_do_usuario",
     dataPoints: [
@@ -207,7 +207,7 @@ export const CommentsDonutGraphData = {
           breakpoint: 1920,
           options: {
             chart: {
-              height: 175,
+              height: 150,
             },
           },
         },
@@ -302,6 +302,14 @@ export const CommentsSentimentDonutGraphData = {
           options: {
             chart: {
               height: 150,
+            },
+          },
+        },
+        {
+          breakpoint: 1920,
+          options: {
+            chart: {
+              height: 125,
             },
           },
         },
@@ -459,18 +467,10 @@ export const EngagementTimesData = {
         },
       },
       {
-        breakpoint: 1360,
-        options: {
-          chart: {
-            height: 275,
-          },
-        },
-      },
-      {
         breakpoint: 1920,
         options: {
           chart: {
-            height: 275,
+            height: 250,
           },
         },
       },
@@ -1388,7 +1388,7 @@ export const PositiveNegativeCommentsData = {
           breakpoint: 1920,
           options: {
             chart: {
-              height: 150,
+              height: 125,
             },
           },
         },
@@ -1970,7 +1970,7 @@ export const FollowerProgressionChartData = {
           breakpoint: 1920,
           options: {
             chart: {
-              height: 225,
+              height: 200,
             },
           },
         },
