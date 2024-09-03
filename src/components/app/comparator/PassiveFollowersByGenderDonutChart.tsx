@@ -161,7 +161,7 @@ export function PassiveFollowersByGenderDonutChart({
           })}
         />
       )}
-      <BaseCardFooter />
+      <BaseCardFooter text="Comentários de acordo com o Gênero dos Seguidores do candidato 2." />
     </BaseCard>
   );
 }

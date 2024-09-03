@@ -2,6 +2,7 @@
 import { twMerge } from "tailwind-merge";
 import Image from "next/image";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
+import { shortenNumber } from "@/utils/masks";
 
 interface IndicatorsBaseCardProps {
   IndicatorsData: {
@@ -23,7 +24,7 @@ export function IndicatorsBaseCard({
             {IndicatorsData.name}
           </span>
           <strong className="text-xs xl:text-sm 3xl:text-base">
-            {IndicatorsData.value}
+            {shortenNumber(IndicatorsData.value)}
           </strong>
         </div>
         <div className="flex h-full w-full items-center justify-center lg:w-2/5">

@@ -83,19 +83,19 @@ export function HashtagsWordCloud({ WordCloudData }: HashtagsWordCloudProps) {
         <Skeleton className="mx-auto mt-4 h-48 w-11/12" />
       ) : isWordsEmpty ? (
         <div className="flex h-full min-h-40 w-full items-center justify-center">
-          <span className="text-lg font-semibold italic">
+          <span className="text-center text-lg font-semibold italic">
             Não encontramos nenhuma Palavra
           </span>
         </div>
       ) : (
-        <div className="flex h-full max-h-56 w-full flex-col">
+        <div className="flex h-48 w-full flex-col lg:mb-0 lg:h-[calc(100%-5.5rem)]">
           <ReactWordcloud
             words={wordsList as WordsProps[]}
             options={WordCloudData.options}
           />
         </div>
       )}
-      <BaseCardFooter />
+      <BaseCardFooter text="Nuvem das palavras mais utilizadas." />
     </BaseCard>
   );
 }

@@ -89,7 +89,7 @@ export function LineGradientChart({
           />
         </div>
       )}
-      <BaseCardFooter />
+      <BaseCardFooter text="Sentimento médio por menção." />
     </BaseCard>
   );
 }

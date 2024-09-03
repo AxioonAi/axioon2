@@ -190,7 +190,7 @@ export function FollowerProgressionChart({
         <Skeleton className="mx-auto mt-4 h-80 w-11/12" />
       ) : (
         <div className="flex h-96 w-full flex-col lg:h-full">
-          <div className="mt-2 flex w-full items-center gap-4 overflow-y-hidden overflow-x-scroll p-4 lg:overflow-x-auto">
+          <div className="flex w-full items-center gap-4 overflow-y-hidden overflow-x-scroll px-4 py-8 lg:overflow-x-auto lg:p-2">
             <button
               onClick={() => setSelected("facebook")}
               className={`${
@@ -267,7 +267,7 @@ export function FollowerProgressionChart({
           />
         </div>
       )}
-      <BaseCardFooter />
+      <BaseCardFooter text="Seguidores por dia de cada Rede Social." />
     </BaseCard>
   );
 }

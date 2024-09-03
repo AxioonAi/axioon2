@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { PositiveNegativeCommentsChart } from "./PositiveNegativeComments";
 import { PositiveNegativeCommentsData } from "@/components/data/HomeData";
 import { useSocialMediaDataContext } from "@/context/SocialMediaData";
+import { shortenNumber } from "@/utils/masks";
 
 interface PositiveNegativeCommentsProps {
   label: string;
@@ -159,7 +160,7 @@ export function PositiveNegativeWrapper() {
             className={twMerge("min-h-3 min-w-3 rounded-full", data.color)}
           />
           <div className="flex flex-col">
-            <strong>{data.value.toFixed(2)}</strong>
+            <strong>{shortenNumber(data.value)}</strong>
             <span>{data.title}</span>
           </div>
         </div>

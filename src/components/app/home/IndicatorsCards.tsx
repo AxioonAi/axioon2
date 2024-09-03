@@ -114,7 +114,7 @@ export function IndicatorsCards() {
       ) : indicators.length === 0 ? (
         <SwiperSlide className="py-2">
           <BaseCard className="relative h-36 items-center justify-center overflow-hidden">
-            <span className="text-lg font-semibold italic">
+            <span className="text-center text-lg font-semibold italic">
               Nenhum dado Encontrado no Período Selecionado
             </span>
           </BaseCard>

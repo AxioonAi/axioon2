@@ -165,7 +165,7 @@ export function ActiveFollowersDonutChart({
           })}
         />
       )}
-      <BaseCardFooter />
+      <BaseCardFooter text="Seguidores por rede social do candidato 1." />
     </BaseCard>
   );
 }

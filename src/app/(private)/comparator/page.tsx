@@ -35,7 +35,7 @@ import { PassiveAgeAndGenderChart } from "@/components/app/comparator/PassiveAge
 
 export default function Comparator() {
   return (
-    <div className="flex flex-col gap-4 pb-20 lg:grid lg:grid-cols-12">
+    <div className="flex flex-col gap-4 pb-28 lg:grid lg:grid-cols-12">
       <div className="lg:col-span-12">
         <ComparatorHeaderCard title="Comparador" />
       </div>

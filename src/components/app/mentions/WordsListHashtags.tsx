@@ -69,12 +69,12 @@ export function WordsListHashtags() {
         <Skeleton className="mx-auto mt-4 h-48 w-11/12" />
       ) : isHashtagsEmpty ? (
         <div className="flex h-full min-h-40 w-full items-center justify-center">
-          <span className="text-lg font-semibold italic">
+          <span className="text-center text-lg font-semibold italic">
             Não encontramos nenhuma Hashtag
           </span>
         </div>
       ) : (
-        <div className="mb-12 flex h-80 w-full flex-col gap-8 overflow-y-scroll p-4 lg:mb-0 lg:h-[74%] 2xl:h-3/4 3xl:h-4/5">
+        <div className="flex h-80 w-full flex-col gap-4 overflow-y-scroll p-4 lg:mb-0 lg:h-[74%] 2xl:h-3/4 3xl:h-4/5">
           {wordsList.map((word, index) => (
             <div
               key={index}
@@ -84,8 +84,10 @@ export function WordsListHashtags() {
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-sky-500/10 p-2 text-sky-500">
                   {word.text.slice(0, 1)}
                 </div>
-                <div className="flex h-full flex-col justify-between">
-                  <strong>{word.text}</strong>
+                <div className="flex h-full w-full flex-col justify-between text-xs lg:text-sm 3xl:text-base">
+                  <strong className="w-48 truncate md:w-full lg:w-32 xl:w-60 2xl:w-full">
+                    {word.text}
+                  </strong>
                   <div className="flex items-center gap-1">
                     <span>Sentimento: </span>
                     <span
@@ -108,7 +110,7 @@ export function WordsListHashtags() {
           ))}
         </div>
       )}
-      <BaseCardFooter />
+      <BaseCardFooter text="Lista das hashtags por sentimento." />
     </BaseCard>
   );
 }

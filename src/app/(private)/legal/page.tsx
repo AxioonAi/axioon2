@@ -8,7 +8,7 @@ import { ProtestList } from "@/components/app/legal/ProtestList";
 
 export default function Legal() {
   return (
-    <div className="flex flex-col gap-4 pb-20 lg:grid lg:grid-cols-12">
+    <div className="flex flex-col gap-4 pb-28 lg:grid lg:grid-cols-12">
       <div className="lg:col-span-12 lg:row-span-1">
         <LegalHeaderCard title="Jurídico" />
       </div>

@@ -432,7 +432,7 @@ export function FollowerProgressionChart({
           />
         </div>
       )}
-      <BaseCardFooter />
+      <BaseCardFooter text="Comparador de seguidores por dia de cada Rede Social." />
     </BaseCard>
   );
 }

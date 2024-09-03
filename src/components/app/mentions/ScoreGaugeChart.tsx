@@ -129,12 +129,7 @@ export function ScoreGaugeChart({
             onlyGauge && "items-center justify-center",
           )}
         >
-          <ReactApexChart
-            options={options}
-            series={series}
-            type="radialBar"
-            height={500}
-          />
+          <ReactApexChart options={options} series={series} type="radialBar" />
           {!onlyGauge && (
             <div className="flex items-center gap-2">
               <Image
@@ -162,7 +157,7 @@ export function ScoreGaugeChart({
           )}
         </div>
       )}
-      <BaseCardFooter />
+      <BaseCardFooter text="Valor médio dos sentimentos." />
     </BaseCard>
   );
 }

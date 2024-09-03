@@ -68,7 +68,7 @@ export function PassiveScoreGaugeChart({
     const sum = Number(
       sentimentValues
         .reduce((acc: number, value) => acc + (value || 0), 0)
-        .toFixed(2),
+        .toFixed(0),
     );
     setSeries([Number(sum / numberOfValues / 10)]);
   }, [
@@ -164,7 +164,7 @@ export function PassiveScoreGaugeChart({
           )}
         </div>
       )}
-      <BaseCardFooter />
+      <BaseCardFooter text="Valor médio dos sentimentos do candidato 2." />
     </BaseCard>
   );
 }

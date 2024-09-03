@@ -348,7 +348,7 @@ export function MentionsPostsAndComments() {
                     {item.comments.map((comment, index) => (
                       <div
                         key={index}
-                        className="flex w-full flex-col items-end justify-between rounded-lg bg-zinc-50 p-2 shadow-md lg:flex-row lg:items-center"
+                        className="flex w-full flex-col justify-between rounded-lg bg-zinc-50 p-2 shadow-md lg:flex-row lg:items-center"
                       >
                         <div className="flex w-11/12 gap-4">
                           <Image
@@ -359,13 +359,15 @@ export function MentionsPostsAndComments() {
                             className="h-4 w-4 sm:h-6 sm:w-6 3xl:h-10 3xl:w-10"
                           />
                           <div className="flex w-full flex-col text-xs lg:text-sm 2xl:text-base 3xl:text-lg">
-                            <strong>{comment.username}</strong>
+                            <strong className="truncate">
+                              {comment.username}
+                            </strong>
                             <span className="w-full text-zinc-500 lg:max-w-[80%]">
                               {comment.text}
                             </span>
                           </div>
                         </div>
-                        <div className="flex h-full items-end gap-8 text-xs lg:text-sm 2xl:text-base 3xl:text-lg">
+                        <div className="flex h-full items-end gap-8 self-end text-xs lg:text-sm 2xl:text-base 3xl:text-lg">
                           <div className="flex h-full flex-col items-end justify-between gap-2">
                             <span>
                               {comment.date

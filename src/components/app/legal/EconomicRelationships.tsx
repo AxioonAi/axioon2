@@ -37,7 +37,7 @@ export function EconomicRelationships() {
       {isGettingData ? (
         <Skeleton className="mx-auto mt-4 h-[22rem] w-11/12" />
       ) : (
-        <div className="mb-12 flex h-80 flex-wrap justify-around gap-4 overflow-y-scroll p-4 pb-10 text-[10px] lg:h-full xl:text-xs 2xl:text-sm 3xl:text-base">
+        <div className="flex h-80 flex-wrap justify-around gap-4 overflow-y-scroll p-4 pb-10 text-[10px] lg:h-full xl:text-xs 2xl:text-sm 3xl:text-base">
           {economicRelationships && economicRelationships.length !== 0 ? (
             economicRelationships.map((item, index) => (
               <div
@@ -84,7 +84,7 @@ export function EconomicRelationships() {
           )}
         </div>
       )}
-      <BaseCardFooter />
+      <BaseCardFooter text="Lista dos relacionamentos econômicos." />
     </BaseCard>
   );
 }

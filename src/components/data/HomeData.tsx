@@ -204,6 +204,14 @@ export const CommentsDonutGraphData = {
           },
         },
         {
+          breakpoint: 1920,
+          options: {
+            chart: {
+              height: 175,
+            },
+          },
+        },
+        {
           breakpoint: 2560,
           options: {
             chart: {
@@ -446,16 +454,23 @@ export const EngagementTimesData = {
         breakpoint: 1024,
         options: {
           chart: {
-            height: 325,
+            height: 375,
           },
         },
       },
-
+      {
+        breakpoint: 1360,
+        options: {
+          chart: {
+            height: 275,
+          },
+        },
+      },
       {
         breakpoint: 1920,
         options: {
           chart: {
-            height: 300,
+            height: 275,
           },
         },
       },
@@ -463,7 +478,7 @@ export const EngagementTimesData = {
         breakpoint: 2560,
         options: {
           chart: {
-            height: 350,
+            height: 325,
           },
         },
       },
@@ -471,7 +486,7 @@ export const EngagementTimesData = {
         breakpoint: 2561,
         options: {
           chart: {
-            height: 450,
+            height: 425,
           },
         },
       },
@@ -1364,7 +1379,7 @@ export const PositiveNegativeCommentsData = {
           breakpoint: 1024,
           options: {
             chart: {
-              height: 275,
+              height: 250,
             },
           },
         },
@@ -1373,7 +1388,7 @@ export const PositiveNegativeCommentsData = {
           breakpoint: 1920,
           options: {
             chart: {
-              height: 175,
+              height: 150,
             },
           },
         },
@@ -1389,7 +1404,7 @@ export const PositiveNegativeCommentsData = {
           breakpoint: 2561,
           options: {
             chart: {
-              height: 325,
+              height: 250,
             },
           },
         },
@@ -1741,27 +1756,10 @@ export const LineGradientChartData = {
       },
       responsive: [
         {
-          breakpoint: 1024,
-          options: {
-            chart: {
-              height: 150,
-            },
-          },
-        },
-
-        {
-          breakpoint: 1920,
-          options: {
-            chart: {
-              height: 150,
-            },
-          },
-        },
-        {
           breakpoint: 2560,
           options: {
             chart: {
-              height: 175,
+              height: 200,
             },
           },
         },
@@ -1770,6 +1768,93 @@ export const LineGradientChartData = {
           options: {
             chart: {
               height: 250,
+            },
+          },
+        },
+      ],
+    },
+  },
+};
+
+export const LineGradientChartData2 = {
+  ChartOptions: {
+    series: [
+      {
+        name: "Desktops",
+        data: [170, 572, 751, 82, 1063, 653, 553, 23, 735],
+      },
+    ],
+    options: {
+      chart: {
+        type: "line" as const,
+        zoom: {
+          enabled: false,
+        },
+        toolbar: {
+          show: false,
+        },
+        offsetY: 20,
+        dropShadow: {
+          enabled: true,
+          top: 1,
+          left: 1,
+          blur: 1,
+          opacity: 0.1,
+        },
+        animations: {
+          enabled: false,
+        },
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      stroke: {
+        curve: "smooth" as const,
+        width: 1,
+        colors: ["#845ADF"],
+      },
+      grid: {
+        show: false,
+      },
+      xaxis: {
+        axisBorder: {
+          show: false,
+        },
+        axisTicks: {
+          show: false,
+        },
+        labels: {
+          show: false,
+        },
+      },
+      yaxis: {
+        show: false,
+      },
+
+      fill: {
+        type: "gradient",
+        colors: ["#845ADF"],
+        gradient: {
+          shadeIntensity: 1,
+          opacityFrom: 0.5,
+          opacityTo: 0.2,
+          stops: [50, 100, 100],
+        },
+      },
+      responsive: [
+        {
+          breakpoint: 2560,
+          options: {
+            chart: {
+              height: 150,
+            },
+          },
+        },
+        {
+          breakpoint: 2561,
+          options: {
+            chart: {
+              height: 20,
             },
           },
         },
@@ -1866,16 +1951,15 @@ export const FollowerProgressionChartData = {
       colors: ["#0369A1"],
       responsive: [
         {
-          breakpoint: 1024,
+          breakpoint: 389,
           options: {
             chart: {
               height: 325,
             },
           },
         },
-
         {
-          breakpoint: 1920,
+          breakpoint: 1024,
           options: {
             chart: {
               height: 300,
@@ -1883,10 +1967,18 @@ export const FollowerProgressionChartData = {
           },
         },
         {
+          breakpoint: 1920,
+          options: {
+            chart: {
+              height: 225,
+            },
+          },
+        },
+        {
           breakpoint: 2560,
           options: {
             chart: {
-              height: 250,
+              height: 275,
             },
           },
         },
@@ -1894,7 +1986,7 @@ export const FollowerProgressionChartData = {
           breakpoint: 2561,
           options: {
             chart: {
-              height: 450,
+              height: 375,
             },
           },
         },

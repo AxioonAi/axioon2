@@ -66,10 +66,10 @@ export function HashtagsMentionsDetractors() {
       {isGettingData ? (
         <Skeleton className="mx-auto mt-4 h-[23rem] w-11/12" />
       ) : (
-        <div className="mb-12 flex h-80 w-full flex-col overflow-x-scroll overflow-y-scroll p-4 lg:mb-0 lg:h-[calc(100%-5.5rem)] lg:overflow-x-auto">
+        <div className="flex h-80 w-full flex-col overflow-x-scroll overflow-y-scroll p-4 lg:mb-0 lg:h-[calc(100%-5.5rem)] lg:overflow-x-auto">
           {mentionsDetractors.map((item, index) => (
             <div
-              className="flex w-max gap-4 border-b border-b-zinc-300 p-4 text-xs xs:w-full xs:justify-between lg:flex lg:w-max lg:grid-cols-12 lg:text-sm xl:grid xl:w-full 2xl:text-base 3xl:text-lg"
+              className="flex w-max gap-4 border-b border-b-zinc-300 p-4 text-xs md:w-full md:justify-between lg:grid lg:w-max lg:grid-cols-12 lg:justify-normal lg:text-sm xl:w-full 2xl:text-base 3xl:text-lg"
               key={index}
             >
               <div className="flex justify-center lg:col-span-1">
@@ -91,7 +91,7 @@ export function HashtagsMentionsDetractors() {
                   />
                 )}
               </div>
-              <div className="flex flex-col justify-center lg:col-span-5">
+              <div className="flex w-40 flex-col justify-center lg:col-span-5">
                 {/* <span className="text-zinc-500">@{item.userName}</span> */}
                 <span className="truncate font-semibold">{item.userName}</span>
               </div>
@@ -122,7 +122,7 @@ export function HashtagsMentionsDetractors() {
           ))}
         </div>
       )}
-      <BaseCardFooter />
+      <BaseCardFooter text="Lista com os principais perfis contrários." />
     </BaseCard>
   );
 }

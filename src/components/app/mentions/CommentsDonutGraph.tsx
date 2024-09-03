@@ -152,7 +152,7 @@ export function CommentsDonutGraph({
           })}
         />
       )}
-      <BaseCardFooter />
+      <BaseCardFooter text="Comentários de acordo com o Gênero dos Seguidores." />
     </BaseCard>
   );
 }

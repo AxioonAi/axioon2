@@ -35,7 +35,7 @@ export function AddressHistory() {
       {isGettingData ? (
         <Skeleton className="mx-auto mt-4 h-96 w-11/12" />
       ) : (
-        <div className="mb-12 flex h-60 flex-wrap justify-around gap-4 overflow-y-scroll p-4 pb-10 text-[10px] lg:h-full xl:text-xs 2xl:text-sm 3xl:text-base">
+        <div className="flex h-60 flex-wrap justify-around gap-4 overflow-y-scroll p-4 pb-10 text-[10px] lg:h-full xl:text-xs 2xl:text-sm 3xl:text-base">
           {addressess && addressess.length !== 0 ? (
             addressess.map((item, index) => (
               <div
@@ -67,7 +67,7 @@ export function AddressHistory() {
           )}
         </div>
       )}
-      <BaseCardFooter />
+      <BaseCardFooter text="Lista com os endereços vinculados com o perfil." />
     </BaseCard>
   );
 }

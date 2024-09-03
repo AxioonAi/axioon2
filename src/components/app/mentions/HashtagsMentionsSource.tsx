@@ -54,7 +54,7 @@ export function HashtagsMentionsSource() {
               Menções Totais
             </span>
           </div>
-          <div className="mb-12 flex h-80 w-full flex-col gap-4 overflow-y-scroll p-4 text-sm lg:mb-0 lg:h-[59%] lg:gap-8 lg:text-base xl:h-3/5 2xl:h-[62%] 2xl:text-lg 3xl:h-[70%] 3xl:text-xl">
+          <div className="flex h-80 w-full flex-col gap-4 overflow-y-scroll p-4 text-sm lg:mb-0 lg:h-[calc(100%-3rem)] lg:gap-8 lg:text-base 2xl:text-lg 3xl:text-xl">
             {mentionsBySource.map((source, index) => (
               <div className="flex items-center" key={index}>
                 <div className="flex w-1/2 items-center gap-2">
@@ -74,7 +74,7 @@ export function HashtagsMentionsSource() {
         </div>
       )}
 
-      <BaseCardFooter />
+      <BaseCardFooter text="Lista da origem das menções." />
     </BaseCard>
   );
 }

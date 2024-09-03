@@ -9,6 +9,7 @@ import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { useAdsDataContext } from "@/context/AdsData";
 import { Skeleton } from "@/components/global/Skeleton";
+import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
@@ -82,6 +83,7 @@ export function AgeAndGenderChart({
           />
         </div>
       )}
+      <BaseCardFooter text="Idades e gêneros dos usuários alcançados pelo anúncio." />
     </BaseCard>
   );
 }

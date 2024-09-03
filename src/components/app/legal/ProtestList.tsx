@@ -43,7 +43,7 @@ export function ProtestList() {
   return (
     <BaseCard className="p-0">
       <BaseCardHeader title="Lista de Protestos" />
-      <div className="mb-12 flex h-[50vh] w-full flex-col justify-around gap-4 overflow-y-scroll p-4 pb-10 text-[10px] lg:h-full xl:text-xs 2xl:text-sm 3xl:text-base">
+      <div className="flex h-[50vh] w-full flex-col justify-around gap-4 overflow-y-scroll p-4 pb-10 text-[10px] lg:h-full xl:text-xs 2xl:text-sm 3xl:text-base">
         {isGettingData ? (
           <Skeleton className="mx-auto mt-4 h-[21rem] w-11/12" />
         ) : (
@@ -137,7 +137,7 @@ export function ProtestList() {
           // ))
         )}
       </div>
-      <BaseCardFooter />
+      <BaseCardFooter text="Lista dos protestos vinculados ao perfil." />
     </BaseCard>
   );
 }

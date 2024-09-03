@@ -192,7 +192,7 @@ export function LineGradientChart({
           />
         </div>
       )}
-      <BaseCardFooter />
+      <BaseCardFooter text="Comparador de sentimento médio por publicação." />
     </BaseCard>
   );
 }

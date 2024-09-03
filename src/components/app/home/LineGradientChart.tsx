@@ -87,7 +87,9 @@ export function LineGradientChart({
 
     const series = {
       name: "Sentimento",
-      data: orderedFlatSentimentValues.map((value) => value.value),
+      data: orderedFlatSentimentValues.map((value) =>
+        Number(value.value.toFixed(2)),
+      ),
     };
 
     setSentimentEvolution([series]);
@@ -119,7 +121,7 @@ export function LineGradientChart({
           />
         </div>
       )}
-      <BaseCardFooter />
+      <BaseCardFooter text="Sentimento médio por publicação." />
     </BaseCard>
   );
 }

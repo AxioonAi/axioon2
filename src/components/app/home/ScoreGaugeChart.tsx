@@ -70,9 +70,7 @@ export function ScoreGaugeChart({
       0,
     );
     setSeries([
-      parseFloat(
-        Number(sum / Number(numberOfValues.toFixed(2)) / 10).toFixed(2),
-      ),
+      Number(Number(sum / Number(numberOfValues.toFixed(0)) / 10).toFixed(0)),
     ]);
   }, [
     facebookSentiment,
@@ -167,7 +165,7 @@ export function ScoreGaugeChart({
           )}
         </div>
       )}
-      <BaseCardFooter />
+      <BaseCardFooter text="Valor médio dos sentimentos." />
     </BaseCard>
   );
 }

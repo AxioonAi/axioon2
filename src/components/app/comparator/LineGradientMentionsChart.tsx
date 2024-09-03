@@ -136,7 +136,7 @@ export function LineGradientMentionsChart({
           />
         </div>
       )}
-      <BaseCardFooter />
+      <BaseCardFooter text="Comparador de sentimento médio das menções por publicação." />
     </BaseCard>
   );
 }

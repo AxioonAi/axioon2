@@ -6,6 +6,7 @@ import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
 import { useSocialMediaDataContext } from "@/context/SocialMediaData";
 import { Skeleton } from "@/components/global/Skeleton";
+import { shortenNumber } from "@/utils/masks";
 
 interface CommentsBySentimentProps {
   countSentiment0To350: number;
@@ -88,7 +89,7 @@ export function CommentsSummary() {
         <div className="flex h-72 w-full flex-col gap-4 p-4 xs:h-60 lg:h-full lg:gap-8 lg:p-8 3xl:gap-16">
           <div className="flex w-full items-center gap-2">
             <strong className="text-xs lg:text-sm 2xl:text-base 3xl:text-lg">
-              {commentsBySentiment?.totalSentiment.toFixed(2)}
+              {shortenNumber(commentsBySentiment?.totalSentiment || 0)}
             </strong>
           </div>
           <div className="flex h-2 w-full overflow-hidden rounded">
@@ -130,7 +131,10 @@ export function CommentsSummary() {
                 </span>
               </div>
               <span className="text-sm text-zinc-500 lg:text-base 2xl:text-lg">
-                {commentsBySentiment?.countSentiment651To1000} Comentários
+                {shortenNumber(
+                  commentsBySentiment?.countSentiment651To1000 || 0,
+                )}{" "}
+                Comentários
               </span>
             </div>
             <div className="flex w-full items-center justify-between">
@@ -141,7 +145,10 @@ export function CommentsSummary() {
                 </span>
               </div>
               <span className="text-sm text-zinc-500 lg:text-base 2xl:text-lg">
-                {commentsBySentiment?.countSentiment351To650} Comentários
+                {shortenNumber(
+                  commentsBySentiment?.countSentiment351To650 || 0,
+                )}{" "}
+                Comentários
               </span>
             </div>
             <div className="flex w-full items-center justify-between">
@@ -152,13 +159,14 @@ export function CommentsSummary() {
                 </span>
               </div>
               <span className="text-sm text-zinc-500 lg:text-base 2xl:text-lg">
-                {commentsBySentiment?.countSentiment0To350} Comentários
+                {shortenNumber(commentsBySentiment?.countSentiment0To350 || 0)}{" "}
+                Comentários
               </span>
             </div>
           </div>
         </div>
       )}
-      <BaseCardFooter />
+      <BaseCardFooter text="Quantidade de comentários separados por sentimento." />
     </BaseCard>
   );
 }

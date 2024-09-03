@@ -66,7 +66,7 @@ export function ActiveScoreGaugeChart({
     const sum = Number(
       sentimentValues
         .reduce((acc: number, value) => acc + (value || 0), 0)
-        .toFixed(2),
+        .toFixed(0),
     );
     setSeries([Number(sum / numberOfValues / 10)]);
   }, [
@@ -162,7 +162,7 @@ export function ActiveScoreGaugeChart({
           )}
         </div>
       )}
-      <BaseCardFooter />
+      <BaseCardFooter text="Valor médio dos sentimentos do candidato 1." />
     </BaseCard>
   );
 }

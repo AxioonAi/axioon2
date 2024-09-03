@@ -82,7 +82,7 @@ export function ActiveAgeAndGenderChart({
           />
         </div>
       )}
-      <BaseCardFooter />
+      <BaseCardFooter text="Idades e generôs dos perfis das menções do candidato 1." />
     </BaseCard>
   );
 }

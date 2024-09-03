@@ -9,6 +9,7 @@ import { DonutChartWithFooterData } from "@/components/global/DonutChartWithFoot
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
 import { Skeleton } from "@/components/global/Skeleton";
 import { useSocialMediaDataContext } from "@/context/SocialMediaData";
+import { shortenNumber } from "@/utils/masks";
 
 interface CommentsDonutGraphProps {
   CommentsDonutGraphData: {
@@ -154,14 +155,14 @@ export function CommentsDonutGraph({
                   </span>
                 </div>
                 <strong className="text-sm lg:text-base 2xl:text-lg">
-                  {data.value}
+                  {shortenNumber(data.value)}
                 </strong>
               </div>
             );
           })}
         />
       )}
-      <BaseCardFooter />
+      <BaseCardFooter text="Comentários de acordo com o Gênero dos Seguidores." />
     </BaseCard>
   );
 }

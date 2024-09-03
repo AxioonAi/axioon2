@@ -92,14 +92,14 @@ export function ActiveWordCloud({ WordCloudData }: ActiveWordCloudProps) {
       {isGettingData ? (
         <Skeleton className="mx-auto mt-4 h-[17rem] w-11/12" />
       ) : (
-        <div className="mb-12 flex h-48 w-full flex-col lg:mb-0 lg:h-[calc(100%-5.5rem)]">
+        <div className="flex h-48 w-full flex-col lg:mb-0 lg:h-[calc(100%-5.5rem)]">
           <ReactWordcloud
             words={wordsList as WordsProps[]}
             options={WordCloudData.options}
           />
         </div>
       )}
-      <BaseCardFooter />
+      <BaseCardFooter text="Nuvem das palavras mais utilizadas do candidato 1." />
     </BaseCard>
   );
 }

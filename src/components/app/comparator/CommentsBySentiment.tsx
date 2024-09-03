@@ -167,7 +167,7 @@ export function CommentsBySentiment() {
       {isGettingData ? (
         <Skeleton className="mx-auto mt-4 h-[17rem] w-11/12" />
       ) : (
-        <div className="flex w-full flex-col gap-2 p-2 pb-12">
+        <div className="flex h-full w-full flex-col justify-center gap-2 p-2 pb-12">
           <span className="text-xs text-zinc-500">Perfil 1</span>
           <div className="flex h-2 w-full overflow-hidden rounded">
             <div
@@ -271,7 +271,7 @@ export function CommentsBySentiment() {
           </div>
         </div>
       )}
-      <BaseCardFooter />
+      <BaseCardFooter text="Comparador das quantidades de comentários separados por sentimento." />
     </BaseCard>
   );
 }

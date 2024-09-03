@@ -271,7 +271,7 @@ export function PositiveWrapper() {
       headerData={headerData.map((data, index) => (
         <div
           key={index}
-          className="flex w-1/3 items-center gap-2 text-[10px] lg:text-xs 2xl:text-sm 3xl:text-base"
+          className="flex w-1/3 items-center gap-2 text-[10px] lg:text-xs"
         >
           <div
             className={twMerge("min-h-3 min-w-3 rounded-full", data.color)}

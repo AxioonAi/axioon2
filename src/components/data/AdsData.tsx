@@ -54,11 +54,7 @@ export const AgeAndGenderData = {
           breakpoint: 1920,
           options: {
             chart: {
-              height: 275,
-              offsetX: -20,
-              stroke: {
-                width: 3,
-              },
+              height: 200,
             },
           },
         },
@@ -66,7 +62,7 @@ export const AgeAndGenderData = {
           breakpoint: 2560,
           options: {
             chart: {
-              height: 300,
+              height: 250,
             },
           },
         },
@@ -74,7 +70,7 @@ export const AgeAndGenderData = {
           breakpoint: 2561,
           options: {
             chart: {
-              height: 400,
+              height: 350,
             },
           },
         },

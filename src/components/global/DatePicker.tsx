@@ -49,7 +49,7 @@ export function DatePicker() {
         />
       </Popover.Trigger>
       <Popover.Content
-        className="z-50 flex flex-col items-center justify-between rounded bg-white p-4 text-center text-sm font-semibold shadow-md"
+        className="z-[9999999] flex flex-col items-center justify-between rounded bg-white p-4 text-center text-sm font-semibold shadow-md"
         align="end"
         sideOffset={5}
         side="bottom"

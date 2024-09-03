@@ -77,7 +77,7 @@ export function Irs() {
               </span>
             </div>
           </div>
-          <div className="mb-12 flex h-60 flex-wrap justify-around gap-4 overflow-y-scroll pb-10 lg:mb-0 lg:h-[14.75rem] xl:h-[14.25rem] 2xl:h-[16.75rem] 3xl:h-[26rem]">
+          <div className="flex h-60 flex-wrap justify-around gap-4 overflow-y-scroll pb-10 lg:mb-0 lg:h-[14.75rem] xl:h-[14.25rem] 2xl:h-[16.75rem] 3xl:h-[26rem]">
             {personalIrsData?.incomeTax.length !== 0 ? (
               personalIrsData?.incomeTax.map((item, index) => (
                 <div
@@ -103,7 +103,7 @@ export function Irs() {
           </div>
         </div>
       )}
-      <BaseCardFooter />
+      <BaseCardFooter text="Informações da Receita Federal." />
     </BaseCard>
   );
 }

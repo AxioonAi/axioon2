@@ -66,7 +66,7 @@ export function ActiveMentionsScoreGaugeChart({
     const sum = Number(
       sentimentValues
         .reduce((acc: number, value) => acc + (value || 0), 0)
-        .toFixed(2),
+        .toFixed(0),
     );
     setSeries([Number(sum / numberOfValues / 10)]);
   }, [
@@ -162,7 +162,7 @@ export function ActiveMentionsScoreGaugeChart({
           )}
         </div>
       )}
-      <BaseCardFooter />
+      <BaseCardFooter text="Valor médio dos sentimentos das menções do candidato 1." />
     </BaseCard>
   );
 }

@@ -37,7 +37,7 @@ export function MentionsMainInfluencers() {
       {isGettingData ? (
         <Skeleton className="mx-auto mt-4 h-[23rem] w-11/12" />
       ) : (
-        <div className="mb-12 flex h-80 w-full flex-col overflow-x-scroll overflow-y-scroll p-4 lg:mb-0 lg:h-[calc(100%-5.5rem)] lg:overflow-x-auto">
+        <div className="flex h-80 w-full flex-col overflow-x-scroll overflow-y-scroll p-4 lg:mb-0 lg:h-[calc(100%-5.5rem)] lg:overflow-x-auto">
           {MentionsMainInfluencersData.map((item, index) => (
             <div
               className="flex w-max gap-4 border-b border-b-zinc-300 p-4 text-xs lg:grid lg:grid-cols-12 lg:text-sm xl:w-full 2xl:text-base 3xl:text-lg"
@@ -52,9 +52,9 @@ export function MentionsMainInfluencers() {
                   className="h-10 w-10 rounded-lg"
                 />
               </div>
-              <div className="col-span-2 flex flex-col justify-center">
-                <span className="text-zinc-500">@{item.username}</span>
-                <span className="font-semibold">{item.name}</span>
+              <div className="flex w-40 flex-col justify-center lg:col-span-2">
+                <span className="truncate text-zinc-500">@{item.username}</span>
+                <span className="truncate font-semibold">{item.name}</span>
               </div>
               <div className="col-span-2 flex flex-col justify-center">
                 <span className="text-zinc-500">Seguidores</span>
@@ -63,7 +63,7 @@ export function MentionsMainInfluencers() {
               <div className="col-span-2 flex flex-col justify-center">
                 <span className="text-zinc-500">Ultima Publicação</span>
                 <span className="font-semibold">
-                  {new Date(item.lastPost).toLocaleString()}
+                  {new Date(item.lastPost).toLocaleDateString("pt-BR")}
                 </span>
               </div>
               <div className="col-span-2 flex flex-col justify-center">
@@ -97,7 +97,7 @@ export function MentionsMainInfluencers() {
           ))}
         </div>
       )}
-      <BaseCardFooter />
+      <BaseCardFooter text="Lista com os perfis com maior influência." />
     </BaseCard>
   );
 }

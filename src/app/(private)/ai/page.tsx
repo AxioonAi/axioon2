@@ -55,7 +55,7 @@ export default function AxioonAi() {
   async function handleSendGptMessage(messageContent: string) {
     const client = new OpenAI({
       dangerouslyAllowBrowser: true,
-      apiKey: "",
+      apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
     });
     const message = await client.chat.completions.create({
       model: "gpt-4o-mini",
@@ -285,7 +285,7 @@ export default function AxioonAi() {
             )}
           </div>
         )}
-        <div className="mx-auto flex h-10 w-[90%] flex-row rounded-sm border border-zinc-300 bg-white shadow-sm">
+        <div className="mx-auto flex h-10 w-[90%] flex-row justify-between rounded-sm border border-zinc-300 bg-white shadow-sm">
           <input
             type="text"
             placeholder="Digite sua mensagem..."
@@ -296,7 +296,7 @@ export default function AxioonAi() {
             onChange={(e) => setInputMessage(e.target.value)}
           />
           <button
-            className="flex h-full w-[5%] items-center justify-center"
+            className="flex h-full items-center justify-center"
             onClick={handleSendMessage}
           >
             {isMessageLoading ? (

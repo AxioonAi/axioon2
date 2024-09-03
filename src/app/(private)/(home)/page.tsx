@@ -10,7 +10,7 @@ import {
   CommentsDonutGraphData,
   EngagementTimesData,
   FollowerProgressionChartData,
-  LineGradientChartData,
+  LineGradientChartData2,
   ScoreGaugeChartData,
   WordCloudData,
 } from "@/components/data/HomeData";
@@ -92,12 +92,12 @@ export default function Home() {
   ]);
 
   return (
-    <div className="flex flex-col gap-4 lg:grid lg:grid-cols-12">
+    <div className="flex flex-col gap-4 pb-28 lg:grid lg:grid-cols-12">
       <div className="lg:col-span-12">
         <HomeHeaderCard title="Mídias Sociais" />
       </div>
 
-      <div className="lg:col-span-12">
+      <div className="w-full lg:col-span-12">
         <HeaderCards />
         <div className="h-40">
           <IndicatorsCards />
@@ -108,7 +108,7 @@ export default function Home() {
           <div className="flex flex-col gap-4 lg:col-span-12 lg:grid lg:h-[75vh] lg:grid-cols-12 lg:grid-rows-12">
             <div className="lg:col-span-8 lg:row-span-5">
               <LineGradientChart
-                LineGradientChartData={LineGradientChartData}
+                LineGradientChartData={LineGradientChartData2}
               />
             </div>
             <div className="col-span-4 row-span-5">

@@ -57,7 +57,7 @@ export function AdSummary() {
             >
               <div className="flex w-full justify-between">
                 <div className="flex items-center gap-1">
-                  <span>Id do Anúncio:</span>
+                  <span>ID:</span>
                   <strong>{item.id}</strong>
                 </div>
                 <div className="flex items-center gap-1 rounded-md border border-sky-950 px-1 py-0.5 lg:p-2">

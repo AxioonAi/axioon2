@@ -36,7 +36,7 @@ import { HashtagsComments } from "@/components/app/mentions/HashtagsComments";
 export default function Mentions() {
   const { selectedMentionsType } = useMentionsDataContext();
   return (
-    <div className="flex flex-col gap-4 pb-20 lg:grid lg:grid-cols-12">
+    <div className="flex flex-col gap-4 pb-28 lg:grid lg:grid-cols-12">
       <div className="lg:col-span-12 lg:row-span-2">
         <MentionsHeaderCard title="Menções" />
       </div>

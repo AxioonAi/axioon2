@@ -131,7 +131,7 @@ export function EngagementTimes({ EngagementTimesData }: EngagementTimesProps) {
           />
         </div>
       )}
-      <BaseCardFooter />
+      <BaseCardFooter text="Distribuição de atividade por Horário." />
     </BaseCard>
   );
 }

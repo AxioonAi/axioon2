@@ -8,7 +8,7 @@ import { CommentsDonutGraph } from "@/components/app/ads/CommentsDonutGraph";
 
 export default function Ads() {
   return (
-    <div className="flex flex-col gap-4 pb-20 lg:grid lg:grid-cols-12">
+    <div className="flex flex-col gap-4 pb-28 lg:grid lg:grid-cols-12">
       <div className="lg:col-span-12 lg:row-span-3">
         <HeaderCard title="Anúncios" />
       </div>

@@ -98,7 +98,7 @@ export function HashtagsLineGradientChart({
           />
         </div>
       )}
-      <BaseCardFooter />
+      <BaseCardFooter text="Sentimento médio por publicação." />
     </BaseCard>
   );
 }

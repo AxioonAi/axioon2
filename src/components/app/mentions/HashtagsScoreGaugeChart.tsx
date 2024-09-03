@@ -144,7 +144,7 @@ export function HashtagsScoreGaugeChart({
           )}
         </div>
       )}
-      <BaseCardFooter />
+      <BaseCardFooter text="Valor médio dos sentimentos." />
     </BaseCard>
   );
 }

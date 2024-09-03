@@ -75,7 +75,7 @@ export function HashtagsMentionsMainActors() {
       ) : (
         <div
           ref={elementRef}
-          className="mb-12 flex h-80 w-full flex-col overflow-x-scroll overflow-y-scroll p-4 lg:mb-0 lg:h-[calc(100%-5.5rem)] lg:overflow-x-auto"
+          className="flex h-80 w-full flex-col overflow-x-scroll overflow-y-scroll p-4 lg:mb-0 lg:h-[calc(100%-5.5rem)] lg:overflow-x-auto"
         >
           {mainActorsData.map((item, index) => (
             <div
@@ -101,9 +101,9 @@ export function HashtagsMentionsMainActors() {
                   />
                 )}
               </div>
-              <div className="flex flex-col justify-center lg:col-span-2">
-                <span className="text-zinc-500">@{item.username}</span>
-                <span className="font-semibold">{item.name}</span>
+              <div className="flex w-40 flex-col justify-center lg:col-span-2">
+                <span className="truncate text-zinc-500">@{item.username}</span>
+                <span className="truncate font-semibold">{item.name}</span>
               </div>
               <div className="flex flex-col justify-center lg:col-span-2">
                 <span className="text-zinc-500">Seguidores</span>
@@ -146,7 +146,7 @@ export function HashtagsMentionsMainActors() {
           ))}
         </div>
       )}
-      <BaseCardFooter />
+      <BaseCardFooter text="Lista com os principais atores." />
     </BaseCard>
   );
 }

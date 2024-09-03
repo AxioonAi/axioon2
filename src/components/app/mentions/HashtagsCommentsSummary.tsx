@@ -64,9 +64,9 @@ export function HashtagsCommentsSummary() {
       {isGettingData ? (
         <Skeleton className="mx-auto mt-4 h-96 w-11/12" />
       ) : (
-        <div className="flex h-72 w-full flex-col gap-4 p-4 xs:h-60 lg:h-full lg:gap-4 lg:p-8 3xl:gap-16">
+        <div className="flex h-72 w-full flex-col justify-center gap-4 p-4 xs:h-60 lg:h-full lg:gap-2 3xl:gap-16">
           <div className="flex w-full items-center gap-2">
-            <strong className="text-xs lg:text-sm 2xl:text-base 3xl:text-lg">
+            <strong className="text-xs lg:text-xs 2xl:text-base 3xl:text-lg">
               {commentsBySentiment?.totalSentiment.toFixed(2)}
             </strong>
           </div>
@@ -100,44 +100,42 @@ export function HashtagsCommentsSummary() {
               }}
             />
           </div>
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 lg:gap-2">
             <div className="flex w-full items-center justify-between">
               <div className="flex items-center gap-2">
                 <div className="h-4 w-4 rounded-full bg-green-600" />
-                <span className="text-sm lg:text-base 2xl:text-lg">
+                <span className="text-xs lg:text-sm">
                   Comentários Positivos
                 </span>
               </div>
-              <span className="text-sm text-zinc-500 lg:text-base 2xl:text-lg">
+              <span className="text-xs text-zinc-500 lg:text-sm">
                 {commentsBySentiment?.countSentiment651To1000} Comentários
               </span>
             </div>
             <div className="flex w-full items-center justify-between">
               <div className="flex items-center gap-2">
                 <div className="h-4 w-4 rounded-full bg-violet-600" />
-                <span className="text-sm lg:text-base 2xl:text-lg">
-                  Comentários Neutros
-                </span>
+                <span className="text-xs lg:text-sm">Comentários Neutros</span>
               </div>
-              <span className="text-sm text-zinc-500 lg:text-base 2xl:text-lg">
+              <span className="text-xs text-zinc-500 lg:text-sm">
                 {commentsBySentiment?.countSentiment351To650} Comentários
               </span>
             </div>
             <div className="flex w-full items-center justify-between">
               <div className="flex items-center gap-2">
                 <div className="h-4 w-4 rounded-full bg-red-600" />
-                <span className="text-sm lg:text-base 2xl:text-lg">
+                <span className="text-xs lg:text-sm">
                   Comentários Negativos
                 </span>
               </div>
-              <span className="text-sm text-zinc-500 lg:text-base 2xl:text-lg">
+              <span className="text-xs text-zinc-500 lg:text-sm">
                 {commentsBySentiment?.countSentiment0To350} Comentários
               </span>
             </div>
           </div>
         </div>
       )}
-      <BaseCardFooter />
+      <BaseCardFooter text="Quantidade de comentários separados por sentimento." />
     </BaseCard>
   );
 }

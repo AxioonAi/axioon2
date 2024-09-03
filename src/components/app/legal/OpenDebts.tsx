@@ -24,7 +24,7 @@ export function OpenDebts() {
   return (
     <BaseCard className="p-0">
       <BaseCardHeader title="Consulta de Débitos Ativos" />
-      <div className="mb-12 flex h-80 flex-wrap justify-around gap-4 overflow-y-scroll p-4 pb-10 text-[10px] lg:h-full xl:text-xs 2xl:text-sm 3xl:text-base">
+      <div className="flex h-80 flex-wrap justify-around gap-4 overflow-y-scroll p-4 pb-10 text-[10px] lg:h-full xl:text-xs 2xl:text-sm 3xl:text-base">
         {
           isGettingData ? (
             <Skeleton className="mx-auto mt-4 h-[21rem] w-11/12" />
@@ -84,7 +84,7 @@ export function OpenDebts() {
           // )
         }
       </div>
-      <BaseCardFooter />
+      <BaseCardFooter text="Lista dos débitos ativos." />
     </BaseCard>
   );
 }

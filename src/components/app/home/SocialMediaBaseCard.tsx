@@ -3,6 +3,7 @@ import { twMerge } from "tailwind-merge";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { useSocialMediaDataContext } from "@/context/SocialMediaData";
 import { Skeleton } from "@/components/global/Skeleton";
+import { shortenNumber } from "@/utils/masks";
 
 interface SocialMediaBaseCardProps {
   SocialMediaData:
@@ -35,7 +36,7 @@ export function SocialMediaBaseCard({
   } = useSocialMediaDataContext();
 
   return (
-    <BaseCard className="relative h-36 gap-8 overflow-hidden p-0">
+    <BaseCard className="lg relative max-h-28 min-h-28 gap-8 overflow-hidden p-0 xl:max-h-36 xl:min-h-36">
       {isGettingData ? (
         <button className="flex flex-col p-2 xl:p-4" disabled>
           <div className="flex w-full items-center gap-4 border-b border-b-zinc-700/50 pb-2">
@@ -130,7 +131,7 @@ export function SocialMediaBaseCard({
           <div className="mt-1 flex w-full items-center justify-evenly">
             <div className="flex h-full flex-col items-center justify-center">
               <strong className="text-xs xl:text-sm 3xl:text-base">
-                {SocialMediaData?.posts}
+                {shortenNumber(SocialMediaData?.posts || 0)}
               </strong>
               <span className="text-[10px] xl:text-xs 3xl:text-base">
                 Posts
@@ -138,7 +139,7 @@ export function SocialMediaBaseCard({
             </div>
             <div className="flex h-full flex-col items-center justify-center">
               <strong className="text-xs xl:text-sm 3xl:text-base">
-                {SocialMediaData?.followers}
+                {shortenNumber(SocialMediaData?.followers || 0)}
               </strong>
               <span className="text-[10px] xl:text-xs 3xl:text-base">
                 Seguidores
@@ -146,7 +147,7 @@ export function SocialMediaBaseCard({
             </div>
             <div className="flex h-full flex-col items-center justify-center">
               <strong className="text-xs xl:text-sm 3xl:text-base">
-                {SocialMediaData?.following}
+                {shortenNumber(SocialMediaData?.following || 0)}
               </strong>
               <span className="text-[10px] xl:text-xs 3xl:text-base">
                 Seguindo

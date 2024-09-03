@@ -127,3 +127,13 @@ export const textWithSpacesOnly = (value: string) => {
     return undefined;
   }
 };
+
+export const shortenNumber = (n: number) => {
+  if (n < 1000) {
+    return n.toString();
+  } else if (n < 1000000) {
+    return `${(n / 1000).toFixed(1)}K`;
+  } else {
+    return `${(n / 1000000).toFixed(1)}M`;
+  }
+};

@@ -9,7 +9,7 @@ export function MentionsSelector() {
 
   return (
     <BaseCard>
-      <div className="flex w-full items-center justify-center gap-4">
+      <div className="flex w-full items-center justify-center gap-4 text-xs lg:text-sm xl:text-base 2xl:text-lg">
         <button
           onClick={() => setSelectedMentionsType("personal")}
           className={twMerge(

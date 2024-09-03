@@ -9,6 +9,7 @@ import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { useOffsetContext } from "@/context/test";
 import { useSocialMediaDataContext } from "@/context/SocialMediaData";
 import { Skeleton } from "@/components/global/Skeleton";
+import { shortenNumber } from "@/utils/masks";
 
 interface FacebookPostsProps {
   commentCount: number;
@@ -365,7 +366,15 @@ export function PostsAndComments() {
                       </div>
                     </div>
                     <span className="text-[10px] lg:text-xs 2xl:text-sm 3xl:text-base">
-                      {item.date}
+                      {new Date(item.date as string).toLocaleDateString(
+                        "pt-BR",
+                        {
+                          month: "numeric",
+                          day: "numeric",
+                          hour: "numeric",
+                          minute: "numeric",
+                        },
+                      )}
                     </span>
                   </div>
                   <div className="flex w-full flex-col gap-2">
@@ -384,7 +393,9 @@ export function PostsAndComments() {
                             height={40}
                             className="h-4 w-4 sm:h-6 sm:w-6 3xl:h-10 3xl:w-10"
                           />
-                          <span>{item.like > 0 ? item.like : 0}</span>
+                          <span>
+                            {item.like > 0 ? shortenNumber(item.like) : 0}
+                          </span>
                         </div>
                         <div className="flex flex-col items-center gap-1 text-xs sm:flex-row lg:text-sm 2xl:text-base 3xl:text-lg">
                           <Image
@@ -394,7 +405,7 @@ export function PostsAndComments() {
                             height={40}
                             className="h-4 w-4 sm:h-6 sm:w-6 3xl:h-10 3xl:w-10"
                           />
-                          <span>{item.commentCount}</span>
+                          <span>{shortenNumber(item.commentCount)}</span>
                         </div>
                         {item.viewCount || item.playCount || item.views ? (
                           <div className="flex flex-col items-center gap-1 text-xs sm:flex-row lg:text-sm 2xl:text-base 3xl:text-lg">
@@ -407,11 +418,11 @@ export function PostsAndComments() {
                             />
                             <span>
                               {item.viewCount
-                                ? item.viewCount
+                                ? shortenNumber(item.viewCount)
                                 : item.playCount
-                                  ? item.playCount
+                                  ? shortenNumber(item.playCount)
                                   : item.views
-                                    ? item.views
+                                    ? shortenNumber(item.views)
                                     : ""}
                             </span>
                           </div>
@@ -466,7 +477,7 @@ export function PostsAndComments() {
                     {item.comments.map((comment, index) => (
                       <div
                         key={index}
-                        className="flex w-full flex-col items-end justify-between rounded-lg bg-zinc-50 p-2 shadow-md lg:flex-row lg:items-center"
+                        className="flex w-full flex-col justify-between rounded-lg bg-zinc-50 p-2 shadow-md lg:flex-row lg:items-center"
                       >
                         <div className="flex gap-4">
                           {/* {comment.ownerProfilePicUrl ? (
@@ -493,13 +504,28 @@ export function PostsAndComments() {
                             </span>
                           </div>
                         </div>
-                        <div className="flex h-full items-end gap-8 text-xs lg:text-sm 2xl:text-base 3xl:text-lg">
+                        <div className="flex h-full items-end gap-8 self-end text-xs lg:text-sm 2xl:text-base 3xl:text-lg">
                           <div className="flex h-full flex-col items-end justify-between gap-2">
                             <span>
                               {comment.date
-                                ? comment.date
+                                ? new Date(comment.date).toLocaleDateString(
+                                    "pt-BR",
+                                    {
+                                      month: "numeric",
+                                      day: "numeric",
+                                      hour: "numeric",
+                                      minute: "numeric",
+                                    },
+                                  )
                                 : comment.timestamp
-                                  ? comment.timestamp
+                                  ? new Date(
+                                      comment.timestamp,
+                                    ).toLocaleDateString("pt-BR", {
+                                      month: "numeric",
+                                      day: "numeric",
+                                      hour: "numeric",
+                                      minute: "numeric",
+                                    })
                                   : ""}
                             </span>
                             <div className="flex items-center gap-2">

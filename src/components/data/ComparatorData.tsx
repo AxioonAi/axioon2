@@ -65,7 +65,7 @@ export const FollowersDonutByGenderChartData = {
           breakpoint: 1024,
           options: {
             chart: {
-              height: 300,
+              height: 200,
             },
           },
         },
@@ -170,7 +170,7 @@ export const FollowersDonutChartData = {
           breakpoint: 1024,
           options: {
             chart: {
-              height: 300,
+              height: 200,
             },
           },
         },
@@ -324,7 +324,7 @@ export const FollowerProgressionChartData = {
           breakpoint: 1920,
           options: {
             chart: {
-              height: 175,
+              height: 150,
             },
           },
         },
@@ -332,7 +332,7 @@ export const FollowerProgressionChartData = {
           breakpoint: 2560,
           options: {
             chart: {
-              height: 225,
+              height: 200,
             },
           },
         },
@@ -340,7 +340,7 @@ export const FollowerProgressionChartData = {
           breakpoint: 2561,
           options: {
             chart: {
-              height: 325,
+              height: 300,
             },
           },
         },
@@ -599,7 +599,7 @@ export const LineGradientSentimentChartData = {
           breakpoint: 1024,
           options: {
             chart: {
-              height: 150,
+              height: 175,
             },
           },
         },
@@ -926,14 +926,7 @@ export const PositiveCommentsData = {
     options: {
       chart: {
         type: "line" as const,
-        dropShadow: {
-          enabled: true,
-          color: "#000",
-          top: 18,
-          left: 7,
-          blur: 10,
-          opacity: 0.2,
-        },
+
         style: {
           color: "white" as const,
         },
@@ -953,13 +946,7 @@ export const PositiveCommentsData = {
         curve: "smooth" as const,
         width: 3,
       },
-      grid: {
-        borderColor: "#a1a1a1",
-        row: {
-          colors: ["transparent", "transparent"], // takes an array which will be repeated on columns
-          opacity: 0.5,
-        },
-      },
+
       xaxis: {
         axisTicks: {
           show: false,
@@ -972,7 +959,15 @@ export const PositiveCommentsData = {
         },
       },
       yaxis: {
-        stepSize: 10,
+        axisTicks: {
+          show: false,
+        },
+        labels: {
+          show: false,
+        },
+        axisBorder: {
+          show: false,
+        },
       },
       legend: {
         show: false,
@@ -993,7 +988,7 @@ export const PositiveCommentsData = {
           breakpoint: 1440,
           options: {
             chart: {
-              height: 140,
+              height: 125,
             },
           },
         },
@@ -1001,7 +996,7 @@ export const PositiveCommentsData = {
           breakpoint: 1920,
           options: {
             chart: {
-              height: 125,
+              height: 100,
             },
           },
         },
@@ -1061,14 +1056,7 @@ export const NegativeCommentsData = {
     options: {
       chart: {
         type: "line" as const,
-        dropShadow: {
-          enabled: true,
-          color: "#000",
-          top: 18,
-          left: 7,
-          blur: 10,
-          opacity: 0.2,
-        },
+
         style: {
           color: "white" as const,
         },
@@ -1088,13 +1076,7 @@ export const NegativeCommentsData = {
         curve: "smooth" as const,
         width: 3,
       },
-      grid: {
-        borderColor: "#a1a1a1",
-        row: {
-          colors: ["transparent", "transparent"], // takes an array which will be repeated on columns
-          opacity: 0.5,
-        },
-      },
+
       xaxis: {
         axisTicks: {
           show: false,
@@ -1107,7 +1089,15 @@ export const NegativeCommentsData = {
         },
       },
       yaxis: {
-        stepSize: 10,
+        axisTicks: {
+          show: false,
+        },
+        labels: {
+          show: false,
+        },
+        axisBorder: {
+          show: false,
+        },
       },
       legend: {
         show: false,
@@ -1128,7 +1118,7 @@ export const NegativeCommentsData = {
           breakpoint: 1440,
           options: {
             chart: {
-              height: 140,
+              height: 125,
             },
           },
         },
@@ -1136,7 +1126,7 @@ export const NegativeCommentsData = {
           breakpoint: 1920,
           options: {
             chart: {
-              height: 125,
+              height: 100,
             },
           },
         },

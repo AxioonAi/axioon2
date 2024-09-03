@@ -70,19 +70,21 @@ export function DefendantsAndDetractorsList() {
       {isGettingData ? (
         <Skeleton className="mx-auto mt-4 h-[17rem] w-11/12" />
       ) : (
-        <div className="mb-12 flex h-80 w-full flex-col gap-8 overflow-y-scroll p-4 lg:mb-0 lg:h-[74%] 2xl:h-3/4 3xl:h-4/5">
+        <div className="flex h-80 w-full flex-col gap-4 overflow-y-scroll p-4 lg:mb-0 lg:h-[74%] 2xl:h-3/4 3xl:h-4/5">
           {engagersList.map((user, index) => (
             <div
               key={index}
               className="flex w-full items-center justify-between"
             >
-              <div className="flex items-center gap-2">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-sky-500/10 p-2 text-sky-500">
+              <div className="flex w-full items-center gap-2">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-sky-500/10 p-2 text-base text-sky-500">
                   {user.userName.slice(0, 1)}
                 </div>
-                <div className="flex h-full flex-col justify-between">
-                  <strong>{user.userName}</strong>
-                  <span className="text-sm text-zinc-500">
+                <div className="flex h-full w-full flex-col justify-between text-xs lg:text-sm 3xl:text-base">
+                  <strong className="w-48 truncate md:w-full lg:w-32 xl:w-60 2xl:w-full">
+                    {user.userName} {user.userName}
+                  </strong>
+                  <span className="text-[10px] text-zinc-500 lg:text-xs xl:text-sm">
                     Sentimento: {user.sentiment}
                   </span>
                 </div>
@@ -92,7 +94,7 @@ export function DefendantsAndDetractorsList() {
           ))}
         </div>
       )}
-      <BaseCardFooter />
+      <BaseCardFooter text="Lista dos principais comentadores por sentimento." />
     </BaseCard>
   );
 }

@@ -129,11 +129,14 @@ export function ComparatorStickyCards() {
           </BaseCard>
         </div>
         <div className="lg:col-span-6">
-          <BaseCard className="h-full w-full gap-4 p-0">
-            <div className="flex w-full py-4">
-              <div className="flex w-full items-center justify-between px-4">
+          <BaseCard className="h-full w-full gap-1 p-0 lg:gap-4">
+            <div className="flex w-full flex-col pt-2 lg:flex-row lg:py-4">
+              <span className="text-center font-semibold lg:hidden">
+                Selecione os Perfis que deseja Comparar
+              </span>
+              <div className="flex w-full items-center justify-between gap-2 px-4">
                 <Popover.Root>
-                  <Popover.Trigger className="flex h-10 w-1/4 rounded bg-sky-900/80">
+                  <Popover.Trigger className="flex h-10 w-1/2 rounded bg-sky-900/80 lg:w-1/4">
                     <div className="flex h-full w-[85%] items-center justify-between gap-2 border-r-2 border-r-black px-2 text-white">
                       <Image
                         src="/Icons/user.svg"
@@ -177,11 +180,11 @@ export function ComparatorStickyCards() {
                     ))}
                   </Popover.Content>
                 </Popover.Root>
-                <span className="text-center font-semibold">
+                <span className="hidden text-center font-semibold lg:block">
                   Selecione os Perfis que deseja Comparar
                 </span>
                 <Popover.Root>
-                  <Popover.Trigger className="flex h-10 w-1/4 rounded bg-sky-900/80">
+                  <Popover.Trigger className="flex h-10 w-1/2 rounded bg-sky-900/80 lg:w-1/4">
                     <div className="flex h-full w-[85%] items-center justify-between gap-2 border-r-2 border-r-black px-2 text-white">
                       <Image
                         src="/Icons/user.svg"
@@ -227,7 +230,7 @@ export function ComparatorStickyCards() {
                 </Popover.Root>
               </div>
             </div>
-            <BaseCardFooter />
+            <BaseCardFooter text="Selecione os perfis que deseja comparar." />
           </BaseCard>
         </div>
         <div className="lg:col-span-3">

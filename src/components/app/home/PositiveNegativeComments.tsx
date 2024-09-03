@@ -41,7 +41,7 @@ export function PositiveNegativeCommentsChart({
       {isGettingData ? (
         <Skeleton className="mx-auto mt-4 h-[17rem] w-11/12" />
       ) : (
-        <div className="flex h-96 w-full flex-col justify-evenly gap-2 p-2 lg:h-full lg:gap-4 lg:p-4">
+        <div className="flex w-full flex-col justify-between gap-2 pt-4 lg:h-full">
           <div className="flex w-full items-center justify-between">
             {headerData.map((idx, index) => (
               <div key={index}>{idx}</div>
@@ -54,7 +54,7 @@ export function PositiveNegativeCommentsChart({
           />
         </div>
       )}
-      <BaseCardFooter />
+      <BaseCardFooter text="Comentários positivos e negativos por publicações." />
     </BaseCard>
   );
 }

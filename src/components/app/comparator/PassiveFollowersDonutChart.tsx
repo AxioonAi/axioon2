@@ -165,7 +165,7 @@ export function PassiveFollowersDonutChart({
           })}
         />
       )}
-      <BaseCardFooter />
+      <BaseCardFooter text="Seguidores por rede social do candidato 2." />
     </BaseCard>
   );
 }

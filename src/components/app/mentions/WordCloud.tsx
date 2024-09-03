@@ -78,14 +78,17 @@ export function WordCloud({ WordCloudData }: WordCloudProps) {
       {isGettingData ? (
         <Skeleton className="mx-auto mt-4 h-48 w-11/12" />
       ) : (
-        <div ref={elementRef} className="flex h-full max-h-56 w-full flex-col">
+        <div
+          ref={elementRef}
+          className="flex h-48 w-full flex-col lg:mb-0 lg:h-[calc(100%-5.5rem)]"
+        >
           <ReactWordcloud
             words={wordsList as WordsProps[]}
             options={WordCloudData.options}
           />
         </div>
       )}
-      <BaseCardFooter />
+      <BaseCardFooter text="Nuvem das palavras mais utilizadas." />
     </BaseCard>
   );
 }
