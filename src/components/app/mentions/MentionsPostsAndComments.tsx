@@ -210,9 +210,16 @@ export function MentionsPostsAndComments() {
               >
                 <Image
                   src={
-                    "/Logos/" +
-                    item.url.split("/")[2].split(".")[1].toLowerCase() +
-                    ".svg"
+                    item.url.split("/")[2].split(".")[1].toLowerCase() ===
+                    "facebook"
+                      ? "/Logos/FacebookLogo.png"
+                      : item.url.split("/")[2].split(".")[1].toLowerCase() ===
+                          "instagram"
+                        ? "/Logos/InstagramLogo.png"
+                        : item.url.split("/")[2].split(".")[1].toLowerCase() ===
+                            "tiktok"
+                          ? "/Logos/TikTokLogo.png"
+                          : "/Logos/YouTubeLogo.png"
                   }
                   alt={""}
                   width={40}
