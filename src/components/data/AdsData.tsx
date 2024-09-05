@@ -133,6 +133,14 @@ export const AgeAndGenderData1 = {
       },
       responsive: [
         {
+          breakpoint: 1440,
+          options: {
+            chart: {
+              height: 250,
+            },
+          },
+        },
+        {
           breakpoint: 1920,
           options: {
             chart: {

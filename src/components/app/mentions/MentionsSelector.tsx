@@ -20,6 +20,7 @@ export function MentionsSelector() {
           Menções Pessoais
         </button>
         <button
+          disabled
           onClick={() => setSelectedMentionsType("hashtag")}
           className={twMerge(
             "h-10 w-full rounded-md bg-gray-200 font-semibold shadow-sm transition duration-200",

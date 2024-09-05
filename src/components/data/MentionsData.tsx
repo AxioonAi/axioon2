@@ -85,7 +85,7 @@ export const CommentsSentimentDonutGraphData = {
       colors: ["#0C4A6E", "#38BDF8", "#BAE6FD"],
       responsive: [
         {
-          breakpoint: 1024,
+          breakpoint: 1440,
           options: {
             chart: {
               height: 150,
@@ -218,6 +218,14 @@ export const LineGradientChartData = {
           options: {
             chart: {
               height: 300,
+            },
+          },
+        },
+        {
+          breakpoint: 1440,
+          options: {
+            chart: {
+              height: 225,
             },
           },
         },

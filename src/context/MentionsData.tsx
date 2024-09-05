@@ -63,7 +63,7 @@ export const MentionsDataContextProvider = ({ children }: ContextProps) => {
     setIsGettingData(true);
     const mentionsData = await authGetAPI(
       // `/profile/mentions/${selectedPolitician?.id}?endDate=2024-06-14&startDate=2024-03-14`,
-      `/profile/mentions/8eb93d97-4852-4cd3-877f-7938dadca2f5?endDate=2024-06-14&startDate=2024-03-14`,
+      `/profile/mentions/${selectedPolitician?.id}?endDate=${endDate}&startDate=${startDate}`,
       token,
     );
     if (mentionsData.status === 200) {

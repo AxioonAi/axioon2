@@ -476,6 +476,14 @@ export const EngagementTimesData = {
         },
       },
       {
+        breakpoint: 1440,
+        options: {
+          chart: {
+            height: 275,
+          },
+        },
+      },
+      {
         breakpoint: 1920,
         options: {
           chart: {
@@ -1399,6 +1407,14 @@ export const PositiveNegativeCommentsData = {
           },
         },
         {
+          breakpoint: 1440,
+          options: {
+            chart: {
+              height: 150,
+            },
+          },
+        },
+        {
           breakpoint: 1920,
           options: {
             chart: {
@@ -1779,6 +1795,22 @@ export const LineGradientChartData2 = {
           },
         },
         {
+          breakpoint: 1360,
+          options: {
+            chart: {
+              height: 150,
+            },
+          },
+        },
+        {
+          breakpoint: 1440,
+          options: {
+            chart: {
+              height: 150,
+            },
+          },
+        },
+        {
           breakpoint: 1920,
           options: {
             chart: {
@@ -1915,6 +1947,14 @@ export const FollowerProgressionChartData = {
           options: {
             chart: {
               height: 350,
+            },
+          },
+        },
+        {
+          breakpoint: 1440,
+          options: {
+            chart: {
+              height: 225,
             },
           },
         },

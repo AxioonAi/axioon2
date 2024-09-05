@@ -82,7 +82,7 @@ export function Irs() {
             </div>
           </div>
           <div className="flex w-full flex-col">
-            <div className="flex h-60 flex-wrap justify-around gap-4 overflow-y-scroll pb-10 lg:mb-0 lg:h-[25rem] xl:h-[20rem] 2xl:h-[16.75rem] 3xl:h-[26rem]">
+            <div className="h-60 flex-wrap justify-around gap-4 overflow-y-scroll lg:mb-0 lg:flex lg:h-[17rem] xl:h-[20rem] 2xl:h-[16.75rem] 3xl:h-[26rem]">
               {personalIrsData?.incomeTax.length !== 0 ? (
                 personalIrsData?.incomeTax.map((item, index) => (
                   <div

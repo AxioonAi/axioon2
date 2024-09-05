@@ -71,6 +71,14 @@ export const FollowersDonutByGenderChartData = {
           },
         },
         {
+          breakpoint: 1440,
+          options: {
+            chart: {
+              height: 150,
+            },
+          },
+        },
+        {
           breakpoint: 1920,
           options: {
             chart: {
@@ -325,6 +333,14 @@ export const FollowerProgressionChartData = {
           options: {
             chart: {
               height: 250,
+            },
+          },
+        },
+        {
+          breakpoint: 1440,
+          options: {
+            chart: {
+              height: 175,
             },
           },
         },
@@ -731,7 +747,14 @@ export const LineGradientChartData = {
             },
           },
         },
-
+        {
+          breakpoint: 1440,
+          options: {
+            chart: {
+              height: 150,
+            },
+          },
+        },
         {
           breakpoint: 1920,
           options: {
@@ -814,6 +837,14 @@ export const AgeAndGenderData = {
         show: false,
       },
       responsive: [
+        {
+          breakpoint: 1440,
+          options: {
+            chart: {
+              height: 175,
+            },
+          },
+        },
         {
           breakpoint: 1920,
           options: {
