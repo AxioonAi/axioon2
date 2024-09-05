@@ -74,8 +74,8 @@ export function Sidebar() {
       <div
         className={twMerge(
           "left-0 top-0 z-[1001] flex min-h-full w-2/3 flex-col gap-8 border-r border-r-gray-800 bg-black px-4 pb-10 pt-4 transition duration-300 lg:w-64",
-          "lg:fixed",
-          isOpen ? "max-lg:fixed" : "max-lg:hidden",
+          // isOpen ? "max-lg:fixed" : "max-lg:hidden",
+          isOpen ? "max-lg:fixed lg:block" : "hidden",
         )}
       >
         <Image
@@ -522,7 +522,7 @@ export function Sidebar() {
       <div
         onClick={() => setIsOpen(false)}
         className={twMerge(
-          "fixed right-0 top-0 z-[1000] h-full w-1/3 bg-black/50",
+          "fixed right-0 top-0 z-[1000] h-full w-1/3 bg-black/50 lg:hidden",
           isOpen ? "block" : "hidden",
         )}
       />

@@ -27,7 +27,7 @@ export default function PrivateLayout({
                     <ComparatorDataContextProvider>
                       <AdsDataContextProvider>
                         <Sidebar />
-                        <div className="ml-auto flex min-h-screen w-full flex-col self-end bg-zinc-100 lg:w-[calc(100%-16rem)]">
+                        <div className="ml-auto flex min-h-screen w-full flex-col self-end bg-zinc-100">
                           <Header />
                           <div className="flex h-full flex-col p-4 md:p-8 lg:p-4 xl:p-8">
                             {children}

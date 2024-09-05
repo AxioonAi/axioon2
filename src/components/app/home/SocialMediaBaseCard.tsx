@@ -129,14 +129,16 @@ export function SocialMediaBaseCard({
             </div>
           </div>
           <div className="mt-1 flex w-full items-center justify-evenly">
-            <div className="flex h-full flex-col items-center justify-center">
-              <strong className="text-xs xl:text-sm 3xl:text-base">
-                {shortenNumber(SocialMediaData?.posts || 0)}
-              </strong>
-              <span className="text-[10px] xl:text-xs 3xl:text-base">
-                Posts
-              </span>
-            </div>
+            {platform !== "Facebook" && (
+              <div className="flex h-full flex-col items-center justify-center">
+                <strong className="text-xs xl:text-sm 3xl:text-base">
+                  {shortenNumber(SocialMediaData?.posts || 0)}
+                </strong>
+                <span className="text-[10px] xl:text-xs 3xl:text-base">
+                  Posts
+                </span>
+              </div>
+            )}
             <div className="flex h-full flex-col items-center justify-center">
               <strong className="text-xs xl:text-sm 3xl:text-base">
                 {shortenNumber(SocialMediaData?.followers || 0)}
