@@ -86,7 +86,7 @@ export function IndicatorsCards() {
           slidesPerView: 2.5,
           spaceBetween: 20,
         },
-        1440: {
+        1360: {
           slidesPerView: 3,
           spaceBetween: 50,
         },

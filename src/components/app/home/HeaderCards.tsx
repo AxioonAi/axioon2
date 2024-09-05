@@ -66,7 +66,7 @@ export function HeaderCards() {
           slidesPerView: 3.5,
           spaceBetween: 20,
         },
-        1440: {
+        1360: {
           slidesPerView: 4,
           spaceBetween: 50,
         },

@@ -9,6 +9,9 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Axioon",
+  icons: {
+    icon: "/icon.png",
+  },
 };
 
 export default function RootLayout({
