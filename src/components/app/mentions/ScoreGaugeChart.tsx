@@ -8,7 +8,6 @@ import dynamic from "next/dynamic";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
-import { useSocialMediaDataContext } from "@/context/SocialMediaData";
 import { Skeleton } from "@/components/global/Skeleton";
 import { useMentionsDataContext } from "@/context/MentionsData";
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
@@ -32,38 +31,21 @@ export function ScoreGaugeChart({
   onlyGauge = true,
   className,
 }: ScoreGaugeChartProps) {
-  const { socialMediaData } = useSocialMediaDataContext();
-  const { isGettingData } = useMentionsDataContext();
-  const [facebookSentiment, setFacebookSentiment] = useState<number | null>(0);
+  const { isGettingData, mentionsData } = useMentionsDataContext();
   const [instagramSentiment, setInstagramSentiment] = useState<number | null>(
     0,
   );
-  const [tiktokSentiment, setTiktokSentiment] = useState<number | null>(0);
-  const [youtubeSentiment, setYoutubeSentiment] = useState<number | null>(0);
 
   const [series, setSeries] = useState([0]);
-  useEffect(() => {
-    if (socialMediaData) {
-      setFacebookSentiment(
-        socialMediaData.commentsData.currentSentiment.facebook,
-      );
-      setInstagramSentiment(
-        socialMediaData.commentsData.currentSentiment.instagram,
-      );
-      setTiktokSentiment(socialMediaData.commentsData.currentSentiment.tiktok);
-      setYoutubeSentiment(
-        socialMediaData.commentsData.currentSentiment.youtube,
-      );
-    }
-  }, [socialMediaData]);
 
   useEffect(() => {
-    const sentimentValues = [
-      facebookSentiment,
-      instagramSentiment,
-      tiktokSentiment,
-      youtubeSentiment,
-    ];
+    if (mentionsData) {
+      setInstagramSentiment(mentionsData.mentions.currentSentiment.instagram);
+    }
+  }, [mentionsData]);
+
+  useEffect(() => {
+    const sentimentValues = [instagramSentiment];
     const numberOfValues = sentimentValues.filter(
       (value) => value !== null && typeof value === "number",
     ).length;
@@ -72,12 +54,7 @@ export function ScoreGaugeChart({
       0,
     );
     setSeries([parseFloat(Number(sum / numberOfValues / 10).toFixed(0))]);
-  }, [
-    facebookSentiment,
-    instagramSentiment,
-    tiktokSentiment,
-    youtubeSentiment,
-  ]);
+  }, [instagramSentiment]);
 
   const [options] = useState<ApexOptions>({
     chart: {

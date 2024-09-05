@@ -17,6 +17,9 @@ export interface MentionsDataProps {
       sentimentAverage: number;
       totalSentiment: number;
     };
+    currentSentiment: {
+      instagram: number;
+    };
     mentionQuantity: {
       news: number;
       instagram: number;
