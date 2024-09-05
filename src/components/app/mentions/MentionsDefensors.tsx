@@ -49,7 +49,7 @@ export function MentionsDefensors() {
                   alt=""
                   width={200}
                   height={200}
-                  className="h-10 w-10 rounded-lg"
+                  className="h-10 min-h-10 w-10 min-w-10 rounded-lg"
                 />
               </div>
               <div className="flex w-40 flex-col justify-center lg:col-span-5">
