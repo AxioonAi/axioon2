@@ -132,7 +132,7 @@ export function NegativeWrapper() {
 
       const newSeries: SeriesProps[] = [
         {
-          name: "Comentários Positivos 1",
+          name: "Comentários Negativos 1",
           data: negativeData,
         },
       ];
@@ -205,7 +205,7 @@ export function NegativeWrapper() {
 
       const newSeries: SeriesProps[] = [
         {
-          name: "Comentários Positivos 2",
+          name: "Comentários Negativos 2",
           data: negativeData,
         },
       ];
@@ -245,13 +245,13 @@ export function NegativeWrapper() {
         },
         {
           value: negativeActiveComments,
-          title: "Comentários Positivos 1",
+          title: "Comentários Negativos 1",
           dot: true,
           color: "bg-sky-500",
         },
         {
           value: negativePassiveComments,
-          title: "Comentários Positivos 2",
+          title: "Comentários Negativos 2",
           dot: true,
           color: "bg-sky-900",
         },

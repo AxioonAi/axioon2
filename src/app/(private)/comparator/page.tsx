@@ -2,6 +2,7 @@ import { CommentsBySentiment } from "@/components/app/comparator/CommentsBySenti
 import { ComparatorHeaderCard } from "@/components/app/comparator/ComparatorHeaderCard";
 import { LineGradientChart } from "@/components/app/comparator/LineGradientChart";
 import {
+  AgeAndGenderData,
   FollowerProgressionChartData,
   FollowersDonutByGenderChartData,
   FollowersDonutChartData,
@@ -29,7 +30,6 @@ import { PassiveMentionsScoreGaugeChart } from "@/components/app/comparator/Pass
 import { ActiveMentionsWordCloud } from "@/components/app/comparator/ActiveMentionsWordCloud";
 import { PassiveMentionsWordCloud } from "@/components/app/comparator/PassiveMentionsWordCloud";
 import { MentionsWordCloud } from "@/components/app/comparator/MentionsWordCloud";
-import { AgeAndGenderData } from "@/components/data/AdsData";
 import { ActiveAgeAndGenderChart } from "@/components/app/comparator/ActiveAgeAndGenderChart";
 import { PassiveAgeAndGenderChart } from "@/components/app/comparator/PassiveAgeAndGenderChart";
 

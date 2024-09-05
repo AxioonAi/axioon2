@@ -307,8 +307,6 @@ export function PostsAndComments() {
     }
   };
 
-  console.log("finalPostData", finalPostData);
-
   return (
     <BaseCard className="min-h-96 overflow-hidden p-0">
       <BaseCardHeader

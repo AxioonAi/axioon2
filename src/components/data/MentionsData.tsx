@@ -36,6 +36,220 @@ export const CommentsSummaryData = {
   },
 };
 
+export const CommentsSentimentDonutGraphData = {
+  ChartOptions: {
+    series: [1624, 1267, 162],
+    options: {
+      labels: ["Positivo", "Neutro", "Negativo"],
+      chart: {
+        type: "donut" as const,
+      },
+      legend: {
+        show: false,
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      stroke: {
+        width: 0,
+      },
+      plotOptions: {
+        pie: {
+          expandOnClick: false,
+          donut: {
+            size: "80%",
+            background: "transparent",
+            labels: {
+              show: true,
+              name: {
+                fontSize: "16px",
+                color: undefined,
+                offsetY: 5,
+              },
+              value: {
+                fontSize: "15px",
+                color: "#000",
+              },
+              total: {
+                show: true,
+                showAlways: true,
+                label: "Total",
+                fontSize: "22px",
+                fontWeight: 600,
+                color: "#000",
+              },
+            },
+          },
+        },
+      },
+      colors: ["#0C4A6E", "#38BDF8", "#BAE6FD"],
+      responsive: [
+        {
+          breakpoint: 1024,
+          options: {
+            chart: {
+              height: 150,
+            },
+          },
+        },
+        {
+          breakpoint: 1920,
+          options: {
+            chart: {
+              height: 200,
+            },
+          },
+        },
+        {
+          breakpoint: 2560,
+          options: {
+            chart: {
+              height: 150,
+            },
+          },
+        },
+        {
+          breakpoint: 2561,
+          options: {
+            chart: {
+              height: 450,
+            },
+          },
+        },
+      ],
+    },
+  },
+  footerData: [
+    {
+      title: "Homem",
+      color: "bg-sky-900",
+      value: 1624,
+    },
+    {
+      title: "Mulher",
+      color: "bg-sky-400",
+      value: 1267,
+    },
+    {
+      title: "Indefinido",
+      color: "bg-sky-200",
+      value: 162,
+    },
+  ],
+};
+
+export const LineGradientChartData = {
+  ChartOptions: {
+    series: [
+      {
+        name: "Desktops",
+        data: [170, 572, 751, 82, 1063, 653, 553, 23, 735],
+      },
+    ],
+    options: {
+      chart: {
+        type: "line" as const,
+        zoom: {
+          enabled: false,
+        },
+        toolbar: {
+          show: false,
+        },
+        offsetY: 20,
+        dropShadow: {
+          enabled: true,
+          top: 1,
+          left: 1,
+          blur: 1,
+          opacity: 0.1,
+        },
+        animations: {
+          enabled: false,
+        },
+        background: "transparent",
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      stroke: {
+        curve: "smooth" as const,
+        width: 1,
+        colors: ["#845ADF"],
+      },
+      grid: {
+        show: false,
+      },
+      xaxis: {
+        axisBorder: {
+          show: false,
+        },
+        axisTicks: {
+          show: false,
+        },
+        labels: {
+          show: false,
+        },
+      },
+      yaxis: {
+        show: false,
+      },
+
+      fill: {
+        type: "gradient",
+        colors: ["#845ADF"],
+        gradient: {
+          shadeIntensity: 1,
+          opacityFrom: 0.5,
+          opacityTo: 0.2,
+          stops: [50, 100, 100],
+        },
+      },
+      responsive: [
+        {
+          breakpoint: 1024,
+          options: {
+            chart: {
+              height: 200,
+            },
+          },
+        },
+        {
+          breakpoint: 1360,
+          options: {
+            chart: {
+              height: 300,
+            },
+          },
+        },
+        {
+          breakpoint: 1920,
+          options: {
+            chart: {
+              height: 250,
+            },
+          },
+        },
+        {
+          breakpoint: 2560,
+          options: {
+            chart: {
+              height: 225,
+            },
+          },
+        },
+        {
+          breakpoint: 2561,
+          options: {
+            chart: {
+              height: 300,
+            },
+          },
+        },
+      ],
+    },
+  },
+};
+
 export const MentionsDonutGraphData = {
   ChartOptions: {
     series: [1624, 1267, 162],
@@ -333,6 +547,112 @@ export const MentionsSourceData = {
   ],
 };
 
+export const CommentsDonutGraphData = {
+  ChartOptions: {
+    series: [1624, 1267, 162],
+    options: {
+      labels: ["Feminino", "Masculino", "Outros"],
+      chart: {
+        type: "donut" as const,
+        animations: {
+          enabled: false,
+        },
+        background: "transparent",
+      },
+      legend: {
+        show: false,
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      stroke: {
+        width: 0,
+      },
+      plotOptions: {
+        pie: {
+          expandOnClick: false,
+          donut: {
+            size: "80%",
+            background: "transparent",
+            labels: {
+              show: true,
+              name: {
+                fontSize: "16px",
+                color: undefined,
+                offsetY: 5,
+              },
+              value: {
+                fontSize: "15px",
+                color: "#000",
+              },
+              total: {
+                show: true,
+                showAlways: true,
+                label: "Total",
+                fontSize: "22px",
+                fontWeight: 600,
+                color: "#000",
+              },
+            },
+          },
+        },
+      },
+      colors: ["#0C4A6E", "#38BDF8", "#BAE6FD"],
+      responsive: [
+        {
+          breakpoint: 1024,
+          options: {
+            chart: {
+              height: 150,
+            },
+          },
+        },
+        {
+          breakpoint: 1920,
+          options: {
+            chart: {
+              height: 250,
+            },
+          },
+        },
+        {
+          breakpoint: 2560,
+          options: {
+            chart: {
+              height: 200,
+            },
+          },
+        },
+        {
+          breakpoint: 2561,
+          options: {
+            chart: {
+              height: 450,
+            },
+          },
+        },
+      ],
+    },
+  },
+  footerData: [
+    {
+      title: "Homem",
+      color: "bg-sky-900",
+      value: 1624,
+    },
+    {
+      title: "Mulher",
+      color: "bg-sky-400",
+      value: 1267,
+    },
+    {
+      title: "Indefinido",
+      color: "bg-sky-200",
+      value: 162,
+    },
+  ],
+};
+
 export const PositiveNegativeCommentsData = {
   ChartOptions: {
     series: [
@@ -506,35 +826,15 @@ export const PositiveNegativeCommentsData = {
   ],
 };
 
-export const ScoreGaugeChartData = [
-  {
-    name: "Instagram",
-    sentimentData: [
-      {
-        name: "Sentimento Médio",
-        value: 600,
-      },
-    ],
-  },
-  {
-    name: "TikTok",
-    sentimentData: [
-      {
-        name: "Sentimento Médio",
-        value: 800,
-      },
-    ],
-  },
-  {
-    name: "Portais",
-    sentimentData: [
-      {
-        name: "Sentimento Médio",
-        value: 370,
-      },
-    ],
-  },
-];
+export const ScoreGaugeChartData = {
+  name: "Instagram",
+  sentimentData: [
+    {
+      name: "Sentimento Médio",
+      value: 600,
+    },
+  ],
+};
 
 export const MentionsSentimentChartData = {
   ChartOptions: {

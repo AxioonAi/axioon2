@@ -71,7 +71,7 @@ export function ScoreGaugeChart({
       (acc: number, value) => acc + (value || 0),
       0,
     );
-    setSeries([parseFloat(Number(sum / numberOfValues / 10).toFixed(2))]);
+    setSeries([parseFloat(Number(sum / numberOfValues / 10).toFixed(0))]);
   }, [
     facebookSentiment,
     instagramSentiment,

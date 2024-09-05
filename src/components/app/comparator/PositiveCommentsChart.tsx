@@ -47,10 +47,12 @@ export function PositiveComments({
               <div key={index}>{idx}</div>
             ))}
           </div>
-          <ReactApexChart
-            options={PositiveCommentsData.ChartOptions.options}
-            series={series}
-          />
+          <div className="flex h-full w-full flex-col justify-center">
+            <ReactApexChart
+              options={PositiveCommentsData.ChartOptions.options}
+              series={series}
+            />
+          </div>
         </div>
       )}
       <BaseCardFooter text="Comparativo dos comentários positivos." />

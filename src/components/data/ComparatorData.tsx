@@ -20,6 +20,7 @@ export const FollowersDonutByGenderChartData = {
         animations: {
           enabled: false,
         },
+        background: "transparent",
       },
       legend: {
         show: false,
@@ -73,7 +74,7 @@ export const FollowersDonutByGenderChartData = {
           breakpoint: 1920,
           options: {
             chart: {
-              height: 125,
+              height: 200,
             },
           },
         },
@@ -319,12 +320,19 @@ export const FollowerProgressionChartData = {
             },
           },
         },
-
+        {
+          breakpoint: 1360,
+          options: {
+            chart: {
+              height: 250,
+            },
+          },
+        },
         {
           breakpoint: 1920,
           options: {
             chart: {
-              height: 150,
+              height: 225,
             },
           },
         },
@@ -332,7 +340,7 @@ export const FollowerProgressionChartData = {
           breakpoint: 2560,
           options: {
             chart: {
-              height: 200,
+              height: 250,
             },
           },
         },
@@ -340,7 +348,7 @@ export const FollowerProgressionChartData = {
           breakpoint: 2561,
           options: {
             chart: {
-              height: 300,
+              height: 350,
             },
           },
         },
@@ -552,6 +560,7 @@ export const LineGradientSentimentChartData = {
         animations: {
           enabled: false,
         },
+        background: "transparent",
       },
       dataLabels: {
         enabled: false,
@@ -603,12 +612,19 @@ export const LineGradientSentimentChartData = {
             },
           },
         },
-
+        {
+          breakpoint: 1360,
+          options: {
+            chart: {
+              height: 300,
+            },
+          },
+        },
         {
           breakpoint: 1920,
           options: {
             chart: {
-              height: 225,
+              height: 275,
             },
           },
         },
@@ -663,6 +679,7 @@ export const LineGradientChartData = {
         animations: {
           enabled: false,
         },
+        background: "transparent",
       },
       dataLabels: {
         enabled: false,
@@ -710,7 +727,7 @@ export const LineGradientChartData = {
           breakpoint: 1024,
           options: {
             chart: {
-              height: 175,
+              height: 200,
             },
           },
         },
@@ -719,7 +736,7 @@ export const LineGradientChartData = {
           breakpoint: 1920,
           options: {
             chart: {
-              height: 175,
+              height: 225,
             },
           },
         },
@@ -736,6 +753,88 @@ export const LineGradientChartData = {
           options: {
             chart: {
               height: 310,
+            },
+          },
+        },
+      ],
+    },
+  },
+};
+
+export const AgeAndGenderData = {
+  ChartOptions: {
+    series: [
+      {
+        name: "",
+        data: [44, 55, 57, 56, 61, 58, 63],
+      },
+      {
+        name: "",
+        data: [76, 85, 101, 98, 87, 105, 91],
+      },
+      {
+        name: "",
+        data: [35, 41, 36, 26, 45, 48, 52],
+      },
+    ],
+    options: {
+      chart: {
+        type: "bar" as const,
+        toolbar: {
+          show: false,
+        },
+        animations: {
+          enabled: false,
+        },
+        background: "transparent",
+      },
+      plotOptions: {
+        bar: {
+          horizontal: false,
+          columnWidth: "60%",
+          endingShape: "rounded",
+        },
+      },
+      dataLabels: {
+        enabled: false,
+      },
+      stroke: {
+        show: true,
+        width: 2,
+        colors: ["transparent"],
+      },
+      colors: ["#bae6fd", "#38bdf8", "#0c4a6e"],
+      xaxis: {
+        categories: ["0-19", "20-29", "30-39", "40-49", "50-59", "60+"],
+      },
+      fill: {
+        opacity: 1,
+      },
+      legend: {
+        show: false,
+      },
+      responsive: [
+        {
+          breakpoint: 1920,
+          options: {
+            chart: {
+              height: 225,
+            },
+          },
+        },
+        {
+          breakpoint: 2560,
+          options: {
+            chart: {
+              height: 250,
+            },
+          },
+        },
+        {
+          breakpoint: 2561,
+          options: {
+            chart: {
+              height: 375,
             },
           },
         },
@@ -996,7 +1095,7 @@ export const PositiveCommentsData = {
           breakpoint: 1920,
           options: {
             chart: {
-              height: 100,
+              height: 200,
             },
           },
         },
@@ -1004,7 +1103,7 @@ export const PositiveCommentsData = {
           breakpoint: 2560,
           options: {
             chart: {
-              height: 150,
+              height: 160,
             },
           },
         },
@@ -1012,7 +1111,7 @@ export const PositiveCommentsData = {
           breakpoint: 2561,
           options: {
             chart: {
-              height: 225,
+              height: 250,
             },
           },
         },
@@ -1045,11 +1144,11 @@ export const NegativeCommentsData = {
   ChartOptions: {
     series: [
       {
-        name: "Comentários Positivos 1",
+        name: "Comentários Negativos 1",
         data: [35, 35, 62, 63, 12, 12, 60, 60, 51, 51, 81, 81],
       },
       {
-        name: "Comentários Positivos 2",
+        name: "Comentários Negativos 2",
         data: [75, 78, 38, 39, 38, 72, 72, 52, 52, 17, 17, 52],
       },
     ],
@@ -1126,7 +1225,7 @@ export const NegativeCommentsData = {
           breakpoint: 1920,
           options: {
             chart: {
-              height: 100,
+              height: 200,
             },
           },
         },
@@ -1134,7 +1233,7 @@ export const NegativeCommentsData = {
           breakpoint: 2560,
           options: {
             chart: {
-              height: 150,
+              height: 160,
             },
           },
         },
@@ -1142,7 +1241,7 @@ export const NegativeCommentsData = {
           breakpoint: 2561,
           options: {
             chart: {
-              height: 225,
+              height: 250,
             },
           },
         },

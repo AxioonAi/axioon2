@@ -41,12 +41,12 @@ export function Irs() {
   }, [legalData]);
 
   return (
-    <BaseCard className="p-0">
+    <BaseCard className="justify-between p-0">
       <BaseCardHeader title="Dados da Receita Federal" />
       {isGettingData ? (
         <Skeleton className="mx-auto mt-4 h-96 w-11/12" />
       ) : (
-        <div className="flex w-full flex-col">
+        <>
           <div className="flex items-center gap-4 p-4">
             <Image
               src="/Logos/irs.png"
@@ -66,42 +66,48 @@ export function Irs() {
               <span>
                 Estimativa de Receita Mensal:{" "}
                 <strong>
-                  {personalIrsData?.personalData[0].estimated_recipe}
+                  {personalIrsData?.personalData.length !== 0
+                    ? personalIrsData?.personalData[0].estimated_recipe
+                    : "Sem dados"}
                 </strong>
               </span>
               <span>
                 Estimativa de Patrimônio Líquido:
                 <strong>
-                  {personalIrsData?.personalData[0].estimated_patrimony}
+                  {personalIrsData?.personalData.length !== 0
+                    ? personalIrsData?.personalData[0].estimated_patrimony
+                    : "Sem dados"}
                 </strong>
               </span>
             </div>
           </div>
-          <div className="flex h-60 flex-wrap justify-around gap-4 overflow-y-scroll pb-10 lg:mb-0 lg:h-[14.75rem] xl:h-[14.25rem] 2xl:h-[16.75rem] 3xl:h-[26rem]">
-            {personalIrsData?.incomeTax.length !== 0 ? (
-              personalIrsData?.incomeTax.map((item, index) => (
-                <div
-                  key={index}
-                  className="flex h-auto min-h-16 w-11/12 flex-col items-center justify-between gap-2 rounded-md bg-zinc-50 p-2 shadow-md xl:w-[45%]"
-                >
-                  <strong className="text-[10px] text-[#031E53] lg:text-xs 2xl:text-sm 3xl:text-base">
-                    {item.year}
-                  </strong>
-                  <strong className="text-center text-xs lg:text-sm 2xl:text-base 3xl:text-lg">
-                    {item.situation}
-                  </strong>
-                  <strong className="text-[10px] text-zinc-500 lg:text-xs 2xl:text-sm 3xl:text-base">
-                    {item.bankAgency}
-                  </strong>
-                </div>
-              ))
-            ) : (
-              <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
-                Não conseguimos encontrar esses dados.
-              </span>
-            )}
+          <div className="flex w-full flex-col">
+            <div className="flex h-60 flex-wrap justify-around gap-4 overflow-y-scroll pb-10 lg:mb-0 lg:h-[25rem] xl:h-[20rem] 2xl:h-[16.75rem] 3xl:h-[26rem]">
+              {personalIrsData?.incomeTax.length !== 0 ? (
+                personalIrsData?.incomeTax.map((item, index) => (
+                  <div
+                    key={index}
+                    className="flex h-auto min-h-16 w-11/12 flex-col items-center justify-between gap-2 rounded-md bg-zinc-50 p-2 shadow-md xl:w-[45%]"
+                  >
+                    <strong className="text-[10px] text-[#031E53] lg:text-xs 2xl:text-sm 3xl:text-base">
+                      {item.year}
+                    </strong>
+                    <strong className="text-center text-xs lg:text-sm 2xl:text-base 3xl:text-lg">
+                      {item.situation}
+                    </strong>
+                    <strong className="text-[10px] text-zinc-500 lg:text-xs 2xl:text-sm 3xl:text-base">
+                      {item.bankAgency}
+                    </strong>
+                  </div>
+                ))
+              ) : (
+                <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
+                  Não conseguimos encontrar esses dados.
+                </span>
+              )}
+            </div>
           </div>
-        </div>
+        </>
       )}
       <BaseCardFooter text="Informações da Receita Federal." />
     </BaseCard>

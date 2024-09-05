@@ -425,11 +425,13 @@ export function FollowerProgressionChart({
               YouTube
             </button>
           </div>
-          <ReactApexChart
-            options={FollowerProgressionChartData.ChartOptions.options}
-            series={finalSeries as SeriesProps[]}
-            type="line"
-          />
+          <div className="flex h-full w-full flex-col justify-center">
+            <ReactApexChart
+              options={FollowerProgressionChartData.ChartOptions.options}
+              series={finalSeries as SeriesProps[]}
+              type="line"
+            />
+          </div>
         </div>
       )}
       <BaseCardFooter text="Comparador de seguidores por dia de cada Rede Social." />

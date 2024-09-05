@@ -81,7 +81,7 @@ export function LineGradientChart({
       {isGettingData ? (
         <Skeleton className="mx-auto mt-4 h-56 w-11/12" />
       ) : (
-        <div className="flex h-56 w-full flex-col lg:h-full">
+        <div className="flex h-56 w-full flex-col justify-center lg:h-full">
           <ReactApexChart
             type="area"
             series={sentimentEvolution}

@@ -20,7 +20,7 @@ export function DonutChartWithFooterData({
   footerData,
 }: DonutChartWithFooterDataProps) {
   return (
-    <div className="flex h-full w-full flex-col items-center justify-between gap-4 pt-4 lg:gap-2 lg:pt-2">
+    <div className="flex h-full w-full flex-col justify-between gap-4 pt-4 lg:gap-2 lg:pt-2">
       <div className="m-auto">
         <ReactApexChart
           options={ChartOptions.options}

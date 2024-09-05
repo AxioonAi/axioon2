@@ -123,7 +123,7 @@ export function EngagementTimes({ EngagementTimesData }: EngagementTimesProps) {
       {isGettingData ? (
         <Skeleton className="mx-auto mt-4 h-80 w-11/12" />
       ) : (
-        <div className="flex h-96 w-full flex-col lg:h-full">
+        <div className="flex h-96 w-full flex-col justify-center lg:h-full">
           <ReactApexChart
             options={EngagementTimesData.options}
             series={engagementData ? [engagementData] : []}

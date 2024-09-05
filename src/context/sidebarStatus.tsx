@@ -1,6 +1,7 @@
 "use client";
 
-import { createContext, useContext, useState } from "react";
+import { usePathname } from "next/navigation";
+import { createContext, useContext, useEffect, useState } from "react";
 
 interface mainContextProps {
   isOpen: boolean;
@@ -15,8 +16,15 @@ interface ContextProps {
 
 export const SidebarContextProvider = ({ children }: ContextProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
   const value = { isOpen, setIsOpen };
+
+  useEffect(() => {
+    if (isOpen) {
+      setIsOpen(false);
+    }
+  }, [pathname]);
 
   return <mainContext.Provider value={value}>{children}</mainContext.Provider>;
 };

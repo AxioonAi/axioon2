@@ -104,6 +104,7 @@ export const AgeAndGenderData1 = {
         animations: {
           enabled: false,
         },
+        background: "transparent",
       },
       plotOptions: {
         bar: {
@@ -135,7 +136,7 @@ export const AgeAndGenderData1 = {
           breakpoint: 1920,
           options: {
             chart: {
-              height: 200,
+              height: 300,
             },
           },
         },

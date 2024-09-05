@@ -74,7 +74,7 @@ export function PassiveAgeAndGenderChart({
       {isGettingData ? (
         <Skeleton className="mx-auto mt-4 h-[17rem] w-11/12" />
       ) : (
-        <div className="flex h-full w-full flex-col gap-4 p-4">
+        <div className="flex h-full w-full flex-col justify-center gap-4 p-4">
           <ReactApexChart
             options={AgeAndGenderData.ChartOptions.options}
             series={series}

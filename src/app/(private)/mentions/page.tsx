@@ -1,10 +1,5 @@
 "use client";
 import { MentionsSource } from "@/components/app/mentions/MentionsSource";
-import {
-  CommentsDonutGraphData,
-  LineGradientChartData,
-  ScoreGaugeChartData,
-} from "@/components/data/HomeData";
 import { MentionsHeaderCard } from "@/components/app/mentions/MentionsHeaderCard";
 import { ScoreGaugeChart } from "@/components/app/mentions/ScoreGaugeChart";
 import { MentionsMainActors } from "@/components/app/mentions/MentionsMainActors";
@@ -32,6 +27,11 @@ import { HashtagsMentionsPostsAndComments } from "@/components/app/mentions/Hash
 import { HashtagsWords } from "@/components/app/mentions/HashtagsWords";
 import { HashtagsHashtags } from "@/components/app/mentions/HashtagsHashtags";
 import { HashtagsComments } from "@/components/app/mentions/HashtagsComments";
+import {
+  CommentsDonutGraphData,
+  LineGradientChartData,
+  ScoreGaugeChartData,
+} from "@/components/data/MentionsData";
 
 export default function Mentions() {
   const { selectedMentionsType } = useMentionsDataContext();

@@ -4,7 +4,7 @@ import { twMerge } from "tailwind-merge";
 import { CommentsSummary } from "./CommentsSummary";
 import { CommentsDonutGraph } from "./CommentsDonutGraph";
 import { useMentionsDataContext } from "@/context/MentionsData";
-import { CommentsSentimentDonutGraphData } from "@/components/data/HomeData";
+import { CommentsSentimentDonutGraphData } from "@/components/data/MentionsData";
 export function Comments() {
   const [isHashtagsEmpty, setIsHashtagsEmpty] = useState(true);
   const { mentionsData } = useMentionsDataContext();

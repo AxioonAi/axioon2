@@ -22,7 +22,6 @@ export function Sidebar() {
   const parent = useRef(null);
   const { elementName } = useOffsetContext();
   const pathname = usePathname();
-  console.log("pathname: ", pathname);
   const router = useRouter();
   const cookies = useCookies();
 
@@ -333,7 +332,7 @@ export function Sidebar() {
                   >
                     <div className="flex items-center gap-4">
                       <Image
-                        src="/Icons/at.svg"
+                        src="/Icons/comparator.svg"
                         alt=""
                         width={50}
                         height={50}
@@ -380,7 +379,7 @@ export function Sidebar() {
                   >
                     <div className="flex items-center gap-4">
                       <Image
-                        src="/Icons/at.svg"
+                        src="/Icons/legal.svg"
                         alt=""
                         width={50}
                         height={50}
@@ -425,7 +424,7 @@ export function Sidebar() {
               )}
             >
               <Image
-                src="/Icons/ai.svg"
+                src="/Icons/ads.svg"
                 alt=""
                 width={50}
                 height={50}

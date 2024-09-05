@@ -47,11 +47,12 @@ export function NegativeComments({
               <div key={index}>{idx}</div>
             ))}
           </div>
-          <ReactApexChart
-            options={NegativeCommentsData.ChartOptions.options}
-            series={series}
-            height={200}
-          />
+          <div className="flex h-full w-full flex-col justify-center">
+            <ReactApexChart
+              options={NegativeCommentsData.ChartOptions.options}
+              series={series}
+            />
+          </div>
         </div>
       )}
       <BaseCardFooter text="Comparativo dos comentários negativos." />
