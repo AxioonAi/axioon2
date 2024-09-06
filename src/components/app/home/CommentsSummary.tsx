@@ -27,6 +27,7 @@ export function CommentsSummary() {
     useState<CommentsBySentimentProps>();
   const [commentsBySentiment, setCommentsBySentiment] =
     useState<CommentsBySentimentProps>();
+  const [denominator, setDenominator] = useState(4);
   const { isGettingData, socialMediaData } = useSocialMediaDataContext();
 
   useEffect(() => {
@@ -53,6 +54,7 @@ export function CommentsSummary() {
       tiktokCommentsData,
       youtubeCommentsData,
     ];
+    setDenominator(commentsBySentiment.filter((c) => c).length);
     const summedValues = commentsBySentiment.reduce(
       (acc, curr) => {
         if (curr) {
@@ -89,7 +91,12 @@ export function CommentsSummary() {
         <div className="flex h-72 w-full flex-col justify-center gap-4 p-4 xs:h-60 lg:h-full lg:gap-4 lg:p-4 3xl:gap-16">
           <div className="flex w-full items-center gap-2">
             <strong className="text-xs lg:text-sm 2xl:text-base 3xl:text-lg">
-              {shortenNumber(commentsBySentiment?.totalSentiment || 0)}
+              {shortenNumber(
+                (commentsBySentiment &&
+                  commentsBySentiment?.sentimentAverage / denominator) ||
+                  0,
+              )}{" "}
+              Sentimento Médio
             </strong>
           </div>
           <div className="flex h-2 w-full overflow-hidden rounded">

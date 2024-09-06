@@ -82,7 +82,7 @@ export function DefendantsAndDetractorsList() {
                 </div>
                 <div className="flex h-full w-full flex-col justify-between text-xs lg:text-sm 3xl:text-base">
                   <strong className="w-48 truncate md:w-full lg:w-32 xl:w-60 2xl:w-full">
-                    {user.userName} {user.userName}
+                    {user.userName}
                   </strong>
                   <span className="text-[10px] text-zinc-500 lg:text-xs xl:text-sm">
                     Sentimento: {user.sentiment}
