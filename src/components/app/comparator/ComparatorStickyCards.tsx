@@ -8,6 +8,7 @@ import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { useComparatorDataContext } from "@/context/ComparatorData";
 import { useSelectedPoliticianContext } from "@/context/SelectedPolitician";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
+import { useSidebarContext } from "@/context/sidebarStatus";
 
 export function ComparatorStickyCards() {
   const {
@@ -16,6 +17,7 @@ export function ComparatorStickyCards() {
     passiveUserProfileData,
     setPassiveUserProfileData,
   } = useComparatorDataContext();
+  const { isOpen } = useSidebarContext();
   const { politicians } = useSelectedPoliticianContext();
   const [isVisible, setIsVisible] = useState(false);
   const elementRef = useRef<HTMLDivElement>(null);
@@ -43,6 +45,9 @@ export function ComparatorStickyCards() {
     };
   }, []);
 
+  console.log("isOpen: ", isOpen);
+  console.log("isVisible: ", isVisible);
+
   return (
     <div
       ref={elementRef}
@@ -59,9 +64,13 @@ export function ComparatorStickyCards() {
       <div
         className={twMerge(
           "flex flex-col gap-4 lg:col-span-12 lg:grid lg:grid-cols-12",
-          isVisible
+          isVisible && isOpen
             ? ""
-            : "fixed top-0 w-[calc(100%-32px)] bg-white/30 pt-8 shadow-2xl backdrop-blur-sm md:w-[calc(100%-64px)] lg:right-4 lg:w-[calc(100%-32px)] xl:right-8 xl:w-[calc(100%-64px)]",
+            : !isVisible && isOpen
+              ? "fixed top-0 w-[calc(100%-32px)] bg-white/30 pt-8 shadow-2xl backdrop-blur-sm md:w-[calc(100%-64px)] lg:right-4 lg:w-[calc(100%-246px)] xl:right-8 xl:w-[calc(100%-290px)]"
+              : !isVisible && !isOpen
+                ? "fixed top-0 w-[calc(100%-32px)] bg-white/30 pt-8 shadow-2xl backdrop-blur-sm md:w-[calc(100%-64px)] lg:right-4 lg:w-[calc(100%-32px)] xl:right-8 xl:w-[calc(100%-64px)]"
+                : "",
         )}
       >
         <div className="lg:col-span-3">
