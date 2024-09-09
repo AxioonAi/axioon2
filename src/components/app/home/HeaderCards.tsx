@@ -71,26 +71,27 @@ export function HeaderCards() {
           spaceBetween: 50,
         },
       }}
+      className="py-2"
     >
-      <SwiperSlide className="py-1">
+      <SwiperSlide className="py-2">
         <SocialMediaBaseCard
           SocialMediaData={staticInstagramData}
           platform="Instagram"
         />
       </SwiperSlide>
-      <SwiperSlide className="py-1">
+      <SwiperSlide className="py-2">
         <SocialMediaBaseCard
           SocialMediaData={staticFacebookData}
           platform="Facebook"
         />
       </SwiperSlide>
-      <SwiperSlide className="py-1">
+      <SwiperSlide className="py-2">
         <SocialMediaBaseCard
           SocialMediaData={staticTiktokData}
           platform="TikTok"
         />
       </SwiperSlide>
-      <SwiperSlide className="py-1">
+      <SwiperSlide className="py-2">
         <SocialMediaBaseCard
           SocialMediaData={staticYoutubeData}
           platform="YouTube"

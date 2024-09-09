@@ -23,6 +23,7 @@ import { PositiveNegativeWrapper } from "@/components/app/home/PositiveNegativeW
 import { ScoreGaugeChart } from "@/components/app/home/ScoreGaugeChart";
 import { CommentsDonutGraph } from "@/components/app/home/CommentsDonutGraph";
 import { useSocialMediaDataContext } from "@/context/SocialMediaData";
+import { SelectedAccounts } from "@/components/app/home/SelectedAccounts";
 
 interface IndicatorsProps {
   name: string;
@@ -99,6 +100,9 @@ export default function Home() {
 
       <div className="w-full lg:col-span-12">
         <HeaderCards />
+        <div className="my-4 w-full lg:col-span-12">
+          <SelectedAccounts />
+        </div>
         <div className="h-40">
           <IndicatorsCards />
         </div>

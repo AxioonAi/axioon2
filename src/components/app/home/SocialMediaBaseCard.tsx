@@ -36,7 +36,7 @@ export function SocialMediaBaseCard({
   } = useSocialMediaDataContext();
 
   return (
-    <BaseCard className="lg relative max-h-28 min-h-28 gap-8 overflow-hidden p-0 xl:max-h-36 xl:min-h-36">
+    <BaseCard className="lg relative max-h-28 min-h-28 gap-8 overflow-hidden p-0 transition duration-100 ease-in-out hover:scale-[1.02] xl:max-h-36 xl:min-h-36">
       {isGettingData ? (
         <button className="flex flex-col p-2 xl:p-4" disabled>
           <div className="flex w-full items-center gap-4 border-b border-b-zinc-700/50 pb-2">
