@@ -7,6 +7,7 @@ import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
 import { useComparatorDataContext } from "@/context/ComparatorData";
 import { Skeleton } from "@/components/global/Skeleton";
+import { shortenNumber } from "@/utils/masks";
 
 interface CommentsBySentimentProps {
   countSentiment0To350: number;
@@ -240,10 +241,14 @@ export function CommentsBySentiment() {
               <span>Comentários Positivos</span>
             </div>
             <span className="col-span-1 text-zinc-500">
-              {activeCommentsBySentiment?.countSentiment651To1000}
+              {shortenNumber(
+                activeCommentsBySentiment?.countSentiment651To1000,
+              )}
             </span>
             <span className="col-span-1 text-zinc-500">
-              {passiveCommentsBySentiment?.countSentiment651To1000}
+              {shortenNumber(
+                passiveCommentsBySentiment?.countSentiment651To1000,
+              )}
             </span>
             <span className="col-span-1 text-zinc-500">Comentários</span>
             <div className="col-span-2 flex items-center gap-2">
@@ -251,10 +256,12 @@ export function CommentsBySentiment() {
               <span>Comentários Neutros</span>
             </div>
             <span className="col-span-1 text-zinc-500">
-              {activeCommentsBySentiment?.countSentiment351To650}
+              {shortenNumber(activeCommentsBySentiment?.countSentiment351To650)}
             </span>
             <span className="col-span-1 text-zinc-500">
-              {passiveCommentsBySentiment?.countSentiment351To650}
+              {shortenNumber(
+                passiveCommentsBySentiment?.countSentiment351To650,
+              )}
             </span>
             <span className="col-span-1 text-zinc-500">Comentários</span>
             <div className="col-span-2 flex items-center gap-2">
@@ -262,10 +269,10 @@ export function CommentsBySentiment() {
               <span>Comentários Negativos</span>
             </div>
             <span className="col-span-1 text-zinc-500">
-              {activeCommentsBySentiment?.countSentiment0To350}
+              {shortenNumber(activeCommentsBySentiment?.countSentiment0To350)}
             </span>
             <span className="col-span-1 text-zinc-500">
-              {passiveCommentsBySentiment?.countSentiment0To350}
+              {shortenNumber(passiveCommentsBySentiment?.countSentiment0To350)}
             </span>
             <span className="col-span-1 text-zinc-500">Comentários</span>
           </div>

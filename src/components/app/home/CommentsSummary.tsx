@@ -1,12 +1,12 @@
 "use client";
 import { twMerge } from "tailwind-merge";
 import { useEffect, useState } from "react";
+import { ArrowDown, ArrowRight, ArrowUp } from "lucide-react";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
 import { useSocialMediaDataContext } from "@/context/SocialMediaData";
 import { Skeleton } from "@/components/global/Skeleton";
-import { shortenNumber } from "@/utils/masks";
 
 interface CommentsBySentimentProps {
   countSentiment0To350: number;
@@ -27,7 +27,7 @@ export function CommentsSummary() {
     useState<CommentsBySentimentProps>();
   const [commentsBySentiment, setCommentsBySentiment] =
     useState<CommentsBySentimentProps>();
-  const [denominator, setDenominator] = useState(4);
+  const [sentimentRate, setSentimentRate] = useState<number | null>(null);
   const { isGettingData, socialMediaData } = useSocialMediaDataContext();
 
   useEffect(() => {
@@ -54,7 +54,6 @@ export function CommentsSummary() {
       tiktokCommentsData,
       youtubeCommentsData,
     ];
-    setDenominator(commentsBySentiment.filter((c) => c).length);
     const summedValues = commentsBySentiment.reduce(
       (acc, curr) => {
         if (curr) {
@@ -82,6 +81,54 @@ export function CommentsSummary() {
     youtubeCommentsData,
   ]);
 
+  useEffect(() => {
+    if (socialMediaData) {
+      const allSentiment = [
+        ...(socialMediaData.commentsData.sentimentEvolution.facebook || []),
+        ...(socialMediaData.commentsData.sentimentEvolution.instagram || []),
+        ...(socialMediaData.commentsData.sentimentEvolution.tiktok || []),
+        ...(socialMediaData.commentsData.sentimentEvolution.youtube || []),
+      ];
+
+      const currentWeekSentiment = allSentiment
+        .filter(
+          (comment) =>
+            new Date(comment.label) >=
+            new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000),
+        )
+        .sort(
+          (a, b) => new Date(a.label).getTime() - new Date(b.label).getTime(),
+        );
+      const lastWeekSentiment = allSentiment
+        .filter(
+          (comment) =>
+            new Date(comment.label) >=
+              new Date(new Date().getTime() - 14 * 24 * 60 * 60 * 1000) &&
+            new Date(comment.label) <
+              new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000),
+        )
+        .sort(
+          (a, b) => new Date(a.label).getTime() - new Date(b.label).getTime(),
+        );
+      const currentSentiment = currentWeekSentiment.reduce(
+        (acc, current) => acc + current.value,
+        0,
+      );
+      const lastSentiment = lastWeekSentiment.reduce(
+        (acc, current) => acc + current.value,
+        0,
+      );
+      const currentAvg = Number(
+        (currentSentiment / currentWeekSentiment.length).toFixed(1),
+      );
+      const lastAvg = Number(
+        (lastSentiment / lastWeekSentiment.length).toFixed(1),
+      );
+
+      setSentimentRate(Number(Number(currentAvg - lastAvg).toFixed(1)));
+    }
+  }, [socialMediaData]);
+
   return (
     <BaseCard className="p-0">
       <BaseCardHeader title="Comentários por Sentimento" />
@@ -91,13 +138,39 @@ export function CommentsSummary() {
         <div className="flex h-72 w-full flex-col justify-center gap-4 p-4 xs:h-60 lg:h-full lg:gap-4 lg:p-4 3xl:gap-16">
           <div className="flex w-full items-center gap-2">
             <strong className="text-xs lg:text-sm 2xl:text-base 3xl:text-lg">
-              {shortenNumber(
-                (commentsBySentiment &&
-                  commentsBySentiment?.sentimentAverage / denominator) ||
-                  0,
-              )}{" "}
-              Sentimento Médio
+              {(commentsBySentiment &&
+                commentsBySentiment?.countSentiment0To350 +
+                  commentsBySentiment?.countSentiment351To650 +
+                  commentsBySentiment?.countSentiment651To1000) ||
+                0}{" "}
+              Comentários
             </strong>
+            {sentimentRate && (
+              <div className="flex items-center gap-1 text-xs lg:text-sm">
+                <div
+                  className={twMerge(
+                    "flex items-center gap-1 rounded p-1",
+                    sentimentRate > 0
+                      ? "bg-green-600/10 text-green-600"
+                      : sentimentRate < 0
+                        ? "bg-red-600/10 text-red-600"
+                        : "bg-violet-600/10 text-violet-600",
+                  )}
+                >
+                  {sentimentRate > 0 ? (
+                    <ArrowUp size={14} />
+                  ) : sentimentRate < 0 ? (
+                    <ArrowDown size={14} />
+                  ) : (
+                    <ArrowRight size={14} />
+                  )}
+                  <strong>{sentimentRate}</strong>
+                </div>
+                <span className="text-zinc-400">
+                  Sentimento comparado a semana anterior
+                </span>
+              </div>
+            )}
           </div>
           <div className="flex h-2 w-full overflow-hidden rounded">
             <div
@@ -138,10 +211,7 @@ export function CommentsSummary() {
                 </span>
               </div>
               <span className="text-sm text-zinc-500 lg:text-base 2xl:text-lg">
-                {shortenNumber(
-                  commentsBySentiment?.countSentiment651To1000 || 0,
-                )}{" "}
-                Comentários
+                {commentsBySentiment?.countSentiment651To1000 || 0} Comentários
               </span>
             </div>
             <div className="flex w-full items-center justify-between">
@@ -152,10 +222,7 @@ export function CommentsSummary() {
                 </span>
               </div>
               <span className="text-sm text-zinc-500 lg:text-base 2xl:text-lg">
-                {shortenNumber(
-                  commentsBySentiment?.countSentiment351To650 || 0,
-                )}{" "}
-                Comentários
+                {commentsBySentiment?.countSentiment351To650 || 0} Comentários
               </span>
             </div>
             <div className="flex w-full items-center justify-between">
@@ -166,8 +233,7 @@ export function CommentsSummary() {
                 </span>
               </div>
               <span className="text-sm text-zinc-500 lg:text-base 2xl:text-lg">
-                {shortenNumber(commentsBySentiment?.countSentiment0To350 || 0)}{" "}
-                Comentários
+                {commentsBySentiment?.countSentiment0To350 || 0} Comentários
               </span>
             </div>
           </div>

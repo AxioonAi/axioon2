@@ -22,7 +22,7 @@ export const SidebarContextProvider = ({ children }: ContextProps) => {
 
   useEffect(() => {
     if (isOpen) {
-      setIsOpen(false);
+      // setIsOpen(false);
     }
   }, [pathname]);
 

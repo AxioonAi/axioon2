@@ -277,7 +277,7 @@ export function PositiveWrapper() {
             className={twMerge("min-h-3 min-w-3 rounded-full", data.color)}
           />
           <div className="flex flex-col">
-            <strong>{data.value.toFixed(2)}</strong>
+            <strong>{data.value}</strong>
             <span>{data.title}</span>
           </div>
         </div>

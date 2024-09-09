@@ -6,6 +6,7 @@ import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { useAdsDataContext } from "@/context/AdsData";
 import { Skeleton } from "@/components/global/Skeleton";
+import { shortenNumber } from "@/utils/masks";
 
 interface AdSummaryProps {
   id: string;
@@ -88,7 +89,7 @@ export function AdSummary() {
               </div>
               <div className="flex items-center gap-1">
                 <span>Média de Público atingido:</span>
-                <strong>{item.average_impressions}</strong>
+                <strong>{shortenNumber(item.average_impressions)}</strong>
               </div>
               <div className="flex items-center gap-1">
                 <span>

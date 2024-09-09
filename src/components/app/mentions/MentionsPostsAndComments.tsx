@@ -9,6 +9,7 @@ import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { useOffsetContext } from "@/context/test";
 import { useMentionsDataContext } from "@/context/MentionsData";
 import { Skeleton } from "@/components/global/Skeleton";
+import { shortenNumber } from "@/utils/masks";
 
 interface InstagramPostsProps {
   commentCount: number;
@@ -264,9 +265,11 @@ export function MentionsPostsAndComments() {
                               alt={""}
                               width={40}
                               height={40}
-                              className="h-4 w-4 sm:h-6 sm:w-6 3xl:h-10 3xl:w-10"
+                              className="h-4 w-4 sm:h-5 sm:w-5 3xl:h-8 3xl:w-8"
                             />
-                            <span>{item.like > 0 ? item.like : 0}</span>
+                            <span>
+                              {item.like > 0 ? shortenNumber(item.like) : 0}
+                            </span>
                           </div>
                           <div className="flex flex-col items-center gap-1 text-xs sm:flex-row lg:text-sm 2xl:text-base 3xl:text-lg">
                             <Image
@@ -274,9 +277,9 @@ export function MentionsPostsAndComments() {
                               alt={""}
                               width={40}
                               height={40}
-                              className="h-4 w-4 sm:h-6 sm:w-6 3xl:h-10 3xl:w-10"
+                              className="h-4 w-4 sm:h-5 sm:w-5 3xl:h-8 3xl:w-8"
                             />
-                            <span>{item.commentCount}</span>
+                            <span>{shortenNumber(item.commentCount)}</span>
                           </div>
                           {item.viewCount || item.playCount || item.views ? (
                             <div className="flex flex-col items-center gap-1 text-xs sm:flex-row lg:text-sm 2xl:text-base 3xl:text-lg">
@@ -285,15 +288,15 @@ export function MentionsPostsAndComments() {
                                 alt={""}
                                 width={40}
                                 height={40}
-                                className="h-4 w-4 sm:h-6 sm:w-6 3xl:h-10 3xl:w-10"
+                                className="h-4 w-4 sm:h-5 sm:w-5 3xl:h-8 3xl:w-8"
                               />
                               <span>
                                 {item.viewCount
-                                  ? item.viewCount
+                                  ? shortenNumber(item.viewCount)
                                   : item.playCount
-                                    ? item.playCount
+                                    ? shortenNumber(item.playCount)
                                     : item.views
-                                      ? item.views
+                                      ? shortenNumber(item.views)
                                       : ""}
                               </span>
                             </div>
@@ -305,7 +308,7 @@ export function MentionsPostsAndComments() {
                       <div className="flex items-center gap-2">
                         <Image
                           src={
-                            item.sentiment && item.sentiment <= 350
+                            item.sentiment && item.sentiment <= 450
                               ? "/Icons/negativeSmile.svg"
                               : "/Icons/negativeSmileOff.svg"
                           }
@@ -317,7 +320,7 @@ export function MentionsPostsAndComments() {
                         <Image
                           src={
                             item.sentiment &&
-                            item.sentiment >= 351 &&
+                            item.sentiment >= 451 &&
                             item.sentiment <= 650
                               ? "/Icons/neutralSmile.svg"
                               : "/Icons/neutralSmileOff.svg"
@@ -343,7 +346,7 @@ export function MentionsPostsAndComments() {
                   </div>
                 </div>
               </div>
-              {show === index && item.comments && (
+              {show === index && item.comments.length !== 0 && (
                 <div className="flex min-h-40 w-full items-center justify-end gap-2">
                   <div className="flex w-11/12 flex-col gap-2">
                     {item.comments.map((comment, index) => (
@@ -351,7 +354,7 @@ export function MentionsPostsAndComments() {
                         key={index}
                         className="flex w-full flex-col justify-between rounded-lg bg-zinc-50 p-2 shadow-md lg:flex-row lg:items-center"
                       >
-                        <div className="flex w-11/12 gap-4">
+                        <div className="flex w-full gap-4 lg:max-w-[80%]">
                           <Image
                             src="/Icons/user.svg"
                             alt={""}
@@ -360,10 +363,8 @@ export function MentionsPostsAndComments() {
                             className="h-4 w-4 sm:h-6 sm:w-6 3xl:h-10 3xl:w-10"
                           />
                           <div className="flex w-full flex-col text-xs lg:text-sm 2xl:text-base 3xl:text-lg">
-                            <strong className="truncate">
-                              {comment.username}
-                            </strong>
-                            <span className="w-full text-zinc-500 lg:max-w-[80%]">
+                            <strong>{comment.username}</strong>
+                            <span className="w-full text-zinc-500">
                               {comment.text}
                             </span>
                           </div>

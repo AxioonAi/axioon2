@@ -9,6 +9,7 @@ import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { DonutChartWithFooterData } from "@/components/global/DonutChartWithFooterData";
 import { useComparatorDataContext } from "@/context/ComparatorData";
 import { Skeleton } from "@/components/global/Skeleton";
+import { shortenNumber } from "@/utils/masks";
 
 interface PassiveFollowersDonutChartProps {
   FollowersDonutChartData: {
@@ -156,7 +157,7 @@ export function PassiveFollowersDonutChart({
                       </span>
                     </div>
                     <strong className="text-xs xl:text-base 2xl:text-lg">
-                      {data.value}
+                      {shortenNumber(data.value)}
                     </strong>
                   </div>
                 )}

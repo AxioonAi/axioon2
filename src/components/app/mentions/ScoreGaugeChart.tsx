@@ -50,10 +50,12 @@ export function ScoreGaugeChart({
       (value) => value !== null && typeof value === "number",
     ).length;
     const sum = sentimentValues.reduce(
-      (acc: number, value) => acc + (value || 0),
+      (acc: number, value) => acc + (Number(value?.toFixed(1)) || 0),
       0,
     );
-    setSeries([parseFloat(Number(sum / numberOfValues / 10).toFixed(0))]);
+    setSeries([
+      Number(Number(sum / Number(numberOfValues.toFixed(1)) / 10).toFixed(1)),
+    ]);
   }, [instagramSentiment]);
 
   const [options] = useState<ApexOptions>({
@@ -71,7 +73,7 @@ export function ScoreGaugeChart({
             fontWeight: "bold",
             color: undefined,
             formatter: (val: number) => {
-              return (val * 10).toString();
+              return (val * 10).toFixed(1);
             },
           },
         },

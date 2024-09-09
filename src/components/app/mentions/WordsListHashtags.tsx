@@ -92,7 +92,7 @@ export function WordsListHashtags() {
                     <span>Sentimento: </span>
                     <span
                       className={twMerge(
-                        "text-sm",
+                        "text-sm font-semibold",
                         word.sentimentAvg >= 651
                           ? "text-green-600"
                           : word.sentimentAvg < 650 && word.sentimentAvg >= 351
@@ -100,7 +100,7 @@ export function WordsListHashtags() {
                             : "text-red-600",
                       )}
                     >
-                      {word.sentimentAvg.toFixed(2)}
+                      {word.sentimentAvg.toFixed(1)}
                     </span>
                   </div>
                 </div>

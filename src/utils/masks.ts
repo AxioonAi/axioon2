@@ -130,10 +130,10 @@ export const textWithSpacesOnly = (value: string) => {
 
 export const shortenNumber = (n: number) => {
   if (n < 1000) {
-    return n.toFixed(2).toString();
+    return n.toFixed(0).toString();
   } else if (n < 1000000) {
-    return `${(n / 1000).toFixed(2)}K`;
+    return `${(n / 1000).toFixed(1)}K`;
   } else {
-    return `${(n / 1000000).toFixed(2)}M`;
+    return `${(n / 1000000).toFixed(1)}M`;
   }
 };

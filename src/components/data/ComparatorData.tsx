@@ -318,7 +318,7 @@ export const FollowerProgressionChartData = {
       fill: {
         opacity: 1,
       },
-      colors: ["#0369A1"],
+      colors: ["#0369A1", "#0c4a6e"],
       responsive: [
         {
           breakpoint: 1024,

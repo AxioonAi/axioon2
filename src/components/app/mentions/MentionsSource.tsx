@@ -1,5 +1,10 @@
 "use client";
-import { EllipsisVertical, TrendingDown, TrendingUp } from "lucide-react";
+import {
+  EllipsisVertical,
+  Minus,
+  TrendingDown,
+  TrendingUp,
+} from "lucide-react";
 import { useEffect, useState } from "react";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
@@ -63,6 +68,9 @@ export function MentionsSource() {
                 <div className="flex w-1/2 items-center justify-between gap-2">
                   {Number(source.sentiment) >= 651 ? (
                     <TrendingUp className="h-6 w-6 text-green-600" />
+                  ) : Number(source.sentiment) < 650 &&
+                    Number(source.sentiment) >= 451 ? (
+                    <Minus className="h-6 w-6 text-violet-600" />
                   ) : (
                     <TrendingDown className="h-6 w-6 text-red-600" />
                   )}

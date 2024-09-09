@@ -7,7 +7,6 @@ import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
 import { useSocialMediaDataContext } from "@/context/SocialMediaData";
 import { Skeleton } from "@/components/global/Skeleton";
-import { shortenNumber } from "@/utils/masks";
 
 interface WordsProps {
   text: string;
@@ -110,20 +109,20 @@ export function WordsList() {
                     <span>Sentimento: </span>
                     <span
                       className={twMerge(
-                        "text-[10px] text-zinc-500 lg:text-xs xl:text-sm",
-                        word.sentimentAvg >= 651
+                        "text-[10px] font-semibold text-zinc-500 lg:text-xs xl:text-sm",
+                        word.sentimentAvg >= 650
                           ? "text-green-600"
-                          : word.sentimentAvg < 650 && word.sentimentAvg >= 351
+                          : word.sentimentAvg < 650 && word.sentimentAvg >= 450
                             ? "text-violet-600"
                             : "text-red-600",
                       )}
                     >
-                      {word.sentimentAvg.toFixed(2)}
+                      {word.sentimentAvg.toFixed(1)}
                     </span>
                   </div>
                 </div>
               </div>
-              <strong> {shortenNumber(word.value)}</strong>
+              <strong> {word.value}</strong>
             </div>
           ))}
         </div>

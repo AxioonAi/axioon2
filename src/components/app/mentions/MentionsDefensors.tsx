@@ -62,14 +62,16 @@ export function MentionsDefensors() {
               </div>
               <div className="flex flex-col justify-center lg:col-span-2">
                 <span className="text-zinc-500">Sentimento</span>
-                <span className="font-semibold">{item.sentiment}</span>
+                <span className="font-semibold">
+                  {item.sentiment.toFixed(1)}
+                </span>
               </div>
               <div className="flex flex-col items-end justify-center lg:col-span-2">
                 <Image
                   src={
-                    item.sentiment <= 350
+                    item.sentiment <= 450
                       ? "/Icons/negativeSmile.svg"
-                      : item.sentiment > 351 && item.sentiment < 650
+                      : item.sentiment > 451 && item.sentiment < 650
                         ? "/Icons/neutralSmile.svg"
                         : "/Icons/positiveSmile.svg"
                   }

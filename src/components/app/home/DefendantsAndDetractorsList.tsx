@@ -1,6 +1,7 @@
 "use client";
 import { ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
+import { twMerge } from "tailwind-merge";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
@@ -84,8 +85,20 @@ export function DefendantsAndDetractorsList() {
                   <strong className="w-48 truncate md:w-full lg:w-32 xl:w-60 2xl:w-full">
                     {user.userName}
                   </strong>
-                  <span className="text-[10px] text-zinc-500 lg:text-xs xl:text-sm">
-                    Sentimento: {user.sentiment}
+                  <span className="text-[10px] lg:text-xs xl:text-sm">
+                    Sentimento:{" "}
+                    <span
+                      className={twMerge(
+                        "font-semibold",
+                        user.sentiment >= 650
+                          ? "text-green-500"
+                          : user.sentiment < 650 && user.sentiment >= 450
+                            ? "text-violet-600"
+                            : "text-red-500",
+                      )}
+                    >
+                      {user.sentiment.toFixed(1)}
+                    </span>
                   </span>
                 </div>
               </div>

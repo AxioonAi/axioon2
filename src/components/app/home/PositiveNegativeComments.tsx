@@ -42,7 +42,7 @@ export function PositiveNegativeCommentsChart({
         <Skeleton className="mx-auto mt-4 h-[17rem] w-11/12" />
       ) : (
         <div className="flex w-full flex-col gap-2 pt-4 lg:h-full">
-          <div className="flex w-full items-center justify-between">
+          <div className="flex w-full items-center justify-evenly">
             {headerData.map((idx, index) => (
               <div key={index}>{idx}</div>
             ))}

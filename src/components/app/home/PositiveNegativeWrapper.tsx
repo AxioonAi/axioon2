@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { PositiveNegativeCommentsChart } from "./PositiveNegativeComments";
 import { PositiveNegativeCommentsData } from "@/components/data/HomeData";
 import { useSocialMediaDataContext } from "@/context/SocialMediaData";
-import { shortenNumber } from "@/utils/masks";
 
 interface PositiveNegativeCommentsProps {
   label: string;
@@ -34,15 +33,15 @@ export function PositiveNegativeWrapper() {
   const [headerData, setHeaderData] = useState([
     {
       value: 0,
-      title: "Total Subscriptions",
-      dot: false,
-      color: "",
+      title: "Comentários Positivos",
+      dot: true,
+      color: "bg-green-600",
     },
     {
       value: 0,
-      title: "Comentários positivos",
+      title: "Comentários Neutros",
       dot: true,
-      color: "bg-green-600",
+      color: "bg-violet-600",
     },
     {
       value: 0,
@@ -75,15 +74,15 @@ export function PositiveNegativeWrapper() {
     const tempHeaderData = [
       {
         value: 0,
-        title: "Total Subscriptions",
-        dot: false,
-        color: "",
+        title: "Comentários Positivos",
+        dot: true,
+        color: "bg-green-600",
       },
       {
         value: 0,
-        title: "Comentários positivos",
+        title: "Comentários Neutros",
         dot: true,
-        color: "bg-green-600",
+        color: "bg-violet-600",
       },
       {
         value: 0,
@@ -103,16 +102,12 @@ export function PositiveNegativeWrapper() {
       orderedFlatCommentsValues.length !== 0 &&
       orderedFlatCommentsValues[0] !== undefined
     ) {
-      const totalValue = orderedFlatCommentsValues.reduce(
-        (sum, value) =>
-          sum +
-          (value?.positive || 0) +
-          (value?.negative || 0) +
-          (value?.neutral || 0),
-        0,
-      );
       const positiveValue = orderedFlatCommentsValues.reduce(
         (sum, value) => sum + (value?.positive || 0),
+        0,
+      );
+      const neutralValue = orderedFlatCommentsValues.reduce(
+        (sum, value) => sum + (value?.neutral || 0),
         0,
       );
       const negativeValue = orderedFlatCommentsValues.reduce(
@@ -122,6 +117,10 @@ export function PositiveNegativeWrapper() {
 
       const positiveData = orderedFlatCommentsValues.map(
         (value) => value?.positive || 0,
+      );
+
+      const neutralData = orderedFlatCommentsValues.map(
+        (value) => value?.neutral || 0,
       );
       const negativeData = orderedFlatCommentsValues.map(
         (value) => value?.negative || 0,
@@ -133,6 +132,10 @@ export function PositiveNegativeWrapper() {
           data: positiveData,
         },
         {
+          name: "Comentários Neutros",
+          data: neutralData,
+        },
+        {
           name: "Comentários Negativos",
           data: negativeData,
         },
@@ -140,8 +143,8 @@ export function PositiveNegativeWrapper() {
 
       setSeries(newSeries);
 
-      tempHeaderData[0].value = totalValue;
-      tempHeaderData[1].value = positiveValue;
+      tempHeaderData[0].value = positiveValue;
+      tempHeaderData[1].value = neutralValue;
       tempHeaderData[2].value = negativeValue;
       setHeaderData(tempHeaderData);
     }
@@ -160,7 +163,7 @@ export function PositiveNegativeWrapper() {
             className={twMerge("min-h-3 min-w-3 rounded-full", data.color)}
           />
           <div className="flex flex-col">
-            <strong>{shortenNumber(data.value)}</strong>
+            <strong>{data.value}</strong>
             <span>{data.title}</span>
           </div>
         </div>

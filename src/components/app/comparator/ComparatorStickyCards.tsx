@@ -61,7 +61,7 @@ export function ComparatorStickyCards() {
           "flex flex-col gap-4 lg:col-span-12 lg:grid lg:grid-cols-12",
           isVisible
             ? ""
-            : "fixed top-0 w-[calc(100%-32px)] bg-white/30 pt-8 shadow-2xl backdrop-blur-sm md:w-[calc(100%-64px)] lg:right-4 lg:w-[calc(100%-288px)] xl:right-8 xl:w-[calc(100%-320px)]",
+            : "fixed top-0 w-[calc(100%-32px)] bg-white/30 pt-8 shadow-2xl backdrop-blur-sm md:w-[calc(100%-64px)] lg:right-4 lg:w-[calc(100%-32px)] xl:right-8 xl:w-[calc(100%-64px)]",
         )}
       >
         <div className="lg:col-span-3">

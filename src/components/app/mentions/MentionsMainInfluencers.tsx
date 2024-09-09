@@ -38,7 +38,9 @@ export function MentionsMainInfluencers() {
         <Skeleton className="mx-auto mt-4 h-[23rem] w-11/12" />
       ) : (
         <div className="flex h-80 w-full flex-col overflow-x-scroll overflow-y-scroll p-4 lg:mb-0 lg:h-[calc(100%-5.5rem)] lg:overflow-x-auto">
-          {MentionsMainInfluencersData.map((item, index) => (
+          {MentionsMainInfluencersData.sort(
+            (a, b) => b.engagement - a.engagement,
+          ).map((item, index) => (
             <div
               className="flex w-max gap-4 border-b border-b-zinc-300 p-4 text-xs lg:grid lg:grid-cols-12 lg:text-sm xl:w-full 2xl:text-base 3xl:text-lg"
               key={index}
@@ -58,7 +60,9 @@ export function MentionsMainInfluencers() {
               </div>
               <div className="col-span-2 flex flex-col justify-center">
                 <span className="text-zinc-500">Seguidores</span>
-                <span className="font-semibold">{item.followers}</span>
+                <span className="font-semibold">
+                  {item.followers ? item.followers : "Não informado"}
+                </span>
               </div>
               <div className="col-span-2 flex flex-col justify-center">
                 <span className="text-zinc-500">Ultima Publicação</span>
@@ -68,7 +72,11 @@ export function MentionsMainInfluencers() {
               </div>
               <div className="col-span-2 flex flex-col justify-center">
                 <span className="text-zinc-500">Engajamento Gerado</span>
-                <span className="font-semibold">{item.engagement}</span>
+                <span className="font-semibold">
+                  {item.engagement
+                    ? item.engagement.toFixed(1)
+                    : "Não informado"}
+                </span>
               </div>
               <div className="col-span-1 flex flex-col justify-center">
                 <span className="text-zinc-500">Menções</span>
@@ -76,14 +84,16 @@ export function MentionsMainInfluencers() {
               </div>
               <div className="col-span-1 flex flex-col justify-center">
                 <span className="text-zinc-500">Sentimento</span>
-                <span className="font-semibold">{item.sentiment}</span>
+                <span className="font-semibold">
+                  {item.sentiment ? item.sentiment.toFixed(1) : "Não informado"}
+                </span>
               </div>
               <div className="col-span-1 flex flex-col items-end justify-center">
                 <Image
                   src={
-                    item.sentiment <= 350
+                    item.sentiment <= 450
                       ? "/Icons/negativeSmile.svg"
-                      : item.sentiment > 351 && item.sentiment < 650
+                      : item.sentiment > 451 && item.sentiment < 650
                         ? "/Icons/neutralSmile.svg"
                         : "/Icons/positiveSmile.svg"
                   }

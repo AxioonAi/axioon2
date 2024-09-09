@@ -1359,7 +1359,7 @@ export const PositiveNegativeCommentsData = {
           enabled: false,
         },
       },
-      colors: ["#16A34A", "#DC2626"],
+      colors: ["#16A34A", "#7c3aed", "#DC2626"],
       stroke: {
         curve: "smooth" as const,
         width: 3,

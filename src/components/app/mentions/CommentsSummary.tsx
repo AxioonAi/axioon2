@@ -1,5 +1,6 @@
 import { twMerge } from "tailwind-merge";
 import { useEffect, useState } from "react";
+import { ArrowDown, ArrowRight, ArrowUp } from "lucide-react";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
@@ -17,6 +18,7 @@ interface CommentsBySentimentProps {
 export function CommentsSummary() {
   const [commentsBySentiment, setCommentsBySentiment] =
     useState<CommentsBySentimentProps>();
+  const [sentimentRate, setSentimentRate] = useState<number | null>(null);
   const { mentionsData, isGettingData } = useMentionsDataContext();
 
   useEffect(() => {
@@ -46,6 +48,52 @@ export function CommentsSummary() {
     }
   }, [mentionsData]);
 
+  useEffect(() => {
+    if (mentionsData) {
+      const allSentiment = [
+        ...(mentionsData.mentions.sentimentEvolution.instagram || []),
+      ];
+
+      const currentWeekSentiment = allSentiment
+        .filter(
+          (comment) =>
+            new Date(comment.label) >=
+            new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000),
+        )
+        .sort(
+          (a, b) => new Date(a.label).getTime() - new Date(b.label).getTime(),
+        );
+      const lastWeekSentiment = allSentiment
+        .filter(
+          (comment) =>
+            new Date(comment.label) >=
+              new Date(new Date().getTime() - 14 * 24 * 60 * 60 * 1000) &&
+            new Date(comment.label) <
+              new Date(new Date().getTime() - 7 * 24 * 60 * 60 * 1000),
+        )
+        .sort(
+          (a, b) => new Date(a.label).getTime() - new Date(b.label).getTime(),
+        );
+      const currentSentiment = currentWeekSentiment.reduce(
+        (acc, current) => acc + current.value,
+        0,
+      );
+      const lastSentiment = lastWeekSentiment.reduce(
+        (acc, current) => acc + current.value,
+        0,
+      );
+      const currentAvg = Number(
+        (currentSentiment / currentWeekSentiment.length).toFixed(1),
+      );
+      const lastAvg = Number(
+        (lastSentiment / lastWeekSentiment.length).toFixed(1),
+      );
+      if (currentAvg && lastAvg) {
+        setSentimentRate(Number(Number(currentAvg - lastAvg).toFixed(1)));
+      }
+    }
+  }, [mentionsData]);
+
   return (
     <BaseCard className="p-0">
       <BaseCardHeader title="Comentários em Menções" />
@@ -54,9 +102,40 @@ export function CommentsSummary() {
       ) : (
         <div className="flex h-72 w-full flex-col justify-center gap-4 p-4 xs:h-60 lg:h-full lg:gap-2 3xl:gap-16">
           <div className="flex w-full items-center gap-2">
-            <strong className="text-xs lg:text-xs 2xl:text-base 3xl:text-lg">
-              {commentsBySentiment?.totalSentiment.toFixed(2)}
+            <strong className="text-xs lg:text-sm 2xl:text-base 3xl:text-lg">
+              {(commentsBySentiment &&
+                commentsBySentiment?.countSentiment0To350 +
+                  commentsBySentiment?.countSentiment351To650 +
+                  commentsBySentiment?.countSentiment651To1000) ||
+                0}{" "}
+              Comentários
             </strong>
+            {sentimentRate && (
+              <div className="flex items-center gap-1 text-xs lg:text-sm">
+                <div
+                  className={twMerge(
+                    "flex items-center gap-1 rounded p-1",
+                    sentimentRate > 0
+                      ? "bg-green-600/10 text-green-600"
+                      : sentimentRate < 0
+                        ? "bg-red-600/10 text-red-600"
+                        : "bg-violet-600/10 text-violet-600",
+                  )}
+                >
+                  {sentimentRate > 0 ? (
+                    <ArrowUp size={14} />
+                  ) : sentimentRate < 0 ? (
+                    <ArrowDown size={14} />
+                  ) : (
+                    <ArrowRight size={14} />
+                  )}
+                  <strong>{sentimentRate}</strong>
+                </div>
+                <span className="text-zinc-400">
+                  Sentimento comparado a semana anterior
+                </span>
+              </div>
+            )}
           </div>
           <div className="flex h-2 w-full overflow-hidden rounded">
             <div
