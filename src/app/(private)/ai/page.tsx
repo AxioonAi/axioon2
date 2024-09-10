@@ -1,10 +1,9 @@
 "use client";
-import { SendHorizonal, Sun, TriangleAlert, X, Zap } from "lucide-react";
+import { SendHorizonal, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useCookies } from "next-client-cookies";
 import OpenAI from "openai";
 import Image from "next/image";
-import { CardWithTitleAndButton } from "@/components/app/parameters/CardWithTitleAndButton";
 import { authGetAPI, AuthPostAPI, token as Token } from "@/lib/axios";
 import { Spinner } from "@/components/global/Spinner";
 import { Modal } from "@/components/global/Modal";
@@ -33,24 +32,6 @@ export default function AxioonAi() {
   const [inputMessage, setInputMessage] = useState("");
   const [chatId, setChatId] = useState<string | null>(null);
   const [showModal, setShowModal] = useState(false);
-
-  const itemsToShow = [
-    { id: 1, prompt: "Explain quantum computing in simple terms" },
-    { id: 2, prompt: "Remembers what user said earlier in the conversation" },
-    { id: 3, prompt: "May occasionally generate incorrect information" },
-    {
-      id: 4,
-      prompt: "“Got any creative ideas for a 10 year old’s birthday?” →",
-    },
-    { id: 5, prompt: "Allows user to provide follow-up corrections" },
-    {
-      id: 6,
-      prompt: "May occasionally produce harmful instructions or biased content",
-    },
-    { id: 7, prompt: "“How do I make an HTTP request in Javascript?” →" },
-    { id: 8, prompt: "Trained to decline inappropriate requests" },
-    { id: 9, prompt: "Limited knowledge of world and events after 2021" },
-  ];
 
   async function handleSendGptMessage(messageContent: string) {
     const client = new OpenAI({
@@ -160,105 +141,70 @@ export default function AxioonAi() {
 
   return (
     <div className="flex min-h-[calc(100vh-8rem)] flex-col">
-      <CardWithTitleAndButton
-        title="Axioon AI"
-        buttonText="Histórico de Chats"
-        firstButtonOnClick={() => setShowModal(true)}
-      />
+      <div className="rounded-md bg-white p-5 shadow-md">
+        <div className="flex items-center justify-between">
+          <div className="flex h-10 flex-row items-center gap-1">
+            <div className="h-8 w-2 rounded-full bg-sky-900" />
+            <Image
+              src="/axionLogo.png"
+              className="h-2/3 w-max object-contain lg:h-full"
+              alt=""
+              width={300}
+              height={100}
+            />
+          </div>
+          <div className="flex flex-col items-center gap-1 md:flex-row md:gap-4">
+            <button
+              onClick={() => setShowModal(true)}
+              className="whitespace-nowrap rounded-md bg-sky-600 px-2 py-1 text-[10px] text-white transition-transform hover:scale-105 hover:bg-sky-700 md:py-2 md:text-sm"
+            >
+              Histórico de chats
+            </button>
+          </div>
+        </div>
+      </div>
       <div className="flex h-full flex-1 flex-col">
-        <h1 className="mt-20 text-4xl font-bold text-zinc-900">Axioon AI</h1>
+        <Image
+          src="/A.png"
+          alt=""
+          width={200}
+          height={200}
+          className="mx-auto mt-4 h-20 w-20"
+        />
         {!hasMessages ? (
-          <div className="mx-auto mb-10 mt-10 grid w-[80%] grid-cols-12 flex-col items-center justify-center gap-x-6 gap-y-2">
-            <div className="col-span-4 row-span-2 hidden flex-col items-center justify-center gap-4 md:flex">
-              <Sun size={32} className="text-zinc-900" />
-              <h2 className="text-2xl text-zinc-900">Examples</h2>
-            </div>
-            <div className="col-span-4 row-span-2 hidden flex-col items-center justify-center gap-4 md:flex">
-              <Zap size={32} className="text-zinc-900" />
-              <h2 className="text-2xl text-zinc-900">Capabilities</h2>
-            </div>
-            <div className="col-span-4 row-span-2 hidden flex-col items-center justify-center gap-4 md:flex">
-              <TriangleAlert size={32} className="text-zinc-900" />
-              <h2 className="text-2xl text-zinc-900">Limitations</h2>
-            </div>
-            <div className="col-span-12 grid grid-cols-12 flex-col items-center justify-center gap-x-6 gap-y-2">
-              <button
-                className="col-span-12 row-span-2 flex flex-col items-center justify-center gap-4 rounded-md bg-white shadow-md md:col-span-4"
-                onClick={() => handleButtonClick(itemsToShow[0].prompt)}
-              >
-                <h3 className="p-5 text-sm font-medium text-zinc-900 xl:text-lg">
-                  {itemsToShow[0].prompt}
-                </h3>
-              </button>
-              <button
-                className="col-span-12 row-span-2 flex flex-col items-center justify-center gap-4 rounded-md bg-white shadow-md md:col-span-4"
-                onClick={() => handleButtonClick(itemsToShow[1].prompt)}
-              >
-                <h3 className="p-5 text-sm font-medium text-zinc-900 xl:text-lg">
-                  {itemsToShow[1].prompt}
-                </h3>
-              </button>
-              <button
-                className="col-span-12 row-span-2 flex flex-col items-center justify-center gap-4 rounded-md bg-white shadow-md md:col-span-4"
-                onClick={() => handleButtonClick(itemsToShow[2].prompt)}
-              >
-                <h3 className="p-5 text-sm font-medium text-zinc-900 xl:text-lg">
-                  {itemsToShow[2].prompt}
-                </h3>
-              </button>
-            </div>
-            <div className="col-span-12 hidden grid-cols-12 flex-col items-center justify-center gap-x-6 gap-y-2 md:grid">
-              <button
-                className="col-span-12 row-span-2 flex flex-col items-center justify-center gap-4 rounded-md bg-white shadow-md md:col-span-4"
-                onClick={() => handleButtonClick(itemsToShow[3].prompt)}
-              >
-                <h3 className="p-5 text-sm font-medium text-zinc-900 xl:text-lg">
-                  {itemsToShow[3].prompt}
-                </h3>
-              </button>
-              <button
-                className="col-span-12 row-span-2 flex flex-col items-center justify-center gap-4 rounded-md bg-white shadow-md md:col-span-4"
-                onClick={() => handleButtonClick(itemsToShow[4].prompt)}
-              >
-                <h3 className="p-5 text-sm font-medium text-zinc-900 xl:text-lg">
-                  {itemsToShow[4].prompt}
-                </h3>
-              </button>
-              <button
-                className="col-span-12 row-span-2 flex flex-col items-center justify-center gap-4 rounded-md bg-white shadow-md md:col-span-4"
-                onClick={() => handleButtonClick(itemsToShow[5].prompt)}
-              >
-                <h3 className="p-5 text-sm font-medium text-zinc-900 xl:text-lg">
-                  {itemsToShow[5].prompt}
-                </h3>
-              </button>
-            </div>
-            <div className="col-span-12 hidden grid-cols-12 flex-col items-center justify-center gap-x-6 gap-y-2 xl:grid">
-              <button
-                className="col-span-12 row-span-2 flex flex-col items-center justify-center gap-4 rounded-md bg-white shadow-md md:col-span-4"
-                onClick={() => handleButtonClick(itemsToShow[6].prompt)}
-              >
-                <h3 className="p-5 text-sm font-medium text-zinc-900 xl:text-lg">
-                  {itemsToShow[6].prompt}
-                </h3>
-              </button>
-              <button
-                className="col-span-12 row-span-2 flex flex-col items-center justify-center gap-4 rounded-md bg-white shadow-md md:col-span-4"
-                onClick={() => handleButtonClick(itemsToShow[7].prompt)}
-              >
-                <h3 className="p-5 text-sm font-medium text-zinc-900 xl:text-lg">
-                  {itemsToShow[7].prompt}
-                </h3>
-              </button>
-              <button
-                className="col-span-12 row-span-2 flex flex-col items-center justify-center gap-4 rounded-md bg-white shadow-md md:col-span-4"
-                onClick={() => handleButtonClick(itemsToShow[8].prompt)}
-              >
-                <h3 className="p-5 text-sm font-medium text-zinc-900 xl:text-lg">
-                  {itemsToShow[8].prompt}
-                </h3>
-              </button>
-            </div>
+          <div className="flex w-full flex-wrap items-center justify-center gap-2 p-2 lg:min-h-[calc(100vh-24rem)] lg:gap-4 lg:p-4">
+            <button
+              onClick={() => handleButtonClick("Gerar Insights Personalizados")}
+              className="flex h-28 w-28 flex-col rounded-lg border border-gray-200 bg-white p-4 text-start text-xs text-gray-600 shadow lg:h-28 lg:w-40 lg:p-2 lg:text-sm 2xl:h-40 2xl:p-4 2xl:text-base"
+            >
+              <span>📊</span>
+              Gerar Insights Personalizados
+            </button>
+            <button
+              onClick={() =>
+                handleButtonClick("Desenvolver Teses, Textos e Discursos")
+              }
+              className="flex h-28 w-28 flex-col rounded-lg border border-gray-200 bg-white p-4 text-start text-xs text-gray-600 shadow lg:h-28 lg:w-40 lg:p-2 lg:text-sm 2xl:h-40 2xl:p-4 2xl:text-base"
+            >
+              <span>📝</span>
+              Desenvolver Teses, Textos e Discursos
+            </button>
+            <button
+              onClick={() => handleButtonClick("Produzir Conteúdos")}
+              className="flex h-28 w-28 flex-col rounded-lg border border-gray-200 bg-white p-4 text-start text-xs text-gray-600 shadow lg:h-28 lg:w-40 lg:p-2 lg:text-sm 2xl:h-40 2xl:p-4 2xl:text-base"
+            >
+              <span>🖋️</span>
+              Produzir Conteúdos
+            </button>
+            <button
+              onClick={() =>
+                handleButtonClick("Criar Planilhas, Cálculos e Projeções")
+              }
+              className="flex h-28 w-28 flex-col rounded-lg border border-gray-200 bg-white p-4 text-start text-xs text-gray-600 shadow lg:h-28 lg:w-40 lg:p-2 lg:text-sm 2xl:h-40 2xl:p-4 2xl:text-base"
+            >
+              <span>📈</span>
+              Criar Planilhas, Cálculos e Projeções
+            </button>
           </div>
         ) : (
           <div className="flex min-h-[calc(100vh-24rem)] w-full flex-col gap-4 overflow-y-scroll px-2 py-4">
@@ -266,7 +212,7 @@ export default function AxioonAi() {
               message.role === "user" ? (
                 <div
                   key={index}
-                  className="ml-auto flex w-max max-w-[calc(100%-50px)] flex-col items-start justify-center rounded-lg rounded-tr-sm bg-white px-8 py-2"
+                  className="ml-auto flex w-max max-w-[calc(100%-50px)] flex-col items-start justify-center rounded-2xl bg-white px-8 py-2"
                 >
                   <h3 className="text-sm font-medium text-zinc-900 xl:text-lg">
                     {message.content}
@@ -275,9 +221,9 @@ export default function AxioonAi() {
               ) : (
                 <div
                   key={index}
-                  className="flex w-max max-w-[calc(100%-50px)] flex-col items-start justify-center rounded-lg rounded-tl-sm bg-sky-900/80 px-8 py-2"
+                  className="flex w-max max-w-[calc(100%-50px)] flex-col items-start justify-center rounded-lg rounded-tl-sm px-8 py-2"
                 >
-                  <h3 className="text-sm font-medium text-white xl:text-lg">
+                  <h3 className="text-sm font-medium xl:text-lg">
                     {message.content}
                   </h3>
                 </div>
@@ -296,7 +242,7 @@ export default function AxioonAi() {
             onChange={(e) => setInputMessage(e.target.value)}
           />
           <button
-            className="flex h-full items-center justify-center"
+            className="mr-4 flex h-full items-center justify-center"
             onClick={handleSendMessage}
           >
             {isMessageLoading ? (

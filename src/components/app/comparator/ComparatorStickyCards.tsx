@@ -45,9 +45,6 @@ export function ComparatorStickyCards() {
     };
   }, []);
 
-  console.log("isOpen: ", isOpen);
-  console.log("isVisible: ", isVisible);
-
   return (
     <div
       ref={elementRef}
