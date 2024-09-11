@@ -26,7 +26,7 @@ export function SelectedAccounts() {
           <div className="flex w-48 items-center justify-end gap-2">
             {socialMediaData?.staticData.facebookData && facebook && (
               <Image
-                src="/Logos/facebookLogo.png"
+                src="/Logos/FacebookLogo.png"
                 alt=""
                 width={200}
                 height={200}
@@ -35,7 +35,7 @@ export function SelectedAccounts() {
             )}
             {socialMediaData?.staticData.instagramData && instagram && (
               <Image
-                src="/Logos/instagramLogo.png"
+                src="/Logos/InstagramLogo.png"
                 alt=""
                 width={200}
                 height={200}
@@ -44,7 +44,7 @@ export function SelectedAccounts() {
             )}
             {socialMediaData?.staticData.tiktokData && tiktok && (
               <Image
-                src="/Logos/tiktokLogo.png"
+                src="/Logos/TikTokLogo.png"
                 alt=""
                 width={200}
                 height={200}
@@ -53,7 +53,7 @@ export function SelectedAccounts() {
             )}
             {socialMediaData?.staticData.youtubeData && youtube && (
               <Image
-                src="/Logos/youtubeLogo.png"
+                src="/Logos/YouTubeLogo.png"
                 alt=""
                 width={200}
                 height={200}

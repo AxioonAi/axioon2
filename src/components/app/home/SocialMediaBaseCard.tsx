@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
+import { CheckCheck } from "lucide-react";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { useSocialMediaDataContext } from "@/context/SocialMediaData";
 import { Skeleton } from "@/components/global/Skeleton";
@@ -107,6 +108,23 @@ export function SocialMediaBaseCard({
                     : "opacity-50",
           )}
         >
+          {platform === "Facebook" ? (
+            <CheckCheck
+              className={`absolute bottom-4 right-4 ${facebook ? "opacity-100" : "opacity-0"}`}
+            />
+          ) : platform === "Instagram" ? (
+            <CheckCheck
+              className={`absolute bottom-4 right-4 ${instagram ? "opacity-100" : "opacity-0"}`}
+            />
+          ) : platform === "TikTok" ? (
+            <CheckCheck
+              className={`absolute bottom-4 right-4 ${tiktok ? "opacity-100" : "opacity-0"}`}
+            />
+          ) : (
+            <CheckCheck
+              className={`absolute bottom-4 right-4 ${youtube ? "opacity-100" : "opacity-0"}`}
+            />
+          )}
           <div className="flex w-full items-center gap-4 border-b border-b-zinc-700/50 pb-2">
             <Image
               src={"/Logos/" + platform + "Logo.png"}
