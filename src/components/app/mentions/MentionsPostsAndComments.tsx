@@ -35,6 +35,7 @@ interface InstagramPostsProps {
   url: string;
   username: string;
   viewCount: number;
+  websiteLogo?: string;
   comments: {
     authorGender: string;
     id: string;
@@ -56,6 +57,7 @@ interface newsPostsProps {
   url: string;
   websiteName: string;
   pubDate?: string;
+  websiteLogo?: string;
 }
 
 interface FinalPostsProps {
@@ -73,6 +75,7 @@ interface FinalPostsProps {
   playCount?: number;
   views?: number;
   sentiment: number | null;
+  websiteLogo?: string;
   comments: {
     authorGender: string;
     date?: string;
@@ -106,6 +109,8 @@ export function MentionsPostsAndComments() {
   >([]);
   const [finalPostData, setFinalPostData] = useState<FinalPostsProps[]>([]);
   const { isGettingData, mentionsData } = useMentionsDataContext();
+
+  console.log(" MentionsPostsAndComments: ", mentionsData);
   const [filter, setFilter] = useState<string>("desc");
 
   useEffect(() => {
@@ -300,10 +305,12 @@ export function MentionsPostsAndComments() {
                 >
                   <Image
                     src={
-                      item.url.split("/")[2].split(".")[1].toLowerCase() ===
-                      "instagram"
-                        ? "/Logos/InstagramLogo.png"
-                        : "/Icons/siteIcon.png"
+                      item.websiteLogo
+                        ? item.websiteLogo
+                        : item.url.split("/")[2].split(".")[1].toLowerCase() ===
+                            "instagram"
+                          ? "/Logos/InstagramLogo.png"
+                          : "/Icons/siteIcon.png"
                     }
                     alt={""}
                     width={40}

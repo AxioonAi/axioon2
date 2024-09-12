@@ -74,6 +74,7 @@ export interface MentionsDataProps {
       name: string;
       quantity: number;
       sentiment: string; // era pra ser number
+      logo?: string;
     }[];
     posts: {
       instagram: {

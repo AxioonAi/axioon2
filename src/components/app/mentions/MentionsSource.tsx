@@ -6,6 +6,7 @@ import {
   TrendingUp,
 } from "lucide-react";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
@@ -16,6 +17,7 @@ interface MentionsSourceDataProps {
   name: string;
   quantity: number;
   sentiment: string;
+  logo?: string;
 }
 
 export function MentionsSource() {
@@ -61,7 +63,20 @@ export function MentionsSource() {
           </div>
           <div className="flex h-80 w-full flex-col gap-4 overflow-y-scroll p-4 pb-0 text-sm lg:mb-0 lg:h-full lg:gap-8 lg:text-base 2xl:text-lg 3xl:text-xl">
             {mentionsBySource.map((source, index) => (
-              <div className="flex items-center" key={index}>
+              <div className="flex items-center gap-2" key={index}>
+                <Image
+                  src={
+                    source.logo
+                      ? source.logo
+                      : source.name === "Instagram"
+                        ? "/Logos/InstagramLogo.png"
+                        : ""
+                  }
+                  width={100}
+                  className="h-10 w-10 rounded-md"
+                  height={100}
+                  alt=""
+                />
                 <div className="flex w-1/2 items-center gap-2">
                   <span>{source.name}</span>
                 </div>
