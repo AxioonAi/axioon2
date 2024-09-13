@@ -110,19 +110,19 @@ export function SocialMediaBaseCard({
         >
           {platform === "Facebook" ? (
             <CheckCheck
-              className={`absolute bottom-4 right-4 ${facebook ? "opacity-100" : "opacity-0"}`}
+              className={`absolute bottom-2 right-2 ${facebook ? "opacity-100" : "opacity-0"}`}
             />
           ) : platform === "Instagram" ? (
             <CheckCheck
-              className={`absolute bottom-4 right-4 ${instagram ? "opacity-100" : "opacity-0"}`}
+              className={`absolute bottom-2 right-2 ${instagram ? "opacity-100" : "opacity-0"}`}
             />
           ) : platform === "TikTok" ? (
             <CheckCheck
-              className={`absolute bottom-4 right-4 ${tiktok ? "opacity-100" : "opacity-0"}`}
+              className={`absolute bottom-2 right-2 ${tiktok ? "opacity-100" : "opacity-0"}`}
             />
           ) : (
             <CheckCheck
-              className={`absolute bottom-4 right-4 ${youtube ? "opacity-100" : "opacity-0"}`}
+              className={`absolute bottom-2 right-2 ${youtube ? "opacity-100" : "opacity-0"}`}
             />
           )}
           <div className="flex w-full items-center gap-4 border-b border-b-zinc-700/50 pb-2">

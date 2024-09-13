@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { useCookies } from "next-client-cookies";
 import OpenAI from "openai";
 import Image from "next/image";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { authGetAPI, AuthPostAPI, token as Token } from "@/lib/axios";
 import { Spinner } from "@/components/global/Spinner";
 import { Modal } from "@/components/global/Modal";
@@ -36,12 +38,35 @@ export default function AxioonAi() {
   async function handleSendGptMessage(messageContent: string) {
     const client = new OpenAI({
       dangerouslyAllowBrowser: true,
-      apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
+      apiKey: process.env.OPENAI_API_KEY,
     });
+
     const message = await client.chat.completions.create({
       model: "gpt-4o-mini",
       messages: [...userMessages, { role: "user", content: messageContent }],
     });
+
+    return message.choices[0].message.content;
+  }
+
+  async function GetChatDescription(messageContent: string) {
+    const client = new OpenAI({
+      dangerouslyAllowBrowser: true,
+      apiKey: process.env.OPENAI_API_KEY,
+    });
+
+    const message = await client.chat.completions.create({
+      model: "gpt-4o-mini",
+      messages: [
+        {
+          role: "system",
+          content:
+            "Gere um resumo de 10 palavras sobre a seguinte mensagem:" +
+            messageContent,
+        },
+      ],
+    });
+    console.log("descriptino: ", message.choices[0].message.content);
 
     return message.choices[0].message.content;
   }
@@ -52,11 +77,12 @@ export default function AxioonAi() {
       const token = cookies.get(Token);
       let newChatId: string = "";
       if (!chatId) {
+        const description = await GetChatDescription(inputMessage);
         const createChat = await AuthPostAPI(
           "/user/chat",
           {
             message: inputMessage,
-            name: inputMessage,
+            name: description,
           },
           token,
         );
@@ -219,14 +245,13 @@ export default function AxioonAi() {
                   </h3>
                 </div>
               ) : (
-                <div
+                <ReactMarkdown
+                  remarkPlugins={[remarkGfm]}
                   key={index}
-                  className="flex w-max max-w-[calc(100%-50px)] flex-col items-start justify-center rounded-lg rounded-tl-sm px-8 py-2"
+                  className="flex w-max max-w-[calc(100%-50px)] flex-col items-start justify-center rounded-lg rounded-tl-sm px-8 py-2 text-sm font-medium xl:text-lg"
                 >
-                  <h3 className="text-sm font-medium xl:text-lg">
-                    {message.content}
-                  </h3>
-                </div>
+                  {message.content}
+                </ReactMarkdown>
               ),
             )}
           </div>
@@ -256,9 +281,9 @@ export default function AxioonAi() {
       <Modal
         show={showModal}
         onHide={() => setShowModal(false)}
-        className="max-w-[560px] overflow-y-scroll"
+        className="overflow-y-scroll"
       >
-        <div className="flex flex-col gap-4">
+        <div className="flex w-full flex-col gap-4">
           <div className="flex w-full items-center justify-between">
             <span className="text-lg font-semibold">Histórico De Chats</span>
             <button
@@ -268,12 +293,18 @@ export default function AxioonAi() {
               <X />
             </button>
           </div>
-          <div className="flex flex-wrap items-center justify-center gap-2 p-2">
+          <div className="flex w-full flex-wrap items-center justify-center gap-2 p-2">
             {userChats.length !== 0 &&
               userChats.map((chat, index) => (
-                <div
+                <button
+                  onClick={() => {
+                    setChatId(chat.id);
+                    setHasMessages(true);
+                    setUserMessages(chat.messages);
+                    setShowModal(false);
+                  }}
                   key={index}
-                  className="flex flex-col gap-1 rounded-md border border-zinc-300 bg-white p-2 shadow-sm lg:w-60"
+                  className="flex flex-col gap-1 rounded-md border border-zinc-300 bg-white p-2 shadow-sm lg:w-96"
                 >
                   <div className="flex items-center gap-1">
                     <Image
@@ -283,7 +314,7 @@ export default function AxioonAi() {
                       height={50}
                       className="h-5 w-5"
                     />
-                    <div className="flex w-full items-center justify-between">
+                    <div className="flex w-full flex-col">
                       <span className="text-sm font-medium text-zinc-900">
                         {chat.name}
                       </span>
@@ -292,10 +323,12 @@ export default function AxioonAi() {
                       </span>
                     </div>
                   </div>
-                  <span className="ml-5 truncate text-xs italic text-zinc-500">
+                  <span className="ml-5 max-w-80 truncate text-xs italic text-zinc-500">
+                    {chat.messages[chat.messages.length - 1].content}
+                    {chat.messages[chat.messages.length - 1].content}
                     {chat.messages[chat.messages.length - 1].content}
                   </span>
-                </div>
+                </button>
               ))}
           </div>
         </div>
