@@ -46,6 +46,8 @@ export default function AxioonAi() {
       messages: [...userMessages, { role: "user", content: messageContent }],
     });
 
+    console.log("message: ", message);
+
     return message.choices[0].message.content;
   }
 
@@ -86,6 +88,8 @@ export default function AxioonAi() {
           },
           token,
         );
+
+        console.log("createChat", createChat);
 
         if (createChat.status === 200) {
           setChatId(createChat.body.chat.id);
