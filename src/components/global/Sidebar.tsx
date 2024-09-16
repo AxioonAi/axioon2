@@ -25,7 +25,6 @@ export function Sidebar() {
   const router = useRouter();
   const cookies = useCookies();
 
-  // Lógica para colocar highlight na subdivisão específica
   useEffect(() => {
     if (pathname === "/") {
       if (elementName === "Publicações") {
@@ -45,11 +44,6 @@ export function Sidebar() {
         setSelectedSection("");
       }
     }
-    // if (elementName === "Publicações" && pathname === "/") {
-    //   setSelectedSection("Publicações");
-    // } else {
-    //   setSelectedSection("");
-    // }
   }, [elementName]);
 
   useEffect(() => {
@@ -75,7 +69,7 @@ export function Sidebar() {
         className={twMerge(
           "left-0 top-0 z-[1001] flex min-h-full w-2/3 flex-col gap-8 border-r border-r-gray-800 bg-black px-4 pb-10 pt-4 transition duration-300 lg:w-64",
           // isOpen ? "max-lg:fixed" : "max-lg:hidden",
-          isOpen ? "max-lg:fixed lg:block" : "hidden",
+          isOpen ? "fixed" : "hidden",
         )}
       >
         <Image
@@ -351,18 +345,32 @@ export function Sidebar() {
                   {openAccordion === "/comparator" && (
                     <div className="flex flex-col gap-2">
                       <div className="flex w-full items-center gap-2">
-                        <div className="h-1.5 w-1.5 rounded-full border border-zinc-500 bg-transparent" />
-                        <span className="text-zinc-500">
+                        <div
+                          className={twMerge(
+                            "h-1.5 w-1.5 rounded-full border transition duration-300",
+                            selectedSection === ""
+                              ? "border-white bg-white"
+                              : "border-zinc-500 bg-transparent",
+                          )}
+                        />
+                        <span
+                          className={twMerge(
+                            "transition duration-300",
+                            selectedSection === ""
+                              ? "font-semibold text-white"
+                              : "text-zinc-500",
+                          )}
+                        >
                           Estatísticas Gerais
                         </span>
                       </div>
                       <div className="flex w-full items-center gap-2">
                         <div className="h-1.5 w-1.5 rounded-full border border-zinc-500 bg-transparent" />
-                        <span className="text-zinc-500">Menções</span>
+                        <span className="text-zinc-500">Palavras Chave</span>
                       </div>
                       <div className="flex w-full items-center gap-2">
                         <div className="h-1.5 w-1.5 rounded-full border border-zinc-500 bg-transparent" />
-                        <span className="text-zinc-500">Publicações</span>
+                        <span className="text-zinc-500">Menções</span>
                       </div>
                     </div>
                   )}
@@ -394,21 +402,33 @@ export function Sidebar() {
                     )}
                   </button>
                 </Accordion.Trigger>
-                <Accordion.Content>
+                <Accordion.Content className="pl-8">
                   {openAccordion === "/legal" && (
                     <div className="flex flex-col gap-2">
                       <div className="flex w-full items-center gap-2">
-                        <div className="h-1.5 w-1.5 rounded-full border border-zinc-500 bg-transparent" />
-                        <span className="text-zinc-500">Ações Judiciais</span>
-                      </div>
-                      <div className="flex w-full items-center gap-2">
-                        <div className="h-1.5 w-1.5 rounded-full border border-zinc-500 bg-transparent" />
-                        <span className="text-zinc-500">Vínculos</span>
+                        <div
+                          className={twMerge(
+                            "h-1.5 w-1.5 rounded-full border transition duration-300",
+                            selectedSection === ""
+                              ? "border-white bg-white"
+                              : "border-zinc-500 bg-transparent",
+                          )}
+                        />
+                        <span
+                          className={twMerge(
+                            "transition duration-300",
+                            selectedSection === ""
+                              ? "font-semibold text-white"
+                              : "text-zinc-500",
+                          )}
+                        >
+                          Dados Gerais
+                        </span>
                       </div>
                       <div className="flex w-full items-center gap-2">
                         <div className="h-1.5 w-1.5 rounded-full border border-zinc-500 bg-transparent" />
                         <span className="text-zinc-500">
-                          Eleições Anteriores
+                          Protestos e Processos
                         </span>
                       </div>
                     </div>

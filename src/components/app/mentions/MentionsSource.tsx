@@ -70,7 +70,7 @@ export function MentionsSource() {
                       ? source.logo
                       : source.name === "Instagram"
                         ? "/Logos/InstagramLogo.png"
-                        : ""
+                        : "/Icons/web-icon.svg"
                   }
                   width={100}
                   className="h-10 w-10 rounded-md"

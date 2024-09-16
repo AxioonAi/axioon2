@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
-import { CheckCheck } from "lucide-react";
+import { Square, SquareCheckBig } from "lucide-react";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { useSocialMediaDataContext } from "@/context/SocialMediaData";
 import { Skeleton } from "@/components/global/Skeleton";
@@ -109,21 +109,35 @@ export function SocialMediaBaseCard({
           )}
         >
           {platform === "Facebook" ? (
-            <CheckCheck
-              className={`absolute bottom-2 right-2 ${facebook ? "opacity-100" : "opacity-0"}`}
-            />
+            facebook ? (
+              <SquareCheckBig
+                className={`absolute bottom-2 right-2 ${facebook ? "opacity-100" : "opacity-0"}`}
+              />
+            ) : (
+              <Square className="absolute bottom-2 right-2 opacity-50" />
+            )
           ) : platform === "Instagram" ? (
-            <CheckCheck
-              className={`absolute bottom-2 right-2 ${instagram ? "opacity-100" : "opacity-0"}`}
-            />
+            instagram ? (
+              <SquareCheckBig
+                className={`absolute bottom-2 right-2 ${instagram ? "opacity-100" : "opacity-0"}`}
+              />
+            ) : (
+              <Square className="absolute bottom-2 right-2 opacity-50" />
+            )
           ) : platform === "TikTok" ? (
-            <CheckCheck
-              className={`absolute bottom-2 right-2 ${tiktok ? "opacity-100" : "opacity-0"}`}
-            />
-          ) : (
-            <CheckCheck
+            tiktok ? (
+              <SquareCheckBig
+                className={`absolute bottom-2 right-2 ${tiktok ? "opacity-100" : "opacity-0"}`}
+              />
+            ) : (
+              <Square className="absolute bottom-2 right-2 opacity-50" />
+            )
+          ) : youtube ? (
+            <SquareCheckBig
               className={`absolute bottom-2 right-2 ${youtube ? "opacity-100" : "opacity-0"}`}
             />
+          ) : (
+            <Square className="absolute bottom-2 right-2 opacity-50" />
           )}
           <div className="flex w-full items-center gap-4 border-b border-b-zinc-700/50 pb-2">
             <Image

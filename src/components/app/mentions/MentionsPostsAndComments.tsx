@@ -110,7 +110,6 @@ export function MentionsPostsAndComments() {
   const [finalPostData, setFinalPostData] = useState<FinalPostsProps[]>([]);
   const { isGettingData, mentionsData } = useMentionsDataContext();
 
-  console.log(" MentionsPostsAndComments: ", mentionsData);
   const [filter, setFilter] = useState<string>("desc");
 
   useEffect(() => {

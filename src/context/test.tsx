@@ -49,7 +49,8 @@ export const OffsetContextProvider = ({ children }: ContextProps) => {
         observer.unobserve(elementRef.current);
       }
     };
-  }, []);
+  }, [elementRef]);
+
   const value = { elementRef, isVisible, elementName, setElementName };
 
   return (

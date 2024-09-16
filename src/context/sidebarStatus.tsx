@@ -1,11 +1,11 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { useCookies } from "next-client-cookies";
 import { createContext, useContext, useEffect, useState } from "react";
 
 interface mainContextProps {
-  isOpen: boolean;
-  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isOpen: boolean | null;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean | null>>;
 }
 
 const mainContext = createContext({} as mainContextProps);
@@ -15,16 +15,23 @@ interface ContextProps {
 }
 
 export const SidebarContextProvider = ({ children }: ContextProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState<boolean | null>(null);
+  const cookies = useCookies();
 
   const value = { isOpen, setIsOpen };
 
   useEffect(() => {
-    if (isOpen) {
-      // setIsOpen(false);
+    const isOpenValue = cookies.get("isOpen");
+    if (isOpenValue) {
+      setIsOpen(JSON.parse(isOpenValue));
     }
-  }, [pathname]);
+  }, []);
+
+  useEffect(() => {
+    if (isOpen !== null) {
+      cookies.set("isOpen", JSON.stringify(isOpen));
+    }
+  }, [isOpen]);
 
   return <mainContext.Provider value={value}>{children}</mainContext.Provider>;
 };

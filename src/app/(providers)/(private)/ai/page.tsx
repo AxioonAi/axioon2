@@ -46,8 +46,6 @@ export default function AxioonAi() {
       messages: [...userMessages, { role: "user", content: messageContent }],
     });
 
-    console.log("message: ", message);
-
     return message.choices[0].message.content;
   }
 
@@ -68,28 +66,26 @@ export default function AxioonAi() {
         },
       ],
     });
-    console.log("descriptino: ", message.choices[0].message.content);
 
     return message.choices[0].message.content;
   }
 
-  const handleSendMessage = async () => {
-    if (inputMessage.trim() !== "") {
+  const handleSendMessage = async (message?: string) => {
+    if (inputMessage.trim() !== "" || message?.trim() !== "") {
+      const userMessage = message || inputMessage;
       setIsMessageLoading(true);
       const token = cookies.get(Token);
       let newChatId: string = "";
       if (!chatId) {
-        const description = await GetChatDescription(inputMessage);
+        const description = await GetChatDescription(userMessage);
         const createChat = await AuthPostAPI(
           "/user/chat",
           {
-            message: inputMessage,
+            message: userMessage,
             name: description,
           },
           token,
         );
-
-        console.log("createChat", createChat);
 
         if (createChat.status === 200) {
           setChatId(createChat.body.chat.id);
@@ -99,7 +95,7 @@ export default function AxioonAi() {
         const sendMessage = await AuthPostAPI(
           `/user/chat/message`,
           {
-            message: inputMessage,
+            message: userMessage,
             type: "USER",
             chatId,
           },
@@ -107,10 +103,10 @@ export default function AxioonAi() {
         );
         console.log("sendMessage", sendMessage);
       }
-      const aiMessage = await handleSendGptMessage(inputMessage);
+      const aiMessage = await handleSendGptMessage(userMessage);
       setUserMessages((prev) => [
         ...prev,
-        { content: inputMessage, role: "user" },
+        { content: userMessage, role: "user" },
         { content: aiMessage || "Error", role: "assistant" },
       ]);
 
@@ -130,9 +126,11 @@ export default function AxioonAi() {
     }
   };
 
-  const handleButtonClick = (message: string) => {
+  const handleButtonClick = async (message: string) => {
+    setInputMessage(message);
     setUserMessages([...userMessages, { content: message, role: "user" }]);
     setHasMessages(true);
+    handleSendMessage(message);
   };
 
   useEffect(() => {
@@ -193,7 +191,7 @@ export default function AxioonAi() {
           </div>
         </div>
       </div>
-      <div className="flex h-full flex-1 flex-col">
+      <div className="flex h-full flex-col">
         <Image
           src="/A.png"
           alt=""
@@ -272,7 +270,7 @@ export default function AxioonAi() {
           />
           <button
             className="mr-4 flex h-full items-center justify-center"
-            onClick={handleSendMessage}
+            onClick={() => handleSendMessage(inputMessage)}
           >
             {isMessageLoading ? (
               <Spinner />

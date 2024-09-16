@@ -2,9 +2,9 @@
 import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { CommentsSummary } from "./CommentsSummary";
-import { CommentsDonutGraph } from "./CommentsDonutGraph";
+import { GenderDonutGraph } from "./GenderDonutGraph";
 import { useMentionsDataContext } from "@/context/MentionsData";
-import { CommentsSentimentDonutGraphData } from "@/components/data/MentionsData";
+import { CommentsGenderDonutGraphData } from "@/components/data/MentionsData";
 export function Comments() {
   const [isHashtagsEmpty, setIsHashtagsEmpty] = useState(true);
   const { mentionsData } = useMentionsDataContext();
@@ -37,9 +37,9 @@ export function Comments() {
           isHashtagsEmpty ? "lg:row-span-6" : "lg:row-span-4",
         )}
       >
-        <CommentsDonutGraph
+        <GenderDonutGraph
           className="h-96"
-          CommentsDonutGraphData={CommentsSentimentDonutGraphData}
+          GenderDonutGraphData={CommentsGenderDonutGraphData}
         />
       </div>
     </>

@@ -22,7 +22,7 @@ export function PerfilCard({ politician }: PerfilCardProps) {
       return alert("Nome do perfil não informado");
     }
     if (name === "youtube") {
-      const url = `https://www.youtube.com/@${name}`;
+      const url = `https://www.youtube.com/@${username}`;
       if (confirm("Acessar o canal?")) {
         return window.open(url, "_blank");
       }

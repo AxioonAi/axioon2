@@ -97,12 +97,12 @@ export default function Home() {
       <div className="lg:col-span-12">
         <HomeHeaderCard title="Mídias Sociais" />
       </div>
+      <div className="w-full lg:col-span-12">
+        <SelectedAccounts />
+      </div>
 
       <div className="w-full lg:col-span-12">
         <HeaderCards />
-        <div className="my-4 w-full lg:col-span-12">
-          <SelectedAccounts />
-        </div>
         <div className="h-40">
           <IndicatorsCards />
         </div>

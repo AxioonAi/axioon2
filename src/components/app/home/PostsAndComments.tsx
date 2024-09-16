@@ -315,11 +315,11 @@ export function PostsAndComments() {
   };
 
   return (
-    <BaseCard className="min-h-96 overflow-hidden p-0">
+    <BaseCard ref={elementRef} className="min-h-96 overflow-hidden p-0">
       <BaseCardHeader
         title="Comentários"
         children={
-          <div className="flex items-center gap-2" ref={elementRef}>
+          <div className="flex items-center gap-2">
             <Popover>
               <PopoverTrigger asChild>
                 <button className="flex items-center gap-2 text-xs text-zinc-500">
