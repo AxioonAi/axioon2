@@ -1,18 +1,18 @@
 "use client";
 import { useEffect, useState } from "react";
-import ReactApexChart from "react-apexcharts";
+// import ReactApexChart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
-// import dynamic from "next/dynamic";
+import dynamic from "next/dynamic";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
 import { Skeleton } from "@/components/global/Skeleton";
 import { useMentionsDataContext } from "@/context/MentionsData";
-// const ReactApexChart = dynamic(() => import("react-apexcharts"), {
-//  ssr: false,
-// });
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
+  ssr: false,
+});
 
 interface ScoreGaugeChartProps {
   ScoreGaugeChartData: {

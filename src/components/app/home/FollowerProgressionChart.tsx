@@ -1,18 +1,18 @@
 "use client";
 import { ApexOptions } from "apexcharts";
 import { EllipsisVertical } from "lucide-react";
-import ReactApexChart from "react-apexcharts";
+// import ReactApexChart from "react-apexcharts";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-// import dynamic from "next/dynamic";
+import dynamic from "next/dynamic";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
 import { useSocialMediaDataContext } from "@/context/SocialMediaData";
 import { Skeleton } from "@/components/global/Skeleton";
-// const ReactApexChart = dynamic(() => import("react-apexcharts"), {
-//  ssr: false,
-// });
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
+  ssr: false,
+});
 
 interface FollowerProgressionChartProps {
   FollowerProgressionChartData: {

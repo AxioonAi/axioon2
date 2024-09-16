@@ -1,14 +1,14 @@
 "use client";
 import { ApexOptions } from "apexcharts";
-import ReactApexChart from "react-apexcharts";
+// import ReactApexChart from "react-apexcharts";
 import { twMerge } from "tailwind-merge";
-// import dynamic from "next/dynamic";
+import dynamic from "next/dynamic";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
-// const ReactApexChart = dynamic(() => import("react-apexcharts"), {
-//  ssr: false,
-// });
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
+  ssr: false,
+});
 
 interface MentionsSentimentChartProps {
   MentionsSentimentChartData: {

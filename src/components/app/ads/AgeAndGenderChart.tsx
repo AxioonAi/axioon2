@@ -1,18 +1,18 @@
 "use client";
 import { EllipsisVertical } from "lucide-react";
-import ReactApexChart from "react-apexcharts";
+// import ReactApexChart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
 import { useEffect, useState } from "react";
-// import dynamic from "next/dynamic";
+import dynamic from "next/dynamic";
 
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { useAdsDataContext } from "@/context/AdsData";
 import { Skeleton } from "@/components/global/Skeleton";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
-// const ReactApexChart = dynamic(() => import("react-apexcharts"), {
-//  ssr: false,
-// });
+const ReactApexChart = dynamic(() => import("react-apexcharts"), {
+  ssr: false,
+});
 
 interface AgeAndGenderChartProps {
   AgeAndGenderData: {
