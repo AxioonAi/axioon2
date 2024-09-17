@@ -1,10 +1,5 @@
 "use client";
-import {
-  EllipsisVertical,
-  Minus,
-  TrendingDown,
-  TrendingUp,
-} from "lucide-react";
+import { Minus, TrendingDown, TrendingUp } from "lucide-react";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
@@ -41,14 +36,7 @@ export function MentionsSource() {
 
   return (
     <BaseCard className="p-0">
-      <BaseCardHeader
-        title="Menções por Fontes"
-        children={
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-100 text-zinc-700">
-            <EllipsisVertical size={14} />
-          </div>
-        }
-      />
+      <BaseCardHeader title="Menções por Fontes" />
       {isGettingData ? (
         <Skeleton className="mx-auto mt-4 h-80 w-11/12" />
       ) : (

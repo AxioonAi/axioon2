@@ -1,6 +1,14 @@
 "use client";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import {
+  Popover,
+  PopoverArrow,
+  PopoverContent,
+  PopoverTrigger,
+} from "@radix-ui/react-popover";
+import { ChevronDown } from "lucide-react";
+import { twMerge } from "tailwind-merge";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
@@ -35,6 +43,7 @@ export function HashtagsMentionsMainActors() {
   const { isGettingData, hashtagData } = useMentionsDataContext();
   const { elementRef, isVisible, elementName, setElementName } =
     useOffsetContext();
+  const [filter, setFilter] = useState<string>("positive");
 
   useEffect(() => {
     if (hashtagData) {
@@ -69,7 +78,60 @@ export function HashtagsMentionsMainActors() {
 
   return (
     <BaseCard className="p-0">
-      <BaseCardHeader title="Principais Atores" />
+      <BaseCardHeader
+        title="Principais Atores"
+        children={
+          <div className="flex items-center gap-2" ref={elementRef}>
+            <Popover>
+              <PopoverTrigger asChild>
+                <button className="flex items-center gap-2 text-xs text-zinc-500">
+                  <span>Filtros</span>
+                  <ChevronDown size={14} />
+                </button>
+              </PopoverTrigger>
+              <PopoverContent className="z-[9999] flex w-40 flex-col overflow-hidden rounded-md border border-zinc-400 bg-white shadow outline-none">
+                <PopoverArrow />
+                <button
+                  onClick={() => setFilter("positive")}
+                  className={twMerge(
+                    "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                    filter === "positive" && "bg-darkBlueAxion/10",
+                  )}
+                >
+                  Positivos
+                </button>
+                <button
+                  onClick={() => setFilter("negative")}
+                  className={twMerge(
+                    "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                    filter === "negative" && "bg-darkBlueAxion/10",
+                  )}
+                >
+                  Negativos
+                </button>
+                <button
+                  onClick={() => setFilter("active")}
+                  className={twMerge(
+                    "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                    filter === "active" && "bg-darkBlueAxion/10",
+                  )}
+                >
+                  Mais ativos
+                </button>
+                <button
+                  onClick={() => setFilter("inactive")}
+                  className={twMerge(
+                    "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                    filter === "active" && "bg-darkBlueAxion/10",
+                  )}
+                >
+                  Menos ativos
+                </button>
+              </PopoverContent>
+            </Popover>
+          </div>
+        }
+      />
       {isGettingData ? (
         <Skeleton className="mx-auto mt-4 h-[23rem] w-11/12" />
       ) : (

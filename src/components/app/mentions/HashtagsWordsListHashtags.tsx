@@ -2,6 +2,12 @@
 import { ChevronDown } from "lucide-react";
 import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
+import {
+  Popover,
+  PopoverArrow,
+  PopoverContent,
+  PopoverTrigger,
+} from "@radix-ui/react-popover";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
@@ -19,6 +25,7 @@ export function HashtagsWordsListHashtags() {
   const [wordsList, setWordsList] = useState<WordsProps[]>([]);
   const [isHashtagsEmpty, setIsHashtagsEmpty] = useState(true);
   const { isGettingData, hashtagData } = useMentionsDataContext();
+  const [filter, setFilter] = useState<string>("desc");
 
   useEffect(() => {
     if (hashtagData?.hashtagCloud) {
@@ -58,10 +65,53 @@ export function HashtagsWordsListHashtags() {
       <BaseCardHeader
         title="Lista de Hashtags"
         children={
-          <div className="flex items-center gap-2 text-xs text-zinc-500">
-            <span>Ver todos</span>
-            <ChevronDown size={14} />
-          </div>
+          <Popover>
+            <PopoverTrigger asChild>
+              <button className="flex items-center gap-2 text-xs text-zinc-500">
+                <span>Filtros</span>
+                <ChevronDown size={14} />
+              </button>
+            </PopoverTrigger>
+            <PopoverContent className="z-[9999] flex w-40 flex-col overflow-hidden rounded-md border border-zinc-400 bg-white shadow outline-none">
+              <PopoverArrow />
+              <button
+                onClick={() => setFilter("desc")}
+                className={twMerge(
+                  "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                  filter === "desc" && "bg-darkBlueAxion/10",
+                )}
+              >
+                Positivas
+              </button>
+              <button
+                onClick={() => setFilter("asc")}
+                className={twMerge(
+                  "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                  filter === "asc" && "bg-darkBlueAxion/10",
+                )}
+              >
+                Negativas
+              </button>
+              <button
+                onClick={() => setFilter("ascPosts")}
+                className={twMerge(
+                  "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                  filter === "ascPosts" && "bg-darkBlueAxion/10",
+                )}
+              >
+                Mais Ativas
+              </button>
+              <button
+                onClick={() => setFilter("descPosts")}
+                className={twMerge(
+                  "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                  filter === "descPosts" && "bg-darkBlueAxion/10",
+                )}
+              >
+                Menos Ativas
+              </button>
+            </PopoverContent>
+          </Popover>
         }
       />
       {isGettingData ? (

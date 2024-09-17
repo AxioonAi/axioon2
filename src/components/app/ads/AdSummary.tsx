@@ -1,5 +1,4 @@
 "use client";
-import { EllipsisVertical } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
@@ -39,14 +38,7 @@ export function AdSummary() {
 
   return (
     <BaseCard className="p-0">
-      <BaseCardHeader
-        title="Anúncios"
-        children={
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-100 text-zinc-700">
-            <EllipsisVertical size={14} />
-          </div>
-        }
-      />
+      <BaseCardHeader title="Anúncios" />
       {isGettingData ? (
         <Skeleton className="mx-auto mt-4 h-[17rem] w-11/12" />
       ) : (

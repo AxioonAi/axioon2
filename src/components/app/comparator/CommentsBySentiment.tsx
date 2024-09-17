@@ -1,5 +1,4 @@
 "use client";
-import { EllipsisVertical } from "lucide-react";
 import { twMerge } from "tailwind-merge";
 import { useEffect, useState } from "react";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
@@ -157,14 +156,7 @@ export function CommentsBySentiment() {
 
   return (
     <BaseCard className="p-0">
-      <BaseCardHeader
-        title="Comentários por Sentimento"
-        children={
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-100 text-zinc-700">
-            <EllipsisVertical size={14} />
-          </div>
-        }
-      />
+      <BaseCardHeader title="Comentários por Sentimento" />
       {isGettingData ? (
         <Skeleton className="mx-auto mt-4 h-[17rem] w-11/12" />
       ) : (

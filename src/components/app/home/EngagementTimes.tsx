@@ -1,5 +1,4 @@
 "use client";
-import { ChevronDown } from "lucide-react";
 // import ReactApexChart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
 import { useEffect, useState } from "react";
@@ -111,15 +110,7 @@ export function EngagementTimes({ EngagementTimesData }: EngagementTimesProps) {
 
   return (
     <BaseCard className="p-0">
-      <BaseCardHeader
-        title="Horários de Engajamento"
-        children={
-          <div className="flex items-center gap-2 text-xs text-zinc-500">
-            <span>Ver todos</span>
-            <ChevronDown size={14} />
-          </div>
-        }
-      />
+      <BaseCardHeader title="Horários de Engajamento" />
       {isGettingData ? (
         <Skeleton className="mx-auto mt-4 h-80 w-11/12" />
       ) : (

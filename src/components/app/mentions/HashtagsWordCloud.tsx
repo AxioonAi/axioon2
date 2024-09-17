@@ -1,6 +1,5 @@
 "use client";
 import ReactWordcloud from "react-wordcloud";
-import { EllipsisVertical } from "lucide-react";
 import { useEffect, useState } from "react";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
@@ -71,14 +70,7 @@ export function HashtagsWordCloud({ WordCloudData }: HashtagsWordCloudProps) {
 
   return (
     <BaseCard className="p-0">
-      <BaseCardHeader
-        title="Nuvem de Palavras"
-        children={
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-100 text-zinc-700">
-            <EllipsisVertical size={14} />
-          </div>
-        }
-      />
+      <BaseCardHeader title="Nuvem de Palavras" />
       {isGettingData ? (
         <Skeleton className="mx-auto mt-4 h-48 w-11/12" />
       ) : isWordsEmpty ? (

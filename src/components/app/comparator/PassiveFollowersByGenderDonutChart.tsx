@@ -1,6 +1,5 @@
 "use client";
 import { ApexOptions } from "apexcharts";
-import { EllipsisVertical } from "lucide-react";
 import { twMerge } from "tailwind-merge";
 import { useEffect, useState } from "react";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
@@ -126,14 +125,7 @@ export function PassiveFollowersByGenderDonutChart({
 
   return (
     <BaseCard className="p-0">
-      <BaseCardHeader
-        title="Seguidores Candidato"
-        children={
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-100 text-zinc-700">
-            <EllipsisVertical size={14} />
-          </div>
-        }
-      />
+      <BaseCardHeader title="Seguidores Candidato" />
       {isGettingData ? (
         <Skeleton className="mx-auto mt-4 h-[17rem] w-11/12" />
       ) : (

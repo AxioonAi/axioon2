@@ -1,5 +1,4 @@
 "use client";
-import { EllipsisVertical } from "lucide-react";
 // import ReactApexChart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
 import { useEffect, useState } from "react";
@@ -64,14 +63,7 @@ export function AgeAndGenderChart({
 
   return (
     <BaseCard className="p-0">
-      <BaseCardHeader
-        title="Idade e Gênero"
-        children={
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-100 text-zinc-700">
-            <EllipsisVertical size={14} />
-          </div>
-        }
-      />
+      <BaseCardHeader title="Idade e Gênero" />
       {isGettingData ? (
         <Skeleton className="mx-auto mt-4 h-[17rem] w-11/12" />
       ) : (

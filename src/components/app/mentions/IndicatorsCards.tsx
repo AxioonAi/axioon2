@@ -15,8 +15,6 @@ export function IndicatorsCards() {
   const { mentionsData, isGettingData } = useMentionsDataContext();
   const [indicators, setIndicators] = useState<IndicatorsProps[]>([]);
 
-  console.log("mentionsData: ", mentionsData);
-
   useEffect(() => {
     if (mentionsData) {
       setIndicators([

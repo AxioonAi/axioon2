@@ -1,6 +1,5 @@
 "use client";
 import { twMerge } from "tailwind-merge";
-import { EllipsisVertical } from "lucide-react";
 import { ApexOptions } from "apexcharts";
 import { useEffect, useState } from "react";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
@@ -85,14 +84,7 @@ export function GenderDonutGraph({
 
   return (
     <BaseCard className="p-0">
-      <BaseCardHeader
-        title="Comentários por Sentimento"
-        children={
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-100 text-zinc-700">
-            <EllipsisVertical size={14} />
-          </div>
-        }
-      />
+      <BaseCardHeader title="Comentários por Sentimento" />
       {isGettingData ? (
         <Skeleton className={twMerge("mx-auto mt-4 h-80 w-11/12", className)} />
       ) : (

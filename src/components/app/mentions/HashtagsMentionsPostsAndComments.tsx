@@ -1,9 +1,15 @@
 "use client";
-import { ChevronDown, EllipsisVertical } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import autoAnimate from "@formkit/auto-animate";
 import { twMerge } from "tailwind-merge";
 import Image from "next/image";
+import {
+  Popover,
+  PopoverArrow,
+  PopoverContent,
+  PopoverTrigger,
+} from "@radix-ui/react-popover";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { useOffsetContext } from "@/context/test";
@@ -130,6 +136,7 @@ export function HashtagsMentionsPostsAndComments() {
   >([]);
   const [finalPostData, setFinalPostData] = useState<FinalPostsProps[]>([]);
   const { isGettingData, hashtagData } = useMentionsDataContext();
+  const [filter, setFilter] = useState<string>("desc");
 
   useEffect(() => {
     if (hashtagData) {
@@ -214,13 +221,71 @@ export function HashtagsMentionsPostsAndComments() {
         title="Comentários"
         children={
           <div className="flex items-center gap-2" ref={elementRef}>
-            <button className="flex items-center gap-2 rounded bg-sky-700 px-2 py-1 text-xs text-white">
-              <span>Ordenar</span>
-              <ChevronDown size={14} />
-            </button>
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-100 text-zinc-700">
-              <EllipsisVertical size={14} />
-            </div>
+            <Popover>
+              <PopoverTrigger asChild>
+                <button className="flex items-center gap-2 text-xs text-zinc-500">
+                  <span>Filtros</span>
+                  <ChevronDown size={14} />
+                </button>
+              </PopoverTrigger>
+              <PopoverContent className="z-[9999] flex w-40 flex-col overflow-hidden rounded-md border border-zinc-400 bg-white shadow outline-none">
+                <PopoverArrow />
+                <button
+                  onClick={() => setFilter("")}
+                  className={twMerge(
+                    "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                    filter === "" && "bg-darkBlueAxion/10",
+                  )}
+                >
+                  Todas
+                </button>
+                <button
+                  onClick={() => setFilter("positive")}
+                  className={twMerge(
+                    "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                    filter === "positive" && "bg-darkBlueAxion/10",
+                  )}
+                >
+                  Positivas
+                </button>
+                <button
+                  onClick={() => setFilter("neutral")}
+                  className={twMerge(
+                    "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                    filter === "neutral" && "bg-darkBlueAxion/10",
+                  )}
+                >
+                  Neutras
+                </button>
+                <button
+                  onClick={() => setFilter("negative")}
+                  className={twMerge(
+                    "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                    filter === "negative" && "bg-darkBlueAxion/10",
+                  )}
+                >
+                  Negativas
+                </button>
+                <button
+                  onClick={() => setFilter("desc")}
+                  className={twMerge(
+                    "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                    filter === "desc" && "bg-darkBlueAxion/10",
+                  )}
+                >
+                  Descendente
+                </button>
+                <button
+                  onClick={() => setFilter("asc")}
+                  className={twMerge(
+                    "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                    filter === "asc" && "bg-darkBlueAxion/10",
+                  )}
+                >
+                  Ascendente
+                </button>
+              </PopoverContent>
+            </Popover>
           </div>
         }
       />

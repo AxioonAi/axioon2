@@ -31,9 +31,11 @@ export function IndicatorsBaseCard({
           {/* <ReactApexChart options={options} series={series} type="line" /> */}
           <Image
             src={
-              IndicatorsData.trendingValue > 0
-                ? "/trendingUp.svg"
-                : "/trendingDown.svg"
+              IndicatorsData.trendingValue
+                ? IndicatorsData.trendingValue > 0
+                  ? "/trendingUp.svg"
+                  : "/trendingDown.svg"
+                : "/trendingUp.svg"
             }
             alt="trending"
             width={300}
@@ -52,8 +54,10 @@ export function IndicatorsBaseCard({
                 : "text-red-500",
             )}
           >
-            {IndicatorsData.trendingValue > 0 && "+"}
-            {IndicatorsData.trendingValue}%
+            {IndicatorsData.trendingValue
+              ? IndicatorsData.trendingValue > 0 && "+"
+              : ""}
+            {IndicatorsData.trendingValue ? IndicatorsData.trendingValue : "2"}%
           </span>
           <span className="text-xs text-zinc-500 xl:text-sm 3xl:text-base">
             {IndicatorsData.name}

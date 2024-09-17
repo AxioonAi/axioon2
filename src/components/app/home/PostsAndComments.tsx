@@ -1,5 +1,5 @@
 "use client";
-import { ChevronDown, EllipsisVertical } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import autoAnimate from "@formkit/auto-animate";
@@ -385,9 +385,6 @@ export function PostsAndComments() {
                 </button>
               </PopoverContent>
             </Popover>
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-100 text-zinc-700">
-              <EllipsisVertical size={14} />
-            </div>
           </div>
         }
       />

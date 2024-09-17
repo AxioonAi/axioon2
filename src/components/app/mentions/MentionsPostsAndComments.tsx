@@ -1,5 +1,5 @@
 "use client";
-import { ChevronDown, EllipsisVertical } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import autoAnimate from "@formkit/auto-animate";
 import { twMerge } from "tailwind-merge";
@@ -258,9 +258,6 @@ export function MentionsPostsAndComments() {
                 </button>
               </PopoverContent>
             </Popover>
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-zinc-100 text-zinc-700">
-              <EllipsisVertical size={14} />
-            </div>
           </div>
         }
       />
