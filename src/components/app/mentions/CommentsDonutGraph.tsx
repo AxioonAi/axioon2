@@ -24,14 +24,6 @@ interface CommentsDonutGraphProps {
   className?: string;
 }
 
-interface CommentsBySentimentProps {
-  countSentiment0To350: number;
-  countSentiment351To650: number;
-  countSentiment651To1000: number;
-  sentimentAverage: number;
-  totalSentiment: number;
-}
-
 interface SeriesProps {
   series: number[];
 }
@@ -40,78 +32,44 @@ export function CommentsDonutGraph({
   CommentsDonutGraphData,
   className,
 }: CommentsDonutGraphProps) {
-  const [instagramComments, setInstagramComments] =
-    useState<CommentsBySentimentProps>();
   const [commentsBySentiment, setCommentsBySentiment] = useState<SeriesProps>();
   const { isGettingData, mentionsData } = useMentionsDataContext();
   const [footerData, setFooterData] = useState([
     {
-      title: "Positivo",
+      title: "Instagram",
       color: "bg-sky-900",
       value: 1624,
     },
     {
-      title: "Neutro",
+      title: "Portais",
       color: "bg-sky-400",
       value: 1267,
-    },
-    {
-      title: "Negativo",
-      color: "bg-sky-200",
-      value: 162,
     },
   ]);
 
   useEffect(() => {
     if (mentionsData) {
-      setInstagramComments(mentionsData.mentions.commentsBySentiment);
+      setCommentsBySentiment({
+        series: [
+          mentionsData?.mentions.mentionQuantity.instagram,
+          mentionsData?.mentions.mentionQuantity.news,
+        ],
+      });
+
+      setFooterData([
+        {
+          title: "Instagram",
+          color: "bg-sky-900",
+          value: mentionsData?.mentions.mentionQuantity.instagram,
+        },
+        {
+          title: "Portais",
+          color: "bg-sky-400",
+          value: mentionsData?.mentions.mentionQuantity.news,
+        },
+      ]);
     }
   }, [mentionsData]);
-
-  useEffect(() => {
-    const sentimentValues = [instagramComments];
-    const summedValues = sentimentValues.reduce(
-      (acc, curr) => {
-        if (curr) {
-          acc!.countSentiment651To1000 += curr.countSentiment651To1000;
-          acc!.countSentiment351To650 += curr.countSentiment351To650;
-          acc!.countSentiment0To350 += curr.countSentiment0To350;
-        }
-        return acc;
-      },
-      {
-        countSentiment651To1000: 0,
-        countSentiment351To650: 0,
-        countSentiment0To350: 0,
-      },
-    );
-
-    setCommentsBySentiment({
-      series: [
-        summedValues!.countSentiment651To1000,
-        summedValues!.countSentiment351To650,
-        summedValues!.countSentiment0To350,
-      ],
-    });
-
-    setFooterData([
-      {
-        title: "Positivo",
-        color: "bg-sky-900",
-        value: summedValues!.countSentiment651To1000,
-      },
-      {
-        title: "Neutro",
-        color: "bg-sky-400",
-        value: summedValues!.countSentiment351To650,
-      },
-      {
-        title: "Negativo",
-        color: "bg-sky-200",
-        value: summedValues!.countSentiment0To350,
-      },
-    ]);
-  }, [instagramComments]);
 
   return (
     <BaseCard className="p-0">
