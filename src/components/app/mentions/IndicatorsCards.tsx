@@ -19,16 +19,16 @@ export function IndicatorsCards() {
     if (mentionsData) {
       setIndicators([
         {
+          name: "Engajamento",
+          value: mentionsData.mentions.staticData.engagement,
+        },
+        {
           name: "Menções",
           value: mentionsData.mentions.staticData.mentions,
         },
         {
-          name: "Público Atingido",
+          name: "Alcançe",
           value: mentionsData.mentions.staticData.userRange,
-        },
-        {
-          name: "Engajamento",
-          value: mentionsData.mentions.staticData.engagement,
         },
       ]);
     }

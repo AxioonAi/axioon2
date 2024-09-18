@@ -176,7 +176,7 @@ export function SwiperNews() {
         <form
           action={AddWebsite}
           onSubmit={(e) => e.preventDefault()}
-          className="flex w-full flex-col gap-4 px-4 pb-4"
+          className="flex w-full flex-col px-4 pb-4"
         >
           <div className="flex w-full items-center justify-between">
             <label className="text-lg font-semibold">Adicionar Sites</label>
@@ -187,23 +187,17 @@ export function SwiperNews() {
               <X />
             </button>
           </div>
-          <div className="flex flex-col">
-            <label>Insira uma ou mais URLs para monitorar</label>
-            <CreatableSelect
-              className="w-full"
-              isMulti
-              components={{
-                DropdownIndicator: () => null,
-              }}
-              placeholder="https://exemplo.com.br https://exemplo2.com.br"
-              onChange={(e) =>
-                setNewWebsiteUrls(
-                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                  e.map((item: any) => item.value),
-                )
-              }
-            />
-          </div>
+          <CreatableSelect
+            className="w-full"
+            isMulti
+            placeholder="https://exemplo.com.br"
+            onChange={(e) =>
+              setNewWebsiteUrls(
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                e.map((item: any) => item.value),
+              )
+            }
+          />
           <button
             type="submit"
             onClick={() => AddWebsite()}

@@ -13,24 +13,22 @@ import { useCookies } from "next-client-cookies";
 import { PerfilCard } from "../parameters/PerfilCard";
 import "swiper/swiper-bundle.css";
 import { CardWithTitleAndButton } from "../parameters/CardWithTitleAndButton";
-import { EditProfileModal } from "../parameters/EditProfileModal";
 import { authGetAPI, token as Token } from "@/lib/axios";
 import { Skeleton } from "@/components/global/Skeleton";
 
 register();
 
-export interface Politician {
+interface Politician {
   campaignNumber: number;
   city: string;
-  cpf: string | null;
-  facebook: string | null;
+  facebook: string;
   id: string;
   image: string;
-  instagram: string | null;
+  instagram: string;
   name: string;
   politicalGroup: string;
-  tiktok: string | null;
-  youtube: string | null;
+  tiktok: string;
+  youtube: string;
 }
 export function SwiperPoliticians() {
   const cookies = useCookies();
@@ -38,8 +36,6 @@ export function SwiperPoliticians() {
   const [slidesPerView, setSlidesPerView] = useState(3);
   const [politicians, setPoliticians] = useState<Politician[]>([]);
   const [isGettingData, setIsGettingData] = useState(true);
-  const [openEditModal, setOpenEditModal] = useState(false);
-  const [selectedId, setSelectedId] = useState<string | null>(null);
 
   async function GetPoliticians() {
     setIsGettingData(true);
@@ -91,89 +87,72 @@ export function SwiperPoliticians() {
     };
   }, [updateSlidesPerView]);
 
-  console.log("politicians: ", politicians);
-
   return (
-    <>
-      <div className="flex w-full flex-col gap-4">
-        <div className="col-span-12 rounded-md bg-white shadow-md">
-          <CardWithTitleAndButton
-            title="Perfis Monitorados"
-            buttonText="3 de 5 disponíveis"
-            hasTwoButtons={true}
-            secondButtonText="Novo Perfil"
-          />
-        </div>
-        <div className="flex w-full">
-          {isGettingData ? (
-            <Swiper
-              ref={sliderRef}
-              slidesPerView={slidesPerView}
-              spaceBetween={100}
-            >
-              <SwiperSlide className="py-2">
-                <div className="flex w-80 flex-col rounded-md bg-white p-4 shadow-md">
-                  <Skeleton className="h-[9.5rem] w-full" />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide className="py-2">
-                <div className="flex w-80 flex-col rounded-md bg-white p-4 shadow-md">
-                  <Skeleton className="h-[9.5rem] w-full" />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide className="py-2">
-                <div className="flex w-80 flex-col rounded-md bg-white p-4 shadow-md">
-                  <Skeleton className="h-[9.5rem] w-full" />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide className="py-2">
-                <div className="flex w-80 flex-col rounded-md bg-white p-4 shadow-md">
-                  <Skeleton className="h-[9.5rem] w-full" />
-                </div>
-              </SwiperSlide>
-            </Swiper>
-          ) : (
-            <Swiper
-              ref={sliderRef}
-              slidesPerView={slidesPerView}
-              spaceBetween={100}
-            >
-              {politicians.map((politician) => (
-                <SwiperSlide key={politician.id} className="py-2">
-                  <PerfilCard
-                    politician={politician}
-                    setOpenEditModal={setOpenEditModal}
-                    setSelectedId={setSelectedId}
-                  />
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          )}
-        </div>
-        <div className="mt-4 flex justify-between">
-          <button
-            onClick={() => handlePrev()}
-            className="flex h-8 w-8 items-center justify-center rounded bg-white p-2 shadow-md"
-          >
-            <ChevronLeft className="stroke-[3]" />
-          </button>
-          <button
-            onClick={() => handleNext()}
-            className="flex h-8 w-8 items-center justify-center rounded bg-white p-2 shadow-md"
-          >
-            <ChevronRight className="stroke-[3]" />
-          </button>
-        </div>
-      </div>
-      {selectedId && (
-        <EditProfileModal
-          open={openEditModal}
-          setOpen={setOpenEditModal}
-          id={selectedId}
-          politicians={politicians}
-          GetPoliticians={GetPoliticians}
+    <div className="flex w-full flex-col gap-4">
+      <div className="col-span-12 rounded-md bg-white shadow-md">
+        <CardWithTitleAndButton
+          title="Perfis Monitorados"
+          buttonText="3 de 5 disponíveis"
+          hasTwoButtons={true}
+          secondButtonText="Novo Perfil"
         />
-      )}
-    </>
+      </div>
+      <div className="flex w-full">
+        {isGettingData ? (
+          <Swiper
+            ref={sliderRef}
+            slidesPerView={slidesPerView}
+            spaceBetween={100}
+          >
+            <SwiperSlide className="py-2">
+              <div className="flex w-80 flex-col rounded-md bg-white p-4 shadow-md">
+                <Skeleton className="h-[9.5rem] w-full" />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide className="py-2">
+              <div className="flex w-80 flex-col rounded-md bg-white p-4 shadow-md">
+                <Skeleton className="h-[9.5rem] w-full" />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide className="py-2">
+              <div className="flex w-80 flex-col rounded-md bg-white p-4 shadow-md">
+                <Skeleton className="h-[9.5rem] w-full" />
+              </div>
+            </SwiperSlide>
+            <SwiperSlide className="py-2">
+              <div className="flex w-80 flex-col rounded-md bg-white p-4 shadow-md">
+                <Skeleton className="h-[9.5rem] w-full" />
+              </div>
+            </SwiperSlide>
+          </Swiper>
+        ) : (
+          <Swiper
+            ref={sliderRef}
+            slidesPerView={slidesPerView}
+            spaceBetween={100}
+          >
+            {politicians.map((politician) => (
+              <SwiperSlide key={politician.id} className="py-2">
+                <PerfilCard politician={politician} />
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        )}
+      </div>
+      <div className="mt-4 flex justify-between">
+        <button
+          onClick={() => handlePrev()}
+          className="flex h-8 w-8 items-center justify-center rounded bg-white p-2 shadow-md"
+        >
+          <ChevronLeft className="stroke-[3]" />
+        </button>
+        <button
+          onClick={() => handleNext()}
+          className="flex h-8 w-8 items-center justify-center rounded bg-white p-2 shadow-md"
+        >
+          <ChevronRight className="stroke-[3]" />
+        </button>
+      </div>
+    </div>
   );
 }
