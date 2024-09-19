@@ -125,7 +125,7 @@ export const IncomeDonutChartData = {
       value: 1267,
     },
     {
-      title: "Indefinido",
+      title: "Indeterminado",
       color: "bg-sky-200",
       value: 162,
     },
@@ -219,7 +219,7 @@ export const ExpensesDonutChartData = {
       value: 1267,
     },
     {
-      title: "Indefinido",
+      title: "Indeterminado",
       color: "bg-sky-200",
       value: 162,
     },

@@ -117,7 +117,7 @@ export const FollowersDonutByGenderChartData = {
       value: 1267,
     },
     {
-      title: "Indefinido",
+      title: "Indeterminado",
       color: "bg-sky-200",
       value: 162,
     },
@@ -222,7 +222,7 @@ export const FollowersDonutChartData = {
       value: 1267,
     },
     {
-      title: "Indefinido",
+      title: "Indeterminado",
       color: "bg-sky-200",
       value: 162,
     },
@@ -961,7 +961,7 @@ export const CommentsDonutChartData = {
       value: 1267,
     },
     {
-      title: "Indefinido",
+      title: "Indeterminado",
       color: "bg-sky-200",
       value: 162,
     },
