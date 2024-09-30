@@ -74,7 +74,7 @@ export function GenderDonutGraph({
           value: genderValues!.female,
         },
         {
-          title: "Indefinido",
+          title: "Indeterminado",
           color: "bg-sky-200",
           value: genderValues!.unknown,
         },

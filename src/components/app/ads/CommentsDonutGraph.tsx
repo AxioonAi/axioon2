@@ -45,7 +45,7 @@ export function CommentsDonutGraph({
       value: 1267,
     },
     {
-      title: "Indefinido",
+      title: "Indeterminado",
       color: "bg-sky-200",
       value: 162,
     },

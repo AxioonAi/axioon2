@@ -115,7 +115,7 @@ export function CommentsDonutGraph({
 
   return (
     <BaseCard className="p-0">
-      <BaseCardHeader title="Comentários por Sentimento" />
+      <BaseCardHeader title="Menções por Fonte" />
       {isGettingData ? (
         <Skeleton className={twMerge("mx-auto mt-4 h-80 w-11/12", className)} />
       ) : (

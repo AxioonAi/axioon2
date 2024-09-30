@@ -131,7 +131,7 @@ export const CommentsSentimentDonutGraphData = {
       value: 1267,
     },
     {
-      title: "Indefinido",
+      title: "Indeterminado",
       color: "bg-sky-200",
       value: 162,
     },
@@ -142,7 +142,7 @@ export const CommentsGenderDonutGraphData = {
   ChartOptions: {
     series: [1624, 1267, 162],
     options: {
-      labels: ["Feminino", "Masculino", "Indefinido"],
+      labels: ["Feminino", "Masculino", "Indeterminado"],
       chart: {
         type: "donut" as const,
       },
@@ -233,7 +233,7 @@ export const CommentsGenderDonutGraphData = {
       value: 1267,
     },
     {
-      title: "Indefinido",
+      title: "Indeterminado",
       color: "bg-sky-200",
       value: 162,
     },
@@ -756,7 +756,7 @@ export const CommentsDonutGraphData = {
       value: 1267,
     },
     {
-      title: "Indefinido",
+      title: "Indeterminado",
       color: "bg-sky-200",
       value: 162,
     },

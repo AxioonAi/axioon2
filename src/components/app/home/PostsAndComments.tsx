@@ -317,7 +317,7 @@ export function PostsAndComments() {
   return (
     <BaseCard ref={elementRef} className="min-h-96 overflow-hidden p-0">
       <BaseCardHeader
-        title="Comentários"
+        title="Publicações e Comentários"
         children={
           <div className="flex items-center gap-2">
             <Popover>

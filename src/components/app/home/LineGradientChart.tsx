@@ -113,7 +113,7 @@ export function LineGradientChart({
           />
         </div>
       )}
-      <BaseCardFooter text="Sentimento médio por publicação." />
+      <BaseCardFooter text="Sentimento médio por dia." />
     </BaseCard>
   );
 }
