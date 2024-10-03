@@ -11,6 +11,8 @@ import "swiper/swiper-bundle.css";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useCookies } from "next-client-cookies";
 import CreatableSelect from "react-select/creatable";
+
+import { twMerge } from "tailwind-merge";
 import { HashtagCard } from "../parameters/HashtagCard";
 import { CardWithTitleAndButton } from "../parameters/CardWithTitleAndButton";
 import { authGetAPI, AuthPostAPI, token as Token } from "@/lib/axios";
@@ -28,7 +30,7 @@ export function SwiperHashtag() {
   const [slidesPerView, setSlidesPerView] = useState(3);
   const [hashtag, setHashtag] = useState<hashtag[]>([]);
   const [openModal, setOpenModal] = useState(false);
-  const [newHashtags, setNewHashtags] = useState<string[]>([""]);
+  const [newHashtags, setNewHashtags] = useState<string[] | null>(null);
   const [isAddingHashtag, setIsAddingHashtag] = useState(false);
   const [isGettingData, setIsGettingData] = useState(true);
   const cookie = useCookies();
@@ -47,8 +49,8 @@ export function SwiperHashtag() {
   async function AddHashtag() {
     const token = cookie.get(Token);
     setIsAddingHashtag(true);
-    if (newHashtags[0] === "") {
-      alert("Hashtag não informada");
+    if (newHashtags && newHashtags[0] === "") {
+      alert("Hashtag(s) não informada");
       return setIsAddingHashtag(false);
     }
     const connect = await AuthPostAPI(
@@ -60,7 +62,7 @@ export function SwiperHashtag() {
     );
     if (connect.status === 200) {
       setNewHashtags([""]);
-      alert("Hashtag adicionada");
+      alert("Hashtag(s) adicionada(s)");
       setOpenModal(false);
       GetHashtags();
       return setIsAddingHashtag(false);
@@ -112,7 +114,7 @@ export function SwiperHashtag() {
           title="Hashtags Monitoradas"
           buttonText={hashtag.length + " de 5 disponíveis"}
           hasTwoButtons={true}
-          secondButtonText="Nova Hashtag"
+          secondButtonText="Nova(s) Hashtag(s)"
           secondButtonOnClick={() => setOpenModal(true)}
         />
       </div>
@@ -177,10 +179,12 @@ export function SwiperHashtag() {
         <form
           action={AddHashtag}
           onSubmit={(e) => e.preventDefault()}
-          className="flex w-full flex-col px-4 pb-4"
+          className="flex w-full flex-col gap-4 px-4 pb-4"
         >
           <div className="flex w-full items-center justify-between">
-            <label className="text-lg font-semibold">Adicionar Hashtag</label>
+            <label className="text-lg font-semibold">
+              Adicionar Hashtag(s)
+            </label>
             <button
               onClick={() => setOpenModal(false)}
               className="h-8 w-8 items-center justify-center"
@@ -188,17 +192,23 @@ export function SwiperHashtag() {
               <X />
             </button>
           </div>
-          <CreatableSelect
-            className="w-full"
-            isMulti
-            placeholder="#"
-            onChange={(e) =>
-              setNewHashtags(
-                // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                e.map((item: any) => item.value),
-              )
-            }
-          />
+          <div className="flex flex-col">
+            <label>Insira uma ou mais Hashtags para monitorar</label>
+            <CreatableSelect
+              className="w-full"
+              isMulti
+              components={{
+                DropdownIndicator: () => null,
+              }}
+              placeholder="#hashtag #hashtag #hashtag"
+              onChange={(e) =>
+                setNewHashtags(
+                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                  e.map((item: any) => item.value),
+                )
+              }
+            />
+          </div>
           {/* <div className="flex w-full items-center gap-1 rounded-md bg-white p-2">
             #
             <input
@@ -211,8 +221,13 @@ export function SwiperHashtag() {
           <button
             type="submit"
             onClick={() => AddHashtag()}
-            disabled={isAddingHashtag}
-            className="mt-4 w-full rounded-md bg-sky-600 px-2 py-1 text-white transition-transform hover:scale-[1.02]"
+            disabled={isAddingHashtag || !newHashtags}
+            className={twMerge(
+              "mt-4 w-full rounded-md bg-sky-600 px-2 py-1 text-white",
+              isAddingHashtag || !newHashtags
+                ? "cursor-not-allowed opacity-70"
+                : "transition-transform hover:scale-[1.02] hover:bg-sky-700",
+            )}
           >
             {isAddingHashtag ? <Spinner /> : "Adicionar"}
           </button>

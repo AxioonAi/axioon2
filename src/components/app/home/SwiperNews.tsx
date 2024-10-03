@@ -11,6 +11,7 @@ import "swiper/swiper-bundle.css";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useCookies } from "next-client-cookies";
 import CreatableSelect from "react-select/creatable";
+import { twMerge } from "tailwind-merge";
 import { NewsCard } from "../parameters/NewsCard";
 import { CardWithTitleAndButton } from "../parameters/CardWithTitleAndButton";
 import { authGetAPI, AuthPostAPI, token as Token } from "@/lib/axios";
@@ -32,7 +33,7 @@ export function SwiperNews() {
   const [slidesPerView, setSlidesPerView] = useState(3);
   const [news, setNews] = useState<News[]>([]);
   const [openModal, setOpenModal] = useState(false);
-  const [newWebsiteUrls, setNewWebsiteUrls] = useState([""]);
+  const [newWebsiteUrls, setNewWebsiteUrls] = useState<string[] | null>(null);
   const [isAddingWebsite, setIsAddingWebsite] = useState(false);
   const [isGettingData, setIsGettingData] = useState(true);
 
@@ -50,7 +51,7 @@ export function SwiperNews() {
   async function AddWebsite() {
     const token = cookies.get(Token);
     setIsAddingWebsite(true);
-    if (newWebsiteUrls[0] === "") {
+    if (newWebsiteUrls && newWebsiteUrls[0] === "") {
       alert("Url não informada");
       return setIsAddingWebsite(false);
     }
@@ -112,7 +113,7 @@ export function SwiperNews() {
       <div className="col-span-12 rounded-md bg-white shadow-md">
         <CardWithTitleAndButton
           title="Sites e Portais monitorados"
-          buttonText="Solicitar novo Portal"
+          buttonText="Solicitar novo(s) Portal(is)"
           firstButtonOnClick={() => setOpenModal(true)}
         />
       </div>
@@ -201,8 +202,13 @@ export function SwiperNews() {
           <button
             type="submit"
             onClick={() => AddWebsite()}
-            disabled={isAddingWebsite}
-            className="mt-4 w-full rounded-md bg-sky-600 px-2 py-1 text-white transition-transform hover:scale-[1.02]"
+            disabled={isAddingWebsite || !newWebsiteUrls}
+            className={twMerge(
+              "mt-4 w-full rounded-md bg-sky-600 px-2 py-1 text-white",
+              isAddingWebsite || !newWebsiteUrls
+                ? "cursor-not-allowed opacity-70"
+                : "transition-transform hover:scale-[1.02] hover:bg-sky-700",
+            )}
           >
             {isAddingWebsite ? <Spinner /> : "Enviar"}
           </button>

@@ -31,7 +31,7 @@ export function Modal({ show, onHide, children, className }: Props) {
         >
           <button
             onClick={onHide}
-            className="absolute z-40 h-full w-full bg-black/20"
+            className="absolute z-40 h-full w-full bg-black/50"
           />
           <div className="relative z-50 flex flex-col items-center justify-center">
             <div
