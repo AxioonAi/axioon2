@@ -188,7 +188,7 @@ export function MentionsPostsAndComments() {
   };
 
   return (
-    <BaseCard className="min-h-96 overflow-hidden p-0">
+    <BaseCard className="min-h-[75vh] overflow-hidden p-0">
       <BaseCardHeader
         title="Publicações e Comentários"
         children={
@@ -264,7 +264,7 @@ export function MentionsPostsAndComments() {
       {isGettingData ? (
         <Skeleton className="mx-auto mt-4 h-[17rem] w-11/12" />
       ) : (
-        <div className="flex h-full max-h-[60vh] w-full flex-col gap-4 overflow-y-scroll p-4">
+        <div className="flex h-full max-h-[70vh] w-full flex-col gap-4 overflow-y-scroll p-4">
           {finalPostData
             .filter((item) =>
               filter === "positive"

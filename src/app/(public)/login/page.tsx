@@ -144,14 +144,14 @@ export default function Login() {
                 />
               )}
             </div>
-            <div className="flex justify-end">
+            {/* <div className="flex justify-end">
               <span
                 className="cursor-pointer border-0 bg-transparent text-brand_blue"
                 onClick={() => router.push("/recover-password")}
               >
                 Esqueceu sua senha?
               </span>
-            </div>
+            </div> */}
             <button
               onClick={handleLogin}
               disabled={buttonLoading}
