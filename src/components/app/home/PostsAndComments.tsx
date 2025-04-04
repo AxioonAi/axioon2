@@ -1,21 +1,21 @@
 "use client";
-import { ChevronDown } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
-import Image from "next/image";
+import { BaseCard } from "@/components/global/BaseCard/BaseCard";
+import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
+import { Skeleton } from "@/components/global/Skeleton";
+import { useSocialMediaDataContext } from "@/context/SocialMediaData";
+import { useOffsetContext } from "@/context/test";
+import { shortenNumber } from "@/utils/masks";
 import autoAnimate from "@formkit/auto-animate";
-import { twMerge } from "tailwind-merge";
 import {
   Popover,
   PopoverArrow,
   PopoverContent,
   PopoverTrigger,
 } from "@radix-ui/react-popover";
-import { BaseCard } from "@/components/global/BaseCard/BaseCard";
-import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
-import { useOffsetContext } from "@/context/test";
-import { useSocialMediaDataContext } from "@/context/SocialMediaData";
-import { Skeleton } from "@/components/global/Skeleton";
-import { shortenNumber } from "@/utils/masks";
+import { ChevronDown } from "lucide-react";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface FacebookPostsProps {
   commentCount: number;
@@ -332,7 +332,7 @@ export function PostsAndComments() {
                 <button
                   onClick={() => setFilter("")}
                   className={twMerge(
-                    "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                    "hover:bg-darkBlueAxion/10 flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100",
                     filter === "" && "bg-darkBlueAxion/10",
                   )}
                 >
@@ -341,7 +341,7 @@ export function PostsAndComments() {
                 <button
                   onClick={() => setFilter("positive")}
                   className={twMerge(
-                    "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                    "hover:bg-darkBlueAxion/10 flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100",
                     filter === "positive" && "bg-darkBlueAxion/10",
                   )}
                 >
@@ -350,7 +350,7 @@ export function PostsAndComments() {
                 <button
                   onClick={() => setFilter("neutral")}
                   className={twMerge(
-                    "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                    "hover:bg-darkBlueAxion/10 flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100",
                     filter === "neutral" && "bg-darkBlueAxion/10",
                   )}
                 >
@@ -359,7 +359,7 @@ export function PostsAndComments() {
                 <button
                   onClick={() => setFilter("negative")}
                   className={twMerge(
-                    "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                    "hover:bg-darkBlueAxion/10 flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100",
                     filter === "negative" && "bg-darkBlueAxion/10",
                   )}
                 >
@@ -368,7 +368,7 @@ export function PostsAndComments() {
                 <button
                   onClick={() => setFilter("desc")}
                   className={twMerge(
-                    "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                    "hover:bg-darkBlueAxion/10 flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100",
                     filter === "desc" && "bg-darkBlueAxion/10",
                   )}
                 >
@@ -377,7 +377,7 @@ export function PostsAndComments() {
                 <button
                   onClick={() => setFilter("asc")}
                   className={twMerge(
-                    "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                    "hover:bg-darkBlueAxion/10 flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100",
                     filter === "asc" && "bg-darkBlueAxion/10",
                   )}
                 >

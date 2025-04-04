@@ -1,14 +1,14 @@
 "use client";
-import { twMerge } from "tailwind-merge";
-import { ApexOptions } from "apexcharts";
-import { useEffect, useState } from "react";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
+import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { DonutChartWithFooterData } from "@/components/global/DonutChartWithFooterData";
-import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
 import { Skeleton } from "@/components/global/Skeleton";
 import { useSocialMediaDataContext } from "@/context/SocialMediaData";
 import { shortenNumber } from "@/utils/masks";
+import { ApexOptions } from "apexcharts";
+import { useEffect, useState } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface CommentsDonutGraphProps {
   CommentsDonutGraphData: {
