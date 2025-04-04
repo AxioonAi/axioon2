@@ -1,14 +1,10 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
-import { twMerge } from "tailwind-merge";
-import Image from "next/image";
-import * as Popover from "@radix-ui/react-popover";
-import { ChevronDown } from "lucide-react";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { useComparatorDataContext } from "@/context/ComparatorData";
-import { useSelectedPoliticianContext } from "@/context/SelectedPolitician";
-import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
-import { useSidebarContext } from "@/context/sidebarStatus";
+import { AlignStartVertical } from "lucide-react";
+import { useState } from "react";
+import { twMerge } from "tailwind-merge";
+import { ChangeComparedProfilesModal } from "./ChangeComparedProfilesModal";
 
 export function ComparatorStickyCards() {
   const {
@@ -17,60 +13,25 @@ export function ComparatorStickyCards() {
     passiveUserProfileData,
     setPassiveUserProfileData,
   } = useComparatorDataContext();
-  const { isOpen } = useSidebarContext();
-  const { politicians } = useSelectedPoliticianContext();
-  const [isVisible, setIsVisible] = useState(false);
-  const elementRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
-      {
-        root: null, // Use the viewport as the root
-        rootMargin: "0px",
-        threshold: 0.9, // Adjust this threshold as needed
-      },
-    );
-
-    if (elementRef.current) {
-      observer.observe(elementRef.current);
-    }
-
-    return () => {
-      if (elementRef.current) {
-        observer.unobserve(elementRef.current);
-      }
-    };
-  }, []);
+  const [showChangeComparedProfilesModal, setShowChangeComparedProfilesModal] =
+    useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
-    <div
-      ref={elementRef}
-      className={twMerge(
-        "z-50 flex flex-col gap-4 lg:col-span-12 lg:grid lg:grid-cols-12",
-      )}
-    >
-      <div
-        className={twMerge(
-          "h-[26rem] lg:col-span-12 lg:h-60 xl:h-40",
-          isVisible ? "hidden" : "",
-        )}
-      />
-      <div
-        className={twMerge(
-          "flex flex-col gap-4 lg:col-span-12 lg:grid lg:grid-cols-12",
-          isVisible && isOpen
-            ? ""
-            : !isVisible && isOpen
-              ? "fixed top-0 w-[calc(100%-32px)] bg-white/30 pt-8 shadow-2xl backdrop-blur-sm md:w-[calc(100%-64px)] lg:right-4 lg:w-[calc(100%-246px)] xl:right-8 xl:w-[calc(100%-290px)]"
-              : !isVisible && !isOpen
-                ? "fixed top-0 w-[calc(100%-32px)] bg-white/30 pt-8 shadow-2xl backdrop-blur-sm md:w-[calc(100%-64px)] lg:right-4 lg:w-[calc(100%-32px)] xl:right-8 xl:w-[calc(100%-64px)]"
-                : "",
-        )}
-      >
-        <div className="lg:col-span-3">
+    <>
+      <div className="flex w-full flex-col items-center lg:col-span-12">
+        <div
+          onClick={() => {
+            setShowChangeComparedProfilesModal(true);
+            setIsModalOpen(true);
+          }}
+          className="bg-darkBlueAxion flex w-3/4 cursor-pointer items-center justify-center gap-2 rounded-t-md p-2 text-sm text-white xl:w-1/5"
+        >
+          <span>ALTERAR COMPARADOS</span>
+          <AlignStartVertical />
+        </div>
+        <div className={twMerge("flex w-full flex-col gap-4 xl:w-1/2")}>
+          {/* <div className="lg:col-span-3">
           <BaseCard className="gap-2">
             <div className="flex w-full items-center justify-between">
               <div className="flex items-center gap-2">
@@ -133,113 +94,36 @@ export function ComparatorStickyCards() {
               </div>
             </div>
           </BaseCard>
-        </div>
-        <div className="lg:col-span-6">
-          <BaseCard className="h-full w-full gap-1 p-0 lg:gap-4">
-            <div className="flex w-full flex-col pt-2 lg:flex-row lg:py-4">
-              <span className="text-center font-semibold lg:hidden">
-                Selecione os Perfis que deseja Comparar
-              </span>
-              <div className="flex w-full items-center justify-between gap-2 px-4">
-                <Popover.Root>
-                  <Popover.Trigger className="flex h-10 w-1/2 rounded bg-sky-900/80 lg:w-1/4">
-                    <div className="flex h-full w-[85%] items-center justify-between gap-2 border-r-2 border-r-black px-2 text-white">
-                      <Image
-                        src="/Icons/user.svg"
-                        alt=""
-                        width={100}
-                        height={100}
-                        className="h-5 w-5"
-                      />
-                      <span className="w-full truncate">
-                        {activeUserProfileData?.name}
-                      </span>
-                      <ChevronDown />
-                    </div>
-                    <div className="flex h-full w-[15%] items-center justify-center">
-                      <Image
-                        src="/Icons/settingWhite.svg"
-                        alt=""
-                        width={100}
-                        height={100}
-                        className="h-5 w-5"
-                      />
-                    </div>
-                  </Popover.Trigger>
-                  <Popover.Content
-                    className="z-50 flex max-h-96 w-52 flex-col items-center justify-between overflow-y-scroll rounded bg-white text-center text-sm font-semibold shadow"
-                    sideOffset={5}
-                    align="start"
-                  >
-                    {politicians.map((politician, index) => (
-                      <button
-                        onClick={() => setActiveUserProfileData(politician)}
-                        key={index}
-                        className={twMerge(
-                          "w-full border-y border-y-gray-200 px-2 py-1",
-                          politician.name === activeUserProfileData?.name &&
-                            "bg-sky-900/20",
-                        )}
-                      >
-                        <span>{politician.name}</span>
-                      </button>
-                    ))}
-                  </Popover.Content>
-                </Popover.Root>
-                <span className="hidden text-center font-semibold lg:block">
+        </div> */}
+          <div>
+            <BaseCard className="h-full w-full gap-1 p-0 lg:gap-4">
+              <div className="flex w-full flex-col pt-2 lg:flex-row lg:py-4">
+                <span className="text-center font-semibold lg:hidden">
                   Selecione os Perfis que deseja Comparar
                 </span>
-                <Popover.Root>
-                  <Popover.Trigger className="flex h-10 w-1/2 rounded bg-sky-900/80 lg:w-1/4">
-                    <div className="flex h-full w-[85%] items-center justify-between gap-2 border-r-2 border-r-black px-2 text-white">
-                      <Image
-                        src="/Icons/user.svg"
-                        alt=""
-                        width={100}
-                        height={100}
-                        className="h-5 w-5"
-                      />
-                      <span className="w-full truncate">
-                        {passiveUserProfileData?.name}
-                      </span>
-                      <ChevronDown />
-                    </div>
-                    <div className="flex h-full w-[15%] items-center justify-center">
-                      <Image
-                        src="/Icons/settingWhite.svg"
-                        alt=""
-                        width={100}
-                        height={100}
-                        className="h-5 w-5"
-                      />
-                    </div>
-                  </Popover.Trigger>
-                  <Popover.Content
-                    className="z-50 flex max-h-96 w-52 flex-col items-center justify-between overflow-y-scroll rounded bg-white text-center text-sm font-semibold shadow"
-                    sideOffset={5}
-                    align="start"
-                  >
-                    {politicians.map((politician, index) => (
-                      <button
-                        onClick={() => setPassiveUserProfileData(politician)}
-                        key={index}
-                        className={twMerge(
-                          "w-full border-y border-y-gray-200 px-2 py-1",
-                          politician.name === passiveUserProfileData?.name &&
-                            "bg-sky-900/20",
-                        )}
-                      >
-                        <span>{politician.name}</span>
-                      </button>
-                    ))}
-                  </Popover.Content>
-                </Popover.Root>
+                <div className="flex w-full items-center justify-between gap-2 p-4">
+                  <div className="flex h-full w-full flex-col items-center xl:flex-row xl:gap-2">
+                    <span className="text-lg font-semibold">
+                      {activeUserProfileData?.name}
+                    </span>
+                    <span className="text-sm">
+                      {activeUserProfileData?.city}
+                    </span>
+                  </div>
+                  <div className="h-full w-0.5 bg-black" />
+                  <div className="flex h-full w-full flex-col items-center xl:flex-row xl:justify-end xl:gap-2">
+                    <span className="text-lg font-semibold">
+                      {passiveUserProfileData?.name}
+                    </span>
+                    <span className="text-sm">
+                      {passiveUserProfileData?.city}
+                    </span>
+                  </div>
+                </div>
               </div>
-            </div>
-            <BaseCardFooter text="Selecione os perfis que deseja comparar." />
-          </BaseCard>
-        </div>
-        <div className="lg:col-span-3">
+            </BaseCard>
+          </div>
+          {/* <div className="lg:col-span-3">
           <BaseCard className="gap-2">
             <div className="flex w-full items-center justify-between">
               <div className="flex items-center gap-2">
@@ -302,8 +186,18 @@ export function ComparatorStickyCards() {
               </div>
             </div>
           </BaseCard>
+        </div> */}
         </div>
       </div>
-    </div>
+      {isModalOpen && (
+        <ChangeComparedProfilesModal
+          show={showChangeComparedProfilesModal}
+          onHide={() => {
+            setShowChangeComparedProfilesModal(false);
+            setIsModalOpen(false);
+          }}
+        />
+      )}
+    </>
   );
 }

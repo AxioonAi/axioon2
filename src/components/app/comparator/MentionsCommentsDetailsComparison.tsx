@@ -1,0 +1,233 @@
+"use client";
+import { BaseCard } from "@/components/global/BaseCard/BaseCard";
+import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
+import { useComparatorDataContext } from "@/context/ComparatorData";
+import { useEffect, useState } from "react";
+import { twMerge } from "tailwind-merge";
+
+interface CommentsBySentimentProps {
+  countSentiment0To350: number;
+  countSentiment351To650: number;
+  countSentiment651To1000: number;
+  sentimentAverage: number;
+  totalSentiment: number;
+}
+
+export function MentionsCommentsDetailsComparison() {
+  const [activeInstagramCommentsData, setActiveInstagramCommentsData] =
+    useState<CommentsBySentimentProps>();
+  const [passiveInstagramCommentsData, setPassiveInstagramCommentsData] =
+    useState<CommentsBySentimentProps>();
+  const {
+    activeUserMentionsData,
+    passiveUserMentionsData,
+    activeUserProfileData,
+    passiveUserProfileData,
+  } = useComparatorDataContext();
+
+  useEffect(() => {
+    if (activeUserMentionsData) {
+      setActiveInstagramCommentsData(
+        activeUserMentionsData.mentions.commentsBySentiment,
+      );
+    }
+  }, [activeUserMentionsData]);
+
+  useEffect(() => {
+    if (passiveUserMentionsData) {
+      setPassiveInstagramCommentsData(
+        passiveUserMentionsData.mentions.commentsBySentiment,
+      );
+    }
+  }, [passiveUserMentionsData]);
+
+  return (
+    <BaseCard slit className="p-0 lg:col-span-12">
+      <div className="relative flex w-full flex-col items-center justify-between border-b border-b-zinc-700/50 px-4 py-2 xl:px-8 xl:py-4">
+        <strong className="text-sm lg:text-base xl:hidden 2xl:text-lg">
+          SENTIMENTO
+        </strong>
+        <div className="flex w-full items-center justify-between">
+          <div className="absolute left-2 h-1/2 w-1 rounded bg-sky-900 xl:left-4" />
+          <strong className="text-xs lg:text-sm 2xl:text-base">
+            {activeUserProfileData?.name}
+          </strong>
+          <strong className="hidden text-sm lg:text-base xl:block 2xl:text-lg">
+            COMENTÁRIOS POR SENTIMENTO
+          </strong>
+          <strong className="text-xs lg:text-sm 2xl:text-base">
+            {passiveUserProfileData?.name}
+          </strong>
+          <div className="absolute right-2 h-1/2 w-1 rounded bg-sky-900 xl:right-4" />
+        </div>
+      </div>
+
+      <div className="flex w-full flex-col items-center">
+        <div className="flex w-full flex-col items-center justify-between gap-4 py-4 xl:flex-row">
+          <div className="flex h-72 w-full flex-col justify-center gap-4 p-4 xs:h-60 lg:h-full lg:gap-4 lg:p-4 3xl:gap-16">
+            <div className="flex w-full items-center gap-2">
+              <strong className="text-xs lg:text-sm 2xl:text-base 3xl:text-lg">
+                {(activeInstagramCommentsData &&
+                  activeInstagramCommentsData?.countSentiment0To350 +
+                    activeInstagramCommentsData?.countSentiment351To650 +
+                    activeInstagramCommentsData?.countSentiment651To1000) ||
+                  0}{" "}
+                Comentários
+              </strong>
+            </div>
+            <div className="flex h-2 w-full overflow-hidden rounded">
+              <div
+                className={twMerge(
+                  "h-full bg-green-600",
+                  activeInstagramCommentsData &&
+                    activeInstagramCommentsData.countSentiment651To1000 > 0 &&
+                    "rounded-l",
+                )}
+                style={{
+                  width: `${activeInstagramCommentsData && (activeInstagramCommentsData.countSentiment651To1000 / (activeInstagramCommentsData.countSentiment0To350 + activeInstagramCommentsData.countSentiment351To650 + activeInstagramCommentsData.countSentiment651To1000)) * 100}%`,
+                }}
+              />
+              <div
+                className={"h-full bg-violet-600"}
+                style={{
+                  width: `${activeInstagramCommentsData && (activeInstagramCommentsData.countSentiment351To650 / (activeInstagramCommentsData.countSentiment0To350 + activeInstagramCommentsData.countSentiment351To650 + activeInstagramCommentsData.countSentiment651To1000)) * 100}%`,
+                }}
+              />
+              <div
+                className={twMerge(
+                  "h-full bg-red-600",
+                  activeInstagramCommentsData &&
+                    activeInstagramCommentsData.countSentiment0To350 > 0 &&
+                    "rounded-r",
+                )}
+                style={{
+                  width: `${activeInstagramCommentsData && (activeInstagramCommentsData.countSentiment0To350 / (activeInstagramCommentsData.countSentiment0To350 + activeInstagramCommentsData.countSentiment351To650 + activeInstagramCommentsData.countSentiment651To1000)) * 100}%`,
+                }}
+              />
+            </div>
+            <div className="flex flex-col gap-4">
+              <div className="flex w-full items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="h-4 w-4 rounded-full bg-green-600" />
+                  <span className="text-sm lg:text-base 2xl:text-lg">
+                    Comentários Positivos
+                  </span>
+                </div>
+                <span className="text-sm text-zinc-500 lg:text-base 2xl:text-lg">
+                  {activeInstagramCommentsData?.countSentiment651To1000 || 0}{" "}
+                  Comentários
+                </span>
+              </div>
+              <div className="flex w-full items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="h-4 w-4 rounded-full bg-violet-600" />
+                  <span className="text-sm lg:text-base 2xl:text-lg">
+                    Comentários Neutros
+                  </span>
+                </div>
+                <span className="text-sm text-zinc-500 lg:text-base 2xl:text-lg">
+                  {activeInstagramCommentsData?.countSentiment351To650 || 0}{" "}
+                  Comentários
+                </span>
+              </div>
+              <div className="flex w-full items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="h-4 w-4 rounded-full bg-red-600" />
+                  <span className="text-sm lg:text-base 2xl:text-lg">
+                    Comentários Negativos
+                  </span>
+                </div>
+                <span className="text-sm text-zinc-500 lg:text-base 2xl:text-lg">
+                  {activeInstagramCommentsData?.countSentiment0To350 || 0}{" "}
+                  Comentários
+                </span>
+              </div>
+            </div>
+          </div>
+          <div className="xl:h-11/12 my-auto h-px w-11/12 bg-black xl:w-1" />
+          <div className="flex h-72 w-full flex-col justify-center gap-4 p-4 xs:h-60 lg:h-full lg:gap-4 lg:p-4 3xl:gap-16">
+            <div className="flex w-full items-center gap-2">
+              <strong className="text-xs lg:text-sm 2xl:text-base 3xl:text-lg">
+                {(passiveInstagramCommentsData &&
+                  passiveInstagramCommentsData?.countSentiment0To350 +
+                    passiveInstagramCommentsData?.countSentiment351To650 +
+                    passiveInstagramCommentsData?.countSentiment651To1000) ||
+                  0}{" "}
+                Comentários
+              </strong>
+            </div>
+            <div className="flex h-2 w-full overflow-hidden rounded">
+              <div
+                className={twMerge(
+                  "h-full bg-green-600",
+                  passiveInstagramCommentsData &&
+                    passiveInstagramCommentsData.countSentiment651To1000 > 0 &&
+                    "rounded-l",
+                )}
+                style={{
+                  width: `${passiveInstagramCommentsData && (passiveInstagramCommentsData.countSentiment651To1000 / (passiveInstagramCommentsData.countSentiment0To350 + passiveInstagramCommentsData.countSentiment351To650 + passiveInstagramCommentsData.countSentiment651To1000)) * 100}%`,
+                }}
+              />
+              <div
+                className={"h-full bg-violet-600"}
+                style={{
+                  width: `${passiveInstagramCommentsData && (passiveInstagramCommentsData.countSentiment351To650 / (passiveInstagramCommentsData.countSentiment0To350 + passiveInstagramCommentsData.countSentiment351To650 + passiveInstagramCommentsData.countSentiment651To1000)) * 100}%`,
+                }}
+              />
+              <div
+                className={twMerge(
+                  "h-full bg-red-600",
+                  passiveInstagramCommentsData &&
+                    passiveInstagramCommentsData.countSentiment0To350 > 0 &&
+                    "rounded-r",
+                )}
+                style={{
+                  width: `${passiveInstagramCommentsData && (passiveInstagramCommentsData.countSentiment0To350 / (passiveInstagramCommentsData.countSentiment0To350 + passiveInstagramCommentsData.countSentiment351To650 + passiveInstagramCommentsData.countSentiment651To1000)) * 100}%`,
+                }}
+              />
+            </div>
+            <div className="flex flex-col gap-4">
+              <div className="flex w-full items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="h-4 w-4 rounded-full bg-green-600" />
+                  <span className="text-sm lg:text-base 2xl:text-lg">
+                    Comentários Positivos
+                  </span>
+                </div>
+                <span className="text-sm text-zinc-500 lg:text-base 2xl:text-lg">
+                  {passiveInstagramCommentsData?.countSentiment651To1000 || 0}{" "}
+                  Comentários
+                </span>
+              </div>
+              <div className="flex w-full items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="h-4 w-4 rounded-full bg-violet-600" />
+                  <span className="text-sm lg:text-base 2xl:text-lg">
+                    Comentários Neutros
+                  </span>
+                </div>
+                <span className="text-sm text-zinc-500 lg:text-base 2xl:text-lg">
+                  {passiveInstagramCommentsData?.countSentiment351To650 || 0}{" "}
+                  Comentários
+                </span>
+              </div>
+              <div className="flex w-full items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <div className="h-4 w-4 rounded-full bg-red-600" />
+                  <span className="text-sm lg:text-base 2xl:text-lg">
+                    Comentários Negativos
+                  </span>
+                </div>
+                <span className="text-sm text-zinc-500 lg:text-base 2xl:text-lg">
+                  {passiveInstagramCommentsData?.countSentiment0To350 || 0}{" "}
+                  Comentários
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <BaseCardFooter text="Quantidade de comentários separados por sentimento." />
+    </BaseCard>
+  );
+}

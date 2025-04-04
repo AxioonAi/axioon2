@@ -1,14 +1,14 @@
 "use client";
-import { ApexOptions } from "apexcharts";
-import { twMerge } from "tailwind-merge";
-import { useEffect, useState } from "react";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { DonutChartWithFooterData } from "@/components/global/DonutChartWithFooterData";
-import { useComparatorDataContext } from "@/context/ComparatorData";
 import { Skeleton } from "@/components/global/Skeleton";
+import { useComparatorDataContext } from "@/context/ComparatorData";
 import { shortenNumber } from "@/utils/masks";
+import { ApexOptions } from "apexcharts";
+import { useEffect, useState } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface ActiveFollowersDonutChartProps {
   FollowersDonutChartData: {
