@@ -22,7 +22,6 @@ import { MentionsHeaderCard } from "@/components/app/mentions/MentionsHeaderCard
 import { MentionsMainActors } from "@/components/app/mentions/MentionsMainActors";
 import { MentionsMainInfluencers } from "@/components/app/mentions/MentionsMainInfluencers";
 import { MentionsPostsAndComments } from "@/components/app/mentions/MentionsPostsAndComments";
-import { MentionsSelector } from "@/components/app/mentions/MentionsSelector";
 import { MentionsSource } from "@/components/app/mentions/MentionsSource";
 import { ScoreGaugeChart } from "@/components/app/mentions/ScoreGaugeChart";
 import { Words } from "@/components/app/mentions/Words";
@@ -41,9 +40,9 @@ export default function Mentions() {
       <div className="lg:col-span-12 lg:row-span-2">
         <MentionsHeaderCard title="Menções" />
       </div>
-      <div className="lg:col-span-12 lg:row-span-2">
+      {/* <div className="lg:col-span-12 lg:row-span-2">
         <MentionsSelector />
-      </div>
+      </div> */}
       {selectedMentionsType === "personal" ? (
         <>
           <div className="lg:col-span-12 lg:row-span-4">
