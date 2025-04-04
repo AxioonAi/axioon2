@@ -1,5 +1,8 @@
 "use client";
 
+import { authGetAPI, token as Token } from "@/lib/axios";
+import { SocialMediaDataProps } from "@/types/SocialMediaData";
+import { useCookies } from "next-client-cookies";
 import {
   createContext,
   Dispatch,
@@ -8,11 +11,8 @@ import {
   useEffect,
   useState,
 } from "react";
-import { useCookies } from "next-client-cookies";
-import { useSelectedPoliticianContext } from "./SelectedPolitician";
 import { useSelectedDateContext } from "./SelectedDate";
-import { authGetAPI, token as Token } from "@/lib/axios";
-import { SocialMediaDataProps } from "@/types/SocialMediaData";
+import { useSelectedPoliticianContext } from "./SelectedPolitician";
 interface SocialMediaDataContextProps {
   facebook: boolean;
   instagram: boolean;
@@ -75,13 +75,19 @@ export const SocialMediaDataContextProvider = ({ children }: ContextProps) => {
 
   useEffect(() => {
     async function GetData() {
-      setIsGettingData(true);
-      await Promise.all([GetStaticData(), GetSocialMediaData()]);
-      setTimeout(() => {
-        setIsGettingData(false);
-      }, 1500);
+      try {
+        await Promise.all([GetStaticData(), GetSocialMediaData()]);
+        setIsGettingData(false); // ✅ set the state when both are done
+      } catch (error) {
+        console.error("Error fetching data", error);
+        // Optional: handle error state here
+      }
     }
-    GetData();
+
+    if (selectedPolitician?.id) {
+      setIsGettingData(true); // Optional: reset state before fetching again
+      GetData();
+    }
   }, [
     selectedPolitician,
     instagram,

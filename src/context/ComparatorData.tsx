@@ -1,5 +1,9 @@
 "use client";
 
+import { authGetAPI, token as Token } from "@/lib/axios";
+import { MentionsDataProps } from "@/types/MentionsData";
+import { SocialMediaDataProps } from "@/types/SocialMediaData";
+import { useCookies } from "next-client-cookies";
 import {
   createContext,
   Dispatch,
@@ -8,14 +12,10 @@ import {
   useEffect,
   useState,
 } from "react";
-import { useCookies } from "next-client-cookies";
-import { useSelectedPoliticianContext } from "./SelectedPolitician";
 import { useSelectedDateContext } from "./SelectedDate";
-import { authGetAPI, token as Token } from "@/lib/axios";
-import { SocialMediaDataProps } from "@/types/SocialMediaData";
-import { MentionsDataProps } from "@/types/MentionsData";
+import { useSelectedPoliticianContext } from "./SelectedPolitician";
 
-interface Politician {
+export interface Politician {
   campaignNumber: number;
   city: string;
   facebook: string;
@@ -188,17 +188,20 @@ export const ComparatorDataContextProvider = ({ children }: ContextProps) => {
 
   useEffect(() => {
     async function GetData() {
-      setIsGettingData(true);
-      await Promise.all([
-        GetSocialMediaData(),
-        GetMentionsData(),
-        GetAdsData(),
-      ]);
-      setTimeout(() => {
+      try {
+        await Promise.all([
+          GetSocialMediaData(),
+          GetMentionsData(),
+          GetAdsData(),
+        ]);
         setIsGettingData(false);
-      }, 1500);
+      } catch (error) {
+        console.error("Error fetching data", error);
+      }
     }
+
     if (activeUserProfileData?.id && passiveUserProfileData?.id) {
+      setIsGettingData(true);
       GetData();
     }
   }, [

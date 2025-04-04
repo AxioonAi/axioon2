@@ -1,5 +1,11 @@
 "use client";
 
+import { authGetAPI, token as Token } from "@/lib/axios";
+import {
+  HashtagsMentionsDataProps,
+  MentionsDataProps,
+} from "@/types/MentionsData";
+import { useCookies } from "next-client-cookies";
 import {
   createContext,
   Dispatch,
@@ -8,14 +14,8 @@ import {
   useEffect,
   useState,
 } from "react";
-import { useCookies } from "next-client-cookies";
-import { useSelectedPoliticianContext } from "./SelectedPolitician";
 import { useSelectedDateContext } from "./SelectedDate";
-import { authGetAPI, token as Token } from "@/lib/axios";
-import {
-  HashtagsMentionsDataProps,
-  MentionsDataProps,
-} from "@/types/MentionsData";
+import { useSelectedPoliticianContext } from "./SelectedPolitician";
 
 interface MentionsDataContextProps {
   mentionsData: MentionsDataProps | undefined;
@@ -78,9 +78,17 @@ export const MentionsDataContextProvider = ({ children }: ContextProps) => {
   }
 
   useEffect(() => {
-    if (selectedPolitician && selectedPolitician.id) {
-      GetHashtagsMentionsData();
-      GetMentionsData();
+    async function GetData() {
+      try {
+        await Promise.all([GetHashtagsMentionsData(), GetMentionsData()]);
+        setIsGettingData(false); // ✅ set the state when both are done
+      } catch (error) {
+        console.error("Error fetching data", error);
+      }
+    }
+    if (selectedPolitician?.id) {
+      setIsGettingData(true);
+      GetData();
     }
   }, [selectedPolitician, startDate, endDate]);
 
