@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import "swiper/css";
-import "react-day-picker/style.css";
 import { CookiesProvider } from "next-client-cookies/server";
 import Script from "next/script";
-
-const inter = Inter({ subsets: ["latin"] });
+import "react-day-picker/style.css";
+import "swiper/css";
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Axioon",
@@ -30,7 +27,7 @@ export default function RootLayout({
     })(window, document, "clarity", "script", "o5nqnjy3jk");`}
       </Script>
       <CookiesProvider>
-        <body className={inter.className}>{children}</body>
+        <body>{children}</body>
       </CookiesProvider>
     </html>
   );
