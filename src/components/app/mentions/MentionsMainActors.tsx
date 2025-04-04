@@ -1,6 +1,10 @@
 "use client";
-import Image from "next/image";
-import { useEffect, useState } from "react";
+import { BaseCard } from "@/components/global/BaseCard/BaseCard";
+import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
+import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
+import { Skeleton } from "@/components/global/Skeleton";
+import { useMentionsDataContext } from "@/context/MentionsData";
+import { useOffsetContext } from "@/context/test";
 import {
   Popover,
   PopoverArrow,
@@ -8,13 +12,9 @@ import {
   PopoverTrigger,
 } from "@radix-ui/react-popover";
 import { ChevronDown } from "lucide-react";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
-import { BaseCard } from "@/components/global/BaseCard/BaseCard";
-import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
-import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
-import { useOffsetContext } from "@/context/test";
-import { useMentionsDataContext } from "@/context/MentionsData";
-import { Skeleton } from "@/components/global/Skeleton";
 
 interface MentionsMainActorsProps {
   createdAt: string;
@@ -70,7 +70,7 @@ export function MentionsMainActors() {
                 <button
                   onClick={() => setFilter("positive")}
                   className={twMerge(
-                    "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                    "hover:bg-darkBlueAxion/10 flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100",
                     filter === "positive" && "bg-darkBlueAxion/10",
                   )}
                 >
@@ -79,7 +79,7 @@ export function MentionsMainActors() {
                 <button
                   onClick={() => setFilter("negative")}
                   className={twMerge(
-                    "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                    "hover:bg-darkBlueAxion/10 flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100",
                     filter === "negative" && "bg-darkBlueAxion/10",
                   )}
                 >
@@ -88,7 +88,7 @@ export function MentionsMainActors() {
                 <button
                   onClick={() => setFilter("active")}
                   className={twMerge(
-                    "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                    "hover:bg-darkBlueAxion/10 flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100",
                     filter === "active" && "bg-darkBlueAxion/10",
                   )}
                 >
@@ -97,7 +97,7 @@ export function MentionsMainActors() {
                 <button
                   onClick={() => setFilter("inactive")}
                   className={twMerge(
-                    "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                    "hover:bg-darkBlueAxion/10 flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100",
                     filter === "active" && "bg-darkBlueAxion/10",
                   )}
                 >
