@@ -21,8 +21,10 @@ export async function middleware(req: NextRequest) {
   )
     return NextResponse.next();
 
-  const token = cookies().get(Token);
+  const cookieStore = await cookies();
+  const token = cookieStore.get(Token);
   if (!token) return NextResponse.redirect(new URL("/login", req.url));
+
   const connect = await loginVerifyAPI({
     token: token.value,
   });
