@@ -1,14 +1,14 @@
 "use client";
+import { Modal } from "@/components/global/Modal";
+import { Spinner } from "@/components/global/Spinner";
+import { authGetAPI, AuthPostAPI, token as Token } from "@/lib/axios";
 import { SendHorizonal, X } from "lucide-react";
-import { useEffect, useState } from "react";
 import { useCookies } from "next-client-cookies";
-import OpenAI from "openai";
 import Image from "next/image";
+import OpenAI from "openai";
+import { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { authGetAPI, AuthPostAPI, token as Token } from "@/lib/axios";
-import { Spinner } from "@/components/global/Spinner";
-import { Modal } from "@/components/global/Modal";
 
 interface Message {
   content: string;

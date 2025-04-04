@@ -1,9 +1,17 @@
 "use client";
-import { useEffect, useState } from "react";
+import { CommentsDonutGraph } from "@/components/app/home/CommentsDonutGraph";
 import { CommentsSummary } from "@/components/app/home/CommentsSummary";
 import { DefendantsAndDetractorsList } from "@/components/app/home/DefendantsAndDetractorsList";
 import { EngagementTimes } from "@/components/app/home/EngagementTimes";
+import { FollowerProgressionChart } from "@/components/app/home/FollowerProgressionChart";
+import { HeaderCards } from "@/components/app/home/HeaderCards";
+import { HomeHeaderCard } from "@/components/app/home/HomeHeaderCard";
+import { IndicatorsCards } from "@/components/app/home/IndicatorsCards";
+import { LineGradientChart } from "@/components/app/home/LineGradientChart";
+import { PositiveNegativeWrapper } from "@/components/app/home/PositiveNegativeWrapper";
 import { PostsAndComments } from "@/components/app/home/PostsAndComments";
+import { ScoreGaugeChart } from "@/components/app/home/ScoreGaugeChart";
+import { SelectedAccounts } from "@/components/app/home/SelectedAccounts";
 import { WordCloud } from "@/components/app/home/WordCloud";
 import { WordsList } from "@/components/app/home/WordsList";
 import {
@@ -14,16 +22,8 @@ import {
   ScoreGaugeChartData,
   WordCloudData,
 } from "@/components/data/HomeData";
-import { LineGradientChart } from "@/components/app/home/LineGradientChart";
-import { FollowerProgressionChart } from "@/components/app/home/FollowerProgressionChart";
-import { HeaderCards } from "@/components/app/home/HeaderCards";
-import { IndicatorsCards } from "@/components/app/home/IndicatorsCards";
-import { HomeHeaderCard } from "@/components/app/home/HomeHeaderCard";
-import { PositiveNegativeWrapper } from "@/components/app/home/PositiveNegativeWrapper";
-import { ScoreGaugeChart } from "@/components/app/home/ScoreGaugeChart";
-import { CommentsDonutGraph } from "@/components/app/home/CommentsDonutGraph";
 import { useSocialMediaDataContext } from "@/context/SocialMediaData";
-import { SelectedAccounts } from "@/components/app/home/SelectedAccounts";
+import { useEffect, useState } from "react";
 
 interface IndicatorsProps {
   name: string;
@@ -46,7 +46,7 @@ export default function Home() {
     IndicatorsProps[] | null
   >(null);
   const [indicators, setIndicators] = useState<IndicatorsProps[]>([]);
-  const { socialMediaData } = useSocialMediaDataContext();
+  const { socialMediaData, isGettingData } = useSocialMediaDataContext();
 
   useEffect(() => {
     if (socialMediaData) {

@@ -1,40 +1,41 @@
 "use client";
-import { MentionsSource } from "@/components/app/mentions/MentionsSource";
-import { MentionsHeaderCard } from "@/components/app/mentions/MentionsHeaderCard";
-import { ScoreGaugeChart } from "@/components/app/mentions/ScoreGaugeChart";
-import { MentionsMainActors } from "@/components/app/mentions/MentionsMainActors";
-import { MentionsMainInfluencers } from "@/components/app/mentions/MentionsMainInfluencers";
-import { MentionsDetractors } from "@/components/app/mentions/MentionsDetractors";
-import { MentionsDefensors } from "@/components/app/mentions/MentionsDefensors";
-import { MentionsPostsAndComments } from "@/components/app/mentions/MentionsPostsAndComments";
-import { LineGradientChart } from "@/components/app/mentions/LineGradientChart";
-import { CommentsDonutGraph } from "@/components/app/mentions/CommentsDonutGraph";
-import { MentionsSelector } from "@/components/app/mentions/MentionsSelector";
-import { Hashtags } from "@/components/app/mentions/Hashtags";
-import { Words } from "@/components/app/mentions/Words";
 import { Comments } from "@/components/app/mentions/Comments";
-import { IndicatorsCards } from "@/components/app/mentions/IndicatorsCards";
-import { useMentionsDataContext } from "@/context/MentionsData";
-import { HashtagsLineGradientChart } from "@/components/app/mentions/HashtagsLineGradientChart";
-import { HashtagsScoreGaugeChart } from "@/components/app/mentions/HashtagsScoreGaugeChart";
+import { CommentsDonutGraph } from "@/components/app/mentions/CommentsDonutGraph";
+import { Hashtags } from "@/components/app/mentions/Hashtags";
+import { HashtagsComments } from "@/components/app/mentions/HashtagsComments";
 import { HashtagsCommentsDonutGraph } from "@/components/app/mentions/HashtagsCommentsDonutGraph";
-import { HashtagsMentionsSource } from "@/components/app/mentions/HashtagsMentionsSource";
-import { HashtagsMentionsMainActors } from "@/components/app/mentions/HashtagsMentionsMainActors";
-import { HashtagsMentionsDetractors } from "@/components/app/mentions/HashtagsMentionsDetractors";
+import { HashtagsHashtags } from "@/components/app/mentions/HashtagsHashtags";
+import { HashtagsLineGradientChart } from "@/components/app/mentions/HashtagsLineGradientChart";
 import { HashtagsMentionsDefensors } from "@/components/app/mentions/HashtagsMentionsDefensors";
+import { HashtagsMentionsDetractors } from "@/components/app/mentions/HashtagsMentionsDetractors";
+import { HashtagsMentionsMainActors } from "@/components/app/mentions/HashtagsMentionsMainActors";
 import { HashtagsMentionsMainInfluencers } from "@/components/app/mentions/HashtagsMentionsMainInfluencers";
 import { HashtagsMentionsPostsAndComments } from "@/components/app/mentions/HashtagsMentionsPostsAndComments";
+import { HashtagsMentionsSource } from "@/components/app/mentions/HashtagsMentionsSource";
+import { HashtagsScoreGaugeChart } from "@/components/app/mentions/HashtagsScoreGaugeChart";
 import { HashtagsWords } from "@/components/app/mentions/HashtagsWords";
-import { HashtagsHashtags } from "@/components/app/mentions/HashtagsHashtags";
-import { HashtagsComments } from "@/components/app/mentions/HashtagsComments";
+import { IndicatorsCards } from "@/components/app/mentions/IndicatorsCards";
+import { LineGradientChart } from "@/components/app/mentions/LineGradientChart";
+import { MentionsDefensors } from "@/components/app/mentions/MentionsDefensors";
+import { MentionsDetractors } from "@/components/app/mentions/MentionsDetractors";
+import { MentionsHeaderCard } from "@/components/app/mentions/MentionsHeaderCard";
+import { MentionsMainActors } from "@/components/app/mentions/MentionsMainActors";
+import { MentionsMainInfluencers } from "@/components/app/mentions/MentionsMainInfluencers";
+import { MentionsPostsAndComments } from "@/components/app/mentions/MentionsPostsAndComments";
+import { MentionsSelector } from "@/components/app/mentions/MentionsSelector";
+import { MentionsSource } from "@/components/app/mentions/MentionsSource";
+import { ScoreGaugeChart } from "@/components/app/mentions/ScoreGaugeChart";
+import { Words } from "@/components/app/mentions/Words";
 import {
   CommentsDonutGraphData,
   LineGradientChartData,
   ScoreGaugeChartData,
 } from "@/components/data/MentionsData";
+import { useMentionsDataContext } from "@/context/MentionsData";
 
 export default function Mentions() {
   const { selectedMentionsType } = useMentionsDataContext();
+
   return (
     <div className="flex flex-col gap-4 pb-28 lg:grid lg:grid-cols-12">
       <div className="lg:col-span-12 lg:row-span-2">

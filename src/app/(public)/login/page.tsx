@@ -1,11 +1,11 @@
 "use client";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { useCookies } from "next-client-cookies";
 import { Footer } from "@/components/global/Footer";
 import { Messages } from "@/components/global/Messages";
-import { PostAPI, token } from "@/lib/axios";
 import { Spinner } from "@/components/global/Spinner";
+import { PostAPI, token } from "@/lib/axios";
+import { useCookies } from "next-client-cookies";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function Login() {
   const router = useRouter();
