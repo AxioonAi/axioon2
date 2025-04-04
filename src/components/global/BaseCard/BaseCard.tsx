@@ -4,9 +4,15 @@ interface BaseCardProps {
   children: React.ReactNode;
   className?: string;
   ref?: React.RefObject<HTMLDivElement>;
+  slit?: boolean;
 }
 
-export function BaseCard({ children, className, ref }: BaseCardProps) {
+export function BaseCard({
+  children,
+  className,
+  ref,
+  slit = false,
+}: BaseCardProps) {
   return (
     <div
       ref={ref}
@@ -15,6 +21,9 @@ export function BaseCard({ children, className, ref }: BaseCardProps) {
         className,
       )}
     >
+      {slit && (
+        <div className="bg-darkBlueAxion absolute left-1/2 top-1 h-1 w-6 -translate-x-1/2 rounded-full" />
+      )}
       {children}
     </div>
   );
