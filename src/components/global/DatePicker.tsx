@@ -1,11 +1,11 @@
 "use client";
+import { useSelectedDateContext } from "@/context/SelectedDate";
 import * as Popover from "@radix-ui/react-popover";
-import { DateRange, DayPicker } from "react-day-picker";
 import { ptBR } from "date-fns/locale";
 import { useCookies } from "next-client-cookies";
-import { useEffect, useState } from "react";
 import Image from "next/image";
-import { useSelectedDateContext } from "@/context/SelectedDate";
+import { useEffect, useState } from "react";
+import { DateRange, DayPicker } from "react-day-picker";
 
 export function DatePicker() {
   const { startDate, endDate, setStartDate, setEndDate } =

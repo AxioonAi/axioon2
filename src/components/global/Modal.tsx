@@ -36,7 +36,7 @@ export function Modal({ show, onHide, children, className }: Props) {
           <div className="relative z-50 flex flex-col items-center justify-center">
             <div
               className={twMerge(
-                "scrollbar-thin scrollbar-track-transparent scrollbar-thumb-input_bg relative z-20 flex h-[85%] max-h-[85vh] w-[500px] flex-col items-center justify-start rounded-xl bg-gray-10 px-2 py-4",
+                "scrollbar-thin scrollbar-track-transparent scrollbar-thumb-input_bg bg-gray-10 relative z-20 flex h-[85%] max-h-[85vh] w-full flex-col items-center justify-start rounded-xl bg-white px-2 py-4 md:w-[500px] lg:w-[750px]",
                 className,
               )}
             >
