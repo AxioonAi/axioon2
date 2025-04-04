@@ -1,20 +1,14 @@
 "use client";
-import { register } from "swiper/element/bundle";
-import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
-import {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
+import { Skeleton } from "@/components/global/Skeleton";
+import { authGetAPI, token as Token } from "@/lib/axios";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useCookies } from "next-client-cookies";
-import { PerfilCard } from "../parameters/PerfilCard";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { register } from "swiper/element/bundle";
+import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
 import "swiper/swiper-bundle.css";
 import { CardWithTitleAndButton } from "../parameters/CardWithTitleAndButton";
-import { authGetAPI, token as Token } from "@/lib/axios";
-import { Skeleton } from "@/components/global/Skeleton";
+import { PerfilCard } from "../parameters/PerfilCard";
 
 register();
 
@@ -79,7 +73,7 @@ export function SwiperPoliticians() {
     }
   }, []);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     updateSlidesPerView();
     window.addEventListener("resize", updateSlidesPerView);
     return () => {

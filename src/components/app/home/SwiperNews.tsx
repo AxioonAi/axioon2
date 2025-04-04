@@ -1,23 +1,17 @@
 "use client";
-import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
-import {
-  useCallback,
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-} from "react";
-import "swiper/swiper-bundle.css";
+import { Modal } from "@/components/global/Modal";
+import { Skeleton } from "@/components/global/Skeleton";
+import { Spinner } from "@/components/global/Spinner";
+import { authGetAPI, AuthPostAPI, token as Token } from "@/lib/axios";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { useCookies } from "next-client-cookies";
+import { useCallback, useEffect, useRef, useState } from "react";
 import CreatableSelect from "react-select/creatable";
+import { Swiper, SwiperRef, SwiperSlide } from "swiper/react";
+import "swiper/swiper-bundle.css";
 import { twMerge } from "tailwind-merge";
-import { NewsCard } from "../parameters/NewsCard";
 import { CardWithTitleAndButton } from "../parameters/CardWithTitleAndButton";
-import { authGetAPI, AuthPostAPI, token as Token } from "@/lib/axios";
-import { Modal } from "@/components/global/Modal";
-import { Spinner } from "@/components/global/Spinner";
-import { Skeleton } from "@/components/global/Skeleton";
+import { NewsCard } from "../parameters/NewsCard";
 
 interface News {
   id: string;
@@ -100,7 +94,7 @@ export function SwiperNews() {
     }
   }, []);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     updateSlidesPerView();
     window.addEventListener("resize", updateSlidesPerView);
     return () => {
