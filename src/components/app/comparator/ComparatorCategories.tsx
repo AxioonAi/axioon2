@@ -12,7 +12,7 @@ export function ComparatorCategories({
   setSelectedCategory,
 }: ComparatorCategoriesProps) {
   return (
-    <div className="bg-darkBlueAxion mx-auto w-full overflow-x-scroll p-2 text-white lg:col-span-12 xl:w-11/12 xl:overflow-x-auto">
+    <div className="bg-darkBlueAxion mx-auto w-full overflow-x-scroll rounded-lg p-2 text-white lg:col-span-12 xl:w-11/12 xl:overflow-x-auto">
       <Tabs defaultValue="followers">
         <TabsList className="flex w-full items-center justify-between">
           <TabsTrigger

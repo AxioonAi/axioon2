@@ -178,7 +178,7 @@ export function ChangeComparedProfilesModal({
             <ChevronRight />
           </button>
         </div>
-        <div className="relative flex h-full w-1/2 flex-col items-center bg-red-500">
+        <div className="relative flex h-full w-1/2 flex-col items-center">
           <Image
             src="/changeComparisonBackground.png"
             alt=""
