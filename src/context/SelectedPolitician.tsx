@@ -1,5 +1,7 @@
 "use client";
 
+import { authGetAPI, token as Token } from "@/lib/axios";
+import { useCookies } from "next-client-cookies";
 import {
   createContext,
   Dispatch,
@@ -8,8 +10,6 @@ import {
   useEffect,
   useState,
 } from "react";
-import { useCookies } from "next-client-cookies";
-import { authGetAPI, token as Token } from "@/lib/axios";
 
 interface Politician {
   campaignNumber: number;

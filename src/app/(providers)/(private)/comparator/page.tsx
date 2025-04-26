@@ -2,7 +2,6 @@
 import { CommentsComparison } from "@/components/app/comparator/CommentsComparison";
 import { CommentsDetailsComparison } from "@/components/app/comparator/CommentsDetailsComparison";
 import { CommentsGenderComparison } from "@/components/app/comparator/CommentsGenderComparison";
-import { CommentsWordCloudsComparison } from "@/components/app/comparator/CommentsWordCloudsComparison";
 import { ComparatorCategories } from "@/components/app/comparator/ComparatorCategories";
 import { ComparatorHeaderCard } from "@/components/app/comparator/ComparatorHeaderCard";
 import { ComparatorStickyCards } from "@/components/app/comparator/ComparatorStickyCards";
@@ -12,7 +11,6 @@ import { MentionsAgeAndGenderComparison } from "@/components/app/comparator/Ment
 import { MentionsCommentsComparison } from "@/components/app/comparator/MentionsCommentsComparison";
 import { MentionsCommentsDetailsComparison } from "@/components/app/comparator/MentionsCommentsDetailsComparison";
 import { MentionsCommentsGenderComparison } from "@/components/app/comparator/MentionsCommentsGenderComparison";
-import { MentionsCommentsWordCloudsComparison } from "@/components/app/comparator/MentionsCommentsWordCloudsComparison";
 import { MentionsScoreComparison } from "@/components/app/comparator/MentionsScoreComparison";
 import { MentionsSentimentComparison } from "@/components/app/comparator/MentionsSentimentComparison";
 import { PostsComparison } from "@/components/app/comparator/PostsComparison";
@@ -118,7 +116,7 @@ export default function Comparator() {
             <CommentsComparison />
             <CommentsDetailsComparison />
             <CommentsGenderComparison />
-            <CommentsWordCloudsComparison />
+            {/* <CommentsWordCloudsComparison /> */}
           </>
         ) : selectedCategory === "mentions" ? (
           <>
@@ -126,7 +124,7 @@ export default function Comparator() {
             <MentionsCommentsDetailsComparison />
             <MentionsCommentsGenderComparison />
             <MentionsAgeAndGenderComparison />
-            <MentionsCommentsWordCloudsComparison />
+            {/* <MentionsCommentsWordCloudsComparison /> */}
           </>
         ) : selectedCategory === "score" ? (
           <>
