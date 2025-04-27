@@ -1,21 +1,21 @@
 "use client";
-import { ChevronDown } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { BaseCard } from "@/components/global/BaseCard/BaseCard";
+import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
+import { Skeleton } from "@/components/global/Skeleton";
+import { useMentionsDataContext } from "@/context/MentionsData";
+import { useOffsetContext } from "@/context/test";
+import { shortenNumber } from "@/utils/masks";
 import autoAnimate from "@formkit/auto-animate";
-import { twMerge } from "tailwind-merge";
-import Image from "next/image";
 import {
   Popover,
   PopoverArrow,
   PopoverContent,
   PopoverTrigger,
 } from "@radix-ui/react-popover";
-import { BaseCard } from "@/components/global/BaseCard/BaseCard";
-import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
-import { useOffsetContext } from "@/context/test";
-import { useMentionsDataContext } from "@/context/MentionsData";
-import { Skeleton } from "@/components/global/Skeleton";
-import { shortenNumber } from "@/utils/masks";
+import { ChevronDown } from "lucide-react";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface InstagramPostsProps {
   commentCount: number;
@@ -205,7 +205,7 @@ export function MentionsPostsAndComments() {
                 <button
                   onClick={() => setFilter("")}
                   className={twMerge(
-                    "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                    "hover:bg-darkBlueAxion/10 flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100",
                     filter === "" && "bg-darkBlueAxion/10",
                   )}
                 >
@@ -214,7 +214,7 @@ export function MentionsPostsAndComments() {
                 <button
                   onClick={() => setFilter("positive")}
                   className={twMerge(
-                    "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                    "hover:bg-darkBlueAxion/10 flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100",
                     filter === "positive" && "bg-darkBlueAxion/10",
                   )}
                 >
@@ -223,7 +223,7 @@ export function MentionsPostsAndComments() {
                 <button
                   onClick={() => setFilter("neutral")}
                   className={twMerge(
-                    "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                    "hover:bg-darkBlueAxion/10 flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100",
                     filter === "neutral" && "bg-darkBlueAxion/10",
                   )}
                 >
@@ -232,7 +232,7 @@ export function MentionsPostsAndComments() {
                 <button
                   onClick={() => setFilter("negative")}
                   className={twMerge(
-                    "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                    "hover:bg-darkBlueAxion/10 flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100",
                     filter === "negative" && "bg-darkBlueAxion/10",
                   )}
                 >
@@ -241,7 +241,7 @@ export function MentionsPostsAndComments() {
                 <button
                   onClick={() => setFilter("desc")}
                   className={twMerge(
-                    "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                    "hover:bg-darkBlueAxion/10 flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100",
                     filter === "desc" && "bg-darkBlueAxion/10",
                   )}
                 >
@@ -250,7 +250,7 @@ export function MentionsPostsAndComments() {
                 <button
                   onClick={() => setFilter("asc")}
                   className={twMerge(
-                    "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                    "hover:bg-darkBlueAxion/10 flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100",
                     filter === "asc" && "bg-darkBlueAxion/10",
                   )}
                 >
@@ -438,86 +438,88 @@ export function MentionsPostsAndComments() {
                     </div>
                   </div>
                 </div>
-                {show === index && item.comments.length !== 0 && (
-                  <div className="flex min-h-40 w-full items-center justify-end gap-2">
-                    <div className="flex w-11/12 flex-col gap-2">
-                      {item.comments.map((comment, index) => (
-                        <div
-                          key={index}
-                          className="flex w-full flex-col justify-between rounded-lg bg-zinc-50 p-2 shadow-md lg:flex-row lg:items-center"
-                        >
-                          <div className="flex w-full gap-4 lg:max-w-[80%]">
-                            <Image
-                              src="/Icons/user.svg"
-                              alt={""}
-                              width={40}
-                              height={40}
-                              className="h-4 w-4 sm:h-6 sm:w-6 3xl:h-10 3xl:w-10"
-                            />
-                            <div className="flex w-full flex-col text-xs lg:text-sm 2xl:text-base 3xl:text-lg">
-                              <strong>{comment.username}</strong>
-                              <span className="w-full text-zinc-500">
-                                {comment.text}
-                              </span>
+                {show === index &&
+                  item.comments &&
+                  item.comments.length !== 0 && (
+                    <div className="flex min-h-40 w-full items-center justify-end gap-2">
+                      <div className="flex w-11/12 flex-col gap-2">
+                        {item.comments.map((comment, index) => (
+                          <div
+                            key={index}
+                            className="flex w-full flex-col justify-between rounded-lg bg-zinc-50 p-2 shadow-md lg:flex-row lg:items-center"
+                          >
+                            <div className="flex w-full gap-4 lg:max-w-[80%]">
+                              <Image
+                                src="/Icons/user.svg"
+                                alt={""}
+                                width={40}
+                                height={40}
+                                className="h-4 w-4 sm:h-6 sm:w-6 3xl:h-10 3xl:w-10"
+                              />
+                              <div className="flex w-full flex-col text-xs lg:text-sm 2xl:text-base 3xl:text-lg">
+                                <strong>{comment.username}</strong>
+                                <span className="w-full text-zinc-500">
+                                  {comment.text}
+                                </span>
+                              </div>
                             </div>
-                          </div>
-                          <div className="flex h-full items-end gap-8 self-end text-xs lg:text-sm 2xl:text-base 3xl:text-lg">
-                            <div className="flex h-full flex-col items-end justify-between gap-2">
-                              <span>
-                                {comment.date
-                                  ? new Date(
-                                      comment.date as string,
-                                    ).toLocaleDateString("pt-BR")
-                                  : comment.timestamp
+                            <div className="flex h-full items-end gap-8 self-end text-xs lg:text-sm 2xl:text-base 3xl:text-lg">
+                              <div className="flex h-full flex-col items-end justify-between gap-2">
+                                <span>
+                                  {comment.date
                                     ? new Date(
-                                        comment.timestamp as string,
+                                        comment.date as string,
                                       ).toLocaleDateString("pt-BR")
-                                    : ""}
-                              </span>
-                              <div className="flex items-center gap-2">
-                                <Image
-                                  src={
-                                    item.sentiment && item.sentiment <= 350
-                                      ? "/Icons/negativeSmile.svg"
-                                      : "/Icons/negativeSmileOff.svg"
-                                  }
-                                  alt=""
-                                  width={50}
-                                  height={50}
-                                  className="h-4 w-4 sm:h-5 sm:w-5 3xl:h-8 3xl:w-8"
-                                />
-                                <Image
-                                  src={
-                                    item.sentiment &&
-                                    item.sentiment >= 351 &&
-                                    item.sentiment <= 650
-                                      ? "/Icons/neutralSmile.svg"
-                                      : "/Icons/neutralSmileOff.svg"
-                                  }
-                                  alt=""
-                                  width={50}
-                                  height={50}
-                                  className="h-4 w-4 sm:h-5 sm:w-5 3xl:h-8 3xl:w-8"
-                                />
-                                <Image
-                                  src={
-                                    item.sentiment && item.sentiment >= 651
-                                      ? "/Icons/positiveSmile.svg"
-                                      : "/Icons/positiveSmileOff.svg"
-                                  }
-                                  alt=""
-                                  width={50}
-                                  height={50}
-                                  className="h-4 w-4 sm:h-5 sm:w-5 3xl:h-8 3xl:w-8"
-                                />
+                                    : comment.timestamp
+                                      ? new Date(
+                                          comment.timestamp as string,
+                                        ).toLocaleDateString("pt-BR")
+                                      : ""}
+                                </span>
+                                <div className="flex items-center gap-2">
+                                  <Image
+                                    src={
+                                      item.sentiment && item.sentiment <= 350
+                                        ? "/Icons/negativeSmile.svg"
+                                        : "/Icons/negativeSmileOff.svg"
+                                    }
+                                    alt=""
+                                    width={50}
+                                    height={50}
+                                    className="h-4 w-4 sm:h-5 sm:w-5 3xl:h-8 3xl:w-8"
+                                  />
+                                  <Image
+                                    src={
+                                      item.sentiment &&
+                                      item.sentiment >= 351 &&
+                                      item.sentiment <= 650
+                                        ? "/Icons/neutralSmile.svg"
+                                        : "/Icons/neutralSmileOff.svg"
+                                    }
+                                    alt=""
+                                    width={50}
+                                    height={50}
+                                    className="h-4 w-4 sm:h-5 sm:w-5 3xl:h-8 3xl:w-8"
+                                  />
+                                  <Image
+                                    src={
+                                      item.sentiment && item.sentiment >= 651
+                                        ? "/Icons/positiveSmile.svg"
+                                        : "/Icons/positiveSmileOff.svg"
+                                    }
+                                    alt=""
+                                    width={50}
+                                    height={50}
+                                    className="h-4 w-4 sm:h-5 sm:w-5 3xl:h-8 3xl:w-8"
+                                  />
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                      ))}
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
               </div>
             ))}
         </div>
