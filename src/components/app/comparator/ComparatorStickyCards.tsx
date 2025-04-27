@@ -107,7 +107,7 @@ export function ComparatorStickyCards() {
                       {activeUserProfileData?.name}
                     </span>
                     <span className="text-sm">
-                      {activeUserProfileData?.city}
+                      {/* {activeUserProfileData?.city} */}
                     </span>
                   </div>
                   <div className="h-full w-0.5 bg-black" />
@@ -116,7 +116,7 @@ export function ComparatorStickyCards() {
                       {passiveUserProfileData?.name}
                     </span>
                     <span className="text-sm">
-                      {passiveUserProfileData?.city}
+                      {/* {passiveUserProfileData?.city} */}
                     </span>
                   </div>
                 </div>
