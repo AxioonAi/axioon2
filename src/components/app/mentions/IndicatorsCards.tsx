@@ -1,10 +1,10 @@
 "use client";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { useEffect, useState } from "react";
-import { IndicatorsBaseCard } from "./IndicatorsBaseCard";
-import { useMentionsDataContext } from "@/context/MentionsData";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { Skeleton } from "@/components/global/Skeleton";
+import { useMentionsDataContext } from "@/context/MentionsData";
+import { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { IndicatorsBaseCard } from "./IndicatorsBaseCard";
 
 interface IndicatorsProps {
   name: string;

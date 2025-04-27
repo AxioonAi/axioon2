@@ -490,7 +490,7 @@ export function FollowersEvolutionComparison() {
           <div className="flex w-full items-center justify-between p-4">
             <div className="flex items-center gap-2 text-zinc-700">
               <Image
-                src="/Logos/TiktokLogo.png"
+                src="/Logos/TikTokLogo.png"
                 alt=""
                 width={500}
                 height={500}
@@ -565,7 +565,7 @@ export function FollowersEvolutionComparison() {
           <div className="flex w-full items-center justify-between p-4">
             <div className="flex items-center gap-2 text-zinc-700">
               <Image
-                src="/Logos/YoutubeLogo.png"
+                src="/Logos/YouTubeLogo.png"
                 alt=""
                 width={500}
                 height={500}

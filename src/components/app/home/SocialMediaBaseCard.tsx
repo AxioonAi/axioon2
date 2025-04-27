@@ -1,10 +1,10 @@
+import { BaseCard } from "@/components/global/BaseCard/BaseCard";
+import { Skeleton } from "@/components/global/Skeleton";
+import { useSocialMediaDataContext } from "@/context/SocialMediaData";
+import { shortenNumber } from "@/utils/masks";
+import { Square, SquareCheckBig } from "lucide-react";
 import Image from "next/image";
 import { twMerge } from "tailwind-merge";
-import { Square, SquareCheckBig } from "lucide-react";
-import { BaseCard } from "@/components/global/BaseCard/BaseCard";
-import { useSocialMediaDataContext } from "@/context/SocialMediaData";
-import { Skeleton } from "@/components/global/Skeleton";
-import { shortenNumber } from "@/utils/masks";
 
 interface SocialMediaBaseCardProps {
   SocialMediaData:

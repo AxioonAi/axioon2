@@ -1,8 +1,8 @@
 "use client";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { useEffect, useState } from "react";
-import { SocialMediaBaseCard } from "./SocialMediaBaseCard";
 import { useSocialMediaDataContext } from "@/context/SocialMediaData";
+import { useEffect, useState } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { SocialMediaBaseCard } from "./SocialMediaBaseCard";
 
 interface platformDataProps {
   followers: number;
@@ -73,25 +73,25 @@ export function HeaderCards() {
       }}
       className="py-2"
     >
-      <SwiperSlide className="py-2">
+      <SwiperSlide className="cursor-pointer py-2">
         <SocialMediaBaseCard
           SocialMediaData={staticInstagramData}
           platform="Instagram"
         />
       </SwiperSlide>
-      <SwiperSlide className="py-2">
+      <SwiperSlide className="cursor-pointer py-2">
         <SocialMediaBaseCard
           SocialMediaData={staticFacebookData}
           platform="Facebook"
         />
       </SwiperSlide>
-      <SwiperSlide className="py-2">
+      <SwiperSlide className="cursor-pointer py-2">
         <SocialMediaBaseCard
           SocialMediaData={staticTiktokData}
           platform="TikTok"
         />
       </SwiperSlide>
-      <SwiperSlide className="py-2">
+      <SwiperSlide className="cursor-pointer py-2">
         <SocialMediaBaseCard
           SocialMediaData={staticYoutubeData}
           platform="YouTube"

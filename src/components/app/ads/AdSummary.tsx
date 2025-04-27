@@ -1,11 +1,11 @@
 "use client";
-import Image from "next/image";
-import { useEffect, useState } from "react";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
-import { useAdsDataContext } from "@/context/AdsData";
 import { Skeleton } from "@/components/global/Skeleton";
+import { useAdsDataContext } from "@/context/AdsData";
 import { shortenNumber } from "@/utils/masks";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
 interface AdSummaryProps {
   id: string;
@@ -41,7 +41,7 @@ export function AdSummary() {
       <BaseCardHeader title="Anúncios" />
       {isGettingData ? (
         <Skeleton className="mx-auto mt-4 h-[17rem] w-11/12" />
-      ) : (
+      ) : ads.length !== 0 ? (
         <div className="flex h-full w-full flex-wrap justify-center gap-4 overflow-y-scroll p-2 lg:p-4">
           {ads.map((item, index) => (
             <div
@@ -103,6 +103,10 @@ export function AdSummary() {
             </div>
           ))}
         </div>
+      ) : (
+        <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
+          Não conseguimos encontrar esses dados.
+        </span>
       )}
     </BaseCard>
   );

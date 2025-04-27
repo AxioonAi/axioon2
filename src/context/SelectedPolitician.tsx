@@ -49,6 +49,7 @@ export const SelectedPoliticianContextProvider = ({
   const [selectedPolitician, setSelectedPolitician] =
     useState<Politician | null>(null);
 
+
   async function GetPoliticians() {
     const token = cookies.get(Token);
     const politicians = await authGetAPI("/profile/monitoring", token);

@@ -1,8 +1,8 @@
 "use client";
-import Image from "next/image";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
-import { useSocialMediaDataContext } from "@/context/SocialMediaData";
 import { Skeleton } from "@/components/global/Skeleton";
+import { useSocialMediaDataContext } from "@/context/SocialMediaData";
+import Image from "next/image";
 
 export function SelectedAccounts() {
   const {
@@ -21,7 +21,7 @@ export function SelectedAccounts() {
         <div className="flex w-full flex-col items-center justify-between lg:flex-row">
           <span className="font-semibold">Redes Sociais Selecionadas:</span>
           <span className="text-sm text-zinc-400">
-            Clique nos botões acima para alterar quais redes devem ser exibidas
+            Clique nos botões abaixo para alterar quais redes devem ser exibidas
           </span>
           <div className="flex w-48 items-center justify-end gap-2">
             {socialMediaData?.staticData.facebookData && facebook && (

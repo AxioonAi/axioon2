@@ -1,8 +1,7 @@
 "use client";
-import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { Skeleton } from "@/components/global/Skeleton";
+import { useLegalDataContext } from "@/context/LegalData";
 import autoAnimate from "@formkit/auto-animate";
-import { twMerge } from "tailwind-merge";
 import {
   Popover,
   PopoverArrow,
@@ -10,11 +9,12 @@ import {
   PopoverTrigger,
 } from "@radix-ui/react-popover";
 import { ChevronDown } from "lucide-react";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
+import { twMerge } from "tailwind-merge";
 import { BaseCard } from "../../global/BaseCard/BaseCard";
 import { BaseCardFooter } from "../../global/BaseCard/BaseCardFooter";
 import { BaseCardHeader } from "../../global/BaseCard/BaseCardHeader";
-import { useLegalDataContext } from "@/context/LegalData";
-import { Skeleton } from "@/components/global/Skeleton";
 
 interface ProcessListProps {
   activePole: string | null;
@@ -85,7 +85,7 @@ export function LegalProcessList() {
                 <button
                   onClick={() => setFilter("recent")}
                   className={twMerge(
-                    "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                    "hover:bg-darkBlueAxion/10 flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100",
                     filter === "recent" && "bg-darkBlueAxion/10",
                   )}
                 >
@@ -94,7 +94,7 @@ export function LegalProcessList() {
                 <button
                   onClick={() => setFilter("oldest")}
                   className={twMerge(
-                    "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                    "hover:bg-darkBlueAxion/10 flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100",
                     filter === "oldest" && "bg-darkBlueAxion/10",
                   )}
                 >
@@ -107,7 +107,7 @@ export function LegalProcessList() {
       />
       {isGettingData ? (
         <Skeleton className="mx-auto mt-4 h-[21rem] w-11/12" />
-      ) : (
+      ) : processList.length !== 0 ? (
         <div className="flex h-[50vh] w-full flex-col justify-around gap-4 overflow-y-scroll p-4 pb-10 text-[10px] lg:h-full xl:text-xs 2xl:text-sm 3xl:text-base">
           {processList
             .sort((a, b) =>
@@ -277,6 +277,10 @@ export function LegalProcessList() {
               </div>
             ))}
         </div>
+      ) : (
+        <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 transform">
+          Não conseguimos encontrar esses dados.
+        </span>
       )}
       <BaseCardFooter text="Lista dos processos vinculados ao perfil." />
     </BaseCard>

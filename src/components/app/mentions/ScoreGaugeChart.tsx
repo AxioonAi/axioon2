@@ -1,15 +1,15 @@
 "use client";
 import { useEffect, useState } from "react";
 // import ReactApexChart from "react-apexcharts";
-import { ApexOptions } from "apexcharts";
-import Image from "next/image";
-import { twMerge } from "tailwind-merge";
-import dynamic from "next/dynamic";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
-import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
+import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { Skeleton } from "@/components/global/Skeleton";
 import { useMentionsDataContext } from "@/context/MentionsData";
+import { ApexOptions } from "apexcharts";
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import { twMerge } from "tailwind-merge";
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
@@ -101,7 +101,7 @@ export function ScoreGaugeChart({
       <BaseCardHeader title={"Score Atual"} />
       {isGettingData ? (
         <Skeleton className={twMerge("mx-auto mt-4 h-48 w-11/12", className)} />
-      ) : (
+      ) : !Number.isNaN(series[0]) ? (
         <div
           className={twMerge(
             "flex h-56 w-full gap-8 lg:h-full",
@@ -134,6 +134,12 @@ export function ScoreGaugeChart({
               </span>
             </div>
           )}
+        </div>
+      ) : (
+        <div className="flex h-full min-h-40 w-full items-center justify-center">
+          <span className="text-center text-lg font-semibold italic">
+            Não encontramos dados suficientes
+          </span>
         </div>
       )}
       <BaseCardFooter text="Valor médio dos sentimentos." />

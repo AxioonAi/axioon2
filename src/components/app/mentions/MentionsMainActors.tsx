@@ -110,7 +110,7 @@ export function MentionsMainActors() {
       />
       {isGettingData ? (
         <Skeleton className="mx-auto mt-4 h-[23rem] w-11/12" />
-      ) : (
+      ) : MentionsMainActorsData.length !== 0 ? (
         <div
           ref={elementRef}
           className="flex h-80 w-full flex-col overflow-x-scroll overflow-y-scroll p-4 lg:mb-0 lg:h-[calc(100%-5.5rem)] lg:overflow-x-auto"
@@ -190,6 +190,12 @@ export function MentionsMainActors() {
               </div>
             </div>
           ))}
+        </div>
+      ) : (
+        <div className="flex h-full min-h-40 w-full items-center justify-center">
+          <span className="text-center text-lg font-semibold italic">
+            Não encontramos dados suficientes
+          </span>
         </div>
       )}
       <BaseCardFooter text="Lista com os principais atores." />

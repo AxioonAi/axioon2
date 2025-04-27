@@ -1,18 +1,18 @@
 "use client";
-import { ChevronDown } from "lucide-react";
-import { useEffect, useState } from "react";
-import { twMerge } from "tailwind-merge";
+import { BaseCard } from "@/components/global/BaseCard/BaseCard";
+import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
+import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
+import { Skeleton } from "@/components/global/Skeleton";
+import { useMentionsDataContext } from "@/context/MentionsData";
 import {
   Popover,
   PopoverArrow,
   PopoverContent,
   PopoverTrigger,
 } from "@radix-ui/react-popover";
-import { BaseCard } from "@/components/global/BaseCard/BaseCard";
-import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
-import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
-import { useMentionsDataContext } from "@/context/MentionsData";
-import { Skeleton } from "@/components/global/Skeleton";
+import { ChevronDown } from "lucide-react";
+import { useEffect, useState } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface WordsProps {
   text: string;
@@ -70,7 +70,7 @@ export function WordsList() {
               <button
                 onClick={() => setFilter("desc")}
                 className={twMerge(
-                  "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                  "hover:bg-darkBlueAxion/10 flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100",
                   filter === "desc" && "bg-darkBlueAxion/10",
                 )}
               >
@@ -79,7 +79,7 @@ export function WordsList() {
               <button
                 onClick={() => setFilter("asc")}
                 className={twMerge(
-                  "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                  "hover:bg-darkBlueAxion/10 flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100",
                   filter === "asc" && "bg-darkBlueAxion/10",
                 )}
               >
@@ -88,7 +88,7 @@ export function WordsList() {
               <button
                 onClick={() => setFilter("ascPosts")}
                 className={twMerge(
-                  "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                  "hover:bg-darkBlueAxion/10 flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100",
                   filter === "ascPosts" && "bg-darkBlueAxion/10",
                 )}
               >
@@ -97,7 +97,7 @@ export function WordsList() {
               <button
                 onClick={() => setFilter("descPosts")}
                 className={twMerge(
-                  "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                  "hover:bg-darkBlueAxion/10 flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100",
                   filter === "descPosts" && "bg-darkBlueAxion/10",
                 )}
               >
@@ -109,7 +109,7 @@ export function WordsList() {
       />
       {isGettingData ? (
         <Skeleton className="mx-auto mt-4 h-48 w-11/12" />
-      ) : (
+      ) : wordsList.length !== 0 ? (
         <div className="flex h-80 w-full flex-col gap-4 overflow-y-scroll p-4 lg:mb-0 lg:h-[74%] 2xl:h-3/4 3xl:h-4/5">
           {wordsList
             .sort((a, b) =>
@@ -155,6 +155,12 @@ export function WordsList() {
                 <strong> {word.value}</strong>
               </div>
             ))}
+        </div>
+      ) : (
+        <div className="flex h-full min-h-40 w-full items-center justify-center">
+          <span className="text-center text-lg font-semibold italic">
+            Não encontramos dados suficientes
+          </span>
         </div>
       )}
       <BaseCardFooter text="Lista das palavras por sentimento." />

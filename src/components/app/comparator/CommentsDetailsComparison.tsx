@@ -454,7 +454,7 @@ export function CommentsDetailsComparison() {
           <div className="flex h-72 w-full flex-col justify-center gap-4 p-4 xs:h-60 lg:h-full lg:gap-4 lg:p-4 3xl:gap-16">
             <div className="flex w-full items-center gap-2">
               <Image
-                src="/Logos/TiktokLogo.png"
+                src="/Logos/TikTokLogo.png"
                 alt=""
                 width={500}
                 height={500}
@@ -632,7 +632,7 @@ export function CommentsDetailsComparison() {
           <div className="flex h-72 w-full flex-col justify-center gap-4 p-4 xs:h-60 lg:h-full lg:gap-4 lg:p-4 3xl:gap-16">
             <div className="flex w-full items-center gap-2">
               <Image
-                src="/Logos/YoutubeLogo.png"
+                src="/Logos/YouTubeLogo.png"
                 alt=""
                 width={500}
                 height={500}

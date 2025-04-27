@@ -1,13 +1,13 @@
 "use client";
-import { twMerge } from "tailwind-merge";
-import { ApexOptions } from "apexcharts";
-import { useEffect, useState } from "react";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
+import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
 import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { DonutChartWithFooterData } from "@/components/global/DonutChartWithFooterData";
-import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
-import { useMentionsDataContext } from "@/context/MentionsData";
 import { Skeleton } from "@/components/global/Skeleton";
+import { useMentionsDataContext } from "@/context/MentionsData";
+import { ApexOptions } from "apexcharts";
+import { useEffect, useState } from "react";
+import { twMerge } from "tailwind-merge";
 
 interface CommentsDonutGraphProps {
   CommentsDonutGraphData: {
@@ -144,7 +144,7 @@ export function CommentsDonutGraph({
           })}
         />
       )}
-      <BaseCardFooter text="Comentários de acordo com o Gênero dos Seguidores." />
+      <BaseCardFooter text="Sentimentos por Fonte." />
     </BaseCard>
   );
 }

@@ -87,7 +87,7 @@ export function SwiperPoliticians() {
         <CardWithTitleAndButton
           title="Perfis Monitorados"
           buttonText="3 de 5 disponíveis"
-          hasTwoButtons={true}
+          hasTwoButtons={false}
           secondButtonText="Novo Perfil"
         />
       </div>

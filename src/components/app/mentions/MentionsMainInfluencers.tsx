@@ -1,6 +1,9 @@
 "use client";
-import Image from "next/image";
-import { useEffect, useState } from "react";
+import { BaseCard } from "@/components/global/BaseCard/BaseCard";
+import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
+import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
+import { Skeleton } from "@/components/global/Skeleton";
+import { useMentionsDataContext } from "@/context/MentionsData";
 import {
   Popover,
   PopoverArrow,
@@ -8,12 +11,9 @@ import {
   PopoverTrigger,
 } from "@radix-ui/react-popover";
 import { ChevronDown } from "lucide-react";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
-import { BaseCard } from "@/components/global/BaseCard/BaseCard";
-import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
-import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
-import { useMentionsDataContext } from "@/context/MentionsData";
-import { Skeleton } from "@/components/global/Skeleton";
 
 interface MentionsMainInfluencersProps {
   createdAt: string;
@@ -58,7 +58,7 @@ export function MentionsMainInfluencers() {
                 <button
                   onClick={() => setFilter("positive")}
                   className={twMerge(
-                    "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                    "hover:bg-darkBlueAxion/10 flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100",
                     filter === "positive" && "bg-darkBlueAxion/10",
                   )}
                 >
@@ -67,7 +67,7 @@ export function MentionsMainInfluencers() {
                 <button
                   onClick={() => setFilter("negative")}
                   className={twMerge(
-                    "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                    "hover:bg-darkBlueAxion/10 flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100",
                     filter === "negative" && "bg-darkBlueAxion/10",
                   )}
                 >
@@ -76,7 +76,7 @@ export function MentionsMainInfluencers() {
                 <button
                   onClick={() => setFilter("active")}
                   className={twMerge(
-                    "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                    "hover:bg-darkBlueAxion/10 flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100",
                     filter === "active" && "bg-darkBlueAxion/10",
                   )}
                 >
@@ -85,7 +85,7 @@ export function MentionsMainInfluencers() {
                 <button
                   onClick={() => setFilter("inactive")}
                   className={twMerge(
-                    "flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100 hover:bg-darkBlueAxion/10",
+                    "hover:bg-darkBlueAxion/10 flex w-full items-center justify-center border-y border-y-zinc-200 p-1 text-xs transition duration-100",
                     filter === "active" && "bg-darkBlueAxion/10",
                   )}
                 >
@@ -98,7 +98,7 @@ export function MentionsMainInfluencers() {
       />
       {isGettingData ? (
         <Skeleton className="mx-auto mt-4 h-[23rem] w-11/12" />
-      ) : (
+      ) : MentionsMainInfluencers.length !== 0 ? (
         <div className="flex h-80 w-full flex-col overflow-x-scroll overflow-y-scroll p-4 lg:mb-0 lg:h-[calc(100%-5.5rem)] lg:overflow-x-auto">
           {MentionsMainInfluencersData.sort((a, b) =>
             filter === "positive"
@@ -175,6 +175,12 @@ export function MentionsMainInfluencers() {
               </div>
             </div>
           ))}
+        </div>
+      ) : (
+        <div className="flex h-full min-h-40 w-full items-center justify-center">
+          <span className="text-center text-lg font-semibold italic">
+            Não encontramos dados suficientes
+          </span>
         </div>
       )}
       <BaseCardFooter text="Lista com os perfis com maior influência." />

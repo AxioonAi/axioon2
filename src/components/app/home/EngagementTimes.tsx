@@ -1,13 +1,13 @@
 "use client";
 // import ReactApexChart from "react-apexcharts";
-import { ApexOptions } from "apexcharts";
-import { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
-import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
-import { useSocialMediaDataContext } from "@/context/SocialMediaData";
+import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
 import { Skeleton } from "@/components/global/Skeleton";
+import { useSocialMediaDataContext } from "@/context/SocialMediaData";
+import { ApexOptions } from "apexcharts";
+import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });

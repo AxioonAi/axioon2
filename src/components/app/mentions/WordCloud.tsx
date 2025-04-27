@@ -115,7 +115,7 @@ export function WordCloud({ WordCloudData }: WordCloudProps) {
       <BaseCardHeader title="Nuvem de Palavras" />
       {isGettingData ? (
         <Skeleton className="mx-auto mt-4 h-48 w-11/12" />
-      ) : (
+      ) : sortedWords && sortedWords.length !== 0 ? (
         <div
           ref={elementRef}
           className="flex h-48 w-full flex-col lg:mb-0 lg:h-[calc(100%-5.5rem)]"
@@ -154,6 +154,12 @@ export function WordCloud({ WordCloudData }: WordCloudProps) {
                 )}
               </ParentSize>
             )}
+        </div>
+      ) : (
+        <div className="flex h-full min-h-40 w-full items-center justify-center">
+          <span className="text-center text-lg font-semibold italic">
+            Não encontramos dados suficientes
+          </span>
         </div>
       )}
       <BaseCardFooter text="Nuvem das palavras mais utilizadas." />

@@ -13,6 +13,7 @@ export function FollowersComparison() {
     activeUserProfileData,
     passiveUserProfileData,
   } = useComparatorDataContext();
+
   const [activeFacebookFollowers, setActiveFacebookFollowers] = useState<
     number | null
   >(null);

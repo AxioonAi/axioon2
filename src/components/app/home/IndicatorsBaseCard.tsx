@@ -1,8 +1,8 @@
 "use client";
-import { twMerge } from "tailwind-merge";
-import Image from "next/image";
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
 import { shortenNumber } from "@/utils/masks";
+import Image from "next/image";
+import { twMerge } from "tailwind-merge";
 
 interface IndicatorsBaseCardProps {
   IndicatorsData: {
@@ -35,7 +35,7 @@ export function IndicatorsBaseCard({
                 ? IndicatorsData.trendingValue > 0
                   ? "/trendingUp.svg"
                   : "/trendingDown.svg"
-                : "/trendingUp.svg"
+                : "/trendingNone.svg"
             }
             alt="trending"
             width={300}
@@ -54,10 +54,12 @@ export function IndicatorsBaseCard({
                 : "text-red-500",
             )}
           >
-            {IndicatorsData.trendingValue
-              ? IndicatorsData.trendingValue > 0 && "+"
+            {IndicatorsData.trendingValue && IndicatorsData.trendingValue > 0
+              ? "+"
               : ""}
-            {IndicatorsData.trendingValue ? IndicatorsData.trendingValue : "2"}%
+            {IndicatorsData.trendingValue
+              ? IndicatorsData.trendingValue + "%"
+              : "N/A"}
           </span>
           <span className="text-xs text-zinc-500 xl:text-sm 3xl:text-base">
             {IndicatorsData.name}

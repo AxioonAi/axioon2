@@ -1,14 +1,14 @@
 "use client";
 // import ReactApexChart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
-import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
 
 import { BaseCard } from "@/components/global/BaseCard/BaseCard";
-import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
-import { useAdsDataContext } from "@/context/AdsData";
-import { Skeleton } from "@/components/global/Skeleton";
 import { BaseCardFooter } from "@/components/global/BaseCard/BaseCardFooter";
+import { BaseCardHeader } from "@/components/global/BaseCard/BaseCardHeader";
+import { Skeleton } from "@/components/global/Skeleton";
+import { useAdsDataContext } from "@/context/AdsData";
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
