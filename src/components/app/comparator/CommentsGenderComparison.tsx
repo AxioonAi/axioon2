@@ -47,7 +47,24 @@ export function CommentsGenderComparison() {
     activeUserProfileData,
     passiveUserProfileData,
   } = useComparatorDataContext();
-  const [footerData, setFooterData] = useState([
+  const [activeFooterData, setActiveFooterData] = useState([
+    {
+      title: "Homem",
+      color: "bg-sky-900",
+      value: 1624,
+    },
+    {
+      title: "Mulher",
+      color: "bg-sky-400",
+      value: 1267,
+    },
+    {
+      title: "Indeterminado",
+      color: "bg-sky-200",
+      value: 162,
+    },
+  ]);
+  const [passiveFooterData, setPassiveFooterData] = useState([
     {
       title: "Homem",
       color: "bg-sky-900",
@@ -109,7 +126,7 @@ export function CommentsGenderComparison() {
       series: [summedValues!.male, summedValues!.female, summedValues!.unknown],
     });
 
-    setFooterData([
+    setActiveFooterData([
       {
         title: "Homem",
         color: "bg-sky-900",
@@ -177,7 +194,7 @@ export function CommentsGenderComparison() {
       series: [summedValues!.male, summedValues!.female, summedValues!.unknown],
     });
 
-    setFooterData([
+    setPassiveFooterData([
       {
         title: "Homem",
         color: "bg-sky-900",
@@ -226,7 +243,7 @@ export function CommentsGenderComparison() {
         <DonutChartWithFooterData
           ChartOptions={CommentsGenderDonutGraphData.ChartOptions}
           series={activeCommentsByGender ? activeCommentsByGender?.series : []}
-          footerData={footerData.map((data) => {
+          footerData={activeFooterData.map((data) => {
             return (
               <div className="flex flex-col items-center gap-2">
                 <div className="flex items-center gap-2">
@@ -251,7 +268,7 @@ export function CommentsGenderComparison() {
           series={
             passiveCommentsByGender ? passiveCommentsByGender?.series : []
           }
-          footerData={footerData.map((data) => {
+          footerData={passiveFooterData.map((data) => {
             return (
               <div className="flex flex-col items-center gap-2">
                 <div className="flex items-center gap-2">
